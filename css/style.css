@@ -9,7 +9,6 @@
   --color-light-gray: #f5f5f5;
   --color-border: #e0e0e0;
   --color-bg: #fafafa;
-  --color-white: #ffffff;
 
   --font-serif: 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
@@ -74,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-bg);
 }
 
 .btn-primary:hover {
@@ -89,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline:hover {
   background-color: var(--color-secondary);
-  color: var(--color-white);
+  color: var(--color-bg);
 }
 
 .btn-icon {
@@ -98,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar */
 .navbar {
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
   padding: 15px 0;
   border-bottom: 1px solid var(--color-border);
   position: sticky;

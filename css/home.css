@@ -5,7 +5,7 @@
   position: relative;
   min-height: calc(100vh - 90px);
   display: flex;
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
   overflow: hidden;
 }
 
@@ -71,7 +71,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--color-white);
+  background: var(--color-bg);
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
@@ -218,7 +218,7 @@
 /* Map Section */
 .map-section {
   padding: 80px 0;
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
 }
 
 .map-section .container {
@@ -293,7 +293,7 @@
 /* Features Strip 2 */
 .features-strip-2 {
   padding: 0 40px 80px 40px;
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
 }
 
 .features-box {
