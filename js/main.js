@@ -19,5 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Same logic would apply for footer if needed
+  // Load Footer
+  const footerContainer = document.getElementById('footer-container');
+  if (footerContainer) {
+    fetch('/components/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        footerContainer.innerHTML = data;
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      })
+      .catch(error => console.error('Error loading footer:', error));
+  }
 });

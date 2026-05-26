@@ -215,125 +215,615 @@
   background-color: var(--color-border);
 }
 
-/* Map Section */
-.map-section {
-  padding: 80px 0;
+/* Section Containers and Shared Title Layouts */
+.section-why-acca,
+.section-acca-journey,
+.section-career-outcomes,
+.section-india-presence {
+  padding: 100px 0;
   background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(178, 128, 59, 0.1);
 }
 
-.map-section .container {
+.section-layout {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: 60px;
+  align-items: flex-start;
 }
 
-.map-left {
-  flex: 0 0 400px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-
-.map-image {
-  width: 150px;
-  /* Simulating map using an image or css. I will use lucide globe as placeholder or find map icon */
-  color: var(--color-secondary);
-  opacity: 0.6;
-}
-
-.map-text {
+.section-left {
+  flex: 0 0 320px;
   display: flex;
   flex-direction: column;
 }
 
-.map-text .eyebrow {
-  font-size: 0.8rem;
-  color: var(--color-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  margin-bottom: 10px;
+.section-right {
+  flex: 1;
 }
 
-.map-text h2 {
-  font-size: 2.2rem;
+.eyebrow-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+}
+
+.eyebrow-line {
+  flex: 0 0 40px;
+  height: 1px;
+  background-color: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  line-height: 1.2;
   color: var(--color-dark);
   margin-bottom: 20px;
 }
 
-.map-cities {
-  display: flex;
-  gap: 30px;
-  flex: 1;
-  justify-content: flex-end;
+.highlight-gold {
+  color: var(--color-secondary);
+  font-family: var(--font-serif);
 }
 
-.city-item {
+.title-underline {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-primary);
+  margin-bottom: 24px;
+}
+
+.section-desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* 1. Why ACCA Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.12);
+  border-radius: 6px;
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 25px rgba(181, 28, 36, 0.05);
+}
+
+.card-icon-wrapper {
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(181, 28, 36, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .card-icon-wrapper {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.card-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+.card-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
 }
 
-.city-icon {
-  width: 40px;
-  height: 40px;
-  color: var(--color-secondary);
-}
-
-.city-name {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--color-dark);
-}
-
-/* Features Strip 2 */
-.features-strip-2 {
-  padding: 0 40px 80px 40px;
-  background-color: var(--color-bg);
-}
-
-.features-box {
-  border: 1px solid var(--color-secondary);
-  border-radius: 8px;
-  padding: 40px;
-  display: flex;
-  justify-content: space-between;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.fb-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  flex: 1;
-}
-
-.fb-icon {
-  color: var(--color-secondary);
-}
-
-.fb-text h4 {
+.card-title {
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.card-num {
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+
+.card-text {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+}
+
+/* 2. ACCA Journey Section */
+.section-acca-journey {
+  background-color: #faf8f5; /* Premium light warm background */
+}
+
+.journey-btn {
+  align-self: flex-start;
+}
+
+.timeline-container-horizontal {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+
+.timeline-line-horizontal {
+  position: absolute;
+  top: 70px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background-color: var(--color-secondary);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  z-index: 2;
+}
+
+.step-badge {
+  position: absolute;
+  top: -24px;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #faf8f5;
+}
+
+.step-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+  transition: all 0.35s ease;
+}
+
+.timeline-step:hover .step-circle {
+  transform: scale(1.1);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(181, 28, 36, 0.12);
+}
+
+.step-icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8px;
+}
+
+.step-content-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.1);
+  border-radius: 6px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.timeline-step:hover .step-content-card {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  border-color: rgba(178, 128, 59, 0.25);
+}
+
+.step-title {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.step-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.step-papers {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--color-dark);
 }
 
-.fb-text p {
-  font-size: 0.85rem;
+.step-paper-codes {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-gray);
+  letter-spacing: 0.5px;
+}
+
+.step-desc {
+  font-size: 0.8rem;
   color: var(--color-gray);
   line-height: 1.4;
 }
 
-.fb-divider {
-  width: 1px;
-  background-color: var(--color-border);
-  margin: 0 20px;
+.journey-info-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(178, 128, 59, 0.2);
+  border-bottom: 1px solid rgba(178, 128, 59, 0.2);
+  padding: 24px 30px;
+  margin-top: 50px;
+  background-color: rgba(178, 128, 59, 0.02);
 }
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.strip-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--color-secondary);
+}
+
+.strip-text {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+}
+
+.strip-text strong {
+  font-weight: 600;
+}
+
+.strip-divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(178, 128, 59, 0.15);
+}
+
+/* 3. Career Outcomes Section */
+.outcomes-btn {
+  align-self: flex-start;
+}
+
+.outcomes-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.outcome-card {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.18);
+  border-radius: 4px;
+  padding: 35px 12px 30px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  min-height: 210px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+
+.outcome-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 12px 28px rgba(178, 128, 59, 0.1);
+}
+
+.outcome-icon-wrapper {
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.outcome-card:hover .outcome-icon-wrapper {
+  transform: scale(1.1);
+  color: var(--color-primary);
+}
+
+.outcome-icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.5px;
+}
+
+.outcome-title {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.highlight-card {
+  border-color: var(--color-secondary);
+  background-color: rgba(178, 128, 59, 0.03);
+}
+
+.outcome-subtext {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* 4. India Presence Section */
+.section-india-presence {
+  background-color: #faf8f5;
+}
+
+.cities-btn {
+  align-self: flex-start;
+  margin-bottom: 30px;
+}
+
+.india-map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(178, 128, 59, 0.12);
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02);
+}
+
+.india-map-svg {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+.pin-pulse {
+  animation: pulse-pin 2s infinite ease-out;
+  transform-origin: center;
+}
+
+@keyframes pulse-pin {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.city-landmark-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.15);
+  border-radius: 6px;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+
+.city-landmark-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 25px rgba(181, 28, 36, 0.06);
+}
+
+.landmark-icon-wrapper {
+  color: var(--color-secondary);
+  transition: all 0.3s ease;
+}
+
+.city-landmark-card:hover .landmark-icon-wrapper {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.landmark-svg {
+  width: 38px;
+  height: 38px;
+  stroke: currentColor;
+}
+
+.city-title-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-dark);
+}
+
+/* Footer Section Styling */
+.footer {
+  background-color: var(--color-dark);
+  color: var(--color-bg);
+  padding: 50px 0;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================= */
+
+@media (max-width: 1200px) {
+  .section-layout {
+    flex-direction: column;
+    gap: 45px;
+    align-items: stretch;
+  }
+  
+  .section-left {
+    flex: 1;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .title-underline {
+    margin: 0 auto 20px auto;
+  }
+  
+  .eyebrow-wrapper {
+    justify-content: center;
+  }
+  
+  .journey-btn, .outcomes-btn, .cities-btn {
+    align-self: center;
+  }
+  
+  .timeline-container-horizontal {
+    padding-top: 20px;
+  }
+  
+  .timeline-line-horizontal {
+    display: none;
+  }
+  
+  .timeline-step {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+  
+  .step-badge {
+    position: relative;
+    top: 0;
+    margin-bottom: 8px;
+    border-color: #ffffff;
+  }
+  
+  .outcomes-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .outcome-card {
+    flex: 0 0 calc(33.333% - 14px);
+    min-height: 200px;
+  }
+  
+  .india-map-container {
+    max-width: 320px;
+    margin: 0 auto 20px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-why-acca,
+  .section-acca-journey,
+  .section-career-outcomes,
+  .section-india-presence {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .outcome-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+  
+  .journey-info-strip {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .strip-divider {
+    display: none;
+  }
+  
+  .cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .outcome-card {
+    flex: 0 0 100%;
+  }
+  
+  .cities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
