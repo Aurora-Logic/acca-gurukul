@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ACCA Gurukul - Building Global Finance Leaders</title>
   <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/home.css">
+  
+  <!-- Google Fonts Preconnect & Links (Fixes font loading in local reverse proxies like FlyEnv) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets with cache busting parameters -->
+  <link rel="stylesheet" href="/css/style.css?v=1.0.2">
+  <link rel="stylesheet" href="/css/home.css?v=1.0.2">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -27,34 +34,50 @@
     </div>
 
     <div class="hero-timeline">
-      <div class="timeline-item">
+      <!-- Symmetrical Curved SVG Line passing perfectly through the circle centers -->
+      <svg class="hero-timeline-curve-svg" viewBox="0 0 110 440" fill="none" preserveAspectRatio="none">
+        <path d="M 84,34 Q 4,220 84,406" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      
+      <!-- Step 1 -->
+      <div class="timeline-item step-1">
         <div class="timeline-icon">
-          <i data-lucide="book-open" style="width: 24px; height: 24px;"></i>
+          <i data-lucide="book-open" style="width: 26px; height: 26px;"></i>
         </div>
         <div class="timeline-content">
-          <div class="step-num">01</div>
-          <h4>APPLIED KNOWLEDGE</h4>
-          <p>Build the foundation</p>
+          <div class="timeline-header-wrap">
+            <span class="step-num">01</span>
+            <h4 class="step-title-text">APPLIED<br>KNOWLEDGE</h4>
+          </div>
+          <p class="step-desc-text">Build the foundation</p>
         </div>
       </div>
-      <div class="timeline-item">
+      
+      <!-- Step 2 -->
+      <div class="timeline-item step-2">
         <div class="timeline-icon">
-          <i data-lucide="presentation" style="width: 24px; height: 24px;"></i>
+          <i data-lucide="presentation" style="width: 26px; height: 26px;"></i>
         </div>
         <div class="timeline-content">
-          <div class="step-num">02</div>
-          <h4>APPLIED SKILLS</h4>
-          <p>Develop expertise</p>
+          <div class="timeline-header-wrap">
+            <span class="step-num">02</span>
+            <h4 class="step-title-text">APPLIED<br>SKILLS</h4>
+          </div>
+          <p class="step-desc-text">Develop expertise</p>
         </div>
       </div>
-      <div class="timeline-item">
+      
+      <!-- Step 3 -->
+      <div class="timeline-item step-3">
         <div class="timeline-icon">
-          <i data-lucide="user-check" style="width: 24px; height: 24px;"></i>
+          <i data-lucide="user-check" style="width: 26px; height: 26px;"></i>
         </div>
         <div class="timeline-content">
-          <div class="step-num">03</div>
-          <h4>STRATEGIC PROFESSIONAL</h4>
-          <p>Lead with impact</p>
+          <div class="timeline-header-wrap">
+            <span class="step-num">03</span>
+            <h4 class="step-title-text">STRATEGIC<br>PROFESSIONAL</h4>
+          </div>
+          <p class="step-desc-text">Lead with impact</p>
         </div>
       </div>
     </div>
@@ -537,6 +560,304 @@
             </div>
             <span class="city-title-label">JAIPUR</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Aspiration Journey Section -->
+  <section class="section-aspiration-journey" id="aspiration-journey">
+    <div class="container section-layout">
+      <div class="section-left">
+        <div class="eyebrow-wrapper">
+          <span class="section-eyebrow">FROM ASPIRATION TO GLOBAL PROFESSIONAL</span>
+          <div class="eyebrow-line"></div>
+        </div>
+        <h2 class="section-title">Your Journey<br><span class="highlight-gold">Beyond Qualification.</span></h2>
+        <div class="title-underline"></div>
+        <p class="section-desc">A structured transformation that builds confidence, capability, credentials, and career capital.</p>
+        
+        <!-- Timeline 4 horizontal steps -->
+        <div class="timeline-container-horizontal-4">
+          <div class="timeline-line-horizontal-4"></div>
+          
+          <!-- Step 1 -->
+          <div class="timeline-step-4">
+            <div class="step-badge-4">01</div>
+            <div class="step-circle-4">
+              <i data-lucide="trending-up" class="step-icon-4"></i>
+            </div>
+            <div class="step-text-wrapper-4">
+              <h4 class="step-title-4">ASPIRATION</h4>
+              <p class="step-desc-4">Dream bigger than conventional career paths.</p>
+            </div>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="timeline-step-4">
+            <div class="step-badge-4">02</div>
+            <div class="step-circle-4">
+              <i data-lucide="award" class="step-icon-4"></i>
+            </div>
+            <div class="step-text-wrapper-4">
+              <h4 class="step-title-4">GUIDANCE</h4>
+              <p class="step-desc-4">Structured mentorship, clarity, and expert-led prep.</p>
+            </div>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="timeline-step-4">
+            <div class="step-badge-4">03</div>
+            <div class="step-circle-4">
+              <i data-lucide="file-check-2" class="step-icon-4"></i>
+            </div>
+            <div class="step-text-wrapper-4">
+              <h4 class="step-title-4">CREDENTIAL</h4>
+              <p class="step-desc-4">Global qualification with strategic capability.</p>
+            </div>
+          </div>
+          
+          <!-- Step 4 -->
+          <div class="timeline-step-4">
+            <div class="step-badge-4">04</div>
+            <div class="step-circle-4">
+              <i data-lucide="globe" class="step-icon-4"></i>
+            </div>
+            <div class="step-text-wrapper-4">
+              <h4 class="step-title-4">OPPORTUNITY</h4>
+              <p class="step-desc-4">International mobility & finance leadership.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-right">
+        <!-- Skyline Professional Image Container with Quote -->
+        <div class="skyline-image-container">
+          <!-- Stylized Dotted World Map overlay SVG -->
+          <svg class="dotted-map-overlay" viewBox="0 0 1000 450" xmlns="http://www.w3.org/2000/svg">
+            <path d="M150 150 C200 120, 250 150, 300 200 C350 250, 450 250, 500 200 C550 150, 650 120, 700 150" fill="none" stroke="rgba(178, 128, 59, 0.2)" stroke-width="1.5" stroke-dasharray="4, 4" />
+            <path d="M300 200 C350 100, 500 100, 550 200 C600 300, 750 300, 800 200" fill="none" stroke="rgba(178, 128, 59, 0.2)" stroke-width="1.5" stroke-dasharray="4, 4" />
+            <!-- Connection nodes -->
+            <circle cx="150" cy="150" r="3" fill="var(--color-secondary)" />
+            <circle cx="300" cy="200" r="3" fill="var(--color-secondary)" />
+            <circle cx="500" cy="200" r="3" fill="var(--color-secondary)" />
+            <circle cx="700" cy="150" r="3" fill="var(--color-secondary)" />
+            <circle cx="550" cy="200" r="3" fill="var(--color-secondary)" />
+            <circle cx="800" cy="200" r="3" fill="var(--color-secondary)" />
+          </svg>
+          
+          <!-- Image Placeholder -->
+          <div class="skyline-image-placeholder">
+            <div class="skyline-placeholder-graphic">
+              <!-- Outline vector of a person looking at skyscrapers -->
+              <svg viewBox="0 0 400 300" class="placeholder-silhouette-svg">
+                <rect x="50" y="80" width="40" height="220" fill="rgba(178,128,59,0.04)" stroke="rgba(178,128,59,0.1)"/>
+                <rect x="100" y="50" width="50" height="250" fill="rgba(178,128,59,0.06)" stroke="rgba(178,128,59,0.1)"/>
+                <rect x="250" y="60" width="45" height="240" fill="rgba(178,128,59,0.04)" stroke="rgba(178,128,59,0.1)"/>
+                <rect x="310" y="100" width="40" height="200" fill="rgba(178,128,59,0.02)" stroke="rgba(178,128,59,0.1)"/>
+                <path d="M170 300 C170 250, 230 250, 230 300" fill="var(--color-dark)" opacity="0.8"/>
+                <circle cx="200" cy="230" r="15" fill="var(--color-dark)" opacity="0.8"/>
+              </svg>
+            </div>
+            <span class="placeholder-img-label"><i data-lucide="image" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;"></i> SKYLINE BACKDROP PLACEHOLDER (swap with global_career_skyline.png)</span>
+          </div>
+          
+          <!-- Absolute Quote Card Overlay -->
+          <div class="quote-card-overlay">
+            <div class="quote-icon-gold">“</div>
+            <p class="quote-overlay-text">We don't just prepare you for exams. We prepare you for a global career.</p>
+            <div class="quote-overlay-divider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Strip 3 -->
+  <section class="features-strip-3">
+    <div class="container">
+      <div class="strip-grid-3">
+        <!-- Item 1 -->
+        <div class="strip-item-3">
+          <div class="strip-icon-wrapper-3">
+            <i data-lucide="shield-check" class="strip-icon-3"></i>
+          </div>
+          <div class="strip-text-wrapper-3">
+            <h4 class="strip-title-3">BUILD CONFIDENCE</h4>
+            <p class="strip-desc-3">Strengthen your foundation with clarity.</p>
+          </div>
+        </div>
+        <div class="strip-divider-3"></div>
+        <!-- Item 2 -->
+        <div class="strip-item-3">
+          <div class="strip-icon-wrapper-3">
+            <i data-lucide="target" class="strip-icon-3"></i>
+          </div>
+          <div class="strip-text-wrapper-3">
+            <h4 class="strip-title-3">BUILD COMPETENCE</h4>
+            <p class="strip-desc-3">Develop skills that create real impact.</p>
+          </div>
+        </div>
+        <div class="strip-divider-3"></div>
+        <!-- Item 3 -->
+        <div class="strip-item-3">
+          <div class="strip-icon-wrapper-3">
+            <i data-lucide="award" class="strip-icon-3"></i>
+          </div>
+          <div class="strip-text-wrapper-3">
+            <h4 class="strip-title-3">EARN CREDENTIALS</h4>
+            <p class="strip-desc-3">Achieve a globally respected qualification.</p>
+          </div>
+        </div>
+        <div class="strip-divider-3"></div>
+        <!-- Item 4 -->
+        <div class="strip-item-3">
+          <div class="strip-icon-wrapper-3">
+            <i data-lucide="trophy" class="strip-icon-3"></i>
+          </div>
+          <div class="strip-text-wrapper-3">
+            <h4 class="strip-title-3">CREATE CAREER CAPITAL</h4>
+            <p class="strip-desc-3">Unlock limitless opportunities and long-term success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Metrics Section -->
+  <section class="section-testimonials-metrics" id="testimonials-metrics">
+    <div class="container section-layout-testimonials">
+      <!-- Top Layout: Title Column + Metrics Row -->
+      <div class="testimonials-header-row">
+        <div class="section-left">
+          <div class="eyebrow-wrapper">
+            <span class="section-eyebrow">WHAT OUR LEARNERS BECOME</span>
+            <div class="eyebrow-line"></div>
+          </div>
+          <h2 class="section-title">Real Journeys.<br>Remarkable Futures.</h2>
+          <div class="title-underline"></div>
+          <p class="section-desc">Thousands of learners have transformed their careers with ACCA Gurukul and are now making an impact worldwide.</p>
+          <a href="#" class="btn btn-outline testimonials-btn">VIEW SUCCESS STORIES <i data-lucide="arrow-right" class="btn-icon"></i></a>
+        </div>
+        
+        <div class="section-right">
+          <div class="metrics-grid">
+            <!-- Metric 1 -->
+            <div class="metric-card">
+              <div class="metric-icon-wrapper">
+                <i data-lucide="users" class="metric-icon"></i>
+              </div>
+              <div class="metric-content">
+                <h3 class="metric-num text-primary">2,783+</h3>
+                <p class="metric-label">Learners Mentored <span class="sub-label">and counting</span></p>
+              </div>
+            </div>
+            
+            <!-- Metric 2 -->
+            <div class="metric-card">
+              <div class="metric-icon-wrapper">
+                <i data-lucide="globe" class="metric-icon"></i>
+              </div>
+              <div class="metric-content">
+                <h3 class="metric-num text-secondary">50+</h3>
+                <p class="metric-label">Countries <span class="sub-label">Global Career Pathways</span></p>
+              </div>
+            </div>
+            
+            <!-- Metric 3 -->
+            <div class="metric-card">
+              <div class="metric-icon-wrapper">
+                <i data-lucide="star" class="metric-icon"></i>
+              </div>
+              <div class="metric-content">
+                <h3 class="metric-num text-primary">4.9/5</h3>
+                <p class="metric-label">Student Trust Score <span class="sub-label">Based on verified reviews</span></p>
+              </div>
+            </div>
+            
+            <!-- Metric 4 -->
+            <div class="metric-card">
+              <div class="metric-icon-wrapper">
+                <i data-lucide="landmark" class="metric-icon"></i>
+              </div>
+              <div class="metric-content">
+                <h3 class="metric-num text-secondary">120+</h3>
+                <p class="metric-label">Institutional <span class="sub-label">Collaborations</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Layout: Testimonials Row -->
+      <div class="testimonials-cards-container">
+        <div class="testimonials-row">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div class="testimonial-profile">
+              <div class="profile-photo-placeholder">
+                <i data-lucide="user" class="photo-placeholder-icon"></i>
+                <span class="photo-label">DIKSHA</span>
+              </div>
+              <div class="quote-mark-gold">“</div>
+            </div>
+            <div class="testimonial-body">
+              <p class="testimonial-quote">"ACCA Gurukul transformed exam preparation into a global career pathway. The mentorship and support were exceptional."</p>
+              <div class="testimonial-author">
+                <h5 class="author-name">DIKSHA SHAH</h5>
+                <span class="author-sub">ACCA Affiliate, Now: Financial Analyst, UK</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-profile">
+              <div class="profile-photo-placeholder">
+                <i data-lucide="user" class="photo-placeholder-icon"></i>
+                <span class="photo-label">ROHAN</span>
+              </div>
+              <div class="quote-mark-gold">“</div>
+            </div>
+            <div class="testimonial-body">
+              <p class="testimonial-quote">"The practical approach, real-world insights and career guidance helped me secure a role in one of the Big 4 firms."</p>
+              <div class="testimonial-author">
+                <h5 class="author-name">ROHAN MEHTA</h5>
+                <span class="author-sub">ACCA Affiliate, Now: Audit Associate, PwC</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-profile">
+              <div class="profile-photo-placeholder">
+                <i data-lucide="user" class="photo-placeholder-icon"></i>
+                <span class="photo-label">AISHWARYA</span>
+              </div>
+              <div class="quote-mark-gold">“</div>
+            </div>
+            <div class="testimonial-body">
+              <p class="testimonial-quote">"ACCA Gurukul doesn't just teach, they build your confidence, mindset and prepare you for the real world."</p>
+              <div class="testimonial-author">
+                <h5 class="author-name">AISHWARYA KULKARNI</h5>
+                <span class="author-sub">ACCA Affiliate, Now: FP&A Analyst, Dubai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pagination controls -->
+        <div class="testimonials-pagination">
+          <button class="pag-arrow prev"><i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i></button>
+          <div class="pag-dots">
+            <span class="dot"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+          </div>
+          <button class="pag-arrow next"><i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i></button>
         </div>
       </div>
     </div>
