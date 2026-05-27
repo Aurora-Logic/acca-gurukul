@@ -55,7 +55,7 @@
 /* Timeline */
 .hero-timeline {
   position: absolute;
-  left: 37%; /* Shifted to the left to prevent circle overlap with the right image */
+  left: 40%; /* Balanced middle position centering the timeline between the left text and the right image */
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
