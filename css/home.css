@@ -571,18 +571,19 @@
 .journey-node {
   width: 32px;
   height: 32px;
-  background-color: var(--color-secondary);
-  color: #ffffff;
+  background-color: #ffffff; /* Solid white background to mask the timeline line behind it */
+  color: var(--color-secondary); /* Gold/Brown color for the numbers text */
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 700;
-  border-radius: 50%;
+  border-radius: 50%; /* Perfect circle */
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(178, 128, 59, 0.15);
-  margin: 0; /* Cleared margin to rely on container-based centering */
+  border: 2px solid var(--color-secondary); /* Elegant gold border circle */
+  box-shadow: 0 3px 10px rgba(178, 128, 59, 0.08); /* Premium subtle shadow */
+  margin: 0;
+  z-index: 4; /* Ensures circle sits layered cleanly on top of the timeline line */
 }
 
 /* Three Steps Row */
@@ -644,6 +645,8 @@
   margin-bottom: 6px;
   line-height: 1.3;
 }
+
+
 
 .journey-step-meta {
   display: flex;
