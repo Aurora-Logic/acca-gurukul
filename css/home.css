@@ -165,40 +165,35 @@
 .timeline-content {
   display: flex;
   flex-direction: column;
-}
-
-.timeline-header-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  justify-content: center;
 }
 
 .timeline-content .step-num {
   font-family: var(--font-sans);
   color: var(--color-secondary);
   font-weight: 700;
-  font-size: 0.85rem;
-  /* Lowered font size to match spacious layout */
-  line-height: 1.15;
+  font-size: 0.82rem;
+  line-height: 1;
+  margin-bottom: 2px;
 }
 
 .step-title-text {
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  /* Lowered font size to match spacious layout */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--color-dark);
-  line-height: 1.15;
+  line-height: 1.1;
+  margin-bottom: 2px;
 }
 
 .step-desc-text {
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  /* Lowered font size to match spacious layout */
   color: var(--color-gray);
-  margin-top: 3px;
+  margin-top: 0;
+  line-height: 1.2;
 }
 
 /* Right Image */
