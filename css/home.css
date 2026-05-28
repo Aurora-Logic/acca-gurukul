@@ -714,6 +714,29 @@
 }
 
 /* 3. Career Outcomes Section */
+.section-career-outcomes .section-left {
+  flex: 0 0 350px; /* Reduced width of the left hand side to allow right side to expand */
+}
+
+.section-career-outcomes .section-title {
+  font-size: 2.1rem; /* Reduced from 2.6rem for a sleeker fit */
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.section-career-outcomes .section-desc {
+  font-size: 0.88rem; /* Reduced from 0.95rem */
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+  .section-career-outcomes .section-left {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
 .outcomes-btn {
   align-self: flex-start;
 }
