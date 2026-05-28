@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-actions .btn {
   padding: 8px 18px; /* Smaller, modern button size */
   font-size: 0.78rem; /* Aligns with nav link size */
-  border-radius: 4px;
+  border-radius: 0; /* Removed border radius for sharp corners */
 }
 
 .nav-toggle {
