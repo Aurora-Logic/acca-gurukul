@@ -1505,9 +1505,36 @@
 }
 
 .india-map-svg-mini {
-  width: 120px;
+  width: 140px; /* Slightly larger for the detailed vector boundaries */
   height: auto;
-  opacity: 0.9;
+  opacity: 1; /* Fully opaque for high-contrast visibility */
+  overflow: visible;
+}
+
+/* Elegant gold/crimson state styling */
+.india-map-svg-mini .india-state-path {
+  fill: rgba(178, 128, 59, 0.03) !important; /* Beautiful subtle gold default wash to define boundaries */
+  stroke: rgba(178, 128, 59, 0.65) !important; /* Highly visible, darker premium gold state borders */
+  stroke-width: 1.1px !important; /* Crisp border definition */
+  transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+.india-map-svg-mini .india-state-path:hover {
+  stroke: var(--color-primary) !important;
+  fill: rgba(181, 28, 36, 0.08) !important; /* Soft highlighted fill */
+}
+
+/* Glowing Pin animations */
+.india-map-svg-mini .pin-pulse-point {
+  fill: var(--color-primary);
+  filter: drop-shadow(0 0 2px var(--color-primary));
+}
+
+.india-map-svg-mini .pin-pulse {
+  stroke: var(--color-primary);
+  stroke-width: 1px;
+  transform-origin: center;
+  animation: pulse-pin 2s infinite ease-out;
 }
 
 /* Column 2: Text & CTA */
