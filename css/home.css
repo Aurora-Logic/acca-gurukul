@@ -437,6 +437,7 @@
 /* 2. ACCA Journey Section */
 .section-acca-journey {
   background-color: #faf8f5; /* Premium light warm background */
+  padding-top: 40px; /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
 }
 
 .journey-btn {
@@ -1625,7 +1626,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  flex: 1;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -1661,6 +1661,7 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-align: center;
+  white-space: nowrap;
 }
 
 .city-col-item:hover .city-name-label {
@@ -1716,7 +1717,6 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  flex: 1;
   padding: 0 10px;
 }
 
