@@ -616,34 +616,48 @@
 .outcomes-row {
   display: flex;
   justify-content: space-between;
-  gap: 14px;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.35);
+  border-radius: 12px;
+  padding: 24px 10px;
+  box-shadow: 0 10px 30px rgba(178, 128, 59, 0.04);
 }
 
 .outcome-card {
   flex: 1;
-  background-color: #ffffff;
-  border: 1px solid rgba(178, 128, 59, 0.18);
-  border-radius: 4px;
-  padding: 35px 12px 30px 12px;
+  background-color: transparent;
+  border: none;
+  border-right: 1px solid rgba(178, 128, 59, 0.18);
+  border-radius: 0;
+  padding: 10px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: space-between;
-  min-height: 210px;
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  justify-content: center;
+  min-height: auto;
+  transition: transform 0.3s ease;
+  box-shadow: none;
+}
+
+.outcome-card:last-child {
+  border-right: none;
 }
 
 .outcome-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--color-secondary);
-  box-shadow: 0 12px 28px rgba(178, 128, 59, 0.1);
+  transform: translateY(-3px);
+  border-color: rgba(178, 128, 59, 0.18);
+  box-shadow: none;
+  background-color: transparent;
 }
 
 .outcome-icon-wrapper {
   color: var(--color-secondary);
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
@@ -653,32 +667,34 @@
 }
 
 .outcome-icon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   stroke-width: 1.5px;
 }
 
 .outcome-title {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--color-dark);
-  line-height: 1.4;
+  line-height: 1.3;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .highlight-card {
-  border-color: var(--color-secondary);
-  background-color: rgba(178, 128, 59, 0.03);
+  border-color: rgba(178, 128, 59, 0.18);
+  background-color: transparent;
 }
 
 .outcome-subtext {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--color-secondary);
-  margin-top: 8px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--color-gray);
+  margin-top: 6px;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* 4. India Presence Section */
@@ -1381,11 +1397,32 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
   }
   
   .outcome-card {
     flex: 0 0 calc(33.333% - 14px);
     min-height: 200px;
+    background-color: #ffffff;
+    border: 1px solid rgba(178, 128, 59, 0.18);
+    border-right: 1px solid rgba(178, 128, 59, 0.18) !important;
+    border-radius: 6px;
+    padding: 35px 12px 30px 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+  }
+
+  .outcome-card:last-child {
+    border-right: 1px solid rgba(178, 128, 59, 0.18) !important;
+  }
+
+  .outcome-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-secondary);
+    box-shadow: 0 12px 28px rgba(178, 128, 59, 0.1);
+    background-color: #ffffff;
   }
   
   .india-map-container {
