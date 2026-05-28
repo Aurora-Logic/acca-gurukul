@@ -1564,6 +1564,22 @@
   margin-bottom: 12px;
 }
 
+.presence-title .underline-gold {
+  position: relative;
+  display: inline-block;
+  color: var(--color-secondary); /* Cohesive gold highlight matching the hero section */
+}
+
+.presence-title .underline-gold::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Positions perfectly below the letters */
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-secondary);
+}
+
 .btn-presence-cta {
   display: inline-flex;
   align-items: center;
