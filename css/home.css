@@ -15,22 +15,30 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 50%;
+  max-width: 50%; /* Restored to original spacious proportion */
   z-index: 10;
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: 3.8rem;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--color-dark);
-  margin-bottom: 24px;
+  font-size: 3.3rem; /* Elegant, compact size matching Screenshot 2 */
+  font-weight: 500; /* Lighter medium weight is spacious and premium */
+  line-height: 1.2;
+  color: #000000; /* Force pure black text for maximum high-contrast crispness */
+  margin-bottom: 20px;
   letter-spacing: -0.5px;
 }
 
 .hero-title .highlight {
   color: var(--color-secondary);
+}
+
+.hero-title-line {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-secondary);
+  margin-bottom: 24px;
+  margin-top: -8px; /* Positions perfectly below serif descenders */
 }
 
 .hero-subtitle {
@@ -44,18 +52,20 @@
 .hero-actions {
   display: flex;
   gap: 20px;
+  flex-wrap: nowrap; /* Strictly force buttons to be on the same line */
 }
 
 .hero-actions .btn {
-  padding: 15px 30px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 10px 22px; /* Smaller, cleaner padding for visual balance */
+  font-size: 0.8rem; /* Cleaner, legible font size */
+  font-weight: 500;
+  border-radius: 4px;
 }
 
 /* Timeline */
 .hero-timeline {
   position: absolute;
-  left: 40%; /* Balanced middle position centering the timeline between the left text and the right image */
+  left: 42.5%; /* Centered perfectly between left text column and right building image */
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
@@ -100,38 +110,38 @@
   - Step 2 Center: (44, 220)
   - Step 3 Center: (84, 406)
   
-  Given the timeline icon is 68px x 68px, its center is at (34px, 34px) relative to the item container.
+  Given the timeline icon is 54px x 54px, its center is at (27px, 27px) relative to the item container.
   Therefore, the top-left positioning rules are:
-  - Step 1 top-left: top = 34 - 34 = 0px, left = 84 - 34 = 50px
-  - Step 2 top-left: top = 220 - 34 = 186px, left = 44 - 34 = 10px
-  - Step 3 top-left: top = 406 - 34 = 372px, left = 84 - 34 = 50px
+  - Step 1 top-left: top = 34 - 27 = 7px, left = 84 - 27 = 57px
+  - Step 2 top-left: top = 220 - 27 = 193px, left = 44 - 27 = 17px
+  - Step 3 top-left: top = 406 - 27 = 379px, left = 84 - 27 = 57px
 */
 .timeline-item.step-1 {
-  top: 0px;
-  left: 50px;
+  top: 7px;
+  left: 57px;
 }
 
 .timeline-item.step-2 {
-  top: 186px;
-  left: 10px;
+  top: 193px;
+  left: 17px;
 }
 
 .timeline-item.step-3 {
-  top: 372px;
-  left: 50px;
+  top: 379px;
+  left: 57px;
 }
 
 .timeline-icon {
-  width: 68px;
-  height: 68px;
+  width: 54px; /* Reduced from 68px for an extremely elegant, thin layout */
+  height: 54px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05); /* Softer premium shadow */
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  border: 1px solid rgba(178, 128, 59, 0.3);
+  border: 1px solid rgba(178, 128, 59, 0.22); /* Softened gold border */
   z-index: 2;
   position: relative;
 }
@@ -151,13 +161,13 @@
   font-family: var(--font-sans);
   color: var(--color-secondary);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.85rem; /* Lowered font size to match spacious layout */
   line-height: 1.15;
 }
 
 .step-title-text {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.82rem; /* Lowered font size to match spacious layout */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -167,7 +177,7 @@
 
 .step-desc-text {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.72rem; /* Lowered font size to match spacious layout */
   color: var(--color-gray);
   margin-top: 3px;
 }
@@ -176,15 +186,16 @@
 .hero-right {
   position: absolute;
   right: 0;
-  top: 0;
-  width: 45%;
-  height: 100%;
+  bottom: 4%; /* Raised slightly from the bottom edge to float premiumly */
+  width: 34%; /* Balanced, prominent size that prevents overlaps */
+  height: 95%; /* Elegant vertical height */
 }
 
 .hero-right img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Prevent cropping or cutting off of the building */
+  object-position: bottom right; /* Align cleanly to the bottom right corner of the elevated container */
 }
 
 .hero-right-overlay {
