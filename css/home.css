@@ -1564,20 +1564,11 @@
   margin-bottom: 12px;
 }
 
-.presence-title .underline-gold {
-  position: relative;
-  display: inline-block;
-  color: var(--color-secondary); /* Cohesive gold highlight matching the hero section */
-}
-
-.presence-title .underline-gold::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px; /* Positions perfectly below the letters */
-  width: 100%;
+.presence-title-line {
+  width: 35px;
   height: 2px;
   background-color: var(--color-secondary);
+  margin-bottom: 20px;
 }
 
 .btn-presence-cta {
@@ -1800,6 +1791,10 @@
   .presence-text-col {
     flex: 0 0 auto;
     align-items: center;
+  }
+  
+  .presence-title-line {
+    margin: 0 auto 20px auto;
   }
   
   .btn-presence-cta {
