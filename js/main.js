@@ -30,6 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         }
+
+        // Mobile dropdown toggles
+        const dropdowns = navbarContainer.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+          const trigger = dropdown.querySelector('.dropdown-trigger');
+          if (trigger) {
+            trigger.addEventListener('click', (e) => {
+              if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+              }
+            });
+          }
+        });
       })
       .catch(error => console.error('Error loading navbar:', error));
   } else {

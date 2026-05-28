@@ -3,25 +3,107 @@
     <i data-lucide="menu" id="nav-toggle-icon"></i>
   </button>
 
-  <a href="/" class="nav-logo">
-    <!-- Using the provided logo.png from root -->
-    <img src="/logo.png" alt="ACCA Gurukul Logo">
-  </a>
-  
-  <ul class="nav-links" id="nav-links-menu">
-    <li><a href="/" class="active">HOME</a></li>
-    <li><a href="#">ABOUT US</a></li>
-    <li><a href="#">ACCA COURSE <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
-    <li><a href="#">LOCATIONS <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
-    <li><a href="#">STUDENT ZONE <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
-    <li><a href="#">RESOURCES <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
-    <li><a href="#">CONTACT US</a></li>
-    <li class="mobile-cta-li">
-      <a href="#" class="btn btn-primary">
-        BOOK COUNSELLING <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px;"></i>
-      </a>
-    </li>
-  </ul>
+  <div class="nav-left-group">
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="ACCA Gurukul Logo">
+    </a>
+    
+    <ul class="nav-links" id="nav-links-menu">
+      <li><a href="/" class="active">HOME</a></li>
+      <li><a href="#">ABOUT US</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-trigger">ACCA COURSE <i data-lucide="chevron-down" class="dropdown-chevron"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-column">
+            <h5 class="dropdown-header">ACCA Journey</h5>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Applied Knowledge</span>
+              <span class="item-desc">Start your base (BT, MA, FA)</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Applied Skills</span>
+              <span class="item-desc">Core competencies (6 Papers)</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Strategic Professional</span>
+              <span class="item-desc">Advanced leadership papers</span>
+            </a>
+          </div>
+          <div class="dropdown-column">
+            <h5 class="dropdown-header">Gurukul Perks</h5>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">ACCA Coaching Details</span>
+              <span class="item-desc">Fee structures & registrations</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Free Demo Lectures</span>
+              <span class="item-desc">Experience our training method</span>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-trigger">LOCATIONS <i data-lucide="chevron-down" class="dropdown-chevron"></i></a>
+        <div class="dropdown-menu dropdown-menu-small">
+          <div class="dropdown-column">
+            <a href="#" class="dropdown-item-simple">Delhi / NCR</a>
+            <a href="#" class="dropdown-item-simple">Jaipur</a>
+            <a href="#" class="dropdown-item-simple">Surat</a>
+            <a href="#" class="dropdown-item-simple">Nashik</a>
+            <a href="#" class="dropdown-item-simple">Mumbai</a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-trigger">STUDENT ZONE <i data-lucide="chevron-down" class="dropdown-chevron"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-column">
+            <h5 class="dropdown-header">Exams & Material</h5>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Exam Schedule</span>
+              <span class="item-desc">Schedules and key registrations</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Mock Exams Portal</span>
+              <span class="item-desc">Simulated tests under exam conditions</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Study Planner</span>
+              <span class="item-desc">Weekly study planners and tips</span>
+            </a>
+          </div>
+          <div class="dropdown-column">
+            <h5 class="dropdown-header">Placement Cell</h5>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Corporate Tie-ups</span>
+              <span class="item-desc">Our corporate partners and network</span>
+            </a>
+            <a href="#" class="dropdown-item">
+              <span class="item-title">Gurukul Jobs Portal</span>
+              <span class="item-desc">Exclusive postings and career opportunities</span>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-trigger">RESOURCES <i data-lucide="chevron-down" class="dropdown-chevron"></i></a>
+        <div class="dropdown-menu dropdown-menu-small">
+          <div class="dropdown-column">
+            <a href="#" class="dropdown-item-simple">Gurukul Blog</a>
+            <a href="#" class="dropdown-item-simple">ACCA Syllabus Guide</a>
+            <a href="#" class="dropdown-item-simple">Success Stories</a>
+            <a href="#" class="dropdown-item-simple">E-Books & Materials</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="#">CONTACT US</a></li>
+      <li class="mobile-cta-li">
+        <a href="#" class="btn btn-primary">
+          BOOK COUNSELLING <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px;"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <div class="nav-actions">
     <a href="#" class="btn btn-primary">
