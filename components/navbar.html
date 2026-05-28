@@ -1,10 +1,14 @@
 <div class="container">
+  <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle-btn">
+    <i data-lucide="menu" id="nav-toggle-icon"></i>
+  </button>
+
   <a href="/" class="nav-logo">
     <!-- Using the provided logo.png from root -->
     <img src="/logo.png" alt="ACCA Gurukul Logo">
   </a>
   
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links-menu">
     <li><a href="/" class="active">HOME</a></li>
     <li><a href="#">ABOUT US</a></li>
     <li><a href="#">ACCA COURSE <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
@@ -12,6 +16,11 @@
     <li><a href="#">STUDENT ZONE <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
     <li><a href="#">RESOURCES <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i></a></li>
     <li><a href="#">CONTACT US</a></li>
+    <li class="mobile-cta-li">
+      <a href="#" class="btn btn-primary">
+        BOOK COUNSELLING <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px;"></i>
+      </a>
+    </li>
   </ul>
 
   <div class="nav-actions">
