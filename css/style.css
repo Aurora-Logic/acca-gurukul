@@ -42,7 +42,7 @@ ul {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 80px;
 }
 
 /* Typography */
@@ -197,6 +197,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile Responsiveness for Navbar */
 @media (max-width: 1024px) {
+  .container {
+    padding: 0 40px; /* Reduce container padding on tablet sizes */
+  }
+
   .navbar .container {
     display: flex;
     justify-content: center; /* Mathematically center the brand logo in the header */
@@ -263,3 +267,10 @@ h1, h2, h3, h4, h5, h6 {
     display: none; /* Remove active underline inside vertical menu list */
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px; /* Reduce container padding on mobile sizes */
+  }
+}
+

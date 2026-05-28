@@ -288,11 +288,11 @@
 .section-india-presence,
 .section-aspiration-journey,
 .section-testimonials-metrics {
-  padding: 80px 0;
+  padding: 35px 0;
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(178, 128, 59, 0.1);
+  border-bottom: none;
 }
 
 .section-layout {
@@ -779,6 +779,17 @@
   background-color: #ffffff;
 }
 
+.section-aspiration-journey .section-left {
+  flex: 0 0 480px; /* Made the left side column wider for the skyline image container */
+}
+
+@media (max-width: 1200px) {
+  .section-aspiration-journey .section-left {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
 .skyline-image-container {
   position: relative;
   width: 100%;
@@ -814,6 +825,13 @@
   z-index: 1;
 }
 
+.skyline-image {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
 .skyline-placeholder-graphic {
   width: 100%;
   max-width: 320px;
@@ -843,19 +861,21 @@
 /* Glassmorphism Quote card overlay on Skyline image */
 .quote-card-overlay {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
-  left: 40px;
-  max-width: 440px;
-  margin-left: auto;
+  bottom: 0;
+  right: 0;
+  left: auto;
+  width: 100%;
+  max-width: 380px;
   background: rgba(15, 21, 28, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(178, 128, 59, 0.25);
-  border-radius: 6px;
-  padding: 30px;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 8px 0 0 0;
+  padding: 24px 30px;
   z-index: 3;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -5px 25px rgba(0, 0, 0, 0.25);
 }
 
 .quote-icon-gold {
@@ -1405,7 +1425,7 @@
   .section-india-presence,
   .section-aspiration-journey,
   .section-testimonials-metrics {
-    padding: 60px 0;
+    padding: 30px 0;
   }
 
   .section-title {
@@ -1691,8 +1711,8 @@
 /* Rounded Gold Features Strip Section */
 .why-acca-horizontal-section {
   background-color: #faf8f5; /* Warm cream background matching Strip 1 */
-  padding: 40px 0;
-  border-bottom: 1px solid rgba(178, 128, 59, 0.1);
+  padding: 35px 0;
+  border-bottom: none;
 }
 
 .why-acca-horizontal-section .container {
