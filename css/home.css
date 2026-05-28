@@ -3,7 +3,8 @@
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: calc(100vh - 64px); /* Mathematically compensated for the shorter 64px navbar height */
+  min-height: calc(100vh - 64px);
+  /* Mathematically compensated for the shorter 64px navbar height */
   display: flex;
   background-color: var(--color-bg);
   overflow: hidden;
@@ -15,16 +16,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 50%; /* Restored to original spacious proportion */
+  max-width: 50%;
+  /* Restored to original spacious proportion */
   z-index: 10;
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: 3.3rem; /* Elegant, compact size matching Screenshot 2 */
-  font-weight: 500; /* Lighter medium weight is spacious and premium */
+  font-size: 3.3rem;
+  /* Elegant, compact size matching Screenshot 2 */
+  font-weight: 500;
+  /* Lighter medium weight is spacious and premium */
   line-height: 1.2;
-  color: #000000; /* Force pure black text for maximum high-contrast crispness */
+  color: #000000;
+  /* Force pure black text for maximum high-contrast crispness */
   margin-bottom: 20px;
   letter-spacing: -0.5px;
 }
@@ -38,7 +43,8 @@
   height: 2px;
   background-color: var(--color-secondary);
   margin-bottom: 24px;
-  margin-top: -8px; /* Positions perfectly below serif descenders */
+  margin-top: -8px;
+  /* Positions perfectly below serif descenders */
 }
 
 .hero-subtitle {
@@ -52,12 +58,15 @@
 .hero-actions {
   display: flex;
   gap: 20px;
-  flex-wrap: nowrap; /* Strictly force buttons to be on the same line */
+  flex-wrap: nowrap;
+  /* Strictly force buttons to be on the same line */
 }
 
 .hero-actions .btn {
-  padding: 10px 22px; /* Smaller, cleaner padding for visual balance */
-  font-size: 0.8rem; /* Cleaner, legible font size */
+  padding: 10px 22px;
+  /* Smaller, cleaner padding for visual balance */
+  font-size: 0.8rem;
+  /* Cleaner, legible font size */
   font-weight: 500;
   border-radius: 4px;
 }
@@ -65,7 +74,8 @@
 /* Timeline */
 .hero-timeline {
   position: absolute;
-  left: 42.5%; /* Centered perfectly between left text column and right building image */
+  left: 42.5%;
+  /* Centered perfectly between left text column and right building image */
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
@@ -87,10 +97,12 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  position: absolute; /* Mathematically aligned coordinate system */
+  position: absolute;
+  /* Mathematically aligned coordinate system */
   z-index: 2;
   transition: all 0.35s ease;
-  height: 54px; /* Fixed height to guarantee vertical centering of circle icon on the curve */
+  height: 54px;
+  /* Fixed height to guarantee vertical centering of circle icon on the curve */
 }
 
 /* 
@@ -133,16 +145,19 @@
 }
 
 .timeline-icon {
-  width: 54px; /* Reduced from 68px for an extremely elegant, thin layout */
+  width: 54px;
+  /* Reduced from 68px for an extremely elegant, thin layout */
   height: 54px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05); /* Softer premium shadow */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  /* Softer premium shadow */
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  border: 1px solid rgba(178, 128, 59, 0.22); /* Softened gold border */
+  border: 1px solid rgba(178, 128, 59, 0.22);
+  /* Softened gold border */
   z-index: 2;
   position: relative;
 }
@@ -162,13 +177,15 @@
   font-family: var(--font-sans);
   color: var(--color-secondary);
   font-weight: 700;
-  font-size: 0.85rem; /* Lowered font size to match spacious layout */
+  font-size: 0.85rem;
+  /* Lowered font size to match spacious layout */
   line-height: 1.15;
 }
 
 .step-title-text {
   font-family: var(--font-sans);
-  font-size: 0.82rem; /* Lowered font size to match spacious layout */
+  font-size: 0.82rem;
+  /* Lowered font size to match spacious layout */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -178,7 +195,8 @@
 
 .step-desc-text {
   font-family: var(--font-sans);
-  font-size: 0.72rem; /* Lowered font size to match spacious layout */
+  font-size: 0.72rem;
+  /* Lowered font size to match spacious layout */
   color: var(--color-gray);
   margin-top: 3px;
 }
@@ -187,16 +205,21 @@
 .hero-right {
   position: absolute;
   right: 0;
-  bottom: 4%; /* Raised slightly from the bottom edge to float premiumly */
-  width: 34%; /* Balanced, prominent size that prevents overlaps */
-  height: 95%; /* Elegant vertical height */
+  bottom: 4%;
+  /* Raised slightly from the bottom edge to float premiumly */
+  width: 34%;
+  /* Balanced, prominent size that prevents overlaps */
+  height: 95%;
+  /* Elegant vertical height */
 }
 
 .hero-right img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Prevent cropping or cutting off of the building */
-  object-position: bottom right; /* Align cleanly to the bottom right corner of the elevated container */
+  object-fit: contain;
+  /* Prevent cropping or cutting off of the building */
+  object-position: bottom right;
+  /* Align cleanly to the bottom right corner of the elevated container */
 }
 
 .hero-right-overlay {
@@ -210,12 +233,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: -10px 10px 30px rgba(0,0,0,0.2);
-  transform: skewY(-5deg); /* To match perspective of building */
+  box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.2);
+  transform: skewY(-5deg);
+  /* To match perspective of building */
 }
 
 .hero-right-overlay-content {
-  transform: skewY(5deg); /* Correct the skew for content */
+  transform: skewY(5deg);
+  /* Correct the skew for content */
   text-align: center;
 }
 
@@ -436,176 +461,256 @@
 
 /* 2. ACCA Journey Section */
 .section-acca-journey {
-  background-color: #faf8f5; /* Premium light warm background */
-  padding-top: 40px; /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
-}
-
-.journey-btn {
-  align-self: flex-start;
-}
-
-.timeline-container-horizontal {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
+  background-color: #faf8f5;
+  /* Premium light warm background */
   padding-top: 40px;
+  /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
 }
 
-.timeline-line-horizontal {
-  position: absolute;
-  top: 70px;
-  left: 8%;
-  right: 8%;
-  height: 2px;
-  background-color: var(--color-secondary);
-  z-index: 1;
+.section-acca-journey .section-left {
+  flex: 0 0 350px; /* Reduced width of the left hand side to allow right side to expand */
 }
 
-.timeline-step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  z-index: 2;
+.section-acca-journey .section-title {
+  font-size: 2.1rem; /* Reduced from 2.6rem for a sleeker fit */
+  line-height: 1.25;
+  margin-bottom: 16px;
 }
 
-.step-badge {
-  position: absolute;
-  top: -24px;
-  background-color: var(--color-secondary);
-  color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #faf8f5;
+.section-acca-journey .section-desc {
+  font-size: 0.88rem; /* Reduced from 0.95rem */
+  line-height: 1.45;
+  margin-bottom: 24px;
 }
 
-.step-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+@media (max-width: 1200px) {
+  .section-acca-journey .section-left {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+/* Singular Unified Box for ACCA Journey */
+.journey-singular-box {
   background-color: #ffffff;
-  border: 2px solid var(--color-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primary);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
-  margin-bottom: 20px;
-  transition: all 0.35s ease;
-}
-
-.timeline-step:hover .step-circle {
-  transform: scale(1.1);
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: 0 10px 25px rgba(181, 28, 36, 0.12);
-}
-
-.step-icon {
-  width: 22px;
-  height: 22px;
-  stroke-width: 1.8px;
-}
-
-.step-content-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(178, 128, 59, 0.1);
-  border-radius: 6px;
-  padding: 24px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(178, 128, 59, 0.35);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(178, 128, 59, 0.04);
   width: 100%;
 }
 
-.timeline-step:hover .step-content-card {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
-  border-color: rgba(178, 128, 59, 0.25);
+/* Top Section */
+.journey-box-top {
+  padding: 40px 35px 35px 35px;
 }
 
-.step-title {
+/* Timeline elements inside top box */
+.journey-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  height: 32px; /* Matches the 32px height of the nodes */
+  margin-bottom: 30px;
+}
+
+.journey-timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 16.67%; /* Exactly centers at the first step container's middle */
+  right: 16.67%; /* Exactly centers at the third step container's middle */
+  height: 2px;
+  background-color: var(--color-secondary);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.journey-timeline-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.journey-timeline-dot {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot-mid-1 {
+  left: 33.33%; /* Midpoint between node 1 (16.67%) and node 2 (50%) */
+}
+
+.dot-mid-2 {
+  left: 66.67%; /* Midpoint between node 2 (50%) and node 3 (83.33%) */
+}
+
+.journey-timeline-nodes {
+  display: flex;
+  width: 100%;
+  height: 100%; /* Takes the full 32px height of wrapper */
+  gap: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+.journey-node-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.journey-node {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-secondary);
+  color: #ffffff;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(178, 128, 59, 0.15);
+  margin: 0; /* Cleared margin to rely on container-based centering */
+}
+
+/* Three Steps Row */
+.journey-steps-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+}
+
+.journey-step-item {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 5px;
+}
+
+.journey-step-circle {
+  flex: 0 0 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #faf8f5;
+  border: 1px solid rgba(178, 128, 59, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.journey-step-item:hover .journey-step-circle {
+  transform: scale(1.08);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(181, 28, 36, 0.1);
+}
+
+.journey-step-icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5px;
+}
+
+.journey-step-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.journey-step-title {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--color-primary);
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+  line-height: 1.3;
 }
 
-.step-meta {
+.journey-step-meta {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.step-papers {
+.journey-step-papers {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--color-dark);
 }
 
-.step-paper-codes {
+.journey-step-paper-codes {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--color-gray);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
-.step-desc {
-  font-size: 0.8rem;
+.journey-step-desc {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
   color: var(--color-gray);
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
-.journey-info-strip {
+/* Bottom Section */
+.journey-box-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(178, 128, 59, 0.2);
-  border-bottom: 1px solid rgba(178, 128, 59, 0.2);
-  padding: 24px 30px;
-  margin-top: 50px;
-  background-color: rgba(178, 128, 59, 0.02);
+  background-color: #faf8f5;
+  border-top: 1px solid rgba(178, 128, 59, 0.18);
+  padding: 18px 40px;
 }
 
-.strip-item {
+.journey-bottom-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex: 1;
-  justify-content: center;
+  gap: 10px;
 }
 
-.strip-icon {
-  width: 22px;
-  height: 22px;
+.journey-bottom-icon {
+  width: 18px;
+  height: 18px;
   color: var(--color-secondary);
+  stroke-width: 2px;
 }
 
-.strip-text {
-  font-size: 0.85rem;
+.journey-bottom-text {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
   color: var(--color-dark);
 }
 
-.strip-text strong {
-  font-weight: 600;
+.journey-bottom-text strong {
+  font-weight: 700;
+  color: var(--color-dark);
 }
 
-.strip-divider {
+.journey-bottom-divider {
   width: 1px;
-  height: 30px;
-  background-color: rgba(178, 128, 59, 0.15);
+  height: 25px;
+  background-color: rgba(178, 128, 59, 0.18);
 }
 
 /* 3. Career Outcomes Section */
@@ -734,6 +839,7 @@
     transform: scale(0.5);
     opacity: 1;
   }
+
   100% {
     transform: scale(2.5);
     opacity: 0;
@@ -796,7 +902,8 @@
 }
 
 .section-aspiration-journey .section-left {
-  flex: 0 0 480px; /* Made the left side column wider for the skyline image container */
+  flex: 0 0 480px;
+  /* Made the left side column wider for the skyline image container */
 }
 
 @media (max-width: 1200px) {
@@ -1180,7 +1287,8 @@
 
 .testimonial-card {
   flex: 1;
-  background-color: #faf8f5; /* Warm grey/cream cards */
+  background-color: #faf8f5;
+  /* Warm grey/cream cards */
   border: 1px solid rgba(178, 128, 59, 0.12);
   border-radius: 6px;
   padding: 35px 30px;
@@ -1351,48 +1459,69 @@
     gap: 45px;
     align-items: stretch;
   }
-  
+
   .section-left {
     flex: 1;
     align-items: center;
     text-align: center;
   }
-  
+
   .title-underline {
     margin: 0 auto 20px auto;
   }
-  
+
   .eyebrow-wrapper {
     justify-content: center;
   }
-  
-  .journey-btn, .outcomes-btn, .cities-btn, .testimonials-btn {
+
+  .journey-btn,
+  .outcomes-btn,
+  .cities-btn,
+  .testimonials-btn {
     align-self: center;
   }
-  
+
   .timeline-container-horizontal {
     padding-top: 20px;
   }
-  
-  .timeline-line-horizontal,
+
   .timeline-line-horizontal-4 {
     display: none;
   }
-  
-  .timeline-step,
+
   .timeline-step-4 {
     width: 100%;
     margin-bottom: 35px;
   }
-  
-  .step-badge,
+
   .step-badge-4 {
     position: relative;
     top: 0;
     margin-bottom: 8px;
     border-color: #ffffff;
   }
-  
+
+  .journey-steps-row {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .journey-timeline-wrapper {
+    display: none;
+    /* Hide horizontal line and nodes on mobile/tablet viewports */
+  }
+
+  .journey-box-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .journey-bottom-divider {
+    display: none;
+  }
+
   .outcomes-row {
     flex-wrap: wrap;
     justify-content: center;
@@ -1402,7 +1531,7 @@
     padding: 0;
     box-shadow: none;
   }
-  
+
   .outcome-card {
     flex: 0 0 calc(33.333% - 14px);
     min-height: 200px;
@@ -1424,7 +1553,7 @@
     box-shadow: 0 12px 28px rgba(178, 128, 59, 0.1);
     background-color: #ffffff;
   }
-  
+
   .india-map-container {
     max-width: 320px;
     margin: 0 auto 20px auto;
@@ -1433,7 +1562,7 @@
   .skyline-image-placeholder {
     height: 380px;
   }
-  
+
   .quote-card-overlay {
     position: relative;
     bottom: 0;
@@ -1456,6 +1585,7 @@
 }
 
 @media (max-width: 768px) {
+
   .section-why-acca,
   .section-acca-journey,
   .section-career-outcomes,
@@ -1469,26 +1599,54 @@
     font-size: 2rem;
   }
 
+  .journey-timeline-wrapper {
+    display: none; /* Hide horizontal timeline on mobile */
+  }
+
+  .journey-steps-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .journey-step-item {
+    width: 100%;
+  }
+
+  .journey-box-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px 25px;
+  }
+
+  .journey-bottom-divider {
+    display: none; /* Hide dividers in vertical mobile list */
+  }
+
+  .journey-bottom-item {
+    width: 100%;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .outcome-card {
     flex: 0 0 calc(50% - 10px);
   }
-  
+
   .journey-info-strip {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
     text-align: center;
   }
-  
+
   .strip-divider {
     display: none;
   }
-  
+
   .cities-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -1520,7 +1678,8 @@
 
 /* Features Strip 1 Adjustments */
 .features-strip-1 {
-  background-color: #faf8f5; /* Warm cream background */
+  background-color: #faf8f5;
+  /* Warm cream background */
   border-top: 1px solid rgba(178, 128, 59, 0.15);
   border-bottom: 1px solid rgba(178, 128, 59, 0.15);
   padding: 24px 0;
@@ -1538,7 +1697,8 @@
 
 /* Pan India Presence Horizontal Strip */
 .presence-strip-section {
-  background-color: #ffffff; /* Pure white background */
+  background-color: #ffffff;
+  /* Pure white background */
   border-bottom: 1px solid rgba(178, 128, 59, 0.15);
   padding: 30px 0;
 }
@@ -1563,23 +1723,29 @@
 }
 
 .india-map-svg-mini {
-  width: 140px; /* Slightly larger for the detailed vector boundaries */
+  width: 140px;
+  /* Slightly larger for the detailed vector boundaries */
   height: auto;
-  opacity: 1; /* Fully opaque for high-contrast visibility */
+  opacity: 1;
+  /* Fully opaque for high-contrast visibility */
   overflow: visible;
 }
 
 /* Elegant gold/crimson state styling */
 .india-map-svg-mini .india-state-path {
-  fill: rgba(178, 128, 59, 0.03) !important; /* Beautiful subtle gold default wash to define boundaries */
-  stroke: rgba(178, 128, 59, 0.65) !important; /* Highly visible, darker premium gold state borders */
-  stroke-width: 1.1px !important; /* Crisp border definition */
+  fill: rgba(178, 128, 59, 0.03) !important;
+  /* Beautiful subtle gold default wash to define boundaries */
+  stroke: rgba(178, 128, 59, 0.65) !important;
+  /* Highly visible, darker premium gold state borders */
+  stroke-width: 1.1px !important;
+  /* Crisp border definition */
   transition: stroke 0.3s ease, fill 0.3s ease;
 }
 
 .india-map-svg-mini .india-state-path:hover {
   stroke: var(--color-primary) !important;
-  fill: rgba(181, 28, 36, 0.08) !important; /* Soft highlighted fill */
+  fill: rgba(181, 28, 36, 0.08) !important;
+  /* Soft highlighted fill */
 }
 
 /* Glowing Pin animations */
@@ -1747,7 +1913,8 @@
 
 /* Rounded Gold Features Strip Section */
 .why-acca-horizontal-section {
-  background-color: #faf8f5; /* Warm cream background matching Strip 1 */
+  background-color: #faf8f5;
+  /* Warm cream background matching Strip 1 */
   padding: 35px 0;
   border-bottom: none;
 }
@@ -1840,50 +2007,50 @@
     text-align: center;
     gap: 25px;
   }
-  
+
   .presence-map-col {
     flex: 0 0 auto;
   }
-  
+
   .presence-text-col {
     flex: 0 0 auto;
     align-items: center;
   }
-  
+
   .presence-title-line {
     margin: 0 auto 20px auto;
   }
-  
+
   .btn-presence-cta {
     align-self: center;
   }
-  
+
   .presence-divider {
     display: none;
   }
-  
+
   .presence-cities-col {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
   }
-  
+
   .city-col-item {
     flex: 0 0 calc(33.333% - 14px);
   }
-  
+
   .why-acca-gold-box {
     flex-direction: column;
     gap: 20px;
     padding: 30px;
   }
-  
+
   .why-acca-horizontal-item {
     width: 100%;
     padding: 10px 0;
   }
-  
+
   .why-acca-horizontal-divider {
     display: none;
   }
@@ -1900,6 +2067,3 @@
     flex: 0 0 100%;
   }
 }
-
-
-
