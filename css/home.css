@@ -90,6 +90,7 @@
   position: absolute; /* Mathematically aligned coordinate system */
   z-index: 2;
   transition: all 0.35s ease;
+  height: 54px; /* Fixed height to guarantee vertical centering of circle icon on the curve */
 }
 
 /* 
@@ -97,38 +98,38 @@
   
   The Quadratic Bezier curve is: B(t) = (1-t)^2*P_0 + 2*(1-t)*t*P_1 + t^2*P_2
   SVG viewBox is "0 0 110 440" which maps 1:1 to px inside the 110px x 440px curve overlay.
-  P_0 (Start, t=0) = (84, 34)
-  P_1 (Control)    = (4, 220)
-  P_2 (End, t=1)   = (84, 406)
+  P_0 (Start, t=0) = (94, 34)
+  P_1 (Control)    = (-26, 220)
+  P_2 (End, t=1)   = (94, 406)
   
   Midpoint B(0.5) is computed as:
-  B(0.5)_x = 0.25*84 + 0.5*4 + 0.25*84 = 21 + 2 + 21 = 44px
+  B(0.5)_x = 0.25*94 + 0.5*(-26) + 0.25*94 = 23.5 - 13 + 23.5 = 34px
   B(0.5)_y = 0.25*34 + 0.5*220 + 0.25*406 = 8.5 + 110 + 101.5 = 220px
   
   The circle centers must lie exactly on these points:
-  - Step 1 Center: (84, 34)
-  - Step 2 Center: (44, 220)
-  - Step 3 Center: (84, 406)
+  - Step 1 Center: (94, 34)
+  - Step 2 Center: (34, 220)
+  - Step 3 Center: (94, 406)
   
   Given the timeline icon is 54px x 54px, its center is at (27px, 27px) relative to the item container.
   Therefore, the top-left positioning rules are:
-  - Step 1 top-left: top = 34 - 27 = 7px, left = 84 - 27 = 57px
-  - Step 2 top-left: top = 220 - 27 = 193px, left = 44 - 27 = 17px
-  - Step 3 top-left: top = 406 - 27 = 379px, left = 84 - 27 = 57px
+  - Step 1 top-left: top = 34 - 27 = 7px, left = 94 - 27 = 67px
+  - Step 2 top-left: top = 220 - 27 = 193px, left = 34 - 27 = 7px
+  - Step 3 top-left: top = 406 - 27 = 379px, left = 94 - 27 = 67px
 */
 .timeline-item.step-1 {
   top: 7px;
-  left: 57px;
+  left: 67px;
 }
 
 .timeline-item.step-2 {
   top: 193px;
-  left: 17px;
+  left: 7px;
 }
 
 .timeline-item.step-3 {
   top: 379px;
-  left: 57px;
+  left: 67px;
 }
 
 .timeline-icon {
