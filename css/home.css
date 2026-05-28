@@ -1762,7 +1762,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 40px;
   max-width: 100% !important;
   width: 100% !important;
   padding: 0 80px !important;
@@ -1818,7 +1818,7 @@
 
 /* Column 2: Text & CTA */
 .presence-text-col {
-  flex: 0 0 280px;
+  flex: 0 0 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1893,9 +1893,9 @@
 .presence-cities-col {
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 0;
 }
 
 .city-col-item {
