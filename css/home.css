@@ -2258,22 +2258,18 @@
 }
 
 .index2-page .why-acca-cta-btn {
-  background-color: transparent !important;
-  color: var(--color-primary) !important;
-  border: none !important;
-  padding: 0 !important;
-  font-size: 0.85rem;
+  border-radius: 0 !important;
+  padding: 14px 28px;
+  font-size: 0.82rem;
   letter-spacing: 0.8px;
-  font-weight: 700;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .index2-page .why-acca-cta-btn:hover {
-  color: #d11f26 !important;
-  background-color: transparent !important;
   transform: translateY(-2px);
 }
 
