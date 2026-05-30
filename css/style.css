@@ -97,9 +97,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar */
 .navbar {
-  background-color: var(--color-bg);
-  padding: 10px 0; /* Reduced padding for sleek vertical height */
-  border-bottom: 1px solid var(--color-border);
+  background-color: #ffffff; /* Clean pure white background */
+  padding: 12px 0; /* Sleeker padding profile */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Ultra fine sleek divider */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -114,30 +114,30 @@ h1, h2, h3, h4, h5, h6 {
 .nav-left-group {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 40px; /* Spacious elegant gap between logo and menu items */
 }
 
 .nav-logo img {
-  height: 44px; /* Reduced from 60px for a sleeker profile */
+  height: 35px; /* Extremely sleek software-product size profile */
   width: auto;
   display: block;
 }
 
 .nav-links {
   display: flex;
-  gap: 24px; /* Compact gap */
+  gap: 28px; /* Perfectly balanced horizontal gap */
   align-items: center;
 }
 
 .nav-links a {
-  font-size: 0.78rem; /* Sleeker smaller font */
-  font-weight: 600; /* Sharp medium-bold */
-  text-transform: uppercase;
-  letter-spacing: 0.8px; /* Elegant wide editorial tracking */
+  font-size: 0.84rem; /* Balanced sleek SaaS font size */
+  font-weight: 500; /* Crisp Medium weight like Inter's best profile */
+  text-transform: none; /* No bulky uppercase, highly modern */
+  letter-spacing: -0.1px; /* Tighter kerning */
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--color-dark);
+  color: #4b5563; /* Premium slate gray */
   transition: color 0.25s ease;
 }
 
@@ -146,17 +146,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-links a.active {
-  position: relative;
-}
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -6px; /* Offset lower */
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600; /* Subtle weight highlight */
 }
 
 /* Rich Desktop Dropdowns styling */
@@ -312,9 +303,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-actions .btn {
-  padding: 8px 18px; /* Smaller, modern button size */
-  font-size: 0.78rem; /* Aligns with nav link size */
-  border-radius: 0; /* Removed border radius for sharp corners */
+  padding: 8px 20px; /* Symmetrical clean padding */
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: none; /* Soft normal casing */
+  letter-spacing: normal;
+  border-radius: 6px; /* Elegant soft rounded corners like Supabase */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Modern clean button shadow */
 }
 
 .nav-toggle {
@@ -344,7 +339,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding: 10px 20px;
   font-size: 0.8rem;
-  border-radius: 4px;
+  font-weight: 500;
+  text-transform: none; /* Soft normal casing */
+  letter-spacing: normal;
+  border-radius: 6px; /* Symmetrical rounded corners */
   color: #ffffff !important; /* Force white text color and override nav-links a black default */
 }
 
