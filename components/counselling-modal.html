@@ -1,0 +1,359 @@
+<!-- Reusable Counselling Modal -->
+<div class="counselling-modal-backdrop" id="counsellingModalBackdrop">
+  <div class="counselling-modal-container">
+    <!-- Close Button -->
+    <button
+      class="counselling-modal-close"
+      id="counsellingModalClose"
+      aria-label="Close modal"
+    >
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="counselling-modal-body">
+      <!-- Left Column: Form -->
+      <div class="counselling-modal-left">
+        <h2 class="title">Book a Counselling <span class="session-highlight">Session</span></h2>
+        <p class="subtitle">
+          Take the first step towards your ACCA journey. Book a free one-on-one
+          session with our experts.
+        </p>
+
+        <form class="counselling-form" id="counsellingForm">
+          <div class="counselling-form-row">
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingName"
+                >Full Name*</label
+              >
+              <input
+                type="text"
+                class="counselling-form-control"
+                id="counsellingName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingPhone"
+                >Phone Number*</label
+              >
+              <input
+                type="tel"
+                class="counselling-form-control"
+                id="counsellingPhone"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="counselling-form-group">
+            <label class="counselling-form-label" for="counsellingEmail"
+              >Email Address*</label
+            >
+            <input
+              type="email"
+              class="counselling-form-control"
+              id="counsellingEmail"
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+
+          <div class="counselling-form-group">
+            <label class="counselling-form-label" for="counsellingCourse"
+              >Course Interested In*</label
+            >
+            <select
+              class="counselling-form-control"
+              id="counsellingCourse"
+              required
+            >
+              <option value="" disabled selected>Select a course</option>
+              <option value="acca-knowledge">ACCA Applied Knowledge</option>
+              <option value="acca-skills">ACCA Applied Skills</option>
+              <option value="acca-professional">
+                ACCA Strategic Professional
+              </option>
+              <option value="acca-diploma">Diploma in IFRS</option>
+            </select>
+          </div>
+
+          <div class="counselling-form-row">
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingQual"
+                >Current Qualification*</label
+              >
+              <select
+                class="counselling-form-control"
+                id="counsellingQual"
+                required
+              >
+                <option value="" disabled selected>
+                  Select your qualification
+                </option>
+                <option value="undergraduate">
+                  Undergraduate (B.Com/BBA/etc.)
+                </option>
+                <option value="graduate">Graduate</option>
+                <option value="postgraduate">Postgraduate</option>
+                <option value="ca-ipcc">CA IPCC / CA Inter</option>
+                <option value="ca-final">CA Final / Qualified CA</option>
+                <option value="working-professional">
+                  Working Professional
+                </option>
+              </select>
+            </div>
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingYear"
+                >Year of Passing</label
+              >
+              <select class="counselling-form-control" id="counsellingYear">
+                <option value="" disabled selected>Select year</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="before-2023">Before 2023</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="counselling-form-group">
+            <label class="counselling-form-label" for="counsellingLocation"
+              >Preferred Location*</label
+            >
+            <select
+              class="counselling-form-control"
+              id="counsellingLocation"
+              required
+            >
+              <option value="" disabled selected>
+                Select your preferred location
+              </option>
+              <option value="online">Online / Live Interactive Classes</option>
+              <option value="mumbai">Mumbai Center</option>
+              <option value="pune">Pune Center</option>
+              <option value="delhi">Delhi Center</option>
+              <option value="bengaluru">Bengaluru Center</option>
+            </select>
+          </div>
+
+          <div class="counselling-form-row">
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingDate"
+                >Preferred Date*</label
+              >
+              <input
+                type="date"
+                class="counselling-form-control"
+                id="counsellingDate"
+                required
+              />
+            </div>
+            <div class="counselling-form-group">
+              <label class="counselling-form-label" for="counsellingTime"
+                >Preferred Time*</label
+              >
+              <select
+                class="counselling-form-control"
+                id="counsellingTime"
+                required
+              >
+                <option value="" disabled selected>Select a time slot</option>
+                <option value="morning">Morning (10:00 AM - 1:00 PM)</option>
+                <option value="afternoon">Afternoon (1:00 PM - 4:00 PM)</option>
+                <option value="evening">Evening (4:00 PM - 7:00 PM)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="counselling-form-group">
+            <label class="counselling-form-label" for="counsellingSource"
+              >How did you hear about us?</label
+            >
+            <select class="counselling-form-control" id="counsellingSource">
+              <option value="" disabled selected>Select an option</option>
+              <option value="google">Google Search</option>
+              <option value="social-media">
+                Social Media (Instagram/LinkedIn)
+              </option>
+              <option value="friend-referral">Friend / Alumni Referral</option>
+              <option value="newspaper">Newspaper / Flyer</option>
+            </select>
+          </div>
+
+          <div class="counselling-form-group">
+            <label class="counselling-form-label" for="counsellingMsg"
+              >Your Message (Optional)</label
+            >
+            <textarea
+              class="counselling-form-control"
+              id="counsellingMsg"
+              placeholder="Write your message here..."
+            ></textarea>
+          </div>
+
+          <div class="counselling-checkbox-group">
+            <input
+              type="checkbox"
+              class="counselling-checkbox-input"
+              id="counsellingCheck"
+              required
+              checked
+            />
+            <label class="counselling-checkbox-label" for="counsellingCheck">
+              I agree to receive updates and information from ACCA Gurukul.
+            </label>
+          </div>
+
+          <button type="submit" class="counselling-submit-btn">
+            <i data-lucide="calendar"></i> BOOK MY SESSION
+            <i data-lucide="arrow-right"></i>
+          </button>
+
+          <div class="counselling-form-note">
+            <i data-lucide="lock"></i> Your information is safe with us and will
+            never be shared.
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Benefits list & Helper Cards -->
+      <div class="counselling-modal-right">
+        <h3 class="right-title">
+          Why <span>Book a Counselling Session?</span>
+        </h3>
+        <div class="counselling-right-divider">
+          <i data-lucide="star"></i>
+        </div>
+
+        <div class="counselling-benefits-list">
+          <div class="counselling-benefit-item">
+            <div class="counselling-benefit-icon">
+              <i data-lucide="user-check"></i>
+            </div>
+            <div class="counselling-benefit-text">
+              <div class="counselling-benefit-heading">
+                Personalised Guidance
+              </div>
+              <div class="counselling-benefit-desc">
+                Get expert advice tailored to your background and career goals.
+              </div>
+            </div>
+          </div>
+
+          <div class="counselling-benefit-item">
+            <div class="counselling-benefit-icon">
+              <i data-lucide="book-open"></i>
+            </div>
+            <div class="counselling-benefit-text">
+              <div class="counselling-benefit-heading">
+                Course & Exam Insights
+              </div>
+              <div class="counselling-benefit-desc">
+                Understand the ACCA journey, exam structure, and exemptions.
+              </div>
+            </div>
+          </div>
+
+          <div class="counselling-benefit-item">
+            <div class="counselling-benefit-icon">
+              <i data-lucide="trending-up"></i>
+            </div>
+            <div class="counselling-benefit-text">
+              <div class="counselling-benefit-heading">
+                Career Opportunities
+              </div>
+              <div class="counselling-benefit-desc">
+                Explore global career paths and industry opportunities.
+              </div>
+            </div>
+          </div>
+
+          <div class="counselling-benefit-item">
+            <div class="counselling-benefit-icon">
+              <i data-lucide="dollar-sign"></i>
+            </div>
+            <div class="counselling-benefit-text">
+              <div class="counselling-benefit-heading">
+                Fee & Scholarship Info
+              </div>
+              <div class="counselling-benefit-desc">
+                Get complete information on fees, payment plans and
+                scholarships.
+              </div>
+            </div>
+          </div>
+
+          <div class="counselling-benefit-item">
+            <div class="counselling-benefit-icon">
+              <i data-lucide="help-circle"></i>
+            </div>
+            <div class="counselling-benefit-text">
+              <div class="counselling-benefit-heading">
+                All Your Doubts Cleared
+              </div>
+              <div class="counselling-benefit-desc">
+                A dedicated session to answer all your questions.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Card Helper -->
+        <div class="counselling-helper-card phone-card">
+          <div class="counselling-helper-icon">
+            <i data-lucide="headphones"></i>
+          </div>
+          <div class="counselling-helper-info">
+            <div class="helper-title">Need immediate help?</div>
+            <div class="helper-desc">Call us directly at</div>
+            <div class="helper-highlight">+91 8692 009 002</div>
+          </div>
+        </div>
+
+        <!-- Free Card Helper -->
+        <div class="counselling-helper-card free-card">
+          <div class="counselling-helper-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <div class="counselling-helper-info">
+            <div class="helper-title">100% Free. 100% Worth It.</div>
+            <div class="helper-desc">
+              There's no fee for the counselling session. It's completely free
+              and commitment-free.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer Bar -->
+    <div class="counselling-modal-footer">
+      <div class="counselling-footer-item">
+        <i data-lucide="check-circle-2"></i>
+        <span class="counselling-footer-text">Trusted by Thousands</span>
+      </div>
+      <div class="counselling-footer-divider"></div>
+      <div class="counselling-footer-item">
+        <i data-lucide="graduation-cap"></i>
+        <span class="counselling-footer-text">Expert Faculty Guidance</span>
+      </div>
+      <div class="counselling-footer-divider"></div>
+      <div class="counselling-footer-item">
+        <i data-lucide="award"></i>
+        <span class="counselling-footer-text"
+          >Proven Results & Success Stories</span
+        >
+      </div>
+      <div class="counselling-footer-divider"></div>
+      <div class="counselling-footer-item">
+        <i data-lucide="globe"></i>
+        <span class="counselling-footer-text"
+          >Global Qualification, Unlimited Opportunities</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
