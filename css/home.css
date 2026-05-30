@@ -1974,6 +1974,118 @@
   background-color: rgba(181, 28, 36, 0.03);
 }
 
+/* ==========================================
+   New Cities Card Grid for index2.html Variation
+   ========================================== */
+.index2-page .presence-grid-wrapper {
+  flex: 1;
+  width: 100%;
+}
+
+.index2-page .presence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.index2-page .presence-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.index2-page .presence-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(181, 28, 36, 0.06);
+}
+
+.index2-page .city-thumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 0;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.index2-page .city-name {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  transition: color 0.25s ease;
+}
+
+.index2-page .presence-card:hover .city-name {
+  color: var(--color-primary);
+}
+
+/* More Cities special full-width card layout */
+.index2-page .presence-card.more-cities-card {
+  grid-column: span 3;
+  justify-content: space-between;
+}
+
+.index2-page .presence-card.more-cities-card i {
+  transition: transform 0.25s ease;
+}
+
+.index2-page .presence-card.more-cities-card:hover i {
+  transform: translateX(3px);
+  color: var(--color-primary);
+}
+
+/* Primary Red Button overrides for index2.html variation */
+.index2-page .btn-presence-cta {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 0 !important;
+}
+
+.index2-page .btn-presence-cta:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Force border-radius to 0 for all buttons and button-like classes on index2.html variation */
+.index2-page .btn,
+.index2-page .btn-primary,
+.index2-page .btn-outline,
+.index2-page .btn-presence-cta,
+.index2-page button,
+.index2-page a.btn,
+.index2-page .btn-book-counselling,
+.index2-page .pag-arrow,
+.index2-page .journey-btn {
+  border-radius: 0 !important;
+}
+
+/* Responsive queries for the cities card grid */
+@media (max-width: 992px) {
+  .index2-page .presence-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .index2-page .more-cities-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .index2-page .presence-grid {
+    grid-template-columns: 1fr;
+  }
+  .index2-page .more-cities-card {
+    grid-column: span 1;
+  }
+}
 
 /* Rounded Gold Features Strip Section */
 .why-acca-horizontal-section {
