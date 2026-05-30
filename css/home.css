@@ -1992,8 +1992,8 @@
 .index2-page .presence-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 6px 8px;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0;
@@ -2009,8 +2009,8 @@
 }
 
 .index2-page .city-thumb {
-  width: 42px;
-  height: 42px;
+  width: 54px;
+  height: 54px;
   border-radius: 0;
   object-fit: cover;
   flex-shrink: 0;
@@ -2055,7 +2055,7 @@
   color: #ffffff;
 }
 
-/* Force border-radius to 0 for all buttons and button-like classes on index2.html variation */
+/* Force border-radius to 0 for all buttons, button-like classes, outer containers, and cards on index2.html variation */
 .index2-page .btn,
 .index2-page .btn-primary,
 .index2-page .btn-outline,
@@ -2064,7 +2064,21 @@
 .index2-page a.btn,
 .index2-page .btn-book-counselling,
 .index2-page .pag-arrow,
-.index2-page .journey-btn {
+.index2-page .journey-btn,
+.index2-page .why-acca-gold-box,
+.index2-page .journey-singular-box,
+.index2-page .outcomes-row,
+.index2-page .outcome-card,
+.index2-page .testimonial-card,
+.index2-page .metric-card,
+.index2-page .dropdown-menu,
+.index2-page .dropdown-item,
+.index2-page .dropdown-item-simple,
+.index2-page .why-acca-horizontal-item,
+.index2-page .why-acca-horizontal-icon-wrapper,
+.index2-page .profile-photo-placeholder,
+.index2-page .presence-card,
+.index2-page .city-thumb {
   border-radius: 0 !important;
 }
 
