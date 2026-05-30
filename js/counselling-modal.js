@@ -276,12 +276,31 @@
     function openModal() {
       backdrop.classList.add('active');
       document.body.style.overflow = 'hidden'; // Disable page scrolling
+      clearErrors();
     }
 
     // Close Modal function
     function closeModal() {
       backdrop.classList.remove('active');
       document.body.style.overflow = ''; // Enable page scrolling
+      form.reset();
+      clearErrors();
+      
+      // Reset custom selects placeholders
+      document.querySelectorAll('.counselling-custom-select').forEach(customSelect => {
+        const select = customSelect.previousSibling;
+        const placeholderOption = select.querySelector('option[disabled]');
+        const textSpan = customSelect.querySelector('.counselling-select-trigger span');
+        textSpan.textContent = placeholderOption ? placeholderOption.textContent : 'Select option';
+        textSpan.classList.add('placeholder');
+        customSelect.querySelectorAll('.counselling-select-option').forEach(opt => opt.classList.remove('selected'));
+      });
+
+      // Reset custom date picker placeholder
+      const dateWrapper = document.querySelector('.counselling-custom-date');
+      if (dateWrapper) {
+        dateWrapper.dispatchEvent(new CustomEvent('resetDatePicker'));
+      }
     }
 
     // Event listeners for close triggers
@@ -299,9 +318,346 @@
       }
     });
 
+    // Custom Dropdown Builder
+    function initCustomDropdowns() {
+      const selects = form.querySelectorAll('select');
+      selects.forEach(select => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'counselling-custom-select';
+        
+        const trigger = document.createElement('div');
+        trigger.className = 'counselling-select-trigger';
+        
+        const selectedSpan = document.createElement('span');
+        selectedSpan.className = 'placeholder';
+        const placeholderOption = select.querySelector('option[disabled][selected]');
+        selectedSpan.textContent = placeholderOption ? placeholderOption.textContent : select.options[0].textContent;
+        
+        const chevron = document.createElement('i');
+        chevron.setAttribute('data-lucide', 'chevron-down');
+        
+        trigger.appendChild(selectedSpan);
+        trigger.appendChild(chevron);
+        
+        const dropdown = document.createElement('div');
+        dropdown.className = 'counselling-select-dropdown';
+        
+        Array.from(select.options).forEach(option => {
+          if (option.disabled) return; // Skip placeholder
+          
+          const optDiv = document.createElement('div');
+          optDiv.className = 'counselling-select-option';
+          optDiv.textContent = option.textContent;
+          optDiv.setAttribute('data-value', option.value);
+          
+          optDiv.addEventListener('click', (e) => {
+            e.stopPropagation();
+            select.value = option.value;
+            selectedSpan.textContent = option.textContent;
+            selectedSpan.classList.remove('placeholder');
+            
+            dropdown.querySelectorAll('.counselling-select-option').forEach(el => el.classList.remove('selected'));
+            optDiv.classList.add('selected');
+            
+            // Fire change event
+            const event = new Event('change', { bubbles: true });
+            select.dispatchEvent(event);
+            
+            // Clear validation error on selection
+            const group = select.closest('.counselling-form-group');
+            if (group) {
+              group.classList.remove('has-error');
+              const errorLabel = group.querySelector('.counselling-validation-error');
+              if (errorLabel) errorLabel.remove();
+            }
+            
+            wrapper.classList.remove('active');
+          });
+          
+          dropdown.appendChild(optDiv);
+        });
+        
+        wrapper.appendChild(trigger);
+        wrapper.appendChild(dropdown);
+        
+        // Hide standard select
+        select.style.display = 'none';
+        select.parentNode.insertBefore(wrapper, select.nextSibling);
+        
+        // Open/Close toggle
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          document.querySelectorAll('.counselling-custom-select').forEach(el => {
+            if (el !== wrapper) el.classList.remove('active');
+          });
+          wrapper.classList.toggle('active');
+        });
+      });
+      
+      // Close dropdowns on clicking outside
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.counselling-custom-select').forEach(el => el.classList.remove('active'));
+      });
+    }
+
+    // Initialize custom dropdowns
+    initCustomDropdowns();
+
+    // Custom Date Picker Builder
+    function initCustomDatePicker() {
+      const dateInput = document.getElementById('counsellingDate');
+      if (!dateInput) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'counselling-custom-date';
+
+      const trigger = document.createElement('div');
+      trigger.className = 'counselling-date-trigger';
+
+      const selectedSpan = document.createElement('span');
+      selectedSpan.className = 'placeholder';
+      selectedSpan.textContent = 'Select a date';
+
+      const calIcon = document.createElement('i');
+      calIcon.setAttribute('data-lucide', 'calendar');
+
+      trigger.appendChild(selectedSpan);
+      trigger.appendChild(calIcon);
+
+      const popup = document.createElement('div');
+      popup.className = 'counselling-calendar-popup';
+
+      wrapper.appendChild(trigger);
+      wrapper.appendChild(popup);
+
+      // Hide original date input
+      dateInput.style.display = 'none';
+      dateInput.parentNode.insertBefore(wrapper, dateInput.nextSibling);
+
+      let currentDate = new Date();
+      let selectedDate = null;
+
+      function renderCalendar(year, month) {
+        popup.innerHTML = '';
+
+        // Header block
+        const header = document.createElement('div');
+        header.className = 'counselling-calendar-header';
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.innerHTML = '<i data-lucide="chevron-left"></i>';
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentDate.setMonth(currentDate.getMonth() - 1);
+          renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'calendar-month-year';
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        titleSpan.textContent = `${months[month]} ${year}`;
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.innerHTML = '<i data-lucide="chevron-right"></i>';
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentDate.setMonth(currentDate.getMonth() + 1);
+          renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        header.appendChild(prevBtn);
+        header.appendChild(titleSpan);
+        header.appendChild(nextBtn);
+        popup.appendChild(header);
+
+        // Weekdays block
+        const weekdays = document.createElement('div');
+        weekdays.className = 'counselling-calendar-weekdays';
+        ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].forEach(day => {
+          const dayDiv = document.createElement('div');
+          dayDiv.textContent = day;
+          weekdays.appendChild(dayDiv);
+        });
+        popup.appendChild(weekdays);
+
+        // Days block
+        const daysGrid = document.createElement('div');
+        daysGrid.className = 'counselling-calendar-days';
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        // Empty cells padding
+        for (let i = 0; i < firstDay; i++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'empty';
+          daysGrid.appendChild(emptyCell);
+        }
+
+        // Render days
+        for (let d = 1; d <= totalDays; d++) {
+          const dayCell = document.createElement('div');
+          dayCell.textContent = d;
+
+          const cellDate = new Date(year, month, d);
+          cellDate.setHours(0,0,0,0);
+
+          // Disable past days
+          if (cellDate < today) {
+            dayCell.className = 'disabled';
+          } else {
+            if (selectedDate && cellDate.getTime() === selectedDate.getTime()) {
+              dayCell.classList.add('selected');
+            }
+
+            dayCell.addEventListener('click', (e) => {
+              e.stopPropagation();
+              selectedDate = cellDate;
+              
+              const yyyy = year;
+              const mm = String(month + 1).padStart(2, '0');
+              const dd = String(d).padStart(2, '0');
+              dateInput.value = `${yyyy}-${mm}-${dd}`;
+
+              selectedSpan.textContent = `${d} ${months[month].substring(0, 3)} ${year}`;
+              selectedSpan.classList.remove('placeholder');
+
+              const group = dateInput.closest('.counselling-form-group');
+              if (group) {
+                group.classList.remove('has-error');
+                const err = group.querySelector('.counselling-validation-error');
+                if (err) err.remove();
+              }
+
+              wrapper.classList.remove('active');
+            });
+          }
+
+          daysGrid.appendChild(dayCell);
+        }
+
+        popup.appendChild(daysGrid);
+
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      }
+
+      // Toggle Active Calendar
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.counselling-custom-select').forEach(el => el.classList.remove('active'));
+        
+        const isActive = wrapper.classList.contains('active');
+        if (!isActive) {
+          currentDate = selectedDate ? new Date(selectedDate) : new Date();
+          renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        }
+        wrapper.classList.toggle('active');
+      });
+
+      // Close calendar popup on click outside
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          wrapper.classList.remove('active');
+        }
+      });
+
+      // Expose reset trigger helper
+      wrapper.addEventListener('resetDatePicker', () => {
+        selectedDate = null;
+        selectedSpan.textContent = 'Select a date';
+        selectedSpan.classList.add('placeholder');
+      });
+    }
+
+    // Initialize custom date picker
+    initCustomDatePicker();
+
+    // Custom Validation
+    function clearErrors() {
+      form.querySelectorAll('.counselling-form-group').forEach(group => {
+        group.classList.remove('has-error');
+        const err = group.querySelector('.counselling-validation-error');
+        if (err) err.remove();
+      });
+    }
+
+    function showError(inputEl, message) {
+      const group = inputEl.closest('.counselling-form-group');
+      if (!group) return;
+      
+      group.classList.add('has-error');
+      
+      let errorLabel = group.querySelector('.counselling-validation-error');
+      if (!errorLabel) {
+        errorLabel = document.createElement('div');
+        errorLabel.className = 'counselling-validation-error';
+        group.appendChild(errorLabel);
+      }
+      
+      errorLabel.innerHTML = `<i data-lucide="alert-circle" style="width: 12px; height: 12px; display: inline-block;"></i> ${message}`;
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
+
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validatePhone(phone) {
+      const digits = phone.replace(/\D/g, '');
+      return digits.length === 10;
+    }
+
     // Handle Form Submission
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      clearErrors();
+      
+      let isValid = true;
+      
+      // Check Email
+      const emailInput = document.getElementById('counsellingEmail');
+      if (!validateEmail(emailInput.value.trim())) {
+        showError(emailInput, 'Please enter a valid email address.');
+        isValid = false;
+      }
+      
+      // Check Phone
+      const phoneInput = document.getElementById('counsellingPhone');
+      if (!validatePhone(phoneInput.value.trim())) {
+        showError(phoneInput, 'Please enter a valid 10-digit phone number.');
+        isValid = false;
+      }
+
+      // Check Date
+      const dateInput = document.getElementById('counsellingDate');
+      if (!dateInput.value) {
+        const customWrapper = dateInput.nextSibling;
+        showError(customWrapper, 'Please select a preferred date.');
+        isValid = false;
+      }
+
+      // Check standard select validation (required check since they are hidden)
+      const selects = form.querySelectorAll('select[required]');
+      selects.forEach(select => {
+        if (!select.value) {
+          const customWrapper = select.nextSibling;
+          showError(customWrapper, 'Please select an option.');
+          isValid = false;
+        }
+      });
+      
+      if (!isValid) {
+        return; // Stop submission if invalid
+      }
 
       // Simple mock successful submission visual feedback
       const submitBtn = form.querySelector('.counselling-submit-btn');

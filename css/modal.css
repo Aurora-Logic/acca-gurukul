@@ -502,3 +502,313 @@ textarea.counselling-form-control {
     padding: 30px 20px;
   }
 }
+
+/* Custom Select Dropdowns */
+.counselling-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.counselling-select-wrapper select {
+  display: none !important; /* Hide original select */
+}
+
+.counselling-custom-select {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+}
+
+.counselling-select-trigger {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 0 !important;
+  background-color: #ffffff;
+  color: #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.counselling-select-trigger:hover {
+  border-color: #999999;
+}
+
+.counselling-custom-select.active .counselling-select-trigger {
+  border-color: var(--color-primary, #B51C24);
+  box-shadow: 0 0 0 3px rgba(181, 28, 36, 0.08);
+}
+
+.counselling-select-trigger span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.counselling-select-trigger span.placeholder {
+  color: #888888;
+}
+
+.counselling-select-trigger svg {
+  width: 16px;
+  height: 16px;
+  color: #666666;
+  transition: transform 0.2s ease;
+}
+
+.counselling-custom-select.active .counselling-select-trigger svg {
+  transform: rotate(180deg);
+  color: var(--color-primary, #B51C24);
+}
+
+.counselling-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.2);
+  border-radius: 0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  margin-top: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.counselling-custom-select.active .counselling-select-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.counselling-select-option {
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  color: #444444;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.counselling-select-option:hover {
+  background-color: rgba(181, 28, 36, 0.05);
+  color: var(--color-primary, #B51C24);
+}
+
+.counselling-select-option.selected {
+  background-color: var(--color-primary, #B51C24);
+  color: #ffffff;
+}
+
+/* Custom validation feedback */
+.counselling-form-group.has-error .counselling-form-control,
+.counselling-form-group.has-error .counselling-select-trigger {
+  border-color: #d32f2f !important;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.08) !important;
+}
+
+.counselling-validation-error {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #d32f2f;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.counselling-validation-error svg {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+/* Custom Date Picker & Calendar Popup */
+.counselling-date-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.counselling-date-wrapper input[type="date"] {
+  display: none !important; /* Hide original date input */
+}
+
+.counselling-custom-date {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+}
+
+.counselling-date-trigger {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 0 !important;
+  background-color: #ffffff;
+  color: #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.counselling-date-trigger:hover {
+  border-color: #999999;
+}
+
+.counselling-custom-date.active .counselling-date-trigger {
+  border-color: var(--color-primary, #B51C24);
+  box-shadow: 0 0 0 3px rgba(181, 28, 36, 0.08);
+}
+
+.counselling-date-trigger span.placeholder {
+  color: #888888;
+}
+
+.counselling-date-trigger svg {
+  width: 16px;
+  height: 16px;
+  color: #666666;
+  transition: color 0.2s ease;
+}
+
+.counselling-custom-date.active .counselling-date-trigger svg {
+  color: var(--color-primary, #B51C24);
+}
+
+/* Calendar Dropdown Card */
+.counselling-calendar-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 280px;
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.2);
+  border-radius: 0 !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  z-index: 101;
+  margin-top: 4px;
+  padding: 16px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.counselling-custom-date.active .counselling-calendar-popup {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Header: Month & Year Selector */
+.counselling-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.counselling-calendar-header button {
+  background: transparent;
+  border: none;
+  color: #666666;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.counselling-calendar-header button:hover {
+  color: var(--color-primary, #B51C24);
+}
+
+.counselling-calendar-header button:active {
+  transform: scale(0.9);
+}
+
+.counselling-calendar-header button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.counselling-calendar-header .calendar-month-year {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: 0.2px;
+}
+
+/* Grid layout for Days */
+.counselling-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #888888;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 6px;
+}
+
+.counselling-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.counselling-calendar-days div {
+  font-size: 0.78rem;
+  padding: 6px 0;
+  cursor: pointer;
+  color: #444444;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+}
+
+.counselling-calendar-days div:hover:not(.disabled):not(.selected) {
+  background-color: rgba(181, 28, 36, 0.05);
+  color: var(--color-primary, #B51C24);
+}
+
+.counselling-calendar-days div.selected {
+  background-color: var(--color-primary, #B51C24) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.counselling-calendar-days div.disabled {
+  color: #cccccc;
+  cursor: not-allowed;
+}
+
+.counselling-calendar-days div.empty {
+  cursor: default;
+}
+
+/* Add validation border support for custom date trigger */
+.counselling-form-group.has-error .counselling-date-trigger {
+  border-color: #d32f2f !important;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.08) !important;
+}
