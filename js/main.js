@@ -21,14 +21,33 @@ document.addEventListener('DOMContentLoaded', () => {
           toggleBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             
+            const isOpened = navMenu.classList.contains('active');
+            if (isOpened) {
+              toggleBtn.style.setProperty('display', 'none', 'important');
+            }
+            
             if (toggleIcon) {
-              const isOpened = navMenu.classList.contains('active');
               toggleIcon.setAttribute('data-lucide', isOpened ? 'x' : 'menu');
               if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
               }
             }
           });
+
+          const closeBtn = document.getElementById('nav-close-btn');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+              navMenu.classList.remove('active');
+              toggleBtn.style.removeProperty('display');
+              
+              if (toggleIcon) {
+                toggleIcon.setAttribute('data-lucide', 'menu');
+                if (typeof lucide !== 'undefined') {
+                  lucide.createIcons();
+                }
+              }
+            });
+          }
         }
 
         // Mobile dropdown toggles

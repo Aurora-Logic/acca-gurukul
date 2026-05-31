@@ -437,6 +437,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px; /* Elegant soft rounded corners like Supabase */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Modern clean button shadow */
 }
+.mobile-headset-btn,
+.nav-mobile-header {
+  display: none !important;
+}
 
 .nav-toggle {
   display: none;
@@ -470,6 +474,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: normal;
   border-radius: 6px; /* Symmetrical rounded corners */
   color: #ffffff !important; /* Force white text color and override nav-links a black default */
+  justify-content: center !important; /* Force center alignment and override space-between from mobile nav links */
 }
 
 /* Mobile Responsiveness for Navbar */
@@ -484,6 +489,71 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     position: relative; /* Setup positioning context for absolute mobile toggle */
     padding: 0 15px; /* Keep tight edge padding on mobile screens */
+  }
+
+  .mobile-headset-btn {
+    display: flex !important;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary); /* Symmetrical brand-red color */
+    padding: 6px;
+    align-items: center;
+    justify-content: center;
+    z-index: 110;
+    cursor: pointer;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .mobile-headset-btn:hover {
+    transform: translateY(-50%) scale(1.08);
+    opacity: 0.9;
+  }
+
+  .mobile-headset-btn i {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-mobile-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-menu-title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-dark);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease;
+  }
+
+  .nav-close-btn:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-close-btn i {
+    width: 22px;
+    height: 22px;
   }
 
   .nav-toggle {
@@ -513,8 +583,8 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.08); /* Changed shadow to right side */
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px 40px 40px 40px;
-    gap: 20px;
+    padding: 24px;
+    gap: 12px;
     z-index: 100;
     transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transition left coordinate */
   }
@@ -526,7 +596,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links li {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-    padding-bottom: 12px;
+    padding-bottom: 8px;
   }
 
   .nav-links li.mobile-cta-li {
