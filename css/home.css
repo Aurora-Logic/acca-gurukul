@@ -454,10 +454,14 @@
 
 /* 2. ACCA Journey Section */
 .section-acca-journey {
-  background-color: #faf8f5;
-  /* Premium light warm background */
+  background-color: #ffffff;
+  /* Premium light warm background changed to white for contrast */
   padding-top: 40px;
   /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
+}
+
+.section-acca-journey .container {
+  max-width: 100% !important;
 }
 
 .section-acca-journey .section-left {
@@ -479,6 +483,38 @@
   margin-bottom: 24px;
 }
 
+.journey-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.journey-text-link:hover {
+  color: var(--color-secondary);
+}
+
+.journey-text-link .btn-icon {
+  margin-left: 0;
+  transition: transform 0.3s ease;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2px;
+}
+
+.journey-text-link:hover .btn-icon {
+  transform: translateX(4px);
+}
+
 @media (max-width: 1200px) {
   .section-acca-journey .section-left {
     flex: 1;
@@ -486,133 +522,62 @@
   }
 }
 
-/* Singular Unified Box for ACCA Journey */
-.journey-singular-box {
+/* Modern Card Layout for ACCA Journey */
+.journey-modern-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   background-color: #ffffff;
-  border: 1px solid rgba(178, 128, 59, 0.35);
-  border-radius: 12px;
+  border: 1px solid rgba(178, 128, 59, 0.2);
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(178, 128, 59, 0.04);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.journey-modern-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
+  border-bottom: 1px solid rgba(178, 128, 59, 0.2);
 }
 
-/* Top Section */
-.journey-box-top {
-  padding: 40px 35px 35px 35px;
-}
-
-/* Timeline elements inside top box */
-.journey-timeline-wrapper {
+.journey-modern-card {
+  padding: 40px 30px;
   position: relative;
-  width: 100%;
-  height: 32px;
-  /* Matches the 32px height of the nodes */
-  margin-bottom: 30px;
+  border-right: 1px solid rgba(178, 128, 59, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.journey-modern-card:last-child {
+  border-right: none;
+}
+.journey-modern-card:hover {
+  background-color: rgba(178, 128, 59, 0.02);
 }
 
-.journey-timeline-line {
+.journey-modern-watermark {
   position: absolute;
-  top: 50%;
-  left: 16.67%;
-  /* Exactly centers at the first step container's middle */
-  right: 16.67%;
-  /* Exactly centers at the third step container's middle */
-  height: 2px;
-  background-color: var(--color-secondary);
-  transform: translateY(-50%);
+  top: 15px;
+  right: 15px;
+  font-family: var(--font-sans);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  opacity: 0.05;
+  line-height: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journey-modern-content {
+  position: relative;
   z-index: 1;
 }
 
-.journey-timeline-dots {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.journey-timeline-dot {
-  position: absolute;
-  top: 50%;
-  width: 6px;
-  height: 6px;
-  background-color: var(--color-secondary);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.dot-mid-1 {
-  left: 33.33%;
-  /* Midpoint between node 1 (16.67%) and node 2 (50%) */
-}
-
-.dot-mid-2 {
-  left: 66.67%;
-  /* Midpoint between node 2 (50%) and node 3 (83.33%) */
-}
-
-.journey-timeline-nodes {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  /* Takes the full 32px height of wrapper */
-  gap: 30px;
-  position: relative;
-  z-index: 3;
-}
-
-.journey-node-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.journey-node {
-  width: 32px;
-  height: 32px;
-  background-color: #ffffff;
-  /* Solid white background to mask the timeline line behind it */
-  color: var(--color-secondary);
-  /* Gold/Brown color for the numbers text */
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  border-radius: 50%;
-  /* Perfect circle */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--color-secondary);
-  /* Elegant gold border circle */
-  box-shadow: 0 3px 10px rgba(178, 128, 59, 0.08);
-  /* Premium subtle shadow */
-  margin: 0;
-  z-index: 4;
-  /* Ensures circle sits layered cleanly on top of the timeline line */
-}
-
-/* Three Steps Row */
-.journey-steps-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  width: 100%;
-}
-
-.journey-step-item {
-  flex: 1;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 5px;
-}
-
-.journey-step-circle {
-  flex: 0 0 54px;
-  height: 54px;
+.journey-modern-circle {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: #faf8f5;
   border: 1px solid rgba(178, 128, 59, 0.2);
@@ -620,122 +585,112 @@
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.journey-step-item:hover .journey-step-circle {
-  transform: scale(1.08);
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(181, 28, 36, 0.1);
-}
-
-.journey-step-icon {
-  width: 22px;
-  height: 22px;
+.journey-modern-icon {
+  width: 20px;
+  height: 20px;
   stroke-width: 1.5px;
 }
 
-.journey-step-text {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.journey-step-title {
+.journey-modern-title {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: 0.3px;
-  margin-bottom: 6px;
-  line-height: 1.3;
+  color: var(--color-dark);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
-
-
-.journey-step-meta {
+.journey-modern-meta {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.journey-step-papers {
+.journey-modern-papers {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-dark);
+  color: var(--color-primary);
 }
 
-.journey-step-paper-codes {
+.journey-modern-paper-codes {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--color-gray);
-  letter-spacing: 0.3px;
 }
 
-.journey-step-desc {
+.journey-modern-desc {
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   color: var(--color-gray);
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
-/* Bottom Section */
-.journey-box-bottom {
+/* Bottom Stats Grid */
+.journey-modern-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  background-color: #ffffff; /* User requested pure white background */
+}
+
+.journey-modern-stat {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  background-color: #faf8f5;
-  border-top: 1px solid rgba(178, 128, 59, 0.18);
-  padding: 22px 35px;
+  gap: 8px; /* Reduced gap to save horizontal space */
+  padding: 20px 10px;
+  position: relative;
 }
 
-.journey-bottom-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.journey-bottom-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--color-secondary);
-  stroke-width: 1.8px;
-  margin-top: 2px;
-}
-
-.journey-bottom-text-group {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.journey-bottom-label {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--color-gray);
-  line-height: 1.2;
-}
-
-.journey-bottom-value {
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--color-dark);
-  line-height: 1.2;
-}
-
-.journey-bottom-divider {
+.journey-modern-stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  bottom: 25%;
   width: 1px;
-  height: 34px;
-  background-color: rgba(178, 128, 59, 0.18);
+  background-color: rgba(178, 128, 59, 0.2);
+}
+
+.journey-modern-stat-icon {
+  width: 20px; /* Slightly smaller icon to match text */
+  height: 20px;
+  color: var(--color-secondary);
+  stroke-width: 1.5px;
+  flex-shrink: 0; /* Prevent icon from squishing */
+}
+
+.journey-modern-stat-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap; /* Force single line */
+}
+
+.journey-modern-stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* Reduced size */
+  font-weight: 500;
+  color: var(--color-gray);
+  text-transform: none;
+  letter-spacing: normal;
+}
+.journey-modern-stat-label::after {
+  content: ':';
+}
+
+.journey-modern-stat-value {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* Reduced size */
+  font-weight: 600;
+  color: var(--color-dark);
 }
 
 /* 3. Career Outcomes Section */
@@ -1757,6 +1712,24 @@
   .metrics-grid {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .journey-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-modern-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-modern-cards {
+    grid-template-columns: 1fr;
+  }
+  .journey-modern-stats {
+    grid-template-columns: 1fr;
   }
 }
 
