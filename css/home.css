@@ -1600,7 +1600,7 @@ a.btn,
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 425px) {
   .presence-grid {
     grid-template-columns: 1fr;
   }
@@ -1889,6 +1889,12 @@ a.btn,
 
   .btn-presence-cta {
     align-self: center;
+  }
+
+  .presence-grid-wrapper {
+    flex: 0 0 100%;
+    max-width: 600px; /* Constraints grid size elegantly on iPads */
+    margin: 0 auto; /* Perfect centering */
   }
 }
 
