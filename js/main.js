@@ -61,7 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         footerContainer.innerHTML = data;
         if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
+          setTimeout(() => lucide.createIcons(), 50);
+        }
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
         }
       })
       .catch(error => console.error('Error loading footer:', error));
