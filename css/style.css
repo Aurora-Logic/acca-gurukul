@@ -994,3 +994,84 @@ h1, h2, h3, h4, h5, h6 {
 .footer-cta-link:hover i {
   transform: translateX(4px);
 }
+
+/* ==========================================================================
+   WhatsApp Sticky FAB
+   ========================================================================== */
+.wa-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 8999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 14px rgba(37, 211, 102, .45),
+    0 2px 6px rgba(0, 0, 0, .12);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .35s ease, box-shadow .35s ease, background .3s;
+}
+
+.wa-fab:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow:
+    0 8px 28px rgba(37, 211, 102, .55),
+    0 4px 12px rgba(0, 0, 0, .15);
+  background: #20bd5a;
+}
+
+.wa-fab:active {
+  transform: scale(.96);
+}
+
+.wa-fab-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulse ring */
+.wa-fab-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, .5);
+  animation: waPulse 2.4s cubic-bezier(.4, 0, .6, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: .6;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .wa-fab {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+  .wa-fab-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
