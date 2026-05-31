@@ -1262,57 +1262,34 @@
   background-color: var(--color-bg);
 }
 
-.section-layout-testimonials {
+.metrics-row {
   display: flex;
-  flex-direction: column;
-  gap: 60px;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: 1px solid rgba(178, 128, 59, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.testimonials-header-row {
+.metric-item {
   display: flex;
-  gap: 60px;
+  gap: 12px;
   align-items: flex-start;
 }
 
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-
-.metric-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(178, 128, 59, 0.1);
-  border-radius: 6px;
-  padding: 24px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
-}
-
-.metric-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-secondary);
-  box-shadow: 0 8px 20px rgba(178, 128, 59, 0.05);
-}
-
-.metric-icon-wrapper {
-  flex: 0 0 46px;
-  height: 46px;
-  border-radius: 50%;
-  background-color: rgba(178, 128, 59, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-secondary);
+.metric-divider {
+  width: 1px;
+  height: 50px;
+  background-color: rgba(178, 128, 59, 0.2);
+  margin: 0 10px;
 }
 
 .metric-icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2px;
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.5px;
+  margin-top: 2px;
 }
 
 .metric-content {
@@ -1322,25 +1299,26 @@
 
 .metric-num {
   font-family: var(--font-sans);
-  font-size: 1.8rem;
+  font-size: 1.65rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
 .metric-label {
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-dark);
-  margin-top: 2px;
-  display: flex;
-  flex-direction: column;
+  line-height: 1.4;
 }
 
-.metric-label .sub-label {
+.sub-label {
+  display: block;
   font-weight: 400;
   color: var(--color-gray);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  margin-top: 2px;
 }
 
 /* Testimonials grid cards */
@@ -1391,7 +1369,7 @@
   height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(178, 128, 59, 0.1) 0%, rgba(178, 128, 59, 0.2) 100%);
-  border: 2px solid var(--color-secondary);
+  border: 1px solid var(--color-secondary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1408,8 +1386,8 @@
 }
 
 .photo-placeholder-icon {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
 
 .photo-label {
@@ -1437,12 +1415,11 @@
 }
 
 .testimonial-quote {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-dark);
   margin-bottom: 25px;
-  font-style: italic;
 }
 
 .testimonial-author {
@@ -2077,7 +2054,6 @@
 .index2-page .dropdown-item-simple,
 .index2-page .why-acca-horizontal-item,
 .index2-page .why-acca-horizontal-icon-wrapper,
-.index2-page .profile-photo-placeholder,
 .index2-page .presence-card,
 .index2-page .city-thumb,
 .index2-page .why-acca-card,
