@@ -693,26 +693,33 @@
   color: var(--color-dark);
 }
 
-/* 3. Career Outcomes Section */
+/* 3. Career Outcomes Section (Elegant Light Grid) */
+.section-career-outcomes {
+  background-color: #faf8f5; /* Elegant cream background */
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left Side Text */
 .section-career-outcomes .section-left {
   flex: 0 0 350px;
-  /* Reduced width of the left hand side to allow right side to expand */
 }
-
 .section-career-outcomes .section-title {
   font-size: 2.1rem;
-  /* Reduced from 2.6rem for a sleeker fit */
   line-height: 1.25;
   margin-bottom: 16px;
+  color: var(--color-dark);
 }
-
 .section-career-outcomes .section-desc {
   font-size: 0.88rem;
-  /* Reduced from 0.95rem */
   line-height: 1.45;
   margin-bottom: 24px;
+  color: var(--color-gray);
 }
-
+.outcomes-btn {
+  align-self: flex-start;
+}
 @media (max-width: 1200px) {
   .section-career-outcomes .section-left {
     flex: 1;
@@ -720,10 +727,7 @@
   }
 }
 
-.outcomes-btn {
-  align-self: flex-start;
-}
-
+/* Outcomes Single Row Container */
 .outcomes-row {
   display: flex;
   justify-content: space-between;
@@ -731,7 +735,8 @@
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.35);
   border-radius: 12px;
-  padding: 24px 10px;
+  padding: 24px 0;
+  width: 100%;
   box-shadow: 0 10px 30px rgba(178, 128, 59, 0.04);
 }
 
@@ -765,6 +770,10 @@
 
 .outcome-icon-wrapper {
   color: var(--color-secondary);
+  background: rgba(178, 128, 59, 0.1);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -774,12 +783,17 @@
 
 .outcome-card:hover .outcome-icon-wrapper {
   transform: scale(1.1);
-  color: var(--color-primary);
+  background: var(--color-secondary);
+  color: #ffffff;
+}
+
+.outcome-card:hover .outcome-icon {
+  color: #ffffff !important;
 }
 
 .outcome-icon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   stroke-width: 1.5px;
 }
 
@@ -806,6 +820,23 @@
   margin-top: 6px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+}
+
+/* Ensure responsiveness for outcomes row */
+@media (max-width: 1200px) {
+  .outcomes-row {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px;
+  }
+  .outcome-card {
+    flex: 0 0 calc(33.333% - 16px);
+    border: 1px solid rgba(178, 128, 59, 0.18);
+    border-radius: 8px;
+  }
+  .outcome-card:last-child {
+    border-right: 1px solid rgba(178, 128, 59, 0.18);
+  }
 }
 
 /* 4. India Presence Section */
