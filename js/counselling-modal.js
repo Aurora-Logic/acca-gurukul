@@ -7,7 +7,7 @@
   // 1. Inject CSS stylesheet
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'css/modal.css';
+  link.href = '/css/modal.css';
   document.head.appendChild(link);
 
   // 2. Define the HTML structure in a template to avoid CORS fetch issues on file:// protocol
