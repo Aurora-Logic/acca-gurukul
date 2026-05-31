@@ -587,6 +587,9 @@ h1, h2, h3, h4, h5, h6 {
     gap: 12px;
     z-index: 100;
     transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transition left coordinate */
+    overflow-y: auto; /* Enable scrollbar when menu contents (like expanded dropdowns) exceed viewport height */
+    -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS Safari */
+    box-sizing: border-box; /* Guarantee menu drawer width remains exactly 290px */
   }
 
   .nav-links.active {
@@ -597,6 +600,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     padding-bottom: 8px;
+    box-sizing: border-box;
   }
 
   .nav-links li.mobile-cta-li {
@@ -608,6 +612,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     width: 100%;
     justify-content: space-between;
+    box-sizing: border-box;
   }
 
   .nav-links a.active::after {
@@ -623,14 +628,17 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     border-radius: 0;
     padding: 0;
-    min-width: 100%;
-    transform: none;
+    min-width: 0 !important; /* Force override desktop min-width: 600px */
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
     display: none; /* Hide by default on mobile */
     flex-direction: column;
     gap: 12px;
     background: transparent;
     margin-top: 10px;
     transition: none;
+    box-sizing: border-box;
   }
 
   .nav-links .dropdown-menu::before {
@@ -645,6 +653,8 @@ h1, h2, h3, h4, h5, h6 {
     gap: 8px;
     padding-left: 12px;
     border-left: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   .nav-links .dropdown-header {
@@ -653,20 +663,28 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 4px;
     background: transparent;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nav-links .dropdown-item {
     padding: 6px 8px;
     background: transparent !important;
     transform: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   .nav-links .item-title {
     font-size: 0.85rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nav-links .item-desc {
     font-size: 0.7rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .nav-links .dropdown-item-simple {
@@ -674,6 +692,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.85rem;
     background: transparent !important;
     transform: none !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 
   /* Make triggers full width with spaces on mobile */

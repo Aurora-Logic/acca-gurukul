@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const isOpened = navMenu.classList.contains('active');
             if (isOpened) {
               toggleBtn.style.setProperty('display', 'none', 'important');
+              document.body.style.overflow = 'hidden'; // Lock background body scroll
+            } else {
+              document.body.style.overflow = '';
             }
             
             if (toggleIcon) {
@@ -39,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeBtn.addEventListener('click', () => {
               navMenu.classList.remove('active');
               toggleBtn.style.removeProperty('display');
+              document.body.style.overflow = ''; // Unlock background body scroll
               
               if (toggleIcon) {
                 toggleIcon.setAttribute('data-lucide', 'menu');
