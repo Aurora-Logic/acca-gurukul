@@ -308,7 +308,7 @@
 
 .section-title {
   font-family: var(--font-serif);
-  font-size: 2.6rem;
+  font-size: 2.4rem; /* Unified symmetric size for all section headers */
   line-height: 1.2;
   color: var(--color-dark);
   margin-bottom: 20px;
@@ -354,8 +354,7 @@
 }
 
 .section-acca-journey .section-title {
-  font-size: 2.1rem;
-  /* Reduced from 2.6rem for a sleeker fit */
+  /* Inherits unified 2.4rem size */
   line-height: 1.25;
   margin-bottom: 16px;
 }
@@ -558,7 +557,7 @@
   flex: 0 0 350px;
 }
 .section-career-outcomes .section-title {
-  font-size: 2.1rem;
+  /* Inherits unified 2.4rem size */
   line-height: 1.25;
   margin-bottom: 16px;
   color: var(--color-dark);
@@ -1290,6 +1289,10 @@
   .section-title {
     font-size: 2rem;
   }
+  .presence-title {
+    font-size: 2rem;
+    white-space: normal;
+  }
 
   .outcome-card {
     flex: 0 0 calc(50% - 10px);
@@ -1451,7 +1454,7 @@
 
 /* Column 2: Text & CTA */
 .presence-text-col {
-  flex: 0 0 300px;
+  flex: 0 0 360px; /* Increased from 300px to prevent the new 2.4rem title from wrapping into 3 lines */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1469,11 +1472,12 @@
 
 .presence-title {
   font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: 2.4rem; /* Unified symmetric size to match .section-title */
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--color-dark);
-  margin-bottom: 12px;
+  margin-bottom: 16px; /* slightly increased margin for larger text */
+  white-space: nowrap; /* Forces exactly two lines since there is a <br> */
 }
 
 .presence-title-line {
