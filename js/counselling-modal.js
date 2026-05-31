@@ -134,7 +134,7 @@
             </div>
 
             <button type="submit" class="counselling-submit-btn">
-              <i data-lucide="calendar"></i> BOOK MY SESSION <i data-lucide="arrow-right"></i>
+              <i data-lucide="calendar"></i> Book My Session <i data-lucide="arrow-right"></i>
             </button>
 
             <div class="counselling-form-note">
@@ -205,7 +205,7 @@
           <!-- Phone Card Helper -->
           <div class="counselling-helper-card phone-card">
             <div class="counselling-helper-icon">
-              <i data-lucide="headphones"></i>
+              <i data-lucide="headset"></i>
             </div>
             <div class="counselling-helper-info">
               <div class="helper-title">Need immediate help?</div>
@@ -274,6 +274,10 @@
 
     // Open Modal function
     function openModal() {
+      // Calculate scrollbar width to prevent page shift
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      
       backdrop.classList.add('active');
       document.body.style.overflow = 'hidden'; // Disable page scrolling
       clearErrors();
@@ -283,6 +287,7 @@
     function closeModal() {
       backdrop.classList.remove('active');
       document.body.style.overflow = ''; // Enable page scrolling
+      document.body.style.paddingRight = ''; // Remove padding shift compensation
       form.reset();
       clearErrors();
       
@@ -305,18 +310,6 @@
 
     // Event listeners for close triggers
     closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        closeModal();
-      }
-    });
-
-    // Handle ESC key press to close
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && backdrop.classList.contains('active')) {
-        closeModal();
-      }
-    });
 
     // Custom Dropdown Builder
     function initCustomDropdowns() {
