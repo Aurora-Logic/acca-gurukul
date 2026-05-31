@@ -200,12 +200,10 @@
 .hero-right {
   position: absolute;
   right: 0;
-  bottom: 4%;
-  /* Raised slightly from the bottom edge to float premiumly */
+  bottom: 0;
   width: 34%;
   /* Balanced, prominent size that prevents overlaps */
-  height: 95%;
-  /* Elegant vertical height */
+  height: 100%;
 }
 
 .hero-right img {
@@ -1886,35 +1884,8 @@
 }
 
 .btn-presence-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   align-self: flex-start;
-  padding: 8px 16px;
-  border: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
-  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  background: transparent;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-}
-
-.btn-presence-cta:hover {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
-
-.btn-presence-cta i {
-  margin-left: 6px;
-  transition: transform 0.3s ease;
-}
-
-.btn-presence-cta:hover i {
-  transform: translateX(4px);
 }
 
 /* Dividers */
@@ -2004,8 +1975,8 @@
    New Cities Card Grid for index2.html Variation
    ========================================== */
 .index2-page .presence-grid-wrapper {
-  flex: 1;
-  width: 100%;
+  flex: 0 1 65%;
+  margin-left: auto;
 }
 
 .index2-page .presence-grid {

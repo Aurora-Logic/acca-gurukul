@@ -93,6 +93,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-icon {
   margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+.navbar .btn:hover .btn-icon {
+  transform: none;
 }
 
 /* Navbar */
