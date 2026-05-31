@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Navbar */
 .navbar {
   background-color: #ffffff; /* Clean pure white background */
-  padding: 12px 0; /* Sleeker padding profile */
+  padding: 8px 0; /* Sleeker padding profile */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Ultra fine sleek divider */
   position: sticky;
   top: 0;
@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 100%;
 }
 
 .nav-left-group {
@@ -118,7 +119,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo img {
-  height: 35px; /* Extremely sleek software-product size profile */
+  height: 50px; /* Extremely sleek software-product size profile */
   width: auto;
   display: block;
 }
@@ -182,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 24px;
   display: flex;
   gap: 24px;
-  min-width: 480px;
+  min-width: 600px;
   z-index: 200;
   opacity: 0;
   pointer-events: none;
@@ -205,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dropdown-menu-small {
-  min-width: 200px;
+  min-width: 240px;
   padding: 16px;
 }
 
@@ -255,14 +256,38 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   gap: 2px;
   padding: 8px 12px;
+  padding-right: 30px;
   border-radius: 6px;
   text-align: left;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23B51C24' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transform: translateY(-50%) translateX(-15px);
+  transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #fafafa;
-  transform: translateY(-1px);
+  background-color: rgba(178, 128, 59, 0.08); /* Lighter golden background */
+}
+
+.dropdown-item:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .item-title {
@@ -272,7 +297,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-dark);
   text-transform: none; /* Keep normal casing */
   letter-spacing: normal;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover .item-title,
+.dropdown-item:hover .item-desc {
+  transform: translateX(4px);
 }
 
 .dropdown-item:hover .item-title {
@@ -287,26 +319,60 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none;
   letter-spacing: normal;
   font-weight: 400;
+  transition: all 0.3s ease;
 }
 
 .dropdown-item-simple {
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-dark);
   padding: 8px 12px;
+  padding-right: 30px;
   border-radius: 6px;
   text-transform: none;
   letter-spacing: normal;
   text-align: left;
-  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item-simple::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23B51C24' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transform: translateY(-50%) translateX(-15px);
+  transition: all 0.3s ease;
 }
 
 .dropdown-item-simple:hover {
-  background-color: #fafafa;
+  background-color: rgba(178, 128, 59, 0.08); /* Lighter golden background */
   color: var(--color-primary);
-  padding-left: 16px;
+}
+
+.dropdown-item-simple .item-text {
+  transition: all 0.3s ease;
+}
+
+.dropdown-item-simple:hover .item-text {
+  transform: translateX(4px);
+}
+
+.dropdown-item-simple:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .nav-actions {
