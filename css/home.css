@@ -2228,6 +2228,33 @@
   max-width: 580px;
 }
 
+.text-cta {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.text-cta:hover {
+  color: var(--color-primary);
+}
+
+.text-cta .btn-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.text-cta:hover .btn-icon {
+  transform: translateX(4px);
+}
+
 .index2-page .why-acca-cta-btn {
   border-radius: 0 !important;
   padding: 14px 28px;
@@ -2327,8 +2354,8 @@
 }
 
 .index2-page .why-acca-card-icon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2354,8 +2381,8 @@
 
 .index2-page .why-acca-card-icon svg,
 .index2-page .why-acca-card-icon i {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
 }
 
 .index2-page .why-acca-card-title {

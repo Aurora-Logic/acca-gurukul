@@ -66,4 +66,42 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error loading footer:', error));
   }
+
+  // Stats Animation using Intersection Observer
+  const statsSection = document.querySelector('.why-acca-stats');
+  const statCounts = document.querySelectorAll('.stat-count');
+  let animated = false;
+
+  if (statsSection && statCounts.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !animated) {
+        animated = true;
+        statCounts.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target'), 10);
+          const duration = 2000; // 2 seconds
+          const frameDuration = 1000 / 60; // 60fps
+          const totalFrames = Math.round(duration / frameDuration);
+          let frame = 0;
+
+          const counter = setInterval(() => {
+            frame++;
+            // Use easeOutQuart for a smoother slowdown at the end
+            const progress = frame / totalFrames;
+            const easeOutProgress = 1 - Math.pow(1 - progress, 4);
+            const currentCount = Math.round(target * easeOutProgress);
+            
+            // Format with commas if >= 1000
+            stat.innerText = currentCount.toLocaleString();
+
+            if (frame === totalFrames) {
+              clearInterval(counter);
+              stat.innerText = target.toLocaleString();
+            }
+          }, frameDuration);
+        });
+      }
+    }, { threshold: 0.5 }); // Start when 50% visible
+
+    observer.observe(statsSection);
+  }
 });
