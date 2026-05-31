@@ -228,6 +228,32 @@ h1, h2, h3, h4, h5, h6 {
   z-index: -1;
 }
 
+/* Right-aligned dropdown menus for items near the right edge */
+.dropdown-menu-right {
+  left: auto;
+  right: 0;
+}
+
+.dropdown-menu-right::before {
+  left: auto;
+  right: 30px;
+}
+
+/* Center-aligned dropdown menus */
+.dropdown-menu.dropdown-menu-center {
+  left: 50%;
+  transform: translate(-50%, 12px);
+}
+
+.dropdown:hover .dropdown-menu.dropdown-menu-center {
+  transform: translate(-50%, 0);
+}
+
+.dropdown-menu.dropdown-menu-center::before {
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
 .dropdown-menu-small {
   min-width: 240px;
   padding: 16px;
@@ -252,7 +278,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 18px;
   background: transparent;
-  pointer-events: auto;
 }
 
 .dropdown-column {
