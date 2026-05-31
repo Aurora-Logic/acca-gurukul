@@ -1310,12 +1310,36 @@
   }
 }
 
+@media (max-width: 1300px) {
+  .journey-modern-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Remove border from the last item in the first row */
+  .journey-modern-stat:nth-child(2n)::after {
+    display: none;
+  }
+  /* Add bottom borders for the first row items */
+  .journey-modern-stat:nth-child(1),
+  .journey-modern-stat:nth-child(2) {
+    border-bottom: 1px solid rgba(178, 128, 59, 0.2);
+  }
+}
+
 @media (max-width: 992px) {
   .journey-modern-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-  .journey-modern-stats {
-    grid-template-columns: repeat(2, 1fr);
+  /* Manage borders for cards when wrapped */
+  .journey-modern-card:nth-child(2n) {
+    border-right: none;
+  }
+  .journey-modern-card:nth-child(1),
+  .journey-modern-card:nth-child(2) {
+    border-bottom: 1px solid rgba(178, 128, 59, 0.2);
+  }
+  .journey-modern-card:last-child {
+    border-right: none;
+    border-bottom: none;
   }
 }
 
@@ -1325,6 +1349,14 @@
   }
   .journey-modern-stats {
     grid-template-columns: 1fr;
+  }
+  /* Remove right borders completely on mobile */
+  .journey-modern-stat::after {
+    display: none;
+  }
+  /* Add bottom borders to all except the last item */
+  .journey-modern-stat:not(:last-child) {
+    border-bottom: 1px solid rgba(178, 128, 59, 0.2);
   }
 }
 
