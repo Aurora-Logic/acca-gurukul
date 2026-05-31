@@ -799,8 +799,8 @@ h1, h2, h3, h4, h5, h6 {
 .site-footer {
   background-color: #ffffff;
   color: var(--color-dark);
-  padding: 80px 0 0 0;
-  margin-top: 60px;
+  padding: 60px 0 0 0;
+  margin-top: 0;
   font-family: var(--font-sans);
   border-top: 1px solid var(--color-border);
 }
