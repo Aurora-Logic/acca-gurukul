@@ -227,4 +227,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Scroll Spy: Update URL hash seamlessly as sections enter viewport
+  const scrollSections = document.querySelectorAll('section[id]');
+  
+  if (scrollSections.length > 0) {
+    const scrollObserverOptions = {
+      root: null,
+      rootMargin: '-30% 0px -60% 0px', // Triggers when the section occupies the center third of viewport
+      threshold: 0
+    };
+    
+    let lastActiveHash = '';
+    
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('id');
+          const newHash = `#${sectionId}`;
+          
+          if (newHash !== lastActiveHash) {
+            lastActiveHash = newHash;
+            // Update URL hash without causing a page snap scroll jump
+            window.history.replaceState(null, null, newHash);
+          }
+        }
+      });
+    }, scrollObserverOptions);
+    
+    scrollSections.forEach(section => {
+      scrollObserver.observe(section);
+    });
+  }
 });
