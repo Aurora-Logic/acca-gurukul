@@ -997,47 +997,57 @@
   padding: 80px 0;
 }
 
-.metrics-row {
+.section-layout-testimonials {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  border-bottom: 1px solid rgba(178, 128, 59, 0.2);
-  padding-bottom: 8px;
-  margin-bottom: 12px;
+  flex-direction: column;
+  gap: 60px;
 }
 
-.metric-item {
+.testimonials-header-row {
   display: flex;
-  gap: 12px;
+  gap: 60px;
   align-items: flex-start;
 }
 
-.metric-left {
-  justify-content: flex-start;
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
 }
 
-.metric-right {
-  justify-content: flex-end;
+.metric-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(178, 128, 59, 0.1);
+  border-radius: 6px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
 }
 
-.metric-right .metric-content {
-  align-items: flex-end;
-  text-align: right;
+.metric-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 8px 20px rgba(178, 128, 59, 0.05);
 }
 
-.metric-divider {
-  width: 1px;
-  height: 50px;
-  background-color: rgba(178, 128, 59, 0.2);
-  margin: 0 10px;
+.metric-icon-wrapper {
+  flex: 0 0 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(178, 128, 59, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
 }
 
 .metric-icon {
-  width: 34px;
-  height: 34px;
-  stroke-width: 1.5px;
-  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
 }
 
 .metric-content {
@@ -1047,26 +1057,25 @@
 
 .metric-num {
   font-family: var(--font-sans);
-  font-size: 1.65rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  line-height: 1;
-  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
 .metric-label {
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-dark);
-  line-height: 1.4;
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
 }
 
-.sub-label {
-  display: block;
+.metric-label .sub-label {
   font-weight: 400;
   color: var(--color-gray);
-  font-size: 0.72rem;
-  margin-top: 2px;
+  font-size: 0.75rem;
 }
 
 /* Testimonials grid cards */
@@ -1117,7 +1126,7 @@
   height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(178, 128, 59, 0.1) 0%, rgba(178, 128, 59, 0.2) 100%);
-  border: 1px solid var(--color-secondary);
+  border: 2px solid var(--color-secondary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1134,8 +1143,15 @@
 }
 
 .photo-placeholder-icon {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
+}
+
+.photo-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
 }
 
 .quote-mark-gold {
@@ -1156,11 +1172,12 @@
 }
 
 .testimonial-quote {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-dark);
   margin-bottom: 25px;
+  font-style: italic;
 }
 
 .testimonial-author {
@@ -1185,6 +1202,52 @@
 }
 
 /* Pagination controls */
+.testimonials-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.pag-arrow {
+  background: none;
+  border: 1px solid rgba(178, 128, 59, 0.3);
+  color: var(--color-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pag-arrow:hover {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+}
+
+.pag-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.pag-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(178, 128, 59, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pag-dots .dot.active {
+  background-color: var(--color-secondary);
+  transform: scale(1.2);
+}
 
 /* Footer Section Styling */
 .footer {
@@ -1341,25 +1404,10 @@
   }
 }
 
-@media (max-width: 576px) {
-  .metrics-row {
-    gap: 16px;
-  }
-  .metric-item {
-    grid-template-columns: 1fr 180px 1fr;
-  }
-  .metric-num {
-    font-size: 1.35rem;
-  }
-  .metric-label {
-    font-size: 0.78rem;
-  }
-  .sub-label {
-    font-size: 0.68rem;
-  }
-  .metric-icon {
-    width: 28px;
-    height: 28px;
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
 
