@@ -17,6 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
           lucide.createIcons();
         }
 
+        // Dynamic Active Tab Highlighting based on pathname
+        const currentPath = window.location.pathname;
+        const navLinksList = navbarContainer.querySelectorAll('.nav-links a');
+        navLinksList.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href) {
+            const isHome = href === '/' || href === '/home/' || href === '/home/index.html';
+            const isCurrentHome = currentPath === '/' || currentPath === '/home/' || currentPath.endsWith('/home/') || currentPath.endsWith('/home/index.html') || currentPath === '';
+            
+            if (isHome && isCurrentHome) {
+              link.classList.add('active');
+            } else if (!isHome && href !== '#' && (currentPath === href || currentPath.endsWith(href) || currentPath.includes(href))) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          }
+        });
+
         // Toggle Hamburger Menu for Mobile Responsiveness
         const toggleBtn = document.getElementById('nav-toggle-btn');
         const navMenu = document.getElementById('nav-links-menu');
