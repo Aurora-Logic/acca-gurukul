@@ -2263,5 +2263,183 @@ a.btn,
   color: #ffffff;
 }
 
+@media (max-width: 1300px) {
+  .btn-exemptions-cta {
+    align-self: center; /* Center-align inside stacked vertical layouts on tablets and mobile screens */
+  }
+}
+
+/* Responsiveness for Aspiration Journey Section Timeline */
+@media (max-width: 992px) {
+  .timeline-container-horizontal-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 24px;
+    padding-top: 30px;
+    height: auto;
+    width: 100%;
+  }
+
+  .timeline-line-horizontal-4 {
+    display: none; /* Hide horizontal connector line in grid mode */
+  }
+
+  .timeline-step-4 {
+    width: 100%;
+  }
+
+  .step-badge-4 {
+    position: static;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeline-container-horizontal-4 {
+    grid-template-columns: repeat(2, 1fr); /* Retain clean 2x2 grid on small mobile viewports */
+    gap: 32px 12px;
+    padding-top: 20px;
+  }
+
+  .step-circle-4 {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 12px;
+  }
+
+  .step-icon-4 {
+    width: 18px;
+    height: 18px;
+  }
+
+  .step-title-4 {
+    font-size: 0.78rem;
+  }
+
+  .step-desc-4 {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+}
+
+/* 7. Bottom Call To Action (CTA) Section */
+.section-home-cta {
+  background: linear-gradient(135deg, #101820 0%, #1c2630 100%);
+  padding: 90px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(178, 128, 59, 0.2);
+}
+
+.home-cta-container {
+  max-width: 800px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-cta-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.home-cta-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.home-cta-desc {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.home-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.home-cta-btn-primary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.home-cta-btn-primary:hover {
+  background-color: #9d7134;
+  border-color: #9d7134;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(178, 128, 59, 0.25);
+  color: #ffffff;
+}
+
+.home-cta-btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.home-cta-btn-secondary:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* Responsive adjustments for bottom CTA */
+@media (max-width: 768px) {
+  .section-home-cta {
+    padding: 70px 0;
+  }
+  
+  .home-cta-title {
+    font-size: 2.2rem;
+  }
+  
+  .home-cta-desc {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+  
+  .home-cta-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .home-cta-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+
+
 
 
