@@ -12,7 +12,7 @@
 
   // 2. Define the HTML structure in a template to avoid CORS fetch issues on file:// protocol
   const modalHTML = `
-  <div class="counselling-modal-backdrop" id="counsellingModalBackdrop">
+  <div class="counselling-modal-backdrop" id="counsellingModalBackdrop" style="display: none;">
     <div class="counselling-modal-container">
       
       <!-- Close Button -->
@@ -279,6 +279,9 @@
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.paddingRight = `${scrollbarWidth}px`;
       
+      backdrop.style.display = 'flex';
+      // Force reflow to guarantee CSS transition animates
+      backdrop.offsetHeight;
       backdrop.classList.add('active');
       document.body.style.overflow = 'hidden'; // Disable page scrolling
       clearErrors();
@@ -289,6 +292,14 @@
       backdrop.classList.remove('active');
       document.body.style.overflow = ''; // Enable page scrolling
       document.body.style.paddingRight = ''; // Remove padding shift compensation
+      
+      // Delay display: none to allow visual fade transition to conclude
+      setTimeout(() => {
+        if (!backdrop.classList.contains('active')) {
+          backdrop.style.display = 'none';
+        }
+      }, 300);
+
       form.reset();
       clearErrors();
       
