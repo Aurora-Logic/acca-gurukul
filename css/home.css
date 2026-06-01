@@ -2298,43 +2298,40 @@ a.btn,
 /* Responsive adjustments for Features Strip 1 */
 @media (max-width: 992px) {
   .features-strip-1 .container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px 40px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px 30px !important;
   }
 
   .feature-divider {
-    display: none;
+    display: none !important;
   }
 
   .feature-item {
-    flex: 0 1 calc(33.333% - 30px);
-    min-width: 200px;
-    justify-content: flex-start;
+    flex: none !important;
+    width: 100% !important;
   }
-}
 
-@media (max-width: 768px) {
-  .feature-item {
-    flex: 0 1 calc(50% - 20px);
+  .feature-item:last-child {
+    grid-column: span 2 !important;
+    justify-content: center !important;
   }
 }
 
 @media (max-width: 576px) {
   .features-strip-1 {
-    padding: 24px 0;
+    padding: 20px 0 !important;
   }
 
   .features-strip-1 .container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 0 24px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px 16px !important;
+    padding: 0 16px !important;
   }
 
-  .feature-item {
-    flex: 0 0 100%;
-    width: 100%;
+  .feature-item:last-child {
+    grid-column: span 2 !important;
+    justify-content: center !important;
   }
 }
 
