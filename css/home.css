@@ -1489,7 +1489,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 50px;
   max-width: 100% !important;
   width: 100% !important;
   padding: 0 80px !important;
@@ -1505,12 +1505,9 @@
 }
 
 .india-map-svg-mini {
-  width: 140px;
-  /* Slightly larger for the detailed vector boundaries */
+  width: 120px;
   height: auto;
-  opacity: 1;
-  /* Fully opaque for high-contrast visibility */
-  overflow: visible;
+  opacity: 0.9;
 }
 
 /* Elegant gold/crimson state styling */
@@ -1545,7 +1542,7 @@
 
 /* Column 2: Text & CTA */
 .presence-text-col {
-  flex: 0 0 360px; /* Increased from 300px to prevent the new 2.4rem title from wrapping into 3 lines */
+  flex: 0 0 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1563,12 +1560,11 @@
 
 .presence-title {
   font-family: var(--font-serif);
-  font-size: 2.4rem; /* Unified symmetric size to match .section-title */
+  font-size: 1.65rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--color-dark);
-  margin-bottom: 16px; /* slightly increased margin for larger text */
-  white-space: nowrap; /* Forces exactly two lines since there is a <br> */
+  margin-bottom: 12px;
 }
 
 .presence-title-line {
@@ -1579,15 +1575,119 @@
 }
 
 .btn-presence-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: flex-start;
+  padding: 8px 16px;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: transparent;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-presence-cta:hover {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.btn-presence-cta i {
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.btn-presence-cta:hover i {
+  transform: translateX(4px);
 }
 
 /* Dividers */
+.presence-divider {
+  flex: 0 0 1px;
+  height: 90px;
+  background-color: rgba(178, 128, 59, 0.2);
+}
 
 /* Column 3: Cities horizontal list */
+.presence-cities-col {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.city-col-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.city-col-item:hover {
+  transform: translateY(-4px);
+}
+
+.city-icon-wrapper {
+  width: 46px;
+  height: 46px;
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.city-col-item:hover .city-icon-wrapper {
+  color: var(--color-primary);
+}
+
+.city-col-item .landmark-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.city-col-item .city-name-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-gray);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.city-col-item:hover .city-name-label {
+  color: var(--color-dark);
+}
 
 /* More Cities special card */
+.more-cities-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(178, 128, 59, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  transition: all 0.3s ease;
+}
+
+.city-col-item:hover .more-cities-icon-box {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(181, 28, 36, 0.03);
+}
 
 /* ==========================================
    New Cities Card Grid for index2.html Variation
@@ -2010,6 +2110,29 @@ a.btn,
     flex: 0 0 100%;
     max-width: 600px; /* Constraints grid size elegantly on iPads */
     margin: 0 auto; /* Perfect centering */
+  }
+
+  .presence-cities-col {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .city-col-item {
+    flex: 0 0 calc(33.333% - 14px);
+  }
+}
+
+@media (max-width: 768px) {
+  .city-col-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 480px) {
+  .city-col-item {
+    flex: 0 0 100%;
   }
 }
 
