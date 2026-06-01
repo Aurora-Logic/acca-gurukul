@@ -1013,6 +1013,19 @@
   align-items: flex-start;
 }
 
+.metric-left {
+  justify-content: flex-start;
+}
+
+.metric-right {
+  justify-content: flex-end;
+}
+
+.metric-right .metric-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
 .metric-divider {
   width: 1px;
   height: 50px;
@@ -1271,6 +1284,82 @@
   .testimonials-row {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .metrics-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(178, 128, 59, 0.2);
+  }
+
+  .metric-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 220px 1fr;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .metric-content {
+    grid-column: 2;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .metric-left .metric-icon {
+    grid-column: 1;
+    justify-self: end;
+    margin: 4px 12px 0 0;
+  }
+
+  .metric-right .metric-icon {
+    grid-column: 3;
+    justify-self: start;
+    margin: 4px 0 0 12px;
+  }
+
+  .metric-item:nth-child(1) {
+    order: 1;
+  }
+
+  .metric-item:nth-child(5) {
+    order: 2;
+  }
+
+  .metric-item:nth-child(3) {
+    order: 3;
+  }
+
+  .metric-item:nth-child(7) {
+    order: 4;
+  }
+
+  .metric-divider {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .metrics-row {
+    gap: 16px;
+  }
+  .metric-item {
+    grid-template-columns: 1fr 180px 1fr;
+  }
+  .metric-num {
+    font-size: 1.35rem;
+  }
+  .metric-label {
+    font-size: 0.78rem;
+  }
+  .sub-label {
+    font-size: 0.68rem;
+  }
+  .metric-icon {
+    width: 28px;
+    height: 28px;
   }
 }
 
