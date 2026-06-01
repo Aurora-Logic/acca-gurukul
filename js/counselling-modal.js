@@ -134,7 +134,8 @@
             </div>
 
             <button type="submit" class="counselling-submit-btn">
-              <i data-lucide="calendar"></i> Book My Session <i data-lucide="arrow-right"></i>
+              <span class="submit-btn-text"><i data-lucide="calendar"></i> Book My Session <i data-lucide="arrow-right"></i></span>
+              <span class="submit-btn-success" style="display: none;"><i data-lucide="check-circle-2"></i> SESSION BOOKED!</span>
             </button>
 
             <div class="counselling-form-note">
@@ -430,6 +431,24 @@
       let currentDate = new Date();
       let selectedDate = null;
 
+      function getMonthName(monthIndex) {
+        switch (Number(monthIndex)) {
+          case 0: return 'January';
+          case 1: return 'February';
+          case 2: return 'March';
+          case 3: return 'April';
+          case 4: return 'May';
+          case 5: return 'June';
+          case 6: return 'July';
+          case 7: return 'August';
+          case 8: return 'September';
+          case 9: return 'October';
+          case 10: return 'November';
+          case 11: return 'December';
+          default: return '';
+        }
+      }
+
       function renderCalendar(year, month) {
         popup.innerHTML = '';
 
@@ -448,8 +467,7 @@
 
         const titleSpan = document.createElement('span');
         titleSpan.className = 'calendar-month-year';
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        titleSpan.textContent = `${months[month]} ${year}`;
+        titleSpan.textContent = `${getMonthName(month)} ${year}`;
 
         const nextBtn = document.createElement('button');
         nextBtn.type = 'button';
@@ -516,7 +534,7 @@
               const dd = String(d).padStart(2, '0');
               dateInput.value = `${yyyy}-${mm}-${dd}`;
 
-              selectedSpan.textContent = `${d} ${months[month].substring(0, 3)} ${year}`;
+              selectedSpan.textContent = `${d} ${getMonthName(month).substring(0, 3)} ${year}`;
               selectedSpan.classList.remove('placeholder');
 
               const group = dateInput.closest('.counselling-form-group');
@@ -593,7 +611,17 @@
         group.appendChild(errorLabel);
       }
       
-      errorLabel.innerHTML = `<i data-lucide="alert-circle" style="width: 12px; height: 12px; display: inline-block;"></i> ${message}`;
+      errorLabel.innerHTML = '';
+      const icon = document.createElement('i');
+      icon.setAttribute('data-lucide', 'alert-circle');
+      icon.style.width = '12px';
+      icon.style.height = '12px';
+      icon.style.display = 'inline-block';
+      errorLabel.appendChild(icon);
+
+      const text = document.createTextNode(` ${message}`);
+      errorLabel.appendChild(text);
+
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
@@ -654,18 +682,16 @@
 
       // Simple mock successful submission visual feedback
       const submitBtn = form.querySelector('.counselling-submit-btn');
-      const originalText = submitBtn.innerHTML;
+      const defaultContent = submitBtn.querySelector('.submit-btn-text');
+      const successContent = submitBtn.querySelector('.submit-btn-success');
       
       submitBtn.disabled = true;
       submitBtn.style.backgroundColor = '#2e7d32'; // Green success color
-      submitBtn.innerHTML = '<i data-lucide="check-circle-2"></i> SESSION BOOKED!';
-      
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons({
-          attrs: {
-            class: 'btn-icon'
-          }
-        });
+      if (defaultContent && successContent) {
+        defaultContent.style.display = 'none';
+        successContent.style.display = 'inline-flex';
+        successContent.style.alignItems = 'center';
+        successContent.style.gap = '8px';
       }
 
       setTimeout(() => {
@@ -676,9 +702,9 @@
         // Restore button state
         submitBtn.disabled = false;
         submitBtn.style.backgroundColor = '';
-        submitBtn.innerHTML = originalText;
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
+        if (defaultContent && successContent) {
+          defaultContent.style.display = '';
+          successContent.style.display = 'none';
         }
       }, 1000);
     });

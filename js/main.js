@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/components/navbar.html')
       .then(response => response.text())
       .then(data => {
-        navbarContainer.innerHTML = data;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+        navbarContainer.innerHTML = '';
+        while (doc.body.firstChild) {
+          navbarContainer.appendChild(doc.body.firstChild);
+        }
         
         // Initialize lucide icons after loading content
         if (typeof lucide !== 'undefined') {
@@ -82,7 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/components/footer.html')
       .then(response => response.text())
       .then(data => {
-        footerContainer.innerHTML = data;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+        footerContainer.innerHTML = '';
+        while (doc.body.firstChild) {
+          footerContainer.appendChild(doc.body.firstChild);
+        }
         if (typeof lucide !== 'undefined') {
           setTimeout(() => lucide.createIcons(), 50);
         }
