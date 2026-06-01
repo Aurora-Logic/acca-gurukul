@@ -160,4 +160,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     observer.observe(statsSection);
   }
+
+  // Testimonials Carousel for mobile viewports
+  const testimonialsRow = document.querySelector('.testimonials-row');
+  const prevBtn = document.querySelector('.pag-arrow.prev');
+  const nextBtn = document.querySelector('.pag-arrow.next');
+  const dots = document.querySelectorAll('.pag-dots .dot');
+  
+  if (testimonialsRow && prevBtn && nextBtn && dots.length > 0) {
+    let currentIndex = 0;
+    const totalCards = dots.length; // 3 cards
+    
+    function updateCarousel(index) {
+      currentIndex = index;
+      
+      // Update transform position
+      if (window.innerWidth <= 768) {
+        // Since we set width: 300% on the row, we translate by 33.3333% per card slot
+        const translateXValue = -(currentIndex * 33.3333);
+        testimonialsRow.style.setProperty('transform', `translateX(${translateXValue}%)`, 'important');
+      } else {
+        testimonialsRow.style.removeProperty('transform');
+      }
+      
+      // Update dots active class
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+    
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      let nextIndex = currentIndex - 1;
+      if (nextIndex < 0) {
+        nextIndex = totalCards - 1; // loop back
+      }
+      updateCarousel(nextIndex);
+    });
+    
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      let nextIndex = currentIndex + 1;
+      if (nextIndex >= totalCards) {
+        nextIndex = 0; // loop back
+      }
+      updateCarousel(nextIndex);
+    });
+    
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateCarousel(idx);
+      });
+    });
+
+    // Reset layout transform when resizing window back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        testimonialsRow.style.removeProperty('transform');
+      } else {
+        updateCarousel(currentIndex);
+      }
+    });
+  }
 });

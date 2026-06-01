@@ -1344,67 +1344,29 @@
     border-radius: 0 0 6px 6px;
   }
 
+  /* Mobile Testimonials Carousel Slider Layout */
+  .testimonials-cards-container {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+  
   .testimonials-row {
-    flex-direction: column;
-    gap: 20px;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 300% !important; /* 3 cards */
+    gap: 0 !important;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  
+  .testimonials-row .testimonial-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 30px 20px !important;
+    border-radius: 6px !important;
   }
 
-  .metrics-row {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(178, 128, 59, 0.2);
-  }
-
-  .metric-item {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 220px 1fr;
-    align-items: flex-start;
-    padding: 0;
-  }
-
-  .metric-content {
-    grid-column: 2;
-    align-items: center !important;
-    text-align: center !important;
-  }
-
-  .metric-left .metric-icon {
-    grid-column: 1;
-    justify-self: end;
-    margin: 4px 12px 0 0;
-  }
-
-  .metric-right .metric-icon {
-    grid-column: 3;
-    justify-self: start;
-    margin: 4px 0 0 12px;
-  }
-
-  .metric-item:nth-child(1) {
-    order: 1;
-  }
-
-  .metric-item:nth-child(5) {
-    order: 2;
-  }
-
-  .metric-item:nth-child(3) {
-    order: 3;
-  }
-
-  .metric-item:nth-child(7) {
-    order: 4;
-  }
-
-  .metric-divider {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
   .metrics-grid {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -1874,6 +1836,19 @@ a.btn,
 .why-acca-intro-left {
   flex: 0 0 42%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.why-acca-intro-left .title-underline {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-acca-intro-left .eyebrow-wrapper {
+  justify-content: center;
 }
 
 .why-acca-intro-right {
@@ -2173,14 +2148,22 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-  .city-col-item {
-    flex: 0 0 calc(50% - 10px);
+  .presence-cities-col {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px 16px !important;
+    width: 100% !important;
+    padding-left: 0 !important;
   }
-}
-
-@media (max-width: 480px) {
+  
   .city-col-item {
-    flex: 0 0 100%;
+    flex: none !important;
+    width: 100% !important;
+  }
+  
+  .city-col-item:last-child {
+    grid-column: span 2 !important;
+    margin-top: 10px !important;
   }
 }
 
