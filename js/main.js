@@ -259,4 +259,15 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollObserver.observe(section);
     });
   }
+
+  // Load Corporate Partners Marquee
+  const marqueeContainer = document.getElementById('marquee-container');
+  if (marqueeContainer) {
+    fetch('/components/companies-marquee.html')
+      .then(response => response.text())
+      .then(data => {
+        marqueeContainer.innerHTML = data;
+      })
+      .catch(error => console.error('Error loading marquee:', error));
+  }
 });
