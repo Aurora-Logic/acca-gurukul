@@ -1998,7 +1998,7 @@ a.btn,
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
-  border-radius: 0 !important;
+  border-radius: 50% !important;
   background-color: rgba(181, 28, 36, 0.06);
   transition: transform 0.3s ease;
 }
