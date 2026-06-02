@@ -6,19 +6,6 @@
  * Zero-dependency, reusable modal injector and coordinator.
  */
 
-/**
- * @name validateEmail
- * @function
- * @brief Validates an email address format using a regular expression.
- * 
- * This function checks whether the provided email string conforms to a basic
- * email structure (non-space characters, followed by '@', followed by non-space
- * characters, '.', and non-space characters).
- * 
- * @param email The email address string to validate.
- * @returns True if the email format is valid, false otherwise.
- */
-
 (function () {
   // 1. Inject CSS stylesheet
   const link = document.createElement('link');
@@ -654,7 +641,18 @@
       }
     }
 
-    // Validates an email address format using a regular expression.
+    /**
+ * @name validateEmail
+ * @function validateEmail
+ * @brief Validates an email address format using a regular expression.
+ * 
+ * This function checks whether the provided email string conforms to a basic
+ * email structure (non-space characters, followed by '@', followed by non-space
+ * characters, '.', and non-space characters).
+ * 
+ * @param email The email address string to validate.
+ * @returns True if the email format is valid, false otherwise.
+ */
     function validateEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
