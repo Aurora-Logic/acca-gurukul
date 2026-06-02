@@ -1,6 +1,22 @@
+/** @file */
 /**
- * Counselling Modal Controller
+ * @file counselling-modal.js
+ * @brief Counselling Modal Controller
+ *
  * Zero-dependency, reusable modal injector and coordinator.
+ */
+
+/**
+ * @name validateEmail
+ * @function
+ * @brief Validates an email address format using a regular expression.
+ * 
+ * This function checks whether the provided email string conforms to a basic
+ * email structure (non-space characters, followed by '@', followed by non-space
+ * characters, '.', and non-space characters).
+ * 
+ * @param email The email address string to validate.
+ * @returns True if the email format is valid, false otherwise.
  */
 
 (function () {
@@ -278,7 +294,7 @@
       // Calculate scrollbar width to prevent page shift
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.paddingRight = `${scrollbarWidth}px`;
-      
+
       backdrop.style.display = 'flex';
       // Force reflow to guarantee CSS transition animates
       backdrop.offsetHeight;
@@ -292,7 +308,7 @@
       backdrop.classList.remove('active');
       document.body.style.overflow = ''; // Enable page scrolling
       document.body.style.paddingRight = ''; // Remove padding shift compensation
-      
+
       // Delay display: none to allow visual fade transition to conclude
       setTimeout(() => {
         if (!backdrop.classList.contains('active')) {
@@ -302,7 +318,7 @@
 
       form.reset();
       clearErrors();
-      
+
       // Reset custom selects placeholders
       document.querySelectorAll('.counselling-custom-select').forEach(customSelect => {
         const select = customSelect.previousSibling;
@@ -329,45 +345,45 @@
       selects.forEach(select => {
         const wrapper = document.createElement('div');
         wrapper.className = 'counselling-custom-select';
-        
+
         const trigger = document.createElement('div');
         trigger.className = 'counselling-select-trigger';
-        
+
         const selectedSpan = document.createElement('span');
         selectedSpan.className = 'placeholder';
         const placeholderOption = select.querySelector('option[disabled][selected]');
         selectedSpan.textContent = placeholderOption ? placeholderOption.textContent : select.options[0].textContent;
-        
+
         const chevron = document.createElement('i');
         chevron.setAttribute('data-lucide', 'chevron-down');
-        
+
         trigger.appendChild(selectedSpan);
         trigger.appendChild(chevron);
-        
+
         const dropdown = document.createElement('div');
         dropdown.className = 'counselling-select-dropdown';
-        
+
         Array.from(select.options).forEach(option => {
           if (option.disabled) return; // Skip placeholder
-          
+
           const optDiv = document.createElement('div');
           optDiv.className = 'counselling-select-option';
           optDiv.textContent = option.textContent;
           optDiv.setAttribute('data-value', option.value);
-          
+
           optDiv.addEventListener('click', (e) => {
             e.stopPropagation();
             select.value = option.value;
             selectedSpan.textContent = option.textContent;
             selectedSpan.classList.remove('placeholder');
-            
+
             dropdown.querySelectorAll('.counselling-select-option').forEach(el => el.classList.remove('selected'));
             optDiv.classList.add('selected');
-            
+
             // Fire change event
             const event = new Event('change', { bubbles: true });
             select.dispatchEvent(event);
-            
+
             // Clear validation error on selection
             const group = select.closest('.counselling-form-group');
             if (group) {
@@ -375,20 +391,20 @@
               const errorLabel = group.querySelector('.counselling-validation-error');
               if (errorLabel) errorLabel.remove();
             }
-            
+
             wrapper.classList.remove('active');
           });
-          
+
           dropdown.appendChild(optDiv);
         });
-        
+
         wrapper.appendChild(trigger);
         wrapper.appendChild(dropdown);
-        
+
         // Hide standard select
         select.style.display = 'none';
         select.parentNode.insertBefore(wrapper, select.nextSibling);
-        
+
         // Open/Close toggle
         trigger.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -398,7 +414,7 @@
           wrapper.classList.toggle('active');
         });
       });
-      
+
       // Close dropdowns on clicking outside
       document.addEventListener('click', () => {
         document.querySelectorAll('.counselling-custom-select').forEach(el => el.classList.remove('active'));
@@ -511,7 +527,7 @@
         const firstDay = new Date(year, month, 1).getDay();
         const totalDays = new Date(year, month + 1, 0).getDate();
         const today = new Date();
-        today.setHours(0,0,0,0);
+        today.setHours(0, 0, 0, 0);
 
         // Empty cells padding
         for (let i = 0; i < firstDay; i++) {
@@ -526,7 +542,7 @@
           dayCell.textContent = d;
 
           const cellDate = new Date(year, month, d);
-          cellDate.setHours(0,0,0,0);
+          cellDate.setHours(0, 0, 0, 0);
 
           // Disable past days
           if (cellDate < today) {
@@ -539,7 +555,7 @@
             dayCell.addEventListener('click', (e) => {
               e.stopPropagation();
               selectedDate = cellDate;
-              
+
               const yyyy = year;
               const mm = String(month + 1).padStart(2, '0');
               const dd = String(d).padStart(2, '0');
@@ -573,7 +589,7 @@
       trigger.addEventListener('click', (e) => {
         e.stopPropagation();
         document.querySelectorAll('.counselling-custom-select').forEach(el => el.classList.remove('active'));
-        
+
         const isActive = wrapper.classList.contains('active');
         if (!isActive) {
           currentDate = selectedDate ? new Date(selectedDate) : new Date();
@@ -612,16 +628,16 @@
     function showError(inputEl, message) {
       const group = inputEl.closest('.counselling-form-group');
       if (!group) return;
-      
+
       group.classList.add('has-error');
-      
+
       let errorLabel = group.querySelector('.counselling-validation-error');
       if (!errorLabel) {
         errorLabel = document.createElement('div');
         errorLabel.className = 'counselling-validation-error';
         group.appendChild(errorLabel);
       }
-      
+
       errorLabel.innerHTML = '';
       const icon = document.createElement('i');
       icon.setAttribute('data-lucide', 'alert-circle');
@@ -638,6 +654,7 @@
       }
     }
 
+    // Validates an email address format using a regular expression.
     function validateEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
@@ -652,16 +669,16 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       clearErrors();
-      
+
       let isValid = true;
-      
+
       // Check Email
       const emailInput = document.getElementById('counsellingEmail');
       if (!validateEmail(emailInput.value.trim())) {
         showError(emailInput, 'Please enter a valid email address.');
         isValid = false;
       }
-      
+
       // Check Phone
       const phoneInput = document.getElementById('counsellingPhone');
       if (!validatePhone(phoneInput.value.trim())) {
@@ -686,7 +703,7 @@
           isValid = false;
         }
       });
-      
+
       if (!isValid) {
         return; // Stop submission if invalid
       }
@@ -695,7 +712,7 @@
       const submitBtn = form.querySelector('.counselling-submit-btn');
       const defaultContent = submitBtn.querySelector('.submit-btn-text');
       const successContent = submitBtn.querySelector('.submit-btn-success');
-      
+
       submitBtn.disabled = true;
       submitBtn.style.backgroundColor = '#2e7d32'; // Green success color
       if (defaultContent && successContent) {
@@ -709,7 +726,7 @@
         alert('Your counselling session has been successfully requested! Our experts will call you soon.');
         closeModal();
         form.reset();
-        
+
         // Restore button state
         submitBtn.disabled = false;
         submitBtn.style.backgroundColor = '';
@@ -726,8 +743,8 @@
       if (!target) return;
 
       const isCtaButton = target.classList.contains('why-acca-cta-btn') || target.classList.contains('btn-presence-cta');
-      const textMatches = target.textContent.trim().toLowerCase().includes('book counselling') || 
-                          target.textContent.trim().toLowerCase().includes('free counselling');
+      const textMatches = target.textContent.trim().toLowerCase().includes('book counselling') ||
+        target.textContent.trim().toLowerCase().includes('free counselling');
 
       if (isCtaButton || textMatches || target.getAttribute('href') === '#book-counselling') {
         e.preventDefault();
