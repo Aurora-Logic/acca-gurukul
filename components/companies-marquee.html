@@ -85,7 +85,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px; /* Reduced gap since rows have vertical padding now */
 }
 
 .marquee-header {
@@ -125,6 +125,7 @@
   overflow: hidden;
   user-select: none;
   gap: 20px;
+  padding: 12px 0; /* Add vertical padding so that translation and borders are not clipped */
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
@@ -139,12 +140,12 @@
 
 /* Row 1 animation: LTR */
 .marquee-ltr .marquee-track {
-  animation: scroll-ltr 25s linear infinite;
+  animation: scroll-ltr 50s linear infinite;
 }
 
 /* Row 2 animation: RTL */
 .marquee-rtl .marquee-track {
-  animation: scroll-rtl 25s linear infinite;
+  animation: scroll-rtl 50s linear infinite;
 }
 
 .marquee-item {
@@ -179,12 +180,12 @@
 .marquee-item:hover {
   border-color: var(--color-secondary);
   color: var(--color-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(178, 128, 59, 0.08);
+  transform: translateY(-4px); /* Clean upward translate */
+  box-shadow: 0 8px 20px rgba(178, 128, 59, 0.14); /* Enhanced premium gold glow shadow */
 }
 
-/* Pause animation on hover */
-.marquee-row:hover .marquee-track {
+/* Pause BOTH rows when the general marquee wrapper is hovered */
+.marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;
 }
 
@@ -209,6 +210,10 @@
 @media (max-width: 768px) {
   .marquee-section {
     padding: 40px 0;
+  }
+  
+  .marquee-row {
+    padding: 8px 0;
   }
   
   .marquee-title {
