@@ -138,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-left-group {
   display: flex;
   align-items: center;
-  gap: 40px; /* Spacious elegant gap between logo and menu items */
+  gap: 24px; /* Reduced gap to accommodate Exemptions Calculator link safely on desktop */
 }
 
 .nav-logo img {
@@ -149,12 +149,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links {
   display: flex;
-  gap: 28px; /* Perfectly balanced horizontal gap */
+  gap: 18px; /* Balanced compact horizontal gap to fit the new navbar menu items */
   align-items: center;
 }
 
 .nav-links a {
-  font-size: 0.84rem; /* Balanced sleek SaaS font size */
+  font-size: 0.81rem; /* Slightly smaller SaaS font size to prevent alignment shifts */
   font-weight: 500; /* Crisp Medium weight like Inter's best profile */
   text-transform: none; /* No bulky uppercase, highly modern */
   letter-spacing: -0.1px; /* Tighter kerning */
