@@ -123,17 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Error loading footer:', error));
   }
 
-  // Stats Animation using Intersection Observer
-  const statsSection = document.querySelector('.why-acca-stats');
+  // Stats Animation using Intersection Observer (Supports integers, decimals, and multiple sections)
   const statCounts = document.querySelectorAll('.stat-count');
-  let animated = false;
+  if (statCounts.length > 0) {
+    const observerOptions = {
+      threshold: 0.1 // Triggers animation as soon as 10% of the stat-count element is visible
+    };
 
-  if (statsSection && statCounts.length > 0) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !animated) {
-        animated = true;
-        statCounts.forEach(stat => {
-          const target = parseInt(stat.getAttribute('data-target'), 10);
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const stat = entry.target;
+          observer.unobserve(stat); // Animate once only
+
+          const targetValue = stat.getAttribute('data-target');
+          const isDecimal = targetValue.includes('.');
+          const target = isDecimal ? parseFloat(targetValue) : parseInt(targetValue, 10);
+
           const duration = 2000; // 2 seconds
           const frameDuration = 1000 / 60; // 60fps
           const totalFrames = Math.round(duration / frameDuration);
@@ -141,24 +147,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const counter = setInterval(() => {
             frame++;
-            // Use easeOutQuart for a smoother slowdown at the end
             const progress = frame / totalFrames;
-            const easeOutProgress = 1 - Math.pow(1 - progress, 4);
-            const currentCount = Math.round(target * easeOutProgress);
+            const easeOutProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart
             
-            // Format with commas if >= 1000
-            stat.innerText = currentCount.toLocaleString();
+            let currentCount = isDecimal
+              ? (target * easeOutProgress).toFixed(1)
+              : Math.round(target * easeOutProgress);
+            
+            // Format integer values >= 1000 with commas
+            if (!isDecimal && target >= 1000) {
+              currentCount = Math.round(target * easeOutProgress).toLocaleString();
+            }
+
+            stat.innerText = currentCount;
 
             if (frame === totalFrames) {
               clearInterval(counter);
-              stat.innerText = target.toLocaleString();
+              stat.innerText = isDecimal ? target.toFixed(1) : target.toLocaleString();
             }
           }, frameDuration);
-        });
-      }
-    }, { threshold: 0.5 }); // Start when 50% visible
+        }
+      });
+    }, observerOptions);
 
-    observer.observe(statsSection);
+    statCounts.forEach(stat => {
+      countObserver.observe(stat);
+    });
   }
 
   // Testimonials Carousel for mobile viewports
