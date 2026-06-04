@@ -130,15 +130,50 @@
   - Step 8 (t=0.875): top = 468 - 21 = 447px; left = 94 - 21 = 73px
   - Step 9 (t=1.000): top = 530 - 21 = 509px; left = 140 - 21 = 119px
 */
-.timeline-item.step-1 { top: 9px; left: 119px; }
-.timeline-item.step-2 { top: 72px; left: 73px; }
-.timeline-item.step-3 { top: 134px; left: 40px; }
-.timeline-item.step-4 { top: 197px; left: 21px; }
-.timeline-item.step-5 { top: 259px; left: 14px; }
-.timeline-item.step-6 { top: 322px; left: 21px; }
-.timeline-item.step-7 { top: 384px; left: 40px; }
-.timeline-item.step-8 { top: 447px; left: 73px; }
-.timeline-item.step-9 { top: 509px; left: 119px; }
+.timeline-item.step-1 {
+  top: 9px;
+  left: 119px;
+}
+
+.timeline-item.step-2 {
+  top: 72px;
+  left: 73px;
+}
+
+.timeline-item.step-3 {
+  top: 134px;
+  left: 40px;
+}
+
+.timeline-item.step-4 {
+  top: 197px;
+  left: 21px;
+}
+
+.timeline-item.step-5 {
+  top: 259px;
+  left: 14px;
+}
+
+.timeline-item.step-6 {
+  top: 322px;
+  left: 21px;
+}
+
+.timeline-item.step-7 {
+  top: 384px;
+  left: 40px;
+}
+
+.timeline-item.step-8 {
+  top: 447px;
+  left: 73px;
+}
+
+.timeline-item.step-9 {
+  top: 509px;
+  left: 119px;
+}
 
 .timeline-icon {
   width: 42px;
@@ -308,7 +343,8 @@
 
 .section-title {
   font-family: var(--font-serif);
-  font-size: 2.4rem; /* Unified symmetric size for all section headers */
+  font-size: 2.4rem;
+  /* Unified symmetric size for all section headers */
   line-height: 1.2;
   color: var(--color-dark);
   margin-bottom: 20px;
@@ -400,9 +436,11 @@
   display: flex;
   flex-direction: column;
 }
+
 .journey-modern-card:last-child {
   border-right: none;
 }
+
 .journey-modern-card:hover {
   background-color: rgba(178, 128, 59, 0.02);
 }
@@ -486,7 +524,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  background-color: #ffffff; /* User requested pure white background */
+  background-color: #ffffff;
+  /* User requested pure white background */
 }
 
 .journey-modern-stat {
@@ -494,7 +533,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* Reduced gap to save horizontal space */
+  gap: 8px;
+  /* Reduced gap to save horizontal space */
   padding: 20px 10px;
   position: relative;
 }
@@ -510,11 +550,13 @@
 }
 
 .journey-modern-stat-icon {
-  width: 20px; /* Slightly smaller icon to match text */
+  width: 20px;
+  /* Slightly smaller icon to match text */
   height: 20px;
   color: var(--color-secondary);
   stroke-width: 1.5px;
-  flex-shrink: 0; /* Prevent icon from squishing */
+  flex-shrink: 0;
+  /* Prevent icon from squishing */
 }
 
 .journey-modern-stat-text {
@@ -522,12 +564,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  white-space: normal; /* Allow natural text wrapping */
+  white-space: normal;
+  /* Allow natural text wrapping */
 }
 
 .journey-modern-stat-label {
   font-family: var(--font-sans);
-  font-size: 0.75rem; /* Reduced size */
+  font-size: 0.75rem;
+  /* Reduced size */
   font-weight: 500;
   color: var(--color-gray);
   text-transform: none;
@@ -537,14 +581,16 @@
 
 .journey-modern-stat-value {
   font-family: var(--font-sans);
-  font-size: 0.75rem; /* Reduced size */
+  font-size: 0.75rem;
+  /* Reduced size */
   font-weight: 600;
   color: var(--color-dark);
 }
 
 /* 3. Career Outcomes Section (Elegant Light Grid) */
 .section-career-outcomes {
-  background-color: #faf8f5; /* Elegant cream background */
+  background-color: #faf8f5;
+  /* Elegant cream background */
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -554,21 +600,25 @@
 .section-career-outcomes .section-left {
   flex: 0 0 350px;
 }
+
 .section-career-outcomes .section-title {
   /* Inherits unified 2.4rem size */
   line-height: 1.25;
   margin-bottom: 16px;
   color: var(--color-dark);
 }
+
 .section-career-outcomes .section-desc {
   font-size: 0.88rem;
   line-height: 1.45;
   margin-bottom: 24px;
   color: var(--color-gray);
 }
+
 .outcomes-btn {
   align-self: flex-start;
 }
+
 @media (max-width: 1200px) {
   .section-career-outcomes .section-left {
     flex: 1;
@@ -678,11 +728,13 @@
     gap: 16px;
     padding: 20px;
   }
+
   .outcome-card {
     flex: 0 0 calc(33.333% - 16px);
     border: 1px solid rgba(178, 128, 59, 0.18);
     border-radius: 8px;
   }
+
   .outcome-card:last-child {
     border-right: 1px solid rgba(178, 128, 59, 0.18);
   }
@@ -1302,7 +1354,7 @@
     justify-content: center;
   }
 
-  
+
   .outcomes-btn {
     align-self: center;
   }
@@ -1370,22 +1422,24 @@
     overflow: hidden !important;
     width: 100% !important;
   }
-  
+
   .testimonials-row {
     display: flex !important;
     flex-direction: row !important;
-    width: 300% !important; /* 3 cards */
+    width: 300% !important;
+    /* 3 cards */
     gap: 0 !important;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
-  
+
   .testimonials-row .testimonial-card {
     flex: 0 0 33.3333% !important;
     width: 33.3333% !important;
     max-width: 33.3333% !important;
     box-sizing: border-box !important;
     padding: 30px 20px !important;
-    border-radius: 0 !important; /* Enforced sharp borders */
+    border-radius: 0 !important;
+    /* Enforced sharp borders */
   }
 
   .metrics-grid {
@@ -1396,7 +1450,7 @@
 
 @media (max-width: 768px) {
 
-  
+
   .section-acca-journey,
   .section-career-outcomes,
   .section-aspiration-journey,
@@ -1407,6 +1461,7 @@
   .section-title {
     font-size: 2rem;
   }
+
   .presence-title {
     font-size: 2rem;
     white-space: normal;
@@ -1435,10 +1490,12 @@
   .journey-modern-stats {
     grid-template-columns: repeat(2, 1fr);
   }
+
   /* Remove border from the last item in the first row */
   .journey-modern-stat:nth-child(2n)::after {
     display: none;
   }
+
   /* Add bottom borders for the first row items */
   .journey-modern-stat:nth-child(1),
   .journey-modern-stat:nth-child(2) {
@@ -1450,14 +1507,17 @@
   .journey-modern-cards {
     grid-template-columns: repeat(2, 1fr);
   }
+
   /* Manage borders for cards when wrapped */
   .journey-modern-card:nth-child(2n) {
     border-right: none;
   }
+
   .journey-modern-card:nth-child(1),
   .journey-modern-card:nth-child(2) {
     border-bottom: 1px solid rgba(178, 128, 59, 0.2);
   }
+
   .journey-modern-card:last-child {
     border-right: none;
     border-bottom: none;
@@ -1468,17 +1528,22 @@
   .journey-modern-cards {
     grid-template-columns: 1fr;
   }
+
   .journey-modern-stats {
     grid-template-columns: 1fr;
   }
+
   .journey-modern-stat {
     justify-content: flex-start;
-    padding-left: 24px; /* Align content nicely to the left edge of the grid */
+    padding-left: 24px;
+    /* Align content nicely to the left edge of the grid */
   }
+
   /* Remove right borders completely on mobile */
   .journey-modern-stat::after {
     display: none;
   }
+
   /* Add bottom borders to all except the last item */
   .journey-modern-stat:not(:last-child) {
     border-bottom: 1px solid rgba(178, 128, 59, 0.2);
@@ -2110,7 +2175,8 @@ a.btn,
 /* Responsive: Why ACCA Enhanced Section */
 @media (max-width: 992px) {
   .why-acca-horizontal-section .container {
-    padding: 0 24px !important; /* Reclaim massive desktop side padding (80px) on tablets */
+    padding: 0 24px !important;
+    /* Reclaim massive desktop side padding (80px) on tablets */
   }
 
   .why-acca-intro-row {
@@ -2134,7 +2200,8 @@ a.btn,
   }
 
   .why-acca-stat-divider {
-    display: none; /* Hide dividers in 2*2 grid layout */
+    display: none;
+    /* Hide dividers in 2*2 grid layout */
   }
 
   .why-acca-stat-item {
@@ -2166,7 +2233,8 @@ a.btn,
 
 @media (max-width: 576px) {
   .why-acca-horizontal-section .container {
-    padding: 0 16px !important; /* Tight clean padding on small mobile screens */
+    padding: 0 16px !important;
+    /* Tight clean padding on small mobile screens */
   }
 
   .why-acca-card {
@@ -2246,8 +2314,10 @@ a.btn,
 
   .presence-grid-wrapper {
     flex: 0 0 100%;
-    max-width: 600px; /* Constraints grid size elegantly on iPads */
-    margin: 0 auto; /* Perfect centering */
+    max-width: 600px;
+    /* Constraints grid size elegantly on iPads */
+    margin: 0 auto;
+    /* Perfect centering */
   }
 
   .presence-cities-col {
@@ -2270,12 +2340,12 @@ a.btn,
     width: 100% !important;
     padding-left: 0 !important;
   }
-  
+
   .city-col-item {
     flex: none !important;
     width: 100% !important;
   }
-  
+
   .city-col-item:last-child {
     grid-column: span 2 !important;
     margin-top: 10px !important;
@@ -2335,9 +2405,12 @@ a.btn,
   .hero-timeline::before {
     content: '';
     position: absolute;
-    top: 27px; /* Starts at the center of the first icon */
-    bottom: 27px; /* Ends at the center of the last icon */
-    left: calc(24px + 27px); /* Aligns perfectly with the center of the timeline-icon */
+    top: 27px;
+    /* Starts at the center of the first icon */
+    bottom: 27px;
+    /* Ends at the center of the last icon */
+    left: calc(24px + 27px);
+    /* Aligns perfectly with the center of the timeline-icon */
     border-left: 2px dotted rgba(178, 128, 59, 0.45);
     z-index: 1;
   }
@@ -2411,7 +2484,8 @@ a.btn,
   }
 
   .hero-timeline::before {
-    left: calc(16px + 27px); /* Dynamic adjustment for tighter horizontal padding */
+    left: calc(16px + 27px);
+    /* Dynamic adjustment for tighter horizontal padding */
   }
 
   .hero-actions {
@@ -2474,7 +2548,8 @@ a.btn,
 
 /* 6. ACCA Exemptions Section */
 .section-acca-exemptions {
-  background-color: #faf8f5; /* Premium soft cream background (alternating with white sections) */
+  background-color: #faf8f5;
+  /* Premium soft cream background (alternating with white sections) */
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -2620,7 +2695,7 @@ a.btn,
     max-width: 100%;
     margin-bottom: 40px;
   }
-  
+
   .exemptions-modern-grid {
     gap: 20px;
   }
@@ -2636,16 +2711,16 @@ a.btn,
   .section-acca-exemptions {
     padding: 60px 0;
   }
-  
+
   .exemptions-modern-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .exemption-card {
     padding: 30px 20px;
   }
-  
+
   .exemption-tip-box {
     padding: 16px 20px;
   }
@@ -2655,6 +2730,7 @@ a.btn,
 .btn-exemptions-cta {
   align-self: flex-start;
   font-size: 0.75rem;
+  transform: translateY(-8px);
   border: 1px solid var(--color-primary);
   color: var(--color-primary);
   border-radius: 4px;
@@ -2667,7 +2743,8 @@ a.btn,
 
 @media (max-width: 1300px) {
   .btn-exemptions-cta {
-    align-self: center; /* Center-align inside stacked vertical layouts on tablets and mobile screens */
+    align-self: center;
+    /* Center-align inside stacked vertical layouts on tablets and mobile screens */
   }
 }
 
@@ -2683,7 +2760,8 @@ a.btn,
   }
 
   .timeline-line-horizontal-4 {
-    display: none; /* Hide horizontal connector line in grid mode */
+    display: none;
+    /* Hide horizontal connector line in grid mode */
   }
 
   .timeline-step-4 {
@@ -2698,7 +2776,8 @@ a.btn,
 
 @media (max-width: 576px) {
   .timeline-container-horizontal-4 {
-    grid-template-columns: repeat(2, 1fr); /* Retain clean 2x2 grid on small mobile viewports */
+    grid-template-columns: repeat(2, 1fr);
+    /* Retain clean 2x2 grid on small mobile viewports */
     gap: 32px 12px;
     padding-top: 20px;
   }
@@ -2819,22 +2898,22 @@ a.btn,
   .section-home-cta {
     padding: 70px 0;
   }
-  
+
   .home-cta-title {
     font-size: 2.2rem;
   }
-  
+
   .home-cta-desc {
     font-size: 0.95rem;
     margin-bottom: 30px;
   }
-  
+
   .home-cta-actions {
     flex-direction: column;
     align-items: center;
     gap: 16px;
   }
-  
+
   .home-cta-actions .btn {
     width: 100%;
     max-width: 320px;
@@ -2844,7 +2923,8 @@ a.btn,
 
 /* 8. Home FAQ Section Accordion Styles */
 .section-home-faq {
-  background-color: #ffffff; /* Alternates cleanly with other sections */
+  background-color: #ffffff;
+  /* Alternates cleanly with other sections */
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -2881,14 +2961,16 @@ a.btn,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style: none; /* Hide default list marker in Chrome/Firefox */
+  list-style: none;
+  /* Hide default list marker in Chrome/Firefox */
   user-select: none;
   transition: color 0.25s ease;
   position: relative;
 }
 
 .faq-question::-webkit-details-marker {
-  display: none; /* Hide default list marker in Safari */
+  display: none;
+  /* Hide default list marker in Safari */
 }
 
 .faq-question:hover {
@@ -2933,13 +3015,13 @@ a.btn,
   .section-home-faq {
     padding: 60px 0;
   }
-  
+
   .faq-question {
     padding: 18px 20px;
     font-size: 0.88rem;
     gap: 12px;
   }
-  
+
   .faq-answer {
     padding: 0 20px 18px 20px;
     font-size: 0.82rem;
@@ -2948,7 +3030,8 @@ a.btn,
 
 /* 9. News & Blogs Preview Section Styles */
 .section-home-blogs {
-  background-color: #faf8f5; /* Alternating section color (cream) */
+  background-color: #faf8f5;
+  /* Alternating section color (cream) */
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -3055,7 +3138,8 @@ a.btn,
 
 /* 10. Campus Gallery Section Styles */
 .section-home-gallery {
-  background-color: #ffffff; /* Alternating section color (white) */
+  background-color: #ffffff;
+  /* Alternating section color (white) */
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -3139,13 +3223,14 @@ a.btn,
 
 /* Responsive adjustments for Blogs & Gallery on Home */
 @media (max-width: 1200px) {
+
   .section-home-blogs .section-left,
   .section-home-gallery .section-left {
     flex: 1;
     max-width: 100%;
     margin-bottom: 40px;
   }
-  
+
   .home-blogs-grid {
     gap: 20px;
   }
@@ -3158,11 +3243,12 @@ a.btn,
 }
 
 @media (max-width: 768px) {
+
   .section-home-blogs,
   .section-home-gallery {
     padding: 60px 0;
   }
-  
+
   .home-blogs-grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -3183,7 +3269,7 @@ a.btn,
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .gallery-item {
     height: 240px;
   }
@@ -3193,9 +3279,3 @@ a.btn,
     background: rgba(0, 0, 0, 0.65) !important;
   }
 }
-
-
-
-
-
-
