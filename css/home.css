@@ -1669,8 +1669,8 @@
 }
 
 .city-icon-wrapper {
-  width: 46px;
-  height: 46px;
+  width: 64px;
+  height: 64px;
   color: var(--color-secondary);
   display: flex;
   align-items: center;
@@ -1683,8 +1683,8 @@
 }
 
 .city-col-item .landmark-svg {
-  width: 40px;
-  height: 40px;
+  width: 58px;
+  height: 58px;
 }
 
 .city-col-item .city-name-label {
