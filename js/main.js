@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex = index;
       
       // Update transform position
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 1300) {
         // Since we set width: 300% on the row, we translate by 33.3333% per card slot
         const translateXValue = -(currentIndex * 33.3333);
         testimonialsRow.style.setProperty('transform', `translateX(${translateXValue}%)`, 'important');
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset layout transform when resizing window back to desktop
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth > 1300) {
         testimonialsRow.style.removeProperty('transform');
       } else {
         updateCarousel(currentIndex);
