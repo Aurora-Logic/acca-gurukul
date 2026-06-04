@@ -1190,3 +1190,53 @@ h1, h2, h3, h4, h5, h6 {
     height: 28px;
   }
 }
+
+/* ==========================================================================
+   Global Section Header Utilities
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-header-eyebrow::before,
+.section-header-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-secondary);
+}
+
+.section-header-title {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+}
+
+.section-header-title span {
+  color: var(--color-secondary);
+}
+
+.section-header-desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-gray);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
