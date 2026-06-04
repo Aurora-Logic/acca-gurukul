@@ -608,6 +608,19 @@
     flex-direction: column;
     gap: 12px;
   }
+  .founder-quote-circular-badge {
+    width: 280px;
+    height: 280px;
+  }
+  .badge-inner-medallion {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+  }
+  .badge-quote-static-text {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
 }
 
 @media (max-width: 480px) {
@@ -616,5 +629,18 @@
   }
   .counselling-panel-text {
     font-size: 1.1rem;
+  }
+  .founder-quote-circular-badge {
+    width: 260px;
+    height: 260px;
+  }
+  .badge-inner-medallion {
+    width: 180px;
+    height: 180px;
+    padding: 16px;
+  }
+  .badge-quote-static-text {
+    font-size: 0.78rem;
+    line-height: 1.35;
   }
 }
