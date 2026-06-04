@@ -667,10 +667,6 @@
   .exams-timeline-row::before {
     display: none; /* Hide step connectors on responsive layout */
   }
-  .fee-structure-wrapper {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
   .patterns-exemptions-wrapper {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -696,6 +692,9 @@
   .course-stats-container {
     grid-template-columns: repeat(2, 1fr);
   }
+  .additional-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
@@ -706,6 +705,9 @@
     font-size: 1.5rem;
   }
   .course-badges-grid {
+    grid-template-columns: 1fr;
+  }
+  .additional-info-grid {
     grid-template-columns: 1fr;
   }
 }
