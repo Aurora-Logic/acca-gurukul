@@ -1142,6 +1142,27 @@
   background: rgba(181, 28, 36, 0.05);
 }
 
+.testimonial-avatar-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--color-secondary);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-card:hover .testimonial-avatar-wrapper {
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.testimonial-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .photo-placeholder-icon {
   width: 20px;
   height: 20px;
@@ -1785,7 +1806,12 @@ a.btn,
 .why-acca-card,
 .why-acca-card-icon,
 .why-acca-cta-btn,
-.why-acca-stats {
+.why-acca-stats,
+.exemption-card,
+.exemption-card-image,
+.why-acca-image-wrapper,
+.exemption-tip-box,
+.testimonial-avatar-wrapper {
   border-radius: 0 !important;
 }
 
@@ -1969,11 +1995,61 @@ a.btn,
   flex-shrink: 0;
 }
 
-/* Tier 2: Feature Cards Grid */
-.why-acca-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+/* Tier 2: Split Layout (Features Left, Image Right) */
+.why-acca-split-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 40px;
+  width: 100%;
+}
+
+.why-acca-split-left {
+  flex: 0 1 58%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.why-acca-split-right {
+  flex: 0 1 38%;
+  display: flex;
+}
+
+.why-acca-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.why-acca-feature-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.why-acca-img-badge {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  right: 25px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-left: 4px solid var(--color-secondary);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-dark);
 }
 
 .why-acca-card {
@@ -2069,20 +2145,26 @@ a.btn,
     padding: 0;
   }
 
-  .why-acca-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  .why-acca-split-layout {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .why-acca-split-left,
+  .why-acca-split-right {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .why-acca-image-wrapper {
+    min-height: 320px;
+    height: 320px;
   }
 }
 
 @media (max-width: 576px) {
   .why-acca-horizontal-section .container {
     padding: 0 16px !important; /* Tight clean padding on small mobile screens */
-  }
-
-  .why-acca-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
   }
 
   .why-acca-card {
@@ -2375,13 +2457,38 @@ a.btn,
 .exemption-card {
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.2);
-  border-radius: 8px;
-  padding: 35px 25px;
+  border-radius: 0;
+  padding: 0;
+  overflow: hidden;
   position: relative;
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.exemption-card-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.exemption-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.exemption-card:hover .exemption-card-image img {
+  transform: scale(1.05);
+}
+
+.exemption-card-body {
+  padding: 25px 25px 35px 25px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .exemption-card.highlight-gold-border {
@@ -2429,7 +2536,7 @@ a.btn,
   color: var(--color-primary);
   background: rgba(178, 128, 59, 0.12);
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 0;
   margin-bottom: 16px;
   letter-spacing: 0.5px;
 }
@@ -2451,7 +2558,7 @@ a.btn,
   padding: 20px 24px;
   background-color: rgba(178, 128, 59, 0.04);
   border-left: 3px solid var(--color-secondary);
-  border-radius: 0 8px 8px 0;
+  border-radius: 0;
   width: 100%;
   box-sizing: border-box;
 }
