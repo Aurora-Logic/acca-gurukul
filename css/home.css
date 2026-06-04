@@ -1380,12 +1380,12 @@
   }
   
   .testimonials-row .testimonial-card {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    flex: 0 0 33.3333% !important;
+    width: 33.3333% !important;
+    max-width: 33.3333% !important;
     box-sizing: border-box !important;
     padding: 30px 20px !important;
-    border-radius: 6px !important;
+    border-radius: 0 !important; /* Enforced sharp borders */
   }
 
   .metrics-grid {
@@ -2159,6 +2159,11 @@ a.btn,
     min-height: 320px;
     height: 320px;
   }
+
+  .testimonials-header-row {
+    flex-direction: column;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -2181,6 +2186,37 @@ a.btn,
 
   .why-acca-stat-plus {
     font-size: 1.3rem;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .metric-card {
+    padding: 16px 12px !important;
+    gap: 12px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .metric-icon-wrapper {
+    width: 36px !important;
+    height: 36px !important;
+    flex: 0 0 36px !important;
+  }
+
+  .metric-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .metric-num {
+    font-size: 1.45rem !important;
+  }
+
+  .metric-label {
+    font-size: 0.68rem !important;
   }
 }
 
