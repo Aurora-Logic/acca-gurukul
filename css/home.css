@@ -1237,7 +1237,7 @@
   color: var(--color-secondary);
   width: 38px;
   height: 38px;
-  border-radius: 50%;
+  border-radius: 50% !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1788,7 +1788,6 @@
   color: #ffffff;
 }
 
-/* Force border-radius to 0 for all buttons, button-like classes, outer containers, and cards on index2.html variation */
 .btn,
 .btn-primary,
 .btn-outline,
@@ -1810,8 +1809,7 @@ a.btn,
 .exemption-card,
 .exemption-card-image,
 .why-acca-image-wrapper,
-.exemption-tip-box,
-.testimonial-avatar-wrapper {
+.exemption-tip-box {
   border-radius: 0 !important;
 }
 
@@ -2862,7 +2860,7 @@ a.btn,
 .faq-item {
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.2);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
@@ -2966,7 +2964,7 @@ a.btn,
 .home-blog-card {
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.15);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);

@@ -1240,3 +1240,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   line-height: 1.6;
 }
+
+/* Ensure stat counter numbers use plain Inter font */
+.stat-count {
+  font-family: var(--font-sans) !important;
+}
