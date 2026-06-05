@@ -71,23 +71,37 @@
   border-radius: 4px;
 }
 
-/* Timeline */
+/* Timeline — fully responsive arc
+   The container scales proportionally using clamp() so the arc
+   looks correct from ~993px up to 1920px+ without pixel breakpoints.
+   All item positions use percentages of the container dimensions,
+   derived from the original 420×560 coordinate system.
+
+   Original px → percentage conversion:
+     top%  = top_px  / 560 * 100
+     left% = left_px / 420 * 100
+*/
 .hero-timeline {
   position: absolute;
   left: 36.5%;
-  /* Fine-tuned position to provide a perfect visual balance between left content and right image */
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
-  height: 560px;
-  width: 420px;
+  /* Scales proportionally with viewport in BOTH directions.
+     - Grows on large screens (16"+) via vw
+     - Never taller than 78vh to stay within the hero section
+     - Never smaller than 400px / 300px on narrower desktops */
+  height: max(400px, min(38vw, 78vh));
+  width: max(300px, min(29vw, 58.5vh));
+  /* 29/38 ≈ 58.5/78 keeps the original 3:4 aspect ratio */
 }
 
 .hero-timeline-curve-svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
+  /* 160 / 420 ≈ 38.1% of the container width */
+  width: 38.1%;
   height: 100%;
   z-index: 1;
   pointer-events: none;
@@ -96,88 +110,80 @@
 .timeline-item {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: max(8px, 1.1vw);
   position: absolute;
-  /* Mathematically aligned coordinate system */
   z-index: 2;
   transition: all 0.35s ease;
-  height: 42px;
-  /* Fixed height to guarantee vertical centering of circle icon on the curve */
+  /* Scales proportionally with viewport */
+  height: max(32px, 2.9vw);
 }
 
 /* 
-  MATHEMATICALLY EXACT POSITIONING FOR THE DEEP ARC AND CIRCLES (9 STEPS):
+  RESPONSIVE POSITIONING — percentages of the 420×560 container.
   
-  The Quadratic Bezier curve is: B(t) = (1-t)^2*P_0 + 2*(1-t)*t*P_1 + t^2*P_2
-  SVG viewBox is "0 0 160 560" which maps 1:1 to px inside the 160px x 560px curve overlay.
-  P_0 (Start, t=0) = (140, 30)
-  P_1 (Control)    = (-70, 280)
-  P_2 (End, t=1)   = (140, 530)
+  Original formula (unchanged Bezier):
+    P_0=(140,30)  P_1=(-70,280)  P_2=(140,530)
   
-  Vertical y spacing is linear:
-  B_y(t) = 30 + 500*t
-  B_x(t) = 140 - 420 * t * (1 - t)
+  Conversion: top% = topPx/560*100,  left% = leftPx/420*100
   
-  Given the timeline icon is 42px x 42px, its center is at (21px, 21px) relative to the item container.
-  Therefore, the top-left positioning rules for t = 0 to 1 with step 0.125 are:
-  - Step 1 (t=0.000): top = 30 - 21 = 9px,    left = 140 - 21 = 119px
-  - Step 2 (t=0.125): top = 93 - 21 = 72px,   left = 94 - 21 = 73px
-  - Step 3 (t=0.250): top = 155 - 21 = 134px; left = 61 - 21 = 40px
-  - Step 4 (t=0.375): top = 218 - 21 = 197px; left = 42 - 21 = 21px
-  - Step 5 (t=0.500): top = 280 - 21 = 259px; left = 35 - 21 = 14px
-  - Step 6 (t=0.625): top = 343 - 21 = 322px; left = 42 - 21 = 21px
-  - Step 7 (t=0.750): top = 405 - 21 = 384px; left = 61 - 21 = 40px
-  - Step 8 (t=0.875): top = 468 - 21 = 447px; left = 94 - 21 = 73px
-  - Step 9 (t=1.000): top = 530 - 21 = 509px; left = 140 - 21 = 119px
+  Step 1: top= 1.607%  left= 28.333%
+  Step 2: top=12.857%  left= 17.381%
+  Step 3: top=23.929%  left=  9.524%
+  Step 4: top=35.179%  left=  5.000%
+  Step 5: top=46.250%  left=  3.333%
+  Step 6: top=57.500%  left=  5.000%
+  Step 7: top=68.571%  left=  9.524%
+  Step 8: top=79.821%  left= 17.381%
+  Step 9: top=90.893%  left= 28.333%
 */
 .timeline-item.step-1 {
-  top: 9px;
-  left: 119px;
+  top: 1.607%;
+  left: 28.333%;
 }
 
 .timeline-item.step-2 {
-  top: 72px;
-  left: 73px;
+  top: 12.857%;
+  left: 17.381%;
 }
 
 .timeline-item.step-3 {
-  top: 134px;
-  left: 40px;
+  top: 23.929%;
+  left: 9.524%;
 }
 
 .timeline-item.step-4 {
-  top: 197px;
-  left: 21px;
+  top: 35.179%;
+  left: 5.000%;
 }
 
 .timeline-item.step-5 {
-  top: 259px;
-  left: 14px;
+  top: 46.250%;
+  left: 3.333%;
 }
 
 .timeline-item.step-6 {
-  top: 322px;
-  left: 21px;
+  top: 57.500%;
+  left: 5.000%;
 }
 
 .timeline-item.step-7 {
-  top: 384px;
-  left: 40px;
+  top: 68.571%;
+  left: 9.524%;
 }
 
 .timeline-item.step-8 {
-  top: 447px;
-  left: 73px;
+  top: 79.821%;
+  left: 17.381%;
 }
 
 .timeline-item.step-9 {
-  top: 509px;
-  left: 119px;
+  top: 90.893%;
+  left: 28.333%;
 }
 
 .timeline-icon {
-  width: 42px;
-  height: 42px;
+  width: max(32px, 2.9vw);
+  height: max(32px, 2.9vw);
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -190,17 +196,19 @@
   /* Softened gold border */
   z-index: 2;
   position: relative;
+  flex-shrink: 0;
 }
 
 .timeline-icon i {
-  width: 16px !important;
-  height: 16px !important;
+  width: max(12px, 1.1vw) !important;
+  height: max(12px, 1.1vw) !important;
 }
 
 .timeline-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .timeline-content .step-num {
@@ -2352,8 +2360,120 @@ a.btn,
   }
 }
 
-/* Responsive adjustments for Hero Section */
-@media (max-width: 992px) {
+/* ─── Tablet: side-by-side (hero left + timeline right) ─── */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    min-height: calc(100vh - 64px);
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    flex: 0 0 44%;
+    max-width: 44%;
+    padding: 40px 20px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 10;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle {
+    max-width: 360px;
+    /* Constrains to ~2 lines */
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+  }
+
+  .hero-actions {
+    width: auto;
+  }
+
+  .hero-timeline {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    flex: 1;
+    height: auto;
+    margin: 0;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+    align-self: center;
+  }
+
+  /* Vertical dotted connection line */
+  .hero-timeline::before {
+    content: '';
+    position: absolute;
+    top: calc(30px + 20px);
+    /* padding-top + half of icon (40px icon) */
+    bottom: calc(30px + 20px);
+    left: calc(24px + 20px);
+    /* padding-left + half of icon */
+    border-left: 2px dotted rgba(178, 128, 59, 0.45);
+    z-index: 1;
+  }
+
+  .hero-timeline-curve-svg {
+    display: none;
+  }
+
+  .timeline-item {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .timeline-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline-icon i {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .timeline-content {
+    white-space: nowrap;
+  }
+
+  .timeline-content .step-num {
+    font-size: 0.7rem;
+  }
+
+  .step-title-text {
+    font-size: 0.7rem;
+  }
+
+  .step-desc-text {
+    font-size: 0.62rem;
+  }
+
+  .hero-right {
+    display: none;
+    /* Hide building image on tablet to give timeline room */
+  }
+}
+
+/* ─── Mobile: stacked column layout ─── */
+@media (max-width: 768px) {
   .hero {
     flex-direction: column;
     min-height: auto;
@@ -2401,16 +2521,13 @@ a.btn,
     z-index: 20;
   }
 
-  /* Beautiful vertical dotted connection line */
+  /* Vertical dotted connection line */
   .hero-timeline::before {
     content: '';
     position: absolute;
     top: 27px;
-    /* Starts at the center of the first icon */
     bottom: 27px;
-    /* Ends at the center of the last icon */
     left: calc(24px + 27px);
-    /* Aligns perfectly with the center of the timeline-icon */
     border-left: 2px dotted rgba(178, 128, 59, 0.45);
     z-index: 1;
   }
@@ -2426,6 +2543,10 @@ a.btn,
     height: auto;
     margin-bottom: 0;
     width: 100%;
+  }
+
+  .timeline-content {
+    white-space: normal;
   }
 
   .timeline-icon {
