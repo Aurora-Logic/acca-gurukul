@@ -1,5 +1,158 @@
 /* Home Page Styles */
 
+/* ═══════════════════════════════════════════════════════════════
+   HERO LOAD ANIMATION — Keyframes & Initial States
+   Orchestrated by /js/hero-animations.js
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroLineExpand {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.04) translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes heroTimelineItemIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(4px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ── Initial hidden states (pre-animation) ───────────────── */
+
+/* Title segments (created by JS wrapping <br> splits) */
+.hero-title-segment {
+  display: block;
+  opacity: 0;
+  transform: translateY(32px);
+  animation: heroFadeSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* animation-delay is set inline by JS for staggering */
+}
+
+/* Gold underline: starts collapsed */
+.hero-title-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: none;
+}
+.hero-title-line.hero-anim-ready {
+  animation: heroLineExpand 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtitle: starts hidden */
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.hero-subtitle.hero-anim-ready {
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* CTA actions: starts hidden */
+.hero-actions {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.hero-actions.hero-anim-ready {
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Timeline items: start hidden for cascade */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-24px) scale(0.92);
+}
+.timeline-item.hero-anim-ready {
+  animation: heroTimelineItemIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Hero right image: starts hidden */
+.hero-right {
+  opacity: 0;
+  transform: scale(1.04) translateX(20px);
+}
+.hero-right.hero-anim-ready {
+  animation: heroImageReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* SVG curve path — initial state handled by JS (dasharray/dashoffset) */
+.hero-timeline-curve-svg path {
+  will-change: stroke-dashoffset;
+}
+
+/* ── Accessibility: skip animations for motion-sensitive users ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-segment,
+  .hero-title-line,
+  .hero-subtitle,
+  .hero-actions,
+  .timeline-item,
+  .hero-right {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-timeline-curve-svg path {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   END HERO LOAD ANIMATION
+   ═══════════════════════════════════════════════════════════════ */
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -12,7 +165,7 @@
 
 .hero-left {
   flex: 1;
-  padding: 80px 40px 80px 80px;
+  padding: var(--space-5xl) var(--space-3xl) var(--space-5xl) var(--space-5xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,15 +175,14 @@
 }
 
 .hero-title {
-  font-family: var(--font-serif);
-  font-size: 3.3rem;
+  font-size: var(--font-size-hero);
   /* Elegant, compact size matching Screenshot 2 */
   font-weight: 500;
   /* Lighter medium weight is spacious and premium */
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: #000000;
   /* Force pure black text for maximum high-contrast crispness */
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   letter-spacing: -0.5px;
 }
 
@@ -42,7 +194,7 @@
   width: 48px;
   height: 2px;
   background-color: var(--color-secondary);
-  margin-bottom: 24px;
+  margin-bottom: var(--space-xl);
   margin-top: -8px;
   /* Positions perfectly below serif descenders */
 }
@@ -51,8 +203,8 @@
   font-size: 0.95rem;
   color: var(--color-gray);
   max-width: 460px;
-  margin-bottom: 35px;
-  line-height: 1.6;
+  margin-bottom: var(--space-xxl);
+  line-height: var(--line-height-normal);
 }
 
 .hero-actions {
@@ -62,32 +214,52 @@
   /* Strictly force buttons to be on the same line */
 }
 
-.hero-actions .btn {
-  padding: 10px 22px;
-  /* Smaller, cleaner padding for visual balance */
-  font-size: 0.8rem;
-  /* Cleaner, legible font size */
-  font-weight: 500;
-  border-radius: 4px;
-}
 
-/* Timeline */
+/* Timeline — fully responsive arc
+   The container scales proportionally using clamp() so the arc
+   looks correct from ~993px up to 1920px+ without pixel breakpoints.
+   All item positions use percentages of the container dimensions,
+   derived from the original 420×560 coordinate system.
+
+   Original px → percentage conversion:
+     top%  = top_px  / 560 * 100
+     left% = left_px / 420 * 100
+*/
 .hero-timeline {
   position: absolute;
   left: 36.5%;
-  /* Fine-tuned position to provide a perfect visual balance between left content and right image */
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
-  height: 560px;
-  width: 420px;
+  /* max(vw, vh) — arc grows with whichever viewport dimension is larger.
+     Capped at 80vh so it never overflows the hero section.
+     51.5/68 ≈ 0.757 preserves the original 420/560 = 0.75 aspect ratio. */
+  height: clamp(400px, max(38vw, 68vh), 80vh);
+  width: clamp(300px, max(29vw, 51.5vh), 61vh);
+}
+
+/* ── Large desktop (≥1440px): arc visibly larger on bigger screens ── */
+@media (min-width: 1440px) {
+  .hero-timeline {
+    height: clamp(460px, max(38vw, 70vh), 82vh);
+    width: clamp(345px, max(29vw, 53vh), 63vh);
+  }
+}
+
+/* ── Extra-large screens (≥1920px): full proportional scale ── */
+@media (min-width: 1920px) {
+  .hero-timeline {
+    height: clamp(600px, max(36vw, 72vh), 84vh);
+    width: clamp(450px, max(27.5vw, 55vh), 65vh);
+  }
 }
 
 .hero-timeline-curve-svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
+  /* 160 / 420 ≈ 38.1% of the container width */
+  width: 38.1%;
   height: 100%;
   z-index: 1;
   pointer-events: none;
@@ -96,88 +268,80 @@
 .timeline-item {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: max(8px, 1.1vw);
   position: absolute;
-  /* Mathematically aligned coordinate system */
   z-index: 2;
   transition: all 0.35s ease;
-  height: 42px;
-  /* Fixed height to guarantee vertical centering of circle icon on the curve */
+  /* Scales proportionally with viewport */
+  height: max(32px, 2.9vw);
 }
 
 /* 
-  MATHEMATICALLY EXACT POSITIONING FOR THE DEEP ARC AND CIRCLES (9 STEPS):
+  RESPONSIVE POSITIONING — percentages of the 420×560 container.
   
-  The Quadratic Bezier curve is: B(t) = (1-t)^2*P_0 + 2*(1-t)*t*P_1 + t^2*P_2
-  SVG viewBox is "0 0 160 560" which maps 1:1 to px inside the 160px x 560px curve overlay.
-  P_0 (Start, t=0) = (140, 30)
-  P_1 (Control)    = (-70, 280)
-  P_2 (End, t=1)   = (140, 530)
+  Original formula (unchanged Bezier):
+    P_0=(140,30)  P_1=(-70,280)  P_2=(140,530)
   
-  Vertical y spacing is linear:
-  B_y(t) = 30 + 500*t
-  B_x(t) = 140 - 420 * t * (1 - t)
+  Conversion: top% = topPx/560*100,  left% = leftPx/420*100
   
-  Given the timeline icon is 42px x 42px, its center is at (21px, 21px) relative to the item container.
-  Therefore, the top-left positioning rules for t = 0 to 1 with step 0.125 are:
-  - Step 1 (t=0.000): top = 30 - 21 = 9px,    left = 140 - 21 = 119px
-  - Step 2 (t=0.125): top = 93 - 21 = 72px,   left = 94 - 21 = 73px
-  - Step 3 (t=0.250): top = 155 - 21 = 134px; left = 61 - 21 = 40px
-  - Step 4 (t=0.375): top = 218 - 21 = 197px; left = 42 - 21 = 21px
-  - Step 5 (t=0.500): top = 280 - 21 = 259px; left = 35 - 21 = 14px
-  - Step 6 (t=0.625): top = 343 - 21 = 322px; left = 42 - 21 = 21px
-  - Step 7 (t=0.750): top = 405 - 21 = 384px; left = 61 - 21 = 40px
-  - Step 8 (t=0.875): top = 468 - 21 = 447px; left = 94 - 21 = 73px
-  - Step 9 (t=1.000): top = 530 - 21 = 509px; left = 140 - 21 = 119px
+  Step 1: top= 1.607%  left= 28.333%
+  Step 2: top=12.857%  left= 17.381%
+  Step 3: top=23.929%  left=  9.524%
+  Step 4: top=35.179%  left=  5.000%
+  Step 5: top=46.250%  left=  3.333%
+  Step 6: top=57.500%  left=  5.000%
+  Step 7: top=68.571%  left=  9.524%
+  Step 8: top=79.821%  left= 17.381%
+  Step 9: top=90.893%  left= 28.333%
 */
 .timeline-item.step-1 {
-  top: 9px;
-  left: 119px;
+  top: 1.607%;
+  left: 28.333%;
 }
 
 .timeline-item.step-2 {
-  top: 72px;
-  left: 73px;
+  top: 12.857%;
+  left: 17.381%;
 }
 
 .timeline-item.step-3 {
-  top: 134px;
-  left: 40px;
+  top: 23.929%;
+  left: 9.524%;
 }
 
 .timeline-item.step-4 {
-  top: 197px;
-  left: 21px;
+  top: 35.179%;
+  left: 5.000%;
 }
 
 .timeline-item.step-5 {
-  top: 259px;
-  left: 14px;
+  top: 46.250%;
+  left: 3.333%;
 }
 
 .timeline-item.step-6 {
-  top: 322px;
-  left: 21px;
+  top: 57.500%;
+  left: 5.000%;
 }
 
 .timeline-item.step-7 {
-  top: 384px;
-  left: 40px;
+  top: 68.571%;
+  left: 9.524%;
 }
 
 .timeline-item.step-8 {
-  top: 447px;
-  left: 73px;
+  top: 79.821%;
+  left: 17.381%;
 }
 
 .timeline-item.step-9 {
-  top: 509px;
-  left: 119px;
+  top: 90.893%;
+  left: 28.333%;
 }
 
 .timeline-icon {
-  width: 42px;
-  height: 42px;
+  width: max(32px, 2.9vw);
+  height: max(32px, 2.9vw);
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -190,17 +354,19 @@
   /* Softened gold border */
   z-index: 2;
   position: relative;
+  flex-shrink: 0;
 }
 
 .timeline-icon i {
-  width: 16px !important;
-  height: 16px !important;
+  width: max(12px, 1.1vw) !important;
+  height: max(12px, 1.1vw) !important;
 }
 
 .timeline-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .timeline-content .step-num {
@@ -302,7 +468,7 @@
 .section-career-outcomes,
 .section-aspiration-journey,
 .section-testimonials-metrics {
-  padding: 35px 0;
+  padding: var(--section-padding);
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
@@ -333,17 +499,15 @@
 }
 
 .section-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   color: var(--color-secondary);
   text-transform: uppercase;
 }
 
 .section-title {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
+  font-size: var(--font-size-h2);
   /* Unified symmetric size for all section headers */
   line-height: 1.2;
   color: var(--color-dark);
@@ -376,8 +540,6 @@
 .section-acca-journey {
   background-color: #ffffff;
   /* Premium light warm background changed to white for contrast */
-  padding: 80px 0;
-  /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
 }
 
 .section-acca-journey .container {
@@ -416,7 +578,7 @@
   width: 100%;
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.2);
-  border-radius: 4px;
+  border-radius: var(--card-border-radius, 0);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
@@ -591,7 +753,6 @@
 .section-career-outcomes {
   background-color: #faf8f5;
   /* Elegant cream background */
-  padding: 80px 0;
   position: relative;
   overflow: hidden;
 }
@@ -654,6 +815,7 @@
   min-height: auto;
   transition: transform 0.3s ease;
   box-shadow: none;
+  text-decoration: none;
 }
 
 .outcome-card:last-child {
@@ -732,7 +894,7 @@
   .outcome-card {
     flex: 0 0 calc(33.333% - 16px);
     border: 1px solid rgba(178, 128, 59, 0.18);
-    border-radius: 8px;
+    border-radius: var(--card-border-radius, 0);
   }
 
   .outcome-card:last-child {
@@ -762,7 +924,6 @@
 /* 5. Aspiration Journey Section */
 .section-aspiration-journey {
   background-color: #ffffff;
-  padding: 80px 0;
 }
 
 .section-aspiration-journey .section-left {
@@ -1070,7 +1231,7 @@
 .metric-card {
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.1);
-  border-radius: 6px;
+  border-radius: var(--card-border-radius, 0);
   padding: 24px;
   display: flex;
   gap: 20px;
@@ -1391,7 +1552,7 @@
     background-color: #ffffff;
     border: 1px solid rgba(178, 128, 59, 0.18);
     border-right: 1px solid rgba(178, 128, 59, 0.18) !important;
-    border-radius: 6px;
+    border-radius: var(--card-border-radius, 0);
     padding: 35px 12px 30px 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
   }
@@ -1450,20 +1611,7 @@
 
 @media (max-width: 768px) {
 
-
-  .section-acca-journey,
-  .section-career-outcomes,
-  .section-aspiration-journey,
-  .section-testimonials-metrics {
-    padding: 30px 0;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
   .presence-title {
-    font-size: 2rem;
     white-space: normal;
   }
 
@@ -1644,19 +1792,21 @@
   justify-content: center;
 }
 
+.presence-text-col .btn {
+  align-self: flex-start;
+}
+
 .presence-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 700;
   color: var(--color-secondary);
-  letter-spacing: 1.5px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   margin-bottom: 6px;
   text-transform: uppercase;
 }
 
 .presence-title {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: var(--font-size-h2);
   font-weight: 600;
   line-height: 1.25;
   color: var(--color-dark);
@@ -1668,38 +1818,6 @@
   height: 2px;
   background-color: var(--color-secondary);
   margin-bottom: 20px;
-}
-
-.btn-presence-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  padding: 8px 16px;
-  border: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  background: transparent;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-}
-
-.btn-presence-cta:hover {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
-
-.btn-presence-cta i {
-  margin-left: 6px;
-  transition: transform 0.3s ease;
-}
-
-.btn-presence-cta:hover i {
-  transform: translateX(4px);
 }
 
 /* Dividers */
@@ -1842,23 +1960,15 @@
 /* More Cities special full-width card layout */
 
 /* Primary Red Button overrides for index2.html variation */
-.btn-presence-cta {
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  border-radius: 0 !important;
-}
-
-.btn-presence-cta:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
 .btn,
 .btn-primary,
 .btn-outline,
-.btn-presence-cta,
 button,
-a.btn,
+a.btn {
+  border-radius: var(--btn-border-radius, 0);
+}
+
+.journey-modern-layout,
 .outcomes-row,
 .outcome-card,
 .testimonial-card,
@@ -1875,7 +1985,7 @@ a.btn,
 .exemption-card-image,
 .why-acca-image-wrapper,
 .exemption-tip-box {
-  border-radius: 0 !important;
+  border-radius: var(--card-border-radius, 0);
 }
 
 /* Increased breathing room separator spacing for index2.html variation */
@@ -2308,7 +2418,7 @@ a.btn,
     margin: 0 auto 20px auto;
   }
 
-  .btn-presence-cta {
+  .presence-text-col .btn {
     align-self: center;
   }
 
@@ -2345,15 +2455,122 @@ a.btn,
     flex: none !important;
     width: 100% !important;
   }
+}
 
-  .city-col-item:last-child {
-    grid-column: span 2 !important;
-    margin-top: 10px !important;
+/* ─── Tablet: side-by-side (hero left + timeline right) ─── */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    min-height: calc(100vh - 64px);
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    flex: 0 0 44%;
+    max-width: 44%;
+    padding: 40px 20px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 10;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle {
+    max-width: 360px;
+    /* Constrains to ~2 lines */
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+  }
+
+  .hero-actions {
+    width: auto;
+  }
+
+  .hero-timeline {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    flex: 1;
+    height: auto;
+    margin: 0;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+    align-self: center;
+  }
+
+  /* Vertical dotted connection line */
+  .hero-timeline::before {
+    content: '';
+    position: absolute;
+    top: calc(30px + 20px);
+    /* padding-top + half of icon (40px icon) */
+    bottom: calc(30px + 20px);
+    left: calc(24px + 20px);
+    /* padding-left + half of icon */
+    border-left: 2px dotted rgba(178, 128, 59, 0.45);
+    z-index: 1;
+  }
+
+  .hero-timeline-curve-svg {
+    display: none;
+  }
+
+  .timeline-item {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .timeline-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline-icon i {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .timeline-content {
+    white-space: nowrap;
+  }
+
+  .timeline-content .step-num {
+    font-size: 0.7rem;
+  }
+
+  .step-title-text {
+    font-size: 0.7rem;
+  }
+
+  .step-desc-text {
+    font-size: 0.62rem;
+  }
+
+  .hero-right {
+    display: none;
+    /* Hide building image on tablet to give timeline room */
   }
 }
 
-/* Responsive adjustments for Hero Section */
-@media (max-width: 992px) {
+/* ─── Mobile: stacked column layout ─── */
+@media (max-width: 768px) {
   .hero {
     flex-direction: column;
     min-height: auto;
@@ -2401,16 +2618,13 @@ a.btn,
     z-index: 20;
   }
 
-  /* Beautiful vertical dotted connection line */
+  /* Vertical dotted connection line */
   .hero-timeline::before {
     content: '';
     position: absolute;
     top: 27px;
-    /* Starts at the center of the first icon */
     bottom: 27px;
-    /* Ends at the center of the last icon */
     left: calc(24px + 27px);
-    /* Aligns perfectly with the center of the timeline-icon */
     border-left: 2px dotted rgba(178, 128, 59, 0.45);
     z-index: 1;
   }
@@ -2426,6 +2640,10 @@ a.btn,
     height: auto;
     margin-bottom: 0;
     width: 100%;
+  }
+
+  .timeline-content {
+    white-space: normal;
   }
 
   .timeline-icon {
@@ -2550,7 +2768,7 @@ a.btn,
 .section-acca-exemptions {
   background-color: #faf8f5;
   /* Premium soft cream background (alternating with white sections) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -2708,10 +2926,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-  .section-acca-exemptions {
-    padding: 60px 0;
-  }
-
   .exemptions-modern-grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2723,28 +2937,6 @@ a.btn,
 
   .exemption-tip-box {
     padding: 16px 20px;
-  }
-}
-
-/* Exemptions Button Styling */
-.btn-exemptions-cta {
-  align-self: flex-start;
-  font-size: 0.75rem;
-  transform: translateY(-8px);
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  border-radius: 4px;
-}
-
-.btn-exemptions-cta:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
-@media (max-width: 1300px) {
-  .btn-exemptions-cta {
-    align-self: center;
-    /* Center-align inside stacked vertical layouts on tablets and mobile screens */
   }
 }
 
@@ -2821,10 +3013,9 @@ a.btn,
 }
 
 .home-cta-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   color: var(--color-secondary);
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -2832,8 +3023,7 @@ a.btn,
 }
 
 .home-cta-title {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: var(--font-size-h2);
   color: #ffffff;
   margin-bottom: 20px;
   line-height: 1.25;
@@ -2841,7 +3031,6 @@ a.btn,
 }
 
 .home-cta-desc {
-  font-family: var(--font-sans);
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
@@ -2855,43 +3044,6 @@ a.btn,
   width: 100%;
 }
 
-.home-cta-btn-primary {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: #ffffff;
-  padding: 14px 28px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.home-cta-btn-primary:hover {
-  background-color: #9d7134;
-  border-color: #9d7134;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(178, 128, 59, 0.25);
-  color: #ffffff;
-}
-
-.home-cta-btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  padding: 14px 28px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.home-cta-btn-secondary:hover {
-  border-color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
-  color: #ffffff;
-}
 
 /* Responsive adjustments for bottom CTA */
 @media (max-width: 768px) {
@@ -2899,9 +3051,7 @@ a.btn,
     padding: 70px 0;
   }
 
-  .home-cta-title {
-    font-size: 2.2rem;
-  }
+
 
   .home-cta-desc {
     font-size: 0.95rem;
@@ -2925,7 +3075,7 @@ a.btn,
 .section-home-faq {
   background-color: #ffffff;
   /* Alternates cleanly with other sections */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3012,9 +3162,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-  .section-home-faq {
-    padding: 60px 0;
-  }
 
   .faq-question {
     padding: 18px 20px;
@@ -3032,7 +3179,7 @@ a.btn,
 .section-home-blogs {
   background-color: #faf8f5;
   /* Alternating section color (cream) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3140,7 +3287,7 @@ a.btn,
 .section-home-gallery {
   background-color: #ffffff;
   /* Alternating section color (white) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3243,11 +3390,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-
-  .section-home-blogs,
-  .section-home-gallery {
-    padding: 60px 0;
-  }
 
   .home-blogs-grid {
     grid-template-columns: 1fr;
