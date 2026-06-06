@@ -231,26 +231,26 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
-  /* max(vw, vh) — arc grows with whichever viewport dimension is larger.
-     Capped at 80vh so it never overflows the hero section.
-     51.5/68 ≈ 0.757 preserves the original 420/560 = 0.75 aspect ratio. */
-  height: clamp(400px, max(38vw, 68vh), 80vh);
+  /* vh-dominant so the arc breathes vertically on all screen sizes.
+     82vh gives ~92 px between the 9 nodes at a 1080px-tall viewport.
+     Width is intentionally narrower to keep the arc tall and open. */
+  height: clamp(500px, max(38vw, 90vh), 94vh);
   width: clamp(300px, max(29vw, 51.5vh), 61vh);
 }
 
-/* ── Large desktop (≥1440px): arc visibly larger on bigger screens ── */
+/* ── Large desktop (≥1440px) ── */
 @media (min-width: 1440px) {
   .hero-timeline {
-    height: clamp(460px, max(38vw, 70vh), 82vh);
-    width: clamp(345px, max(29vw, 53vh), 63vh);
+    height: clamp(560px, max(38vw, 91vh), 94vh);
+    width: clamp(330px, max(29vw, 53vh), 63vh);
   }
 }
 
-/* ── Extra-large screens (≥1920px): full proportional scale ── */
+/* ── Extra-large screens (≥1920px) ── */
 @media (min-width: 1920px) {
   .hero-timeline {
-    height: clamp(600px, max(36vw, 72vh), 84vh);
-    width: clamp(450px, max(27.5vw, 55vh), 65vh);
+    height: clamp(700px, max(36vw, 92vh), 95vh);
+    width: clamp(430px, max(27.5vw, 55vh), 65vh);
   }
 }
 

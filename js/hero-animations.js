@@ -9,6 +9,9 @@
  *   5. SVG curve draws itself along the path
  *   6. Timeline items cascade in one-by-one
  *   7. Hero right image reveals with a subtle scale + fade
+ *
+ * Also dynamically positions the 9 timeline nodes exactly on the
+ * bezier arc at all desktop viewport sizes, recalculating on resize.
  */
 
 (function () {
@@ -44,6 +47,49 @@
     }, delay);
   }
 
+  // ── Dynamic bezier node positioning ───────────────────────────
+  // Places each .timeline-item so its icon centre lands precisely
+  // on the quadratic bezier  M 140,30 Q -70,280 140,530
+  // which lives in a 160 × 560 viewBox rendered at 38.1% of the
+  // container width × 100% of the container height.
+  function positionTimelineNodes() {
+    var container = document.querySelector('.hero-timeline');
+    if (!container) return;
+    // Tablet / mobile use CSS flow layout — skip
+    if (window.innerWidth <= 1200) return;
+
+    var W = container.offsetWidth;
+    var H = container.offsetHeight;
+    if (!W || !H) return;
+
+    // SVG occupies 38.1 % of the container width at full height
+    var svgW = W * 0.381;
+
+    // Icon size drives the centre-offset calculation
+    var icon = container.querySelector('.timeline-icon');
+    var iconPx = icon ? icon.offsetWidth : 32;
+
+    var items = container.querySelectorAll('.timeline-item');
+    var last  = items.length - 1;
+
+    items.forEach(function (el, i) {
+      var t = i / last;
+      var u = 1 - t;
+
+      // Quadratic bezier: P0=(140,30)  P1=(-70,280)  P2=(140,530)
+      var xVB = u*u*140 + 2*u*t*(-70) + t*t*140;
+      var yVB = u*u*30  + 2*u*t*280   + t*t*530;
+
+      // Map viewBox coords to container pixels
+      var xPx = (xVB / 160) * svgW;
+      var yPx = (yVB / 560) * H;
+
+      // Position so the icon centre sits on the arc point
+      el.style.left = ((xPx - iconPx / 2) / W * 100).toFixed(3) + '%';
+      el.style.top  = ((yPx - iconPx / 2) / H * 100).toFixed(3) + '%';
+    });
+  }
+
   // ── Main orchestration ────────────────────────────────────────
   function runHeroAnimation() {
     var hero = document.querySelector('.hero');
@@ -51,12 +97,12 @@
     hero.dataset.animated = 'true';
 
     // Collect elements
-    var heroTitle = hero.querySelector('.hero-title');
-    var heroLine = hero.querySelector('.hero-title-line');
+    var heroTitle    = hero.querySelector('.hero-title');
+    var heroLine     = hero.querySelector('.hero-title-line');
     var heroSubtitle = hero.querySelector('.hero-subtitle');
-    var heroActions = hero.querySelector('.hero-actions');
-    var heroRight = hero.querySelector('.hero-right');
-    var curveSvg = hero.querySelector('.hero-timeline-curve-svg');
+    var heroActions  = hero.querySelector('.hero-actions');
+    var heroRight    = hero.querySelector('.hero-right');
+    var curveSvg     = hero.querySelector('.hero-timeline-curve-svg');
     var timelineItems = hero.querySelectorAll('.timeline-item');
 
     // ── Tier 1: Title (stagger each line via <br> wrapping) ──
@@ -79,6 +125,9 @@
         .join('');
     }
 
+    // ── Position nodes on the arc before they become visible ──
+    positionTimelineNodes();
+
     // ── Tier 2: Underline ──
     addReadyClass(heroLine, 650);
 
@@ -99,6 +148,13 @@
     // ── Tier 7: Hero right image ──
     addReadyClass(heroRight, 800);
   }
+
+  // ── Resize handler: reposition nodes on viewport change ──────
+  var _rafId;
+  window.addEventListener('resize', function () {
+    cancelAnimationFrame(_rafId);
+    _rafId = requestAnimationFrame(positionTimelineNodes);
+  });
 
   // Fire on DOMContentLoaded (covers initial page load)
   if (document.readyState === 'loading') {
