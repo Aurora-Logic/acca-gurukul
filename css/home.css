@@ -3044,7 +3044,7 @@ a.btn {
 
 .home-cta-left {
   flex: 1;
-  padding: 90px 64px 90px max(40px, calc((100vw - 1280px) / 2 + 48px));
+  padding: 90px 64px 90px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3055,7 +3055,7 @@ a.btn {
   width: 44%;
   flex-shrink: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .home-cta-image {
@@ -3064,6 +3064,7 @@ a.btn {
   object-fit: cover;
   object-position: center top;
   display: block;
+  clip-path: inset(0);
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -3071,14 +3072,17 @@ a.btn {
   transform: scale(1.03);
 }
 
-/* Left-to-right gradient fade from page bg into the image */
+/* Gradient bleeds left into text column to centre the separation */
 .home-cta-image-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: -120px;
+  width: calc(28% + 120px);
   background: linear-gradient(
     to right,
     var(--color-bg) 0%,
-    transparent 28%
+    transparent 100%
   );
   pointer-events: none;
   z-index: 1;
