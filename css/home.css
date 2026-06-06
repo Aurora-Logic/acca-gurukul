@@ -1,5 +1,158 @@
 /* Home Page Styles */
 
+/* ═══════════════════════════════════════════════════════════════
+   HERO LOAD ANIMATION — Keyframes & Initial States
+   Orchestrated by /js/hero-animations.js
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroLineExpand {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.04) translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes heroTimelineItemIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(4px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ── Initial hidden states (pre-animation) ───────────────── */
+
+/* Title segments (created by JS wrapping <br> splits) */
+.hero-title-segment {
+  display: block;
+  opacity: 0;
+  transform: translateY(32px);
+  animation: heroFadeSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* animation-delay is set inline by JS for staggering */
+}
+
+/* Gold underline: starts collapsed */
+.hero-title-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: none;
+}
+.hero-title-line.hero-anim-ready {
+  animation: heroLineExpand 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtitle: starts hidden */
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.hero-subtitle.hero-anim-ready {
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* CTA actions: starts hidden */
+.hero-actions {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.hero-actions.hero-anim-ready {
+  animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Timeline items: start hidden for cascade */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-24px) scale(0.92);
+}
+.timeline-item.hero-anim-ready {
+  animation: heroTimelineItemIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Hero right image: starts hidden */
+.hero-right {
+  opacity: 0;
+  transform: scale(1.04) translateX(20px);
+}
+.hero-right.hero-anim-ready {
+  animation: heroImageReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* SVG curve path — initial state handled by JS (dasharray/dashoffset) */
+.hero-timeline-curve-svg path {
+  will-change: stroke-dashoffset;
+}
+
+/* ── Accessibility: skip animations for motion-sensitive users ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-segment,
+  .hero-title-line,
+  .hero-subtitle,
+  .hero-actions,
+  .timeline-item,
+  .hero-right {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-timeline-curve-svg path {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   END HERO LOAD ANIMATION
+   ═══════════════════════════════════════════════════════════════ */
+
 /* Hero Section */
 .hero {
   position: relative;
