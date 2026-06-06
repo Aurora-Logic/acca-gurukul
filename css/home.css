@@ -332,10 +332,9 @@
 }
 
 .section-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   color: var(--color-secondary);
   text-transform: uppercase;
 }
@@ -1631,11 +1630,10 @@
 }
 
 .presence-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 700;
   color: var(--color-secondary);
-  letter-spacing: 1.5px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   margin-bottom: 6px;
   text-transform: uppercase;
 }
@@ -2848,10 +2846,9 @@ a.btn {
 }
 
 .home-cta-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: var(--font-size-eyebrow);
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: var(--letter-spacing-eyebrow);
   color: var(--color-secondary);
   text-transform: uppercase;
   margin-bottom: 16px;

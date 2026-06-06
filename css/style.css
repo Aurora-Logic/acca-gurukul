@@ -57,6 +57,10 @@
   --line-height-tight: 1.25;
   --line-height-normal: 1.6;
   --line-height-base: 1.5;
+
+  /* Eyebrow Sizing & Spacing Tokens */
+  --font-size-eyebrow: 0.8rem;
+  --letter-spacing-eyebrow: 1.5px;
 }
 
 * {
@@ -815,6 +819,8 @@ h1, h2, h3, h4, h5, h6 {
     --font-size-hero: 2.4rem;
     --font-size-h2: 2rem;
     --font-size-h3: 1.5rem;
+    --font-size-eyebrow: 0.75rem;
+    --letter-spacing-eyebrow: 1.2px;
   }
 
   .container {
