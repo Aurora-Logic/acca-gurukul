@@ -69,7 +69,7 @@ body {
   font-family: var(--font-sans);
   color: var(--color-dark);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: var(--line-height-normal, 1.6);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -94,7 +94,7 @@ ul {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: var(--line-height-tight, 1.25);
 }
 
 .text-primary { color: var(--color-primary); }

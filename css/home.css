@@ -12,7 +12,7 @@
 
 .hero-left {
   flex: 1;
-  padding: 80px 40px 80px 80px;
+  padding: var(--space-5xl) var(--space-3xl) var(--space-5xl) var(--space-5xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,15 +22,14 @@
 }
 
 .hero-title {
-  font-family: var(--font-serif);
-  font-size: 3.3rem;
+  font-size: var(--font-size-hero);
   /* Elegant, compact size matching Screenshot 2 */
   font-weight: 500;
   /* Lighter medium weight is spacious and premium */
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   color: #000000;
   /* Force pure black text for maximum high-contrast crispness */
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   letter-spacing: -0.5px;
 }
 
@@ -42,7 +41,7 @@
   width: 48px;
   height: 2px;
   background-color: var(--color-secondary);
-  margin-bottom: 24px;
+  margin-bottom: var(--space-xl);
   margin-top: -8px;
   /* Positions perfectly below serif descenders */
 }
@@ -51,8 +50,8 @@
   font-size: 0.95rem;
   color: var(--color-gray);
   max-width: 460px;
-  margin-bottom: 35px;
-  line-height: 1.6;
+  margin-bottom: var(--space-xxl);
+  line-height: var(--line-height-normal);
 }
 
 .hero-actions {
