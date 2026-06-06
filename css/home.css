@@ -662,6 +662,7 @@
   min-height: auto;
   transition: transform 0.3s ease;
   box-shadow: none;
+  text-decoration: none;
 }
 
 .outcome-card:last-child {
@@ -2352,11 +2353,6 @@ a.btn,
   .city-col-item {
     flex: none !important;
     width: 100% !important;
-  }
-
-  .city-col-item:last-child {
-    grid-column: span 2 !important;
-    margin-top: 10px !important;
   }
 }
 
