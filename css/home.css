@@ -62,14 +62,6 @@
   /* Strictly force buttons to be on the same line */
 }
 
-.hero-actions .btn {
-  padding: 10px 22px;
-  /* Smaller, cleaner padding for visual balance */
-  font-size: 0.8rem;
-  /* Cleaner, legible font size */
-  font-weight: 500;
-  border-radius: 4px;
-}
 
 /* Timeline — fully responsive arc
    The container scales proportionally using clamp() so the arc
@@ -310,7 +302,7 @@
 .section-career-outcomes,
 .section-aspiration-journey,
 .section-testimonials-metrics {
-  padding: 35px 0;
+  padding: var(--section-padding);
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
@@ -350,8 +342,7 @@
 }
 
 .section-title {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
+  font-size: var(--font-size-h2);
   /* Unified symmetric size for all section headers */
   line-height: 1.2;
   color: var(--color-dark);
@@ -384,8 +375,6 @@
 .section-acca-journey {
   background-color: #ffffff;
   /* Premium light warm background changed to white for contrast */
-  padding: 80px 0;
-  /* Mathematically balanced to keep vertical distance above and below the gold box symmetrical */
 }
 
 .section-acca-journey .container {
@@ -424,7 +413,7 @@
   width: 100%;
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.2);
-  border-radius: 4px;
+  border-radius: var(--card-border-radius, 0);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
@@ -599,7 +588,6 @@
 .section-career-outcomes {
   background-color: #faf8f5;
   /* Elegant cream background */
-  padding: 80px 0;
   position: relative;
   overflow: hidden;
 }
@@ -741,7 +729,7 @@
   .outcome-card {
     flex: 0 0 calc(33.333% - 16px);
     border: 1px solid rgba(178, 128, 59, 0.18);
-    border-radius: 8px;
+    border-radius: var(--card-border-radius, 0);
   }
 
   .outcome-card:last-child {
@@ -771,7 +759,6 @@
 /* 5. Aspiration Journey Section */
 .section-aspiration-journey {
   background-color: #ffffff;
-  padding: 80px 0;
 }
 
 .section-aspiration-journey .section-left {
@@ -1079,7 +1066,7 @@
 .metric-card {
   background-color: #ffffff;
   border: 1px solid rgba(178, 128, 59, 0.1);
-  border-radius: 6px;
+  border-radius: var(--card-border-radius, 0);
   padding: 24px;
   display: flex;
   gap: 20px;
@@ -1400,7 +1387,7 @@
     background-color: #ffffff;
     border: 1px solid rgba(178, 128, 59, 0.18);
     border-right: 1px solid rgba(178, 128, 59, 0.18) !important;
-    border-radius: 6px;
+    border-radius: var(--card-border-radius, 0);
     padding: 35px 12px 30px 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
   }
@@ -1459,20 +1446,7 @@
 
 @media (max-width: 768px) {
 
-
-  .section-acca-journey,
-  .section-career-outcomes,
-  .section-aspiration-journey,
-  .section-testimonials-metrics {
-    padding: 30px 0;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
   .presence-title {
-    font-size: 2rem;
     white-space: normal;
   }
 
@@ -1653,6 +1627,10 @@
   justify-content: center;
 }
 
+.presence-text-col .btn {
+  align-self: flex-start;
+}
+
 .presence-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -1664,8 +1642,7 @@
 }
 
 .presence-title {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: var(--font-size-h2);
   font-weight: 600;
   line-height: 1.25;
   color: var(--color-dark);
@@ -1677,38 +1654,6 @@
   height: 2px;
   background-color: var(--color-secondary);
   margin-bottom: 20px;
-}
-
-.btn-presence-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  padding: 8px 16px;
-  border: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  background: transparent;
-  transition: all 0.3s ease;
-  border-radius: 4px;
-}
-
-.btn-presence-cta:hover {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
-
-.btn-presence-cta i {
-  margin-left: 6px;
-  transition: transform 0.3s ease;
-}
-
-.btn-presence-cta:hover i {
-  transform: translateX(4px);
 }
 
 /* Dividers */
@@ -1851,23 +1796,15 @@
 /* More Cities special full-width card layout */
 
 /* Primary Red Button overrides for index2.html variation */
-.btn-presence-cta {
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  border-radius: 0 !important;
-}
-
-.btn-presence-cta:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
 .btn,
 .btn-primary,
 .btn-outline,
-.btn-presence-cta,
 button,
-a.btn,
+a.btn {
+  border-radius: var(--btn-border-radius, 0);
+}
+
+.journey-modern-layout,
 .outcomes-row,
 .outcome-card,
 .testimonial-card,
@@ -1884,7 +1821,7 @@ a.btn,
 .exemption-card-image,
 .why-acca-image-wrapper,
 .exemption-tip-box {
-  border-radius: 0 !important;
+  border-radius: var(--card-border-radius, 0);
 }
 
 /* Increased breathing room separator spacing for index2.html variation */
@@ -2317,7 +2254,7 @@ a.btn,
     margin: 0 auto 20px auto;
   }
 
-  .btn-presence-cta {
+  .presence-text-col .btn {
     align-self: center;
   }
 
@@ -2667,7 +2604,7 @@ a.btn,
 .section-acca-exemptions {
   background-color: #faf8f5;
   /* Premium soft cream background (alternating with white sections) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -2825,10 +2762,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-  .section-acca-exemptions {
-    padding: 60px 0;
-  }
-
   .exemptions-modern-grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2840,28 +2773,6 @@ a.btn,
 
   .exemption-tip-box {
     padding: 16px 20px;
-  }
-}
-
-/* Exemptions Button Styling */
-.btn-exemptions-cta {
-  align-self: flex-start;
-  font-size: 0.75rem;
-  transform: translateY(-8px);
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  border-radius: 4px;
-}
-
-.btn-exemptions-cta:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-}
-
-@media (max-width: 1300px) {
-  .btn-exemptions-cta {
-    align-self: center;
-    /* Center-align inside stacked vertical layouts on tablets and mobile screens */
   }
 }
 
@@ -2949,8 +2860,7 @@ a.btn,
 }
 
 .home-cta-title {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: var(--font-size-h2);
   color: #ffffff;
   margin-bottom: 20px;
   line-height: 1.25;
@@ -2958,7 +2868,6 @@ a.btn,
 }
 
 .home-cta-desc {
-  font-family: var(--font-sans);
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
@@ -2972,43 +2881,6 @@ a.btn,
   width: 100%;
 }
 
-.home-cta-btn-primary {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: #ffffff;
-  padding: 14px 28px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.home-cta-btn-primary:hover {
-  background-color: #9d7134;
-  border-color: #9d7134;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(178, 128, 59, 0.25);
-  color: #ffffff;
-}
-
-.home-cta-btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  padding: 14px 28px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-.home-cta-btn-secondary:hover {
-  border-color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
-  color: #ffffff;
-}
 
 /* Responsive adjustments for bottom CTA */
 @media (max-width: 768px) {
@@ -3016,9 +2888,7 @@ a.btn,
     padding: 70px 0;
   }
 
-  .home-cta-title {
-    font-size: 2.2rem;
-  }
+
 
   .home-cta-desc {
     font-size: 0.95rem;
@@ -3042,7 +2912,7 @@ a.btn,
 .section-home-faq {
   background-color: #ffffff;
   /* Alternates cleanly with other sections */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3129,9 +2999,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-  .section-home-faq {
-    padding: 60px 0;
-  }
 
   .faq-question {
     padding: 18px 20px;
@@ -3149,7 +3016,7 @@ a.btn,
 .section-home-blogs {
   background-color: #faf8f5;
   /* Alternating section color (cream) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3257,7 +3124,7 @@ a.btn,
 .section-home-gallery {
   background-color: #ffffff;
   /* Alternating section color (white) */
-  padding: 80px 0;
+  padding: var(--section-padding);
   position: relative;
   overflow: hidden;
 }
@@ -3360,11 +3227,6 @@ a.btn,
 }
 
 @media (max-width: 768px) {
-
-  .section-home-blogs,
-  .section-home-gallery {
-    padding: 60px 0;
-  }
 
   .home-blogs-grid {
     grid-template-columns: 1fr;

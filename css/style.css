@@ -26,6 +26,37 @@
 
   --font-serif: 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
+
+  /* Global Section Padding */
+  --section-padding: 80px 0;
+  --section-padding-lg: 90px 0;
+
+  /* Heading Typography Sizes (Desktop) */
+  --font-size-hero: 3.3rem;
+  --font-size-h2: 2.4rem;
+  --font-size-h3: 1.8rem;
+  --font-size-h4: 1.2rem;
+
+  /* Standard Border Radii (Enforced 0 by default as per user comment) */
+  --btn-border-radius: 0;
+  --card-border-radius: 0;
+
+  /* Layout Spacing Scale (Margins, Paddings, Gaps) */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-xxl: 30px;
+  --space-3xl: 40px;
+  --space-4xl: 60px;
+  --space-5xl: 80px;
+
+  /* Typography Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.6;
+  --line-height-base: 1.5;
 }
 
 * {
@@ -83,15 +114,49 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid transparent;
+  border-radius: var(--btn-border-radius, 0);
 }
 
+/* Button Sizing Scales (Trial & Error Standardized Padding) */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.btn-md {
+  padding: 10px 22px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Button Color Variants */
 .btn-primary {
   background-color: var(--color-primary);
+  border-color: var(--color-primary);
   color: var(--color-bg);
 }
 
 .btn-primary:hover {
   background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #9d7134; /* Darker Gold hover */
+  border-color: #9d7134;
 }
 
 .btn-outline {
@@ -103,6 +168,40 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline:hover {
   background-color: var(--color-secondary);
   color: var(--color-bg);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .btn-icon {
@@ -710,8 +809,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --section-padding: 60px 0;
+    --section-padding-lg: 70px 0;
+    --font-size-hero: 2.4rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.5rem;
+  }
+
   .container {
     padding: 0 20px; /* Reduce container padding on mobile sizes */
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --font-size-hero: 2.1rem;
   }
 }
 
