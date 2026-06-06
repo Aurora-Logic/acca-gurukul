@@ -954,10 +954,28 @@
   position: relative;
   width: 100%;
   border-radius: 0;
-  /* Removed border-radius as requested */
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   background-color: var(--color-dark);
+}
+
+/* Gradient bleed — image fades into dark at the bottom */
+.skyline-image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 6, 0.96) 0%,
+    rgba(6, 6, 6, 0.72) 35%,
+    rgba(6, 6, 6, 0.2) 65%,
+    transparent 100%
+  );
+  z-index: 2;
+  pointer-events: none;
 }
 
 .dotted-map-overlay {
@@ -975,52 +993,54 @@
   width: 100%;
   height: 480px;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 }
 
-/* Glassmorphism Quote card overlay on Skyline image */
+/* Quote floats on gradient — no hard box */
 .quote-card-overlay {
   position: absolute;
   bottom: 0;
+  left: 0;
   right: 0;
-  left: auto;
   width: 100%;
-  max-width: 380px;
-  background: rgba(15, 21, 28, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(178, 128, 59, 0.25);
-  border-right: none;
-  border-bottom: none;
-  border-radius: 8px 0 0 0;
-  padding: 24px 30px;
+  max-width: 100%;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 0;
+  padding: 28px 32px 30px;
   z-index: 3;
-  box-shadow: -5px -5px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
 }
 
 .quote-icon-gold {
   font-family: var(--font-serif);
-  font-size: 4rem;
+  font-size: 2.8rem;
   line-height: 1;
   color: var(--color-secondary);
-  height: 30px;
-  margin-top: -15px;
-  margin-bottom: 10px;
+  height: 24px;
+  margin-top: -10px;
+  margin-bottom: 12px;
+  opacity: 0.9;
 }
 
 .quote-overlay-text {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
-  line-height: 1.5;
-  color: #ffffff;
-  margin-bottom: 15px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 16px;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .quote-overlay-divider {
-  width: 30px;
+  width: 40px;
   height: 2px;
-  background-color: var(--color-secondary);
+  background: linear-gradient(to right, var(--color-secondary), transparent);
 }
 
 /* 4-Step Timeline */
@@ -2303,7 +2323,7 @@ a.btn {
 
   .why-acca-intro-row {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
   }
 
   .why-acca-intro-left,
@@ -2788,7 +2808,7 @@ a.btn {
 .exemptions-modern-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -2874,7 +2894,7 @@ a.btn {
   color: var(--color-primary);
   background: rgba(178, 128, 59, 0.12);
   padding: 4px 10px;
-  border-radius: 0;
+  border-radius: 50px;
   margin-bottom: 16px;
   letter-spacing: 0.5px;
 }
