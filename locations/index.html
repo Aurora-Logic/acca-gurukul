@@ -192,7 +192,17 @@
               </div>
               <div class="location-stat-info">
                 <div class="location-stat-number-row">
-                  <span class="location-stat-num-text">Countless</span>
+                  <svg viewBox="0 0 64 36" class="infinity-svg infinity-stat">
+                    <path
+                      class="infinity-path"
+                      d="M32 18 C24 6, 8 6, 8 18 C8 30, 24 30, 32 18 C40 6, 56 6, 56 18 C56 30, 40 30, 32 18 Z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="5.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
                 <span class="location-stat-label">Successful<br />Careers</span>
               </div>
@@ -238,6 +248,10 @@
         
         const runCounter = () => {
           const counters = document.querySelectorAll('.location-stat-num');
+          const infinityStat = document.querySelector('.infinity-stat');
+          if (infinityStat) {
+            infinityStat.classList.add('active');
+          }
           
           counters.forEach(counter => {
             const updateCount = () => {

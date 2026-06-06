@@ -448,3 +448,23 @@
     font-size: 1.5rem;
   }
 }
+
+/* Infinity SVG Drawing Animation */
+.infinity-svg {
+  height: 2.3rem;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--color-dark);
+  overflow: visible;
+}
+
+.infinity-path {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 4.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.infinity-svg.active .infinity-path {
+  stroke-dashoffset: 0;
+}
