@@ -458,12 +458,52 @@ textarea.contact-form-control {
   padding: 16px;
   border-radius: 8px;
   background-color: #fafafa;
-  transition: transform 0.25s;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  user-select: none;
 }
 
 .presence-city-card:hover {
   transform: translateX(4px);
-  background-color: #f7f7f7;
+  background-color: #f5f5f5;
+  border-color: rgba(178, 128, 59, 0.15);
+}
+
+.presence-city-card.active {
+  background-color: rgba(178, 128, 59, 0.04);
+  border-color: rgba(178, 128, 59, 0.25);
+  box-shadow: 0 4px 15px rgba(178, 128, 59, 0.05);
+}
+
+/* Open in New Tab Button */
+.map-external-link {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(178, 128, 59, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.map-external-link i,
+.map-external-link svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5px;
+}
+
+.map-external-link:hover {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+  transform: scale(1.1);
 }
 
 .presence-city-icon {

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load Navbar
   const navbarContainer = document.getElementById('navbar-container');
   if (navbarContainer) {
-    fetch('/components/navbar.html')
+    fetch('/components/navbar.html?v=1.1.8')
       .then(response => response.text())
       .then(data => {
         const parser = new DOMParser();
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load Footer
   const footerContainer = document.getElementById('footer-container');
   if (footerContainer) {
-    fetch('/components/footer.html')
+    fetch('/components/footer.html?v=1.1.8')
       .then(response => response.text())
       .then(data => {
         const parser = new DOMParser();
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load Corporate Partners Marquee
   const marqueeContainer = document.getElementById('marquee-container');
   if (marqueeContainer) {
-    fetch('/components/companies-marquee.html')
+    fetch('/components/companies-marquee.html?v=1.2.0')
       .then(response => response.text())
       .then(data => {
         marqueeContainer.innerHTML = data;
