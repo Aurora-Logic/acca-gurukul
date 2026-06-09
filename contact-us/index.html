@@ -233,7 +233,7 @@
             <!-- Right: Cities Details -->
             <div class="presence-list-col">
               <!-- Nashik -->
-              <div class="presence-city-card">
+              <div class="presence-city-card active" data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1843236712396!2d73.789803!3d20.013444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeed08db7f3fd%3A0xe54e605d8f6cc0f7!2sNashik%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717246000000!5m2!1sen!2sin">
                 <div class="presence-city-icon">
                   <i data-lucide="map-pin"></i>
                 </div>
@@ -241,10 +241,13 @@
                   <span class="presence-city-name">NASHIK</span>
                   <span class="presence-city-desc">In Association with Mindspark Academy</span>
                 </div>
+                <a href="https://maps.app.goo.gl/rKbekrQNGm3FayEs9" target="_blank" rel="noopener noreferrer" class="map-external-link" title="Open in Google Maps">
+                  <i data-lucide="arrow-up-right"></i>
+                </a>
               </div>
 
               <!-- Nagpur -->
-              <div class="presence-city-card">
+              <div class="presence-city-card" data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.840786524317!2d79.0881546!3d21.1458004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5a3a1f1ad%3A0x5c7e3f26cf94c34a!2sNagpur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717246200000!5m2!1sen!2sin">
                 <div class="presence-city-icon">
                   <i data-lucide="map-pin"></i>
                 </div>
@@ -252,10 +255,13 @@
                   <span class="presence-city-name">NAGPUR</span>
                   <span class="presence-city-desc">In Association with DG Caps</span>
                 </div>
+                <a href="https://maps.app.goo.gl/2cLzAHudh9B8jt127" target="_blank" rel="noopener noreferrer" class="map-external-link" title="Open in Google Maps">
+                  <i data-lucide="arrow-up-right"></i>
+                </a>
               </div>
 
               <!-- Mumbai -->
-              <div class="presence-city-card">
+              <div class="presence-city-card" data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7924734898165!2d72.8776559!3d19.0759837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717246100000!5m2!1sen!2sin">
                 <div class="presence-city-icon">
                   <i data-lucide="map-pin"></i>
                 </div>
@@ -263,6 +269,23 @@
                   <span class="presence-city-name">MUMBAI</span>
                   <span class="presence-city-desc">In Association with Anna Leela College of Commerce & Economics</span>
                 </div>
+                <a href="https://maps.app.goo.gl/YEDzM4GWLGowAHr18" target="_blank" rel="noopener noreferrer" class="map-external-link" title="Open in Google Maps">
+                  <i data-lucide="arrow-up-right"></i>
+                </a>
+              </div>
+
+              <!-- Udaipur -->
+              <div class="presence-city-card" data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.2711674400494!2d73.6823573!3d24.585445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e56550a14411%3A0xdbd8c28455b868b0!2sUdaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1717246300000!5m2!1sen!2sin">
+                <div class="presence-city-icon">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div class="presence-city-details">
+                  <span class="presence-city-name">UDAIPUR</span>
+                  <span class="presence-city-desc">In Association with Edu Growth</span>
+                </div>
+                <a href="https://maps.app.goo.gl/K5pQNFbU6LvJNJj29" target="_blank" rel="noopener noreferrer" class="map-external-link" title="Open in Google Maps">
+                  <i data-lucide="arrow-up-right"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -350,6 +373,31 @@
     <!-- Contact Form Feedback Simulation -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // Interactive Presence Map Switcher
+        const mapCards = document.querySelectorAll('.presence-city-card');
+        const mapIframe = document.querySelector('.presence-map-col iframe');
+
+        if (mapCards.length > 0 && mapIframe) {
+          mapCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+              // Ignore clicks inside the external link button
+              if (e.target.closest('.map-external-link')) {
+                return;
+              }
+
+              // Update active class
+              mapCards.forEach(c => c.classList.remove('active'));
+              card.classList.add('active');
+
+              // Switch embed URL
+              const embedUrl = card.getAttribute('data-embed');
+              if (embedUrl) {
+                mapIframe.src = embedUrl;
+              }
+            });
+          });
+        }
+
         const form = document.getElementById('contactForm');
         if (form) {
           form.addEventListener('submit', (e) => {
