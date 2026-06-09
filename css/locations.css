@@ -2,7 +2,7 @@
 
 /* Hero Section */
 .locations-hero {
-  padding: 80px 0 0;
+  padding: 40px 0 0;
   background-color: #ffffff;
   position: relative;
   overflow: hidden;
@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   gap: 60px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 
 .locations-hero-left {
@@ -28,7 +28,7 @@
 
 .locations-hero-right img {
   width: 100%;
-  max-width: 560px;
+  max-width: 480px;
   height: auto;
   border-radius: 0;
 }
@@ -322,7 +322,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 22px 28px;
+  padding: 16px 24px;
   color: var(--color-dark);
   transition: all 0.3s ease;
   cursor: default;
