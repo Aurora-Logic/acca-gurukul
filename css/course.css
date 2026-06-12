@@ -1,9 +1,9 @@
 /* ACCA Course Page Stylesheet */
 
-/* Hero Section (Dark Theme) */
+/* Hero Section (Red Theme) */
 .section-course-hero {
   padding: 80px 0;
-  background: linear-gradient(135deg, #101820 0%, #1c2630 100%);
+  background: linear-gradient(135deg, #7C1318 0%, #B51C24 100%);
   color: #ffffff;
   position: relative;
   overflow: hidden;

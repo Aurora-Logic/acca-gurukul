@@ -149,8 +149,8 @@
                 </label>
               </div>
 
-              <button type="submit" class="contact-submit-btn">
-                SEND MESSAGE <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              <button type="submit" class="btn btn-primary btn-lg contact-submit-btn">
+                SEND MESSAGE <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px; margin-left: 8px;"></i>
               </button>
             </form>
           </div>
@@ -309,8 +309,8 @@
             </div>
             <div class="journey-cta-right">
               <!-- Triggers the counselling modal automatically on click -->
-              <a href="#book-counselling" class="journey-cta-btn">
-                BOOK A COUNSELLING SESSION <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              <a href="#book-counselling" class="btn btn-secondary btn-lg journey-cta-btn">
+                BOOK A COUNSELLING SESSION <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px; margin-left: 8px;"></i>
               </a>
             </div>
           </div>
@@ -400,6 +400,78 @@
 
         const form = document.getElementById('contactForm');
         if (form) {
+          // Initialize Custom Dropdowns for Contact Form
+          const selects = form.querySelectorAll('select');
+          selects.forEach(select => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'counselling-custom-select';
+
+            const trigger = document.createElement('div');
+            trigger.className = 'counselling-select-trigger';
+
+            const selectedSpan = document.createElement('span');
+            selectedSpan.className = 'placeholder';
+            const placeholderOption = select.querySelector('option[disabled]');
+            selectedSpan.textContent = placeholderOption ? placeholderOption.textContent : select.options[0].textContent;
+
+            const chevron = document.createElement('i');
+            chevron.setAttribute('data-lucide', 'chevron-down');
+
+            trigger.appendChild(selectedSpan);
+            trigger.appendChild(chevron);
+
+            const dropdown = document.createElement('div');
+            dropdown.className = 'counselling-select-dropdown';
+
+            Array.from(select.options).forEach(option => {
+              if (option.disabled) return;
+
+              const optDiv = document.createElement('div');
+              optDiv.className = 'counselling-select-option';
+              optDiv.textContent = option.textContent;
+              optDiv.setAttribute('data-value', option.value);
+
+              optDiv.addEventListener('click', (e) => {
+                e.stopPropagation();
+                select.value = option.value;
+                selectedSpan.textContent = option.textContent;
+                selectedSpan.classList.remove('placeholder');
+
+                dropdown.querySelectorAll('.counselling-select-option').forEach(el => el.classList.remove('selected'));
+                optDiv.classList.add('selected');
+
+                const event = new Event('change', { bubbles: true });
+                select.dispatchEvent(event);
+
+                wrapper.classList.remove('active');
+              });
+
+              dropdown.appendChild(optDiv);
+            });
+
+            wrapper.appendChild(trigger);
+            wrapper.appendChild(dropdown);
+
+            select.style.display = 'none';
+            select.parentNode.insertBefore(wrapper, select.nextSibling);
+
+            trigger.addEventListener('click', (e) => {
+              e.stopPropagation();
+              document.querySelectorAll('.counselling-custom-select').forEach(el => {
+                if (el !== wrapper) el.classList.remove('active');
+              });
+              wrapper.classList.toggle('active');
+            });
+          });
+
+          document.addEventListener('click', () => {
+            document.querySelectorAll('.counselling-custom-select').forEach(el => el.classList.remove('active'));
+          });
+
+          if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+          }
+
           form.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -418,6 +490,19 @@
             setTimeout(() => {
               alert('Thank you! Your message has been sent successfully. Our team will contact you soon.');
               form.reset();
+
+              // Reset custom dropdown trigger text
+              selects.forEach(select => {
+                const wrapper = select.nextSibling;
+                if (wrapper && wrapper.classList.contains('counselling-custom-select')) {
+                  const triggerSpan = wrapper.querySelector('.counselling-select-trigger span');
+                  const placeholder = select.querySelector('option[disabled]');
+                  triggerSpan.textContent = placeholder ? placeholder.textContent : 'Select option';
+                  triggerSpan.classList.add('placeholder');
+                  wrapper.querySelectorAll('.counselling-select-option').forEach(opt => opt.classList.remove('selected'));
+                }
+              });
+
               submitBtn.disabled = false;
               submitBtn.style.opacity = '';
               submitBtn.innerHTML = 'SEND MESSAGE <i data-lucide="arrow-right" style="width: 16px; height: 16px;"><\/i>';

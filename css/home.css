@@ -499,6 +499,10 @@
   flex-direction: column;
 }
 
+.section-left .btn {
+  align-self: flex-start;
+}
+
 .section-right {
   flex: 1;
 }
@@ -955,7 +959,7 @@
   width: 100%;
   border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   background-color: var(--color-dark);
 }
 
@@ -2226,7 +2230,7 @@ a.btn {
   width: 100%;
   height: 100%;
   min-height: 400px;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
