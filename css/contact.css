@@ -60,7 +60,7 @@
 
 .contact-hero-right img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
   aspect-ratio: 4/3;
   object-fit: cover;
@@ -552,15 +552,14 @@ textarea.contact-form-control {
 }
 
 .journey-cta-banner {
-  background-color: #701015; /* Dark Maroon */
-  background-image: linear-gradient(135deg, #701015 0%, #4a0508 100%);
-  border-radius: 12px;
+  background: var(--color-primary);
+  border-radius: 0;
   padding: 40px 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-  box-shadow: 0 10px 30px rgba(112, 16, 21, 0.15);
+  box-shadow: 0 10px 30px rgba(181, 28, 36, 0.15);
 }
 
 .journey-cta-left {
@@ -615,7 +614,7 @@ textarea.contact-form-control {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 14px 28px;
-  border-radius: 6px;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   gap: 8px;
