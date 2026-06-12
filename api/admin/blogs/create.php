@@ -1,0 +1,127 @@
+<?php
+/**
+ * POST /api/admin/blogs/create.php
+ * Handles multipart/form-data for blog creation with an image
+ */
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+    echo json_encode(['error' => true, 'message' => 'Method not allowed']);
+    exit;
+}
+
+require_once __DIR__ . '/../../config/auth.php';
+requireAuth();
+
+// For multipart/form-data, we use $_POST and $_FILES directly instead of getJsonBody()
+
+$title            = sanitize((string)($_POST['title'] ?? ''));
+$slug             = sanitize((string)($_POST['slug'] ?? ''));
+$excerpt          = sanitize((string)($_POST['excerpt'] ?? ''));
+// Content might have HTML, so we don't strictly sanitize exactly like titles, but we should escape or allow safe HTML.
+// Assuming the admin panel sends safe HTML (or uses a rich text editor). We'll trim it.
+$content          = trim((string)($_POST['content'] ?? ''));
+$category         = sanitize((string)($_POST['category'] ?? ''));
+$tags             = sanitize((string)($_POST['tags'] ?? ''));
+$meta_title       = sanitize((string)($_POST['meta_title'] ?? ''));
+$meta_description = sanitize((string)($_POST['meta_description'] ?? ''));
+$author           = sanitize((string)($_POST['author'] ?? ''));
+$read_time        = (int)($_POST['read_time'] ?? 0);
+$is_published     = isset($_POST['is_published']) && max(0, min(1, (int)$_POST['is_published']));
+$is_featured      = isset($_POST['is_featured'])  && (int)$_POST['is_featured'] === 1 ? 1 : 0;
+
+// Validate basic fields
+if (strlen($title) < 2) {
+    jsonError('Title is required and must be at least 2 characters', 422);
+}
+if (!$slug) {
+    // Generate a simple slug if empty
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title), '-'));
+}
+
+if (!$content) {
+    jsonError('Content is required', 422);
+}
+
+// Handle File Upload
+$featuredImage = null;
+if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
+    $uploadDir = __DIR__ . '/../../../uploads/blogs/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+
+    $file = $_FILES['featured_image'];
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    
+    if (in_array($ext, $allowed)) {
+        $filename = uniqid() . '-' . time() . '.' . $ext;
+        if (move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
+            $featuredImage = '/uploads/blogs/' . $filename;
+        }
+    } else {
+        jsonError('Invalid image format', 422);
+    }
+}
+
+try {
+    // Uniqueness check for slug
+    $chk = db()->prepare('SELECT 1 FROM `blogs` WHERE slug = :slug LIMIT 1');
+    $chk->execute([':slug' => $slug]);
+    if ($chk->fetchColumn()) {
+        jsonError('A blog post with this slug already exists', 409);
+    }
+
+    $pdo = db();
+    $pdo->beginTransaction();
+
+    if ($is_featured) {
+        $pdo->exec('UPDATE `blogs` SET is_featured = 0 WHERE is_featured = 1');
+    }
+
+    $stmt = $pdo->prepare('
+        INSERT INTO `blogs` (
+            title, slug, excerpt, content, featured_image, category,
+            tags, meta_title, meta_description, author, read_time, is_published, is_featured
+        ) VALUES (
+            :title, :slug, :excerpt, :content, :featured_image, :category,
+            :tags, :meta_title, :meta_description, :author, :read_time, :is_published, :is_featured
+        )
+    ');
+
+    $stmt->execute([
+        ':title'            => $title,
+        ':slug'             => $slug,
+        ':excerpt'          => $excerpt,
+        ':content'          => $content,
+        ':featured_image'   => $featuredImage,
+        ':category'         => $category,
+        ':tags'             => $tags,
+        ':meta_title'       => $meta_title,
+        ':meta_description' => $meta_description,
+        ':author'           => $author ?: null,
+        ':read_time'        => $read_time,
+        ':is_published'     => $is_published,
+        ':is_featured'      => $is_featured,
+    ]);
+
+    $newId = (int) $pdo->lastInsertId();
+    $pdo->commit();
+
+    jsonSuccess('Blog post created successfully', [
+        'blog' => [
+            'id'   => $newId,
+            'slug' => $slug,
+        ],
+    ], 201);
+
+} catch (PDOException $e) {
+    if (isset($pdo) && $pdo->inTransaction()) $pdo->rollBack();
+    if ($e->getCode() === '23000') {
+        jsonError('A blog post with this slug already exists', 409);
+    }
+    error_log('blogs/create error: ' . $e->getMessage());
+    jsonError('Failed to create blog post', 500);
+}
