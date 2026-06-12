@@ -90,8 +90,9 @@
 }
 
 .btn-primary-solid:hover {
-  background-color: #9a171e;
-  border-color: #9a171e;
+  background-color: var(--color-secondary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-secondary) !important;
 }
 
 .btn-outline-dark {
@@ -104,16 +105,17 @@
   letter-spacing: 0.5px;
   padding: 13px 28px;
   background-color: transparent;
-  color: var(--color-dark);
-  border: 1px solid var(--color-dark);
+  color: var(--color-secondary) !important;
+  border: 1px solid var(--color-secondary) !important;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .btn-outline-dark:hover {
-  background-color: var(--color-dark);
-  color: #ffffff;
+  background-color: var(--color-secondary) !important;
+  color: #ffffff !important;
+  border-color: var(--color-secondary) !important;
 }
 
 /* Presence Section (Grid) */
