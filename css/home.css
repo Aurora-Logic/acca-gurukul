@@ -499,6 +499,10 @@
   flex-direction: column;
 }
 
+.section-left .btn {
+  align-self: flex-start;
+}
+
 .section-right {
   flex: 1;
 }
