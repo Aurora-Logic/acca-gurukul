@@ -6,25 +6,24 @@
 CREATE TABLE IF NOT EXISTS `bookings` (
   `id`               INT UNSIGNED NOT NULL AUTO_INCREMENT,
 
-  -- Step 01 — Your details
-  `first_name`       VARCHAR(30)   NOT NULL,
-  `last_name`        VARCHAR(30)   NOT NULL,
-  `age`              TINYINT UNSIGNED NOT NULL,
-  `gender`           ENUM('Male', 'Female', 'Other') NOT NULL DEFAULT 'Male',
+  -- Student details
+  `name`             VARCHAR(100)  NOT NULL,
   `phone`            VARCHAR(20)   NOT NULL,
   `email`            VARCHAR(100)  NOT NULL,
-  `country`          VARCHAR(100)  NULL,
-  `city`             VARCHAR(100)  NULL,
 
-  -- Step 02 — Concern
-  `consult_type`     VARCHAR(100)  NOT NULL DEFAULT 'General consultation',
-  `diagnosed`        ENUM('Yes', 'No', 'Not sure') NOT NULL DEFAULT 'No',
-  `mode`             ENUM('In person', 'Video call') NOT NULL DEFAULT 'In person',
-  `concern`          TEXT          NULL,
-
-  -- Step 03 — Date & time
+  -- Counselling preferences
+  `course`           VARCHAR(100)  NOT NULL,
+  `qualification`    VARCHAR(100)  NOT NULL,
+  `year_of_passing`  VARCHAR(20)   NULL,
+  `location`         VARCHAR(100)  NOT NULL,
+  
+  -- Date & time
   `appointment_date` DATE          NOT NULL,
-  `appointment_time` VARCHAR(10)   NOT NULL,
+  `appointment_time` VARCHAR(20)   NOT NULL,
+
+  -- Additional Info
+  `source`           VARCHAR(100)  NULL,
+  `message`          TEXT          NULL,
 
   -- Meta
   `booking_ref`      VARCHAR(20)   NOT NULL,

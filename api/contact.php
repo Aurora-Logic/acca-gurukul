@@ -46,6 +46,23 @@ if (!is_array($data)) {
     jsonError('Invalid JSON body', 400);
 }
 
+// Map camelCase keys from HTML form to snake_case keys if present
+if (isset($data['fullName'])) {
+    $data['name'] = $data['fullName'];
+}
+if (isset($data['phoneNumber'])) {
+    $data['phone'] = $data['phoneNumber'];
+}
+if (isset($data['emailAddress'])) {
+    $data['email'] = $data['emailAddress'];
+}
+if (isset($data['courseInterested'])) {
+    $data['topic'] = $data['courseInterested'];
+}
+if (isset($data['yourMessage'])) {
+    $data['message'] = $data['yourMessage'];
+}
+
 // Honeypot check — if 'website' field has a value, it's a bot
 if (!empty($data['website'] ?? '')) {
     // Silently accept but don't store — bot thinks it succeeded
@@ -97,14 +114,11 @@ if (!checkdnsrr($emailDomain, 'MX') && !checkdnsrr($emailDomain, 'A')) {
 
 // Topic: must be one of the allowed values
 $allowedTopics = [
+    'applied-knowledge',
+    'applied-skills',
+    'strategic-professional',
+    'diploma-ifrs',
     'General consultation',
-    'Robotic prostatectomy',
-    'Kidney cancer surgery',
-    'Bladder cancer treatment',
-    'MRI fusion biopsy',
-    'HIFU focal therapy',
-    'Second opinion',
-    'Something else',
 ];
 if (!in_array($topic, $allowedTopics, true)) {
     $topic = 'General consultation'; // silently default

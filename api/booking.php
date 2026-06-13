@@ -48,11 +48,44 @@ if (!empty($data['website'] ?? '')) {
     jsonSuccess('Booking received', ['booking_ref' => 'IRUS-000000']);
 }
 
+// Map camelCase keys from HTML/JS form to snake_case keys if present
+if (isset($data['counsellingName'])) {
+    $data['name'] = $data['counsellingName'];
+}
+if (isset($data['counsellingPhone'])) {
+    $data['phone'] = $data['counsellingPhone'];
+}
+if (isset($data['counsellingEmail'])) {
+    $data['email'] = $data['counsellingEmail'];
+}
+if (isset($data['counsellingCourse'])) {
+    $data['course'] = $data['counsellingCourse'];
+}
+if (isset($data['counsellingQual'])) {
+    $data['qualification'] = $data['counsellingQual'];
+}
+if (isset($data['counsellingYear'])) {
+    $data['year_of_passing'] = $data['counsellingYear'];
+}
+if (isset($data['counsellingLocation'])) {
+    $data['location'] = $data['counsellingLocation'];
+}
+if (isset($data['counsellingDate'])) {
+    $data['date'] = $data['counsellingDate'];
+}
+if (isset($data['counsellingTime'])) {
+    $data['time'] = $data['counsellingTime'];
+}
+if (isset($data['counsellingSource'])) {
+    $data['source'] = $data['counsellingSource'];
+}
+if (isset($data['counsellingMsg'])) {
+    $data['message'] = $data['counsellingMsg'];
+}
+
 // ─── Required fields ───
 $required = [
-    'firstName', 'lastName', 'age', 'phone', 'email',
-    'consultType', 'diagnosed', 'mode',
-    'date', 'time'
+    'name', 'phone', 'email', 'course', 'qualification', 'location', 'date', 'time'
 ];
 $missing = validateRequired($data, $required);
 if (!empty($missing)) {
@@ -60,45 +93,29 @@ if (!empty($missing)) {
 }
 
 // ─── Sanitize ───
-$firstName   = sanitize($data['firstName']   ?? '');
-$lastName    = sanitize($data['lastName']    ?? '');
-$age         = (int)($data['age']            ?? 0);
-$gender      = sanitize($data['gender']      ?? 'Male');
-$phone       = sanitize($data['phone']       ?? '');
-$email       = sanitize($data['email']       ?? '');
-$country     = sanitize($data['country']     ?? '');
-$city        = sanitize($data['city']        ?? '');
-$consultType = sanitize($data['consultType'] ?? 'General consultation');
-$diagnosed   = sanitize($data['diagnosed']   ?? 'No');
-$mode        = sanitize($data['mode']        ?? 'In person');
-$concern     = sanitize($data['concern']     ?? '');
-$date        = sanitize($data['date']        ?? '');
-$time        = sanitize($data['time']        ?? '');
+$name           = sanitize($data['name']            ?? '');
+$phone          = sanitize($data['phone']           ?? '');
+$email          = sanitize($data['email']           ?? '');
+$course         = sanitize($data['course']          ?? '');
+$qualification  = sanitize($data['qualification']   ?? '');
+$yearOfPassing  = sanitize($data['year_of_passing']  ?? '');
+$location       = sanitize($data['location']        ?? '');
+$date           = sanitize($data['date']            ?? '');
+$time           = sanitize($data['time']            ?? '');
+$source         = sanitize($data['source']          ?? '');
+$message        = sanitize($data['message']         ?? '');
 
 // ─── Validation Rules ───
 
-// Names: 1-30 chars, letters/spaces/hyphens/apostrophes only
-foreach (['First name' => $firstName, 'Last name' => $lastName] as $label => $val) {
-    if (strlen($val) < 1 || strlen($val) > 30) {
-        jsonError("{$label} must be between 1 and 30 characters", 422);
-    }
-    if (!preg_match('/^[\p{L}\s\'\-]+$/u', $val)) {
-        jsonError("{$label} contains invalid characters", 422);
-    }
+// Name: 1-100 chars, letters/spaces/hyphens/apostrophes only
+if (strlen($name) < 1 || strlen($name) > 100) {
+    jsonError("Name must be between 1 and 100 characters", 422);
+}
+if (!preg_match('/^[\p{L}\s\'\-]+$/u', $name)) {
+    jsonError("Name contains invalid characters", 422);
 }
 
-// Age
-if ($age < 1 || $age > 120) {
-    jsonError('Age must be between 1 and 120', 422);
-}
-
-// Gender whitelist
-$allowedGenders = ['Male', 'Female', 'Other'];
-if (!in_array($gender, $allowedGenders, true)) {
-    jsonError('Invalid gender', 422);
-}
-
-// Phone — international format after intl-tel-input normalisation
+// Phone — international format after normalization
 $phoneClean = preg_replace('/[\s\-\(\)]/', '', $phone);
 if (!preg_match('/^\+?[0-9]{7,20}$/', $phoneClean)) {
     jsonError('Invalid phone number', 422);
@@ -116,51 +133,61 @@ if (!checkdnsrr($emailDomain, 'MX') && !checkdnsrr($emailDomain, 'A')) {
     jsonError('Email domain appears invalid', 422);
 }
 
-// Country / city — lightly validated (too many valid values to whitelist)
-if ($country !== '' && strlen($country) > 100) {
-    jsonError('Country too long', 422);
-}
-if ($city !== '' && strlen($city) > 100) {
-    jsonError('City too long', 422);
-}
-// Strip anything that isn't letters, spaces, hyphens, apostrophes, commas, or dots
-if ($country !== '' && !preg_match('/^[\p{L}\s\'\-\.\,]+$/u', $country)) {
-    jsonError('Country contains invalid characters', 422);
-}
-if ($city !== '' && !preg_match('/^[\p{L}\s\'\-\.\,]+$/u', $city)) {
-    jsonError('City contains invalid characters', 422);
-}
-
-// Consult type whitelist
-$allowedConsultTypes = [
-    'General consultation',
-    'Robotic prostatectomy',
-    'Kidney cancer surgery',
-    'Bladder cancer treatment',
-    'MRI fusion biopsy',
-    'HIFU focal therapy',
-    'Second opinion',
-    'Something else',
+// Course whitelist
+$allowedCourses = [
+    'acca-knowledge',
+    'acca-skills',
+    'acca-professional',
+    'acca-diploma',
 ];
-if (!in_array($consultType, $allowedConsultTypes, true)) {
-    $consultType = 'General consultation';
+if (!in_array($course, $allowedCourses, true)) {
+    jsonError('Invalid course level', 422);
 }
 
-// Diagnosed whitelist
-$allowedDiagnosed = ['Yes', 'No', 'Not sure'];
-if (!in_array($diagnosed, $allowedDiagnosed, true)) {
-    jsonError('Invalid "diagnosed" value', 422);
+// Qualification whitelist
+$allowedQualifications = [
+    'undergraduate',
+    'graduate',
+    'postgraduate',
+    'ca-ipcc',
+    'ca-final',
+    'working-professional',
+];
+if (!in_array($qualification, $allowedQualifications, true)) {
+    jsonError('Invalid qualification selected', 422);
 }
 
-// Mode whitelist
-$allowedModes = ['In person', 'Video call'];
-if (!in_array($mode, $allowedModes, true)) {
-    jsonError('Invalid consultation mode', 422);
+// Year of passing whitelist (optional field)
+if ($yearOfPassing !== '') {
+    $allowedYears = ['2026', '2025', '2024', '2023', 'before-2023'];
+    if (!in_array($yearOfPassing, $allowedYears, true)) {
+        jsonError('Invalid year of passing', 422);
+    }
 }
 
-// Concern
-if (strlen($concern) > 1000) {
-    jsonError('Concern must be under 1000 characters', 422);
+// Location whitelist
+$allowedLocations = [
+    'online',
+    'mumbai',
+    'pune',
+    'delhi',
+    'bengaluru',
+];
+if (!in_array($location, $allowedLocations, true)) {
+    jsonError('Invalid preferred location', 422);
+}
+
+// Source whitelist (optional field)
+if ($source !== '') {
+    $allowedSources = ['google', 'social-media', 'friend-referral', 'newspaper'];
+    if (!in_array($source, $allowedSources, true)) {
+        jsonError('Invalid source type', 422);
+    }
+}
+
+// Message/Concern limit
+if (strlen($message) > 1000) {
+    jsonError('Message must be under 1000 characters', 422);
 }
 
 // Date — must be YYYY-MM-DD, not in the past, not Sunday, not > 3 months ahead
@@ -186,13 +213,8 @@ if ((int)$appointmentDate->format('w') === 0) {
     jsonError('We are closed on Sundays. Please choose another date.', 422);
 }
 
-// Time — must match one of the allowed slots
-$allowedSlots = [
-    '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-    '12:00 PM', '12:30 PM',
-    '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
-    '05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM',
-];
+// Time — must match one of the allowed slots (morning, afternoon, evening)
+$allowedSlots = ['morning', 'afternoon', 'evening'];
 if (!in_array($time, $allowedSlots, true)) {
     jsonError('Invalid time slot', 422);
 }
@@ -204,35 +226,32 @@ $bookingRef = generateBookingRef();
 try {
     $stmt = db()->prepare('
         INSERT INTO `bookings` (
-            `first_name`, `last_name`, `age`, `gender`,
-            `phone`, `email`, `country`, `city`,
-            `consult_type`, `diagnosed`, `mode`, `concern`,
+            `name`, `phone`, `email`,
+            `course`, `qualification`, `year_of_passing`, `location`,
             `appointment_date`, `appointment_time`,
+            `source`, `message`,
             `booking_ref`, `ip_address`, `created_at`
         ) VALUES (
-            :first_name, :last_name, :age, :gender,
-            :phone, :email, :country, :city,
-            :consult_type, :diagnosed, :mode, :concern,
+            :name, :phone, :email,
+            :course, :qualification, :year_of_passing, :location,
             :appointment_date, :appointment_time,
+            :source, :message,
             :booking_ref, :ip_address, NOW()
         )
     ');
 
     $stmt->execute([
-        ':first_name'       => $firstName,
-        ':last_name'        => $lastName,
-        ':age'              => $age,
-        ':gender'           => $gender,
+        ':name'             => $name,
         ':phone'            => $phoneClean,
         ':email'            => $email,
-        ':country'          => $country ?: null,
-        ':city'             => $city ?: null,
-        ':consult_type'     => $consultType,
-        ':diagnosed'        => $diagnosed,
-        ':mode'             => $mode,
-        ':concern'          => $concern ?: null,
+        ':course'           => $course,
+        ':qualification'    => $qualification,
+        ':year_of_passing'  => $yearOfPassing ?: null,
+        ':location'         => $location,
         ':appointment_date' => $appointmentDate->format('Y-m-d'),
         ':appointment_time' => $time,
+        ':source'           => $source ?: null,
+        ':message'          => $message ?: null,
         ':booking_ref'      => $bookingRef,
         ':ip_address'       => $clientIp,
     ]);
