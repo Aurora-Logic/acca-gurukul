@@ -475,9 +475,10 @@
           form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Basic simulation validation
-            const phone = document.getElementById('phoneNumber').value.replace(/\D/g, '');
-            if (phone.length !== 10) {
+            // Basic validation
+            const phoneVal = document.getElementById('phoneNumber').value.trim();
+            const phoneClean = phoneVal.replace(/\D/g, '');
+            if (phoneClean.length !== 10) {
               alert('Please enter a valid 10-digit phone number.');
               return;
             }
@@ -487,8 +488,31 @@
             submitBtn.style.opacity = '0.7';
             submitBtn.innerHTML = 'SENDING...';
 
-            setTimeout(() => {
-              alert('Thank you! Your message has been sent successfully. Our team will contact you soon.');
+            const payload = {
+              fullName: document.getElementById('fullName').value.trim(),
+              phoneNumber: phoneVal,
+              emailAddress: document.getElementById('emailAddress').value.trim(),
+              courseInterested: document.getElementById('courseInterested').value,
+              yourMessage: document.getElementById('yourMessage').value.trim(),
+              website: '' // honeypot
+            };
+
+            fetch('/api/contact.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: JSON.stringify(payload)
+            })
+            .then(response => {
+              if (!response.ok) {
+                return response.json().then(err => { throw err; });
+              }
+              return response.json();
+            })
+            .then(resData => {
+              alert(resData.message || 'Thank you! Your message has been sent successfully.');
               form.reset();
 
               // Reset custom dropdown trigger text
@@ -502,14 +526,19 @@
                   wrapper.querySelectorAll('.counselling-select-option').forEach(opt => opt.classList.remove('selected'));
                 }
               });
-
+            })
+            .catch(error => {
+              console.error('Contact API Error:', error);
+              alert(error.message || 'Failed to send your message. Please try again.');
+            })
+            .finally(() => {
               submitBtn.disabled = false;
               submitBtn.style.opacity = '';
-              submitBtn.innerHTML = 'SEND MESSAGE <i data-lucide="arrow-right" style="width: 16px; height: 16px;"><\/i>';
+              submitBtn.innerHTML = 'SEND MESSAGE <i data-lucide="arrow-right" class="btn-icon" style="width: 16px; height: 16px; margin-left: 8px;"></i>';
               if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
               }
-            }, 1000);
+            });
           });
         }
       });
