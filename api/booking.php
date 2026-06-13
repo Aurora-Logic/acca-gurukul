@@ -1,6 +1,6 @@
 <?php
 /**
- * iRUS — Booking API
+ * Booking API
  * POST /api/booking.php
  *
  * Security:
@@ -45,7 +45,7 @@ if (!is_array($data)) {
 
 // Honeypot
 if (!empty($data['website'] ?? '')) {
-    jsonSuccess('Booking received', ['booking_ref' => 'IRUS-000000']);
+    jsonSuccess('Booking received', ['booking_ref' => 'ACCA-000000']);
 }
 
 // Map camelCase keys from HTML/JS form to snake_case keys if present
@@ -275,14 +275,14 @@ try {
 // ═══════════════════════════════════════════
 
 /**
- * Generate a unique booking reference like IRUS-482174.
+ * Generate a unique booking reference like ACCA-482174.
  * Retries up to 10 times on UNIQUE constraint collision.
  */
 function generateBookingRef(): string
 {
     $pdo = db();
     for ($i = 0; $i < 10; $i++) {
-        $ref = 'IRUS-' . str_pad((string)random_int(100000, 999999), 6, '0', STR_PAD_LEFT);
+        $ref = 'ACCA-' . str_pad((string)random_int(100000, 999999), 6, '0', STR_PAD_LEFT);
         $stmt = $pdo->prepare('SELECT 1 FROM `bookings` WHERE `booking_ref` = :ref LIMIT 1');
         $stmt->execute([':ref' => $ref]);
         if (!$stmt->fetchColumn()) {
@@ -290,6 +290,5 @@ function generateBookingRef(): string
         }
     }
     // Fallback — extremely unlikely: add an extra digit
-    return 'IRUS-' . random_int(1000000, 9999999);
+    return 'ACCA-' . random_int(1000000, 9999999);
 }
-

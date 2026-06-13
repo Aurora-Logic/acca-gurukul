@@ -18,7 +18,7 @@
 
 require_once __DIR__ . '/bootstrap.php';
 
-const SESSION_COOKIE_NAME        = 'IRUS_ADMIN_SESSID';
+const SESSION_COOKIE_NAME        = 'ADMIN_SESSID';
 const SESSION_REMEMBER_LIFETIME  = 7 * 86400; // 7 days in seconds
 
 function startAuthSession(bool $remember = false, bool $createIfMissing = false): void
@@ -28,7 +28,7 @@ function startAuthSession(bool $remember = false, bool $createIfMissing = false)
     }
 
     // Don't allocate a session for anonymous visitors. Without this guard,
-    // PHP's session_start() auto-issues IRUS_ADMIN_SESSID to every caller of
+    // PHP's session_start() auto-issues ADMIN_SESSID to every caller of
     // /auth/me.php (and every /admin/* endpoint that 401s), which means a
     // logged-out browser picks up a session cookie just by loading the login
     // page. Only resume an existing session, or create one for login.

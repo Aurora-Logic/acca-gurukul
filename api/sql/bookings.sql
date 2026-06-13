@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════
--- iRUS — bookings table
+-- ACCA — bookings table
 -- Maps to: /booking/ page (4-step wizard)
 -- ═══════════════════════════════════════════
 

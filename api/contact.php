@@ -1,6 +1,6 @@
 <?php
 /**
- * iRUS — Contact Form API
+ * Contact Form API
  * POST /api/contact.php
  *
  * Security:
@@ -153,4 +153,3 @@ try {
     error_log('Contact API error: ' . $e->getMessage());
     jsonError('Failed to save your message. Please try again.', 500);
 }
-
