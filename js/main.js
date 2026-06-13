@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load Corporate Partners Marquee
   const marqueeContainer = document.getElementById('marquee-container');
   if (marqueeContainer) {
-    fetch('/components/companies-marquee.html?v=1.2.0')
+    fetch('/components/companies-marquee.html?v=1.2.1')
       .then(response => response.text())
       .then(data => {
         marqueeContainer.innerHTML = data;
