@@ -172,6 +172,10 @@ $allowedLocations = [
     'pune',
     'delhi',
     'bengaluru',
+    'nashik',
+    'udaipur',
+    'nagpur',
+    'hyderabad',
 ];
 if (!in_array($location, $allowedLocations, true)) {
     jsonError('Invalid preferred location', 422);

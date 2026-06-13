@@ -94,6 +94,10 @@
                 <option value="pune">Pune Center</option>
                 <option value="delhi">Delhi Center</option>
                 <option value="bengaluru">Bengaluru Center</option>
+                <option value="nashik">Nashik Center</option>
+                <option value="udaipur">Udaipur Center</option>
+                <option value="nagpur">Nagpur Center</option>
+                <option value="hyderabad">Hyderabad Center</option>
               </select>
             </div>
 
