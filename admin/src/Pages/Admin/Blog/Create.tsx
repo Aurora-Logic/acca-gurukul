@@ -239,9 +239,9 @@ export default function BlogCreate() {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="_none">No category</SelectItem>
-                                    <SelectItem value="Patient Education">Patient Education</SelectItem>
+                                    <SelectItem value="Counselling Guidance">Counselling Guidance</SelectItem>
                                     <SelectItem value="Research">Research</SelectItem>
-                                    <SelectItem value="Patient Stories">Patient Stories</SelectItem>
+                                    <SelectItem value="Student Stories">Student Stories</SelectItem>
                                     <SelectItem value="Technology">Technology</SelectItem>
                                     <SelectItem value="News">News</SelectItem>
                                 </SelectContent>

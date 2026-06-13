@@ -22,11 +22,10 @@ if ($id <= 0) {
 try {
     $stmt = db()->prepare('
         SELECT
-            id, first_name, last_name, age, gender,
-            phone, email, country, city,
-            consult_type, diagnosed, mode, concern,
+            id, name, phone, email,
+            course, qualification, year_of_passing, location,
             appointment_date, appointment_time,
-            booking_ref, status, ip_address,
+            source, message, booking_ref, status, ip_address,
             created_at, updated_at
         FROM `bookings`
         WHERE id = :id
@@ -42,21 +41,18 @@ try {
     jsonSuccess('OK', [
         'booking' => [
             'id'               => (int) $r['id'],
-            'first_name'       => $r['first_name'],
-            'last_name'        => $r['last_name'],
-            'full_name'        => trim($r['first_name'] . ' ' . $r['last_name']),
-            'age'              => (int) $r['age'],
-            'gender'           => $r['gender'],
+            'name'             => $r['name'],
+            'full_name'        => $r['name'], // fallback/alias for backward compatibility
             'phone'            => $r['phone'],
             'email'            => $r['email'],
-            'country'          => $r['country'],
-            'city'             => $r['city'],
-            'consult_type'     => $r['consult_type'],
-            'diagnosed'        => $r['diagnosed'],
-            'mode'             => $r['mode'],
-            'concern'          => $r['concern'],
+            'course'           => $r['course'],
+            'qualification'    => $r['qualification'],
+            'year_of_passing'  => $r['year_of_passing'],
+            'location'         => $r['location'],
             'appointment_date' => $r['appointment_date'],
             'appointment_time' => $r['appointment_time'],
+            'source'           => $r['source'],
+            'message'          => $r['message'],
             'booking_ref'      => $r['booking_ref'],
             'status'           => $r['status'],
             'ip_address'       => $r['ip_address'],

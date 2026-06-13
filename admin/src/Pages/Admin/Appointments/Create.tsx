@@ -49,7 +49,7 @@ export default function AppointmentCreate() {
     const [errors] = useState<Partial<Record<keyof AppointmentFormData, string>>>({});
 
     useEffect(() => {
-        document.title = 'New Appointment — iRUS Admin';
+        document.title = 'New Appointment — ACCA Gurukul Admin';
     }, []);
 
     const services = servicesData;
@@ -70,14 +70,14 @@ export default function AppointmentCreate() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Patient Info */}
+                {/* Student Info */}
                 <div className="space-y-4">
                     <div>
-                        <Label className="text-base font-semibold">Patient Information</Label>
+                        <Label className="text-base font-semibold">Student Information</Label>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="patient_name">Patient Name *</Label>
+                            <Label htmlFor="patient_name">Student Name *</Label>
                             <Input id="patient_name" value={data.patient_name} onChange={(e) => setData('patient_name', e.target.value)} required />
                             {errors.patient_name && <p className="text-sm text-destructive">{errors.patient_name}</p>}
                         </div>

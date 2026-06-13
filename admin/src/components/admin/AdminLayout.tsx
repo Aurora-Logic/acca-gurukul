@@ -178,7 +178,7 @@ export default function AdminLayout({ children, title, breadcrumbs }: AdminLayou
             <div className="flex h-12 items-center border-b border-border shrink-0 px-3 gap-2">
                 {!showCollapsed && (
                     <span className="text-sm font-bold tracking-tight text-foreground flex-1 whitespace-nowrap">
-                        iRUS Admin
+                        ACCA Gurukul Admin
                     </span>
                 )}
                 <Button
@@ -376,7 +376,7 @@ export default function AdminLayout({ children, title, breadcrumbs }: AdminLayou
                     )}
 
                     <Link to="/admin" className="ml-auto flex items-center shrink-0">
-                        <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="iRUS" className="w-auto object-contain h-7 max-w-30" />
+                        <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="ACCA Gurukul" className="w-auto object-contain h-7 max-w-30" />
                     </Link>
                 </header>
 

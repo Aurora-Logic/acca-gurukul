@@ -152,7 +152,7 @@ try {
     $recentApts = $pdo->query("
         SELECT
             id,
-            CONCAT(first_name, ' ', last_name) AS patient_name,
+            name AS patient_name,
             phone,
             email,
             appointment_date AS preferred_date,
@@ -214,5 +214,5 @@ try {
 
 } catch (PDOException $e) {
     error_log('dashboard error: ' . $e->getMessage());
-    jsonError('Failed to load dashboard data', 500);
+    jsonError('Failed to load dashboard data: ' . $e->getMessage(), 500);
 }
