@@ -479,7 +479,7 @@
             const phoneVal = document.getElementById('phoneNumber').value.trim();
             const phoneClean = phoneVal.replace(/\D/g, '');
             if (phoneClean.length !== 10) {
-              alert('Please enter a valid 10-digit phone number.');
+              showToast('Please enter a valid 10-digit phone number.', 'error');
               return;
             }
 
@@ -512,7 +512,7 @@
               return response.json();
             })
             .then(resData => {
-              alert(resData.message || 'Thank you! Your message has been sent successfully.');
+              showToast(resData.message || 'Thank you! Your message has been sent successfully.', 'success');
               form.reset();
 
               // Reset custom dropdown trigger text
@@ -529,7 +529,7 @@
             })
             .catch(error => {
               console.error('Contact API Error:', error);
-              alert(error.message || 'Failed to send your message. Please try again.');
+              showToast(error.message || 'Failed to send your message. Please try again.', 'error');
             })
             .finally(() => {
               submitBtn.disabled = false;

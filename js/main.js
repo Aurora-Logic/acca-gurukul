@@ -381,3 +381,141 @@ document.addEventListener('DOMContentLoaded', () => {
     new Accordion(el);
   });
 });
+
+// Reusable Dynamic Toast Notification System
+window.showToast = function (message, type = 'success') {
+  // 1. Ensure CSS is injected
+  if (!document.getElementById('toast-styles')) {
+    const style = document.createElement('style');
+    style.id = 'toast-styles';
+    style.textContent = `
+      .toast-container {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 380px;
+        width: calc(100% - 48px);
+      }
+      .toast-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transform: translateX(120%);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+        opacity: 0;
+        cursor: pointer;
+        user-select: none;
+      }
+      .toast-item.active {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .toast-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .toast-item.success .toast-icon {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10b981;
+      }
+      .toast-item.error .toast-icon {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+      }
+      .toast-message {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1f2937;
+        line-height: 1.4;
+      }
+      @media (max-width: 480px) {
+        .toast-container {
+          top: 16px;
+          right: 24px;
+          left: 24px;
+          width: auto;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // 2. Ensure Container exists
+  let container = document.querySelector('.toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  // 3. Create Toast Item
+  const toast = document.createElement('div');
+  toast.className = `toast-item ${type}`;
+
+  const iconDiv = document.createElement('div');
+  iconDiv.className = 'toast-icon';
+  const iconName = type === 'success' ? 'check-circle' : 'alert-circle';
+  iconDiv.innerHTML = `<i data-lucide="${iconName}"></i>`;
+
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'toast-message';
+  msgDiv.textContent = message;
+
+  toast.appendChild(iconDiv);
+  toast.appendChild(msgDiv);
+  container.appendChild(toast);
+
+  // Initialize lucide icons for the toast
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons({
+      attrs: {
+        style: 'width: 16px; height: 16px; stroke-width: 2.5px;'
+      },
+      nameAttr: 'data-lucide',
+      node: toast
+    });
+  }
+
+  // Animate in
+  requestAnimationFrame(() => {
+    toast.classList.add('active');
+  });
+
+  // Auto-dismiss helper
+  let dismissTimeout = setTimeout(dismiss, 4000);
+
+  function dismiss() {
+    toast.classList.remove('active');
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-20px)';
+    setTimeout(() => {
+      toast.remove();
+      if (container.children.length === 0) {
+        container.remove();
+      }
+    }, 300);
+  }
+
+  // Click to dismiss
+  toast.addEventListener('click', () => {
+    clearTimeout(dismissTimeout);
+    dismiss();
+  });
+};

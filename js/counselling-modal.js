@@ -755,7 +755,7 @@
         }
 
         setTimeout(() => {
-          alert(resData.message || 'Your counselling session has been successfully requested! Our experts will call you soon.');
+          showToast(resData.message || 'Your counselling session has been successfully requested! Our experts will call you soon.', 'success');
           closeModal();
           form.reset();
 
@@ -770,10 +770,11 @@
       })
       .catch(error => {
         console.error('Booking API Error:', error);
-        alert(error.message || 'Failed to request counselling session. Please try again.');
+        showToast(error.message || 'Failed to request counselling session. Please try again.', 'error');
         submitBtn.disabled = false;
         submitBtn.style.opacity = '';
       });
+
     });
 
     // Use event delegation on document body to capture clicks on dynamic buttons
