@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/config/bootstrap.php';
 
 // ─── Rate Limiting (IP-based, stored in DB) ───
-$RATE_WINDOW  = 3600; // 1 hour window
-$RATE_MAX     = 5;    // max 5 submissions per window per IP
+$RATE_WINDOW  = 1800; // 30 minutes window
+$RATE_MAX     = 20;    // max 20 submissions per window per IP
 
 $clientIp = getClientIp();
 

@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/config/bootstrap.php';
 
 // ─── Rate Limiting ───
-const RATE_WINDOW = 3600;  // 1 hour
-const RATE_MAX    = 3;     // max 3 bookings per IP per hour
+const RATE_WINDOW = 1800;  // 30 minutes
+const RATE_MAX    = 20;     // max 20 bookings per IP per 30 mins
 
 $clientIp = getClientIp();
 checkRateLimit($clientIp, 'booking', RATE_WINDOW, RATE_MAX);
