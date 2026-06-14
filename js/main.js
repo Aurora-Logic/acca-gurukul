@@ -407,6 +407,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ACCA Journey Cards mobile click interaction
+  const journeyCards = document.querySelectorAll('.journey-modern-card');
+  if (journeyCards.length > 0) {
+    journeyCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Toggle active class on mobile/touch screens (viewport <= 1024px or pointer: coarse device)
+        if (window.innerWidth <= 1024 || window.matchMedia("(pointer: coarse)").matches) {
+          const isActive = card.classList.contains('active');
+          
+          // Remove active class from all other journey cards
+          journeyCards.forEach(c => c.classList.remove('active'));
+          
+          if (!isActive) {
+            card.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Clear active class when clicking outside cards
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.journey-modern-card')) {
+        journeyCards.forEach(c => c.classList.remove('active'));
+      }
+    });
+  }
 });
 
 // Reusable Dynamic Toast Notification System
