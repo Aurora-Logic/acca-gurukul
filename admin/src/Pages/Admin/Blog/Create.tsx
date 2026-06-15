@@ -239,11 +239,12 @@ export default function BlogCreate() {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="_none">No category</SelectItem>
-                                    <SelectItem value="Counselling Guidance">Counselling Guidance</SelectItem>
-                                    <SelectItem value="Research">Research</SelectItem>
-                                    <SelectItem value="Student Stories">Student Stories</SelectItem>
-                                    <SelectItem value="Technology">Technology</SelectItem>
-                                    <SelectItem value="News">News</SelectItem>
+                                    <SelectItem value="All Articles">All Articles</SelectItem>
+                                    <SelectItem value="Syllabus & Guides">Syllabus & Guides</SelectItem>
+                                    <SelectItem value="Exam Strategies">Exam Strategies</SelectItem>
+                                    <SelectItem value="ACCA Updates">ACCA Updates</SelectItem>
+                                    <SelectItem value="Careers & Jobs">Careers & Jobs</SelectItem>
+                                    <SelectItem value="Success Stories">Success Stories</SelectItem>
                                 </SelectContent>
                             </Select>
                             {errors.category && <p className="text-xs text-destructive">{errors.category}</p>}

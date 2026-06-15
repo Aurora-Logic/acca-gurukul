@@ -20,8 +20,6 @@ const ContactShow = lazy(() => import('./Pages/Admin/Contacts/Show'));
 const UsersIndex = lazy(() => import('./Pages/Admin/Users/Index'));
 const UserCreate = lazy(() => import('./Pages/Admin/Users/Create'));
 const UserEdit = lazy(() => import('./Pages/Admin/Users/Edit'));
-const SeoIndex = lazy(() => import('./Pages/Admin/Seo/Index'));
-const SeoEdit = lazy(() => import('./Pages/Admin/Seo/Edit'));
 const FaqIndex = lazy(() => import('./Pages/Admin/Faq/Index'));
 
 const el = document.getElementById('app');
@@ -55,8 +53,6 @@ if (el) {
                             <Route path="/admin/users" element={<ProtectedRoute><UsersIndex /></ProtectedRoute>} />
                             <Route path="/admin/users/create" element={<ProtectedRoute><UserCreate /></ProtectedRoute>} />
                             <Route path="/admin/users/:id/edit" element={<ProtectedRoute><UserEdit /></ProtectedRoute>} />
-                            <Route path="/admin/seo" element={<ProtectedRoute><SeoIndex /></ProtectedRoute>} />
-                            <Route path="/admin/seo/:pageIdentifier/edit" element={<ProtectedRoute><SeoEdit /></ProtectedRoute>} />
                             <Route path="/admin/faq" element={<ProtectedRoute><FaqIndex /></ProtectedRoute>} />
 
                             {/* Redirects */}

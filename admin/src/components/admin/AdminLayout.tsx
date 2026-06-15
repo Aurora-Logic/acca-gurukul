@@ -10,7 +10,6 @@ import {
     PanelLeftClose,
     PanelLeft,
     MoreVertical,
-    Globe,
     Mail,
     HelpCircle,
 } from 'lucide-react';
@@ -97,7 +96,6 @@ const navGroups: NavGroup[] = [
         textColor: 'text-orange-600',
         items: [
             { name: 'Users', href: '/admin/users', icon: Users },
-            { name: 'SEO', href: '/admin/seo', icon: Globe },
         ],
     },
 ];
