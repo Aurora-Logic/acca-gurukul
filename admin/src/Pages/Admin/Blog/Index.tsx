@@ -158,9 +158,15 @@ export default function BlogIndex() {
             accessorKey: 'is_published',
             header: 'Status',
             cell: ({ row }) => (
-                <Badge variant={row.original.is_published ? 'default' : 'secondary'}>
-                    {row.original.is_published ? 'Published' : 'Draft'}
-                </Badge>
+                row.original.is_published ? (
+                    <Badge className="bg-emerald-100 hover:bg-emerald-100 text-emerald-700 border-emerald-200">
+                        Published
+                    </Badge>
+                ) : (
+                    <Badge variant="secondary">
+                        Draft
+                    </Badge>
+                )
             ),
         },
         {

@@ -73,8 +73,8 @@ interface AdminLayoutProps {
 const navGroups: NavGroup[] = [
     {
         label: 'Overview',
-        color: 'bg-emerald-500',
-        textColor: 'text-emerald-600',
+        color: 'bg-red-500',
+        textColor: 'text-red-600',
         items: [
             { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
         ],

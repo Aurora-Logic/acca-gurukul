@@ -226,7 +226,7 @@ export default function BlogCreate() {
                             </div>
                             <div className="space-y-1.5">
                                 <Label htmlFor="author" className="text-xs text-muted-foreground">Author</Label>
-                                <Input id="author" value={data.author} onChange={(e) => setData('author', e.target.value)} placeholder="e.g. Dr. Himesh Gandhi" />
+                                <Input id="author" value={data.author} onChange={(e) => setData('author', e.target.value)} placeholder="e.g. Himesh Gandhi" />
                             </div>
                         </div>
 
