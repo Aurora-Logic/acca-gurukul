@@ -377,6 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  window.Accordion = Accordion;
+
   document.querySelectorAll('.faq-item').forEach((el) => {
     new Accordion(el);
   });
