@@ -261,17 +261,14 @@
               </div>
 
               <!-- Mumbai -->
-              <div class="presence-city-card" data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7924734898165!2d72.8776559!3d19.0759837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1717246100000!5m2!1sen!2sin">
+              <div class="presence-city-card online-only">
                 <div class="presence-city-icon">
-                  <i data-lucide="map-pin"></i>
+                  <i data-lucide="laptop"></i>
                 </div>
                 <div class="presence-city-details">
-                  <span class="presence-city-name">MUMBAI</span>
-                  <span class="presence-city-desc">In Association with Anna Leela College of Commerce & Economics</span>
+                  <span class="presence-city-name">MUMBAI (ONLINE)</span>
+                  <span class="presence-city-desc">ACCA Gurukul Online Learning Hub</span>
                 </div>
-                <a href="https://maps.app.goo.gl/YEDzM4GWLGowAHr18" target="_blank" rel="noopener noreferrer" class="map-external-link" title="Open in Google Maps">
-                  <i data-lucide="arrow-up-right"></i>
-                </a>
               </div>
 
               <!-- Udaipur -->
@@ -374,7 +371,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         // Interactive Presence Map Switcher
-        const mapCards = document.querySelectorAll('.presence-city-card');
+        const mapCards = document.querySelectorAll('.presence-city-card:not(.online-only)');
         const mapIframe = document.querySelector('.presence-map-col iframe');
 
         if (mapCards.length > 0 && mapIframe) {
