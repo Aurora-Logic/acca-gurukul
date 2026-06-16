@@ -530,3 +530,209 @@
 .infinity-svg.active .infinity-path {
   stroke-dashoffset: 0;
 }
+
+/* ── Interactive India Map ────────────────────────── */
+.map-container-interactive {
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+.india-interactive-map {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.map-paths path {
+  fill: #faf8f5;
+  stroke: rgba(178, 128, 59, 0.18);
+  stroke-width: 0.8;
+  transition: fill 0.3s ease, stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.map-paths path:hover {
+  fill: rgba(178, 128, 59, 0.08);
+  stroke: var(--color-secondary);
+  stroke-width: 1.2;
+}
+
+/* Scanline Sweeper - Disabled as requested */
+.map-scanline {
+  display: none;
+}
+
+/* Markers styling */
+.city-marker {
+  transform-origin: center;
+}
+
+.marker-core {
+  fill: var(--color-primary);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 3px rgba(181, 28, 36, 0.6));
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.marker-ripple {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-dasharray: none;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.marker-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--color-dark);
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
+  opacity: 0;
+}
+
+/* Keyframes for Pop-In and Fade-In (Runs Once) */
+@keyframes markerPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes labelFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes markerRippleOnce {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+    stroke-width: 2;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+    stroke-width: 0.5;
+  }
+}
+
+/* Animations for Markers and Ripples (Delayed Top-to-Bottom cascade, Runs Once) */
+
+/* Delhi (0.4s start) */
+.marker-delhi .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+}
+.marker-delhi .marker-label {
+  animation: labelFadeIn 0.8s ease 0.6s forwards;
+}
+.marker-delhi .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 0.4s forwards;
+}
+.marker-delhi .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 0.6s forwards;
+}
+
+/* Udaipur (0.8s start) */
+.marker-udaipur .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+}
+.marker-udaipur .marker-label {
+  animation: labelFadeIn 0.8s ease 1.0s forwards;
+}
+.marker-udaipur .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 0.8s forwards;
+}
+.marker-udaipur .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 1.0s forwards;
+}
+
+/* Nagpur (1.2s start) */
+.marker-nagpur .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
+}
+.marker-nagpur .marker-label {
+  animation: labelFadeIn 0.8s ease 1.4s forwards;
+}
+.marker-nagpur .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 1.2s forwards;
+}
+.marker-nagpur .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 1.4s forwards;
+}
+
+/* Nashik (1.5s start) */
+.marker-nashik .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards;
+}
+.marker-nashik .marker-label {
+  animation: labelFadeIn 0.8s ease 1.7s forwards;
+}
+.marker-nashik .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 1.5s forwards;
+}
+.marker-nashik .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 1.7s forwards;
+}
+
+/* Mumbai (1.8s start) */
+.marker-mumbai .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s forwards;
+}
+.marker-mumbai .marker-label {
+  animation: labelFadeIn 0.8s ease 2.0s forwards;
+}
+.marker-mumbai .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 1.8s forwards;
+}
+.marker-mumbai .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 2.0s forwards;
+}
+
+/* Hyderabad (2.2s start) */
+.marker-hyderabad .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s forwards;
+}
+.marker-hyderabad .marker-label {
+  animation: labelFadeIn 0.8s ease 2.4s forwards;
+}
+.marker-hyderabad .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 2.2s forwards;
+}
+.marker-hyderabad .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 2.4s forwards;
+}
+
+/* Bengaluru (2.6s start) */
+.marker-bengaluru .marker-core {
+  animation: markerPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.6s forwards;
+}
+.marker-bengaluru .marker-label {
+  animation: labelFadeIn 0.8s ease 2.8s forwards;
+}
+.marker-bengaluru .ripple-1 {
+  animation: markerRippleOnce 1.2s ease-out 2.6s forwards;
+}
+.marker-bengaluru .ripple-2 {
+  animation: markerRippleOnce 1.2s ease-out 2.8s forwards;
+}
