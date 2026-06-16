@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════
--- iRUS — admins table
+-- admins table
 -- Used by /login (admin panel authentication)
 -- ═══════════════════════════════════════════
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 -- 3. Run it in phpMyAdmin:
 --
 -- INSERT INTO `admins` (`name`, `email`, `password`)
--- VALUES ('Admin', 'admin@irus.in',
+-- VALUES ('Admin', 'admin@ACCA.in',
 --         '$2y$10$PUT_BCRYPT_HASH_HERE');
 --
 -- Never store plaintext passwords — always use password_hash() to generate the

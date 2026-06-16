@@ -1,10 +1,62 @@
 RewriteEngine On
+RewriteBase /
 
-# If the request is not for a valid directory
-RewriteCond %{REQUEST_FILENAME} !-d
-# If the request is not for a valid file
+# ==========================================
+# 1. SECURITY RULES (File Hijacking Prevention)
+# ==========================================
+
+# Prevent directory listing
+Options -Indexes
+
+# Block access to all hidden files and directories (starting with a dot, e.g., .env, .git, .htaccess)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Specifically reject RewriteRule traversal tricks (e.g. /home/../.env)
+RewriteRule "(^|/)\." - [F]
+
+# Block access to sensitive development, lock, configuration files, and database dumps
+<FilesMatch "^(package\.json|package-lock\.json|composer\.json|composer-lock\.json|tsconfig\.json|components\.json|Doxyfile|yarn\.lock|pnpm-lock\.yaml|.*\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Prevent access to source files inside the admin folder
+<FilesMatch "^(eslint\.config\.js|vite\.config\.ts|tsconfig\.app\.json|tsconfig\.node\.json)$">
+    Require all denied
+</FilesMatch>
+
+# ==========================================
+# 2. ADMIN PANEL (React SPA Routing)
+# ==========================================
+
+# Rewrite /admin, /admin/, or /admin/index.html directly to the built admin panel index
+RewriteRule ^admin/?(index\.html)?$ admin/dist/index.html [L]
+
+# Rewrite all other /admin/... routes (React SPA router paths) to the admin index,
+# unless they are real files or directories (e.g., admin/dist/assets/...)
 RewriteCond %{REQUEST_FILENAME} !-f
-# And if the .html file exists
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/(.*)$ admin/dist/index.html [L]
+
+# ==========================================
+# 3. FALLBACK ASSETS MAPPING FOR ADMIN
+# ==========================================
+
+# Map requests to /assets/ or /images/ to admin/dist/ if they do not exist in the root
+# (This ensures React absolute-path assets load correctly without breaking main site assets)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^assets/(.*)$ admin/dist/assets/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^images/(.*)$ admin/dist/images/$1 [L]
+
+# ==========================================
+# 4. CLEAN URL ROUTING (Main Site)
+# ==========================================
+
+# Append .html extension to clean URLs if the corresponding HTML file exists
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
-# Rewrite the request to the .html file
 RewriteRule ^(.*)$ $1.html [L]

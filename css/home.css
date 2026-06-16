@@ -619,8 +619,9 @@
   border-right: none;
 }
 
-.journey-modern-card:hover {
-  background-color: rgba(178, 128, 59, 0.02);
+.journey-modern-card:hover,
+.journey-modern-card.active {
+  background-color: rgba(181, 28, 36, 0.02);
 }
 
 .journey-modern-watermark {
@@ -646,13 +647,23 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #faf8f5;
-  border: 1px solid rgba(178, 128, 59, 0.2);
+  background-color: rgba(181, 28, 36, 0.06);
+  border: 1px solid rgba(181, 28, 36, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
   margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.journey-modern-card:hover .journey-modern-circle,
+.journey-modern-card.active .journey-modern-circle {
+  transform: scale(1.08);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(181, 28, 36, 0.25);
 }
 
 .journey-modern-icon {
@@ -2269,10 +2280,16 @@ a.btn {
   position: relative;
 }
 
-.why-acca-card:hover {
+.why-acca-card:hover,
+.why-acca-card.active {
   border-color: rgba(178, 128, 59, 0.4);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   transform: translateY(-3px);
+}
+
+.why-acca-card.red-card:hover,
+.why-acca-card.red-card.active {
+  border-color: rgba(181, 28, 36, 0.4);
 }
 
 .why-acca-card-icon {
@@ -2284,16 +2301,37 @@ a.btn {
   margin-bottom: 18px;
   border-radius: 50% !important;
   background-color: rgba(181, 28, 36, 0.06);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.why-acca-card:hover .why-acca-card-icon {
+.why-acca-card:hover .why-acca-card-icon,
+.why-acca-card.active .why-acca-card-icon {
   transform: scale(1.08);
 }
 
 .why-acca-card-icon.gold-icon {
   color: var(--color-secondary);
   background-color: rgba(178, 128, 59, 0.08);
+}
+
+.why-acca-card-icon.red-icon {
+  color: var(--color-primary);
+  background-color: rgba(181, 28, 36, 0.08);
+}
+
+/* Hover & Active cover-up animations for icons */
+.why-acca-card:hover .why-acca-card-icon.gold-icon,
+.why-acca-card.active .why-acca-card-icon.gold-icon {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(178, 128, 59, 0.25);
+}
+
+.why-acca-card:hover .why-acca-card-icon.red-icon,
+.why-acca-card.active .why-acca-card-icon.red-icon {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(181, 28, 36, 0.25);
 }
 
 .why-acca-card-icon svg,

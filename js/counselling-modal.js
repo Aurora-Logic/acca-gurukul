@@ -90,10 +90,14 @@
               <select class="counselling-form-control" id="counsellingLocation" required>
                 <option value="" disabled selected>Select your preferred location</option>
                 <option value="online">Online / Live Interactive Classes</option>
-                <option value="mumbai">Mumbai Center</option>
+                <option value="mumbai">Mumbai (Online)</option>
                 <option value="pune">Pune Center</option>
                 <option value="delhi">Delhi Center</option>
                 <option value="bengaluru">Bengaluru Center</option>
+                <option value="nashik">Nashik Center</option>
+                <option value="udaipur">Udaipur (Online)</option>
+                <option value="nagpur">Nagpur Center</option>
+                <option value="hyderabad">Hyderabad Center</option>
               </select>
             </div>
 
@@ -706,33 +710,75 @@
         return; // Stop submission if invalid
       }
 
-      // Simple mock successful submission visual feedback
+      // Prepare payload
+      const payload = {
+        counsellingName: document.getElementById('counsellingName').value.trim(),
+        counsellingPhone: document.getElementById('counsellingPhone').value.trim(),
+        counsellingEmail: document.getElementById('counsellingEmail').value.trim(),
+        counsellingCourse: document.getElementById('counsellingCourse').value,
+        counsellingQual: document.getElementById('counsellingQual').value,
+        counsellingYear: document.getElementById('counsellingYear').value || '',
+        counsellingLocation: document.getElementById('counsellingLocation').value,
+        counsellingDate: document.getElementById('counsellingDate').value,
+        counsellingTime: document.getElementById('counsellingTime').value,
+        counsellingSource: document.getElementById('counsellingSource').value || '',
+        counsellingMsg: document.getElementById('counsellingMsg').value.trim(),
+        website: '' // honeypot
+      };
+
       const submitBtn = form.querySelector('.counselling-submit-btn');
       const defaultContent = submitBtn.querySelector('.submit-btn-text');
       const successContent = submitBtn.querySelector('.submit-btn-success');
 
       submitBtn.disabled = true;
-      submitBtn.style.backgroundColor = '#2e7d32'; // Green success color
-      if (defaultContent && successContent) {
-        defaultContent.style.display = 'none';
-        successContent.style.display = 'inline-flex';
-        successContent.style.alignItems = 'center';
-        successContent.style.gap = '8px';
-      }
+      submitBtn.style.opacity = '0.7';
 
-      setTimeout(() => {
-        alert('Your counselling session has been successfully requested! Our experts will call you soon.');
-        closeModal();
-        form.reset();
-
-        // Restore button state
-        submitBtn.disabled = false;
-        submitBtn.style.backgroundColor = '';
-        if (defaultContent && successContent) {
-          defaultContent.style.display = '';
-          successContent.style.display = 'none';
+      fetch('/api/booking.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw err; });
         }
-      }, 1000);
+        return response.json();
+      })
+      .then(resData => {
+        // Visual success feedback
+        submitBtn.style.backgroundColor = '#2e7d32'; // Green success color
+        submitBtn.style.opacity = '';
+        if (defaultContent && successContent) {
+          defaultContent.style.display = 'none';
+          successContent.style.display = 'inline-flex';
+          successContent.style.alignItems = 'center';
+          successContent.style.gap = '8px';
+        }
+
+        setTimeout(() => {
+          showToast(resData.message || 'Your counselling session has been successfully requested! Our experts will call you soon.', 'success');
+          closeModal();
+          form.reset();
+
+          // Restore button state
+          submitBtn.disabled = false;
+          submitBtn.style.backgroundColor = '';
+          if (defaultContent && successContent) {
+            defaultContent.style.display = '';
+            successContent.style.display = 'none';
+          }
+        }, 1000);
+      })
+      .catch(error => {
+        console.error('Booking API Error:', error);
+        showToast(error.message || 'Failed to request counselling session. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+      });
+
     });
 
     // Use event delegation on document body to capture clicks on dynamic buttons

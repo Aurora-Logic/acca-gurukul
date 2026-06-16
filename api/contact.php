@@ -1,6 +1,6 @@
 <?php
 /**
- * iRUS — Contact Form API
+ * Contact Form API
  * POST /api/contact.php
  *
  * Security:
@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/config/bootstrap.php';
 
 // ─── Rate Limiting (IP-based, stored in DB) ───
-$RATE_WINDOW  = 3600; // 1 hour window
-$RATE_MAX     = 5;    // max 5 submissions per window per IP
+$RATE_WINDOW  = 1800; // 30 minutes window
+$RATE_MAX     = 20;    // max 20 submissions per window per IP
 
 $clientIp = getClientIp();
 
@@ -44,6 +44,23 @@ $data = json_decode($raw, true);
 
 if (!is_array($data)) {
     jsonError('Invalid JSON body', 400);
+}
+
+// Map camelCase keys from HTML form to snake_case keys if present
+if (isset($data['fullName'])) {
+    $data['name'] = $data['fullName'];
+}
+if (isset($data['phoneNumber'])) {
+    $data['phone'] = $data['phoneNumber'];
+}
+if (isset($data['emailAddress'])) {
+    $data['email'] = $data['emailAddress'];
+}
+if (isset($data['courseInterested'])) {
+    $data['topic'] = $data['courseInterested'];
+}
+if (isset($data['yourMessage'])) {
+    $data['message'] = $data['yourMessage'];
 }
 
 // Honeypot check — if 'website' field has a value, it's a bot
@@ -97,14 +114,11 @@ if (!checkdnsrr($emailDomain, 'MX') && !checkdnsrr($emailDomain, 'A')) {
 
 // Topic: must be one of the allowed values
 $allowedTopics = [
+    'applied-knowledge',
+    'applied-skills',
+    'strategic-professional',
+    'diploma-ifrs',
     'General consultation',
-    'Robotic prostatectomy',
-    'Kidney cancer surgery',
-    'Bladder cancer treatment',
-    'MRI fusion biopsy',
-    'HIFU focal therapy',
-    'Second opinion',
-    'Something else',
 ];
 if (!in_array($topic, $allowedTopics, true)) {
     $topic = 'General consultation'; // silently default
@@ -139,4 +153,3 @@ try {
     error_log('Contact API error: ' . $e->getMessage());
     jsonError('Failed to save your message. Please try again.', 500);
 }
-

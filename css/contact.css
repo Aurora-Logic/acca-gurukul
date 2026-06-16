@@ -465,6 +465,16 @@ textarea.contact-form-control {
   box-shadow: 0 4px 15px rgba(178, 128, 59, 0.05);
 }
 
+.presence-city-card.online-only {
+  cursor: default;
+}
+
+.presence-city-card.online-only:hover {
+  transform: none;
+  background-color: #fafafa;
+  border-color: transparent;
+}
+
 /* Open in New Tab Button */
 .map-external-link {
   margin-left: auto;

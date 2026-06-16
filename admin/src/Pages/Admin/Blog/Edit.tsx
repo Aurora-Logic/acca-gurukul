@@ -271,7 +271,7 @@ export default function BlogEdit() {
                             </div>
                             <div className="space-y-1.5">
                                 <Label htmlFor="author" className="text-xs text-muted-foreground">Author</Label>
-                                <Input id="author" value={data.author} onChange={(e) => setData('author', e.target.value)} placeholder="e.g. Dr. Himesh Gandhi" />
+                                <Input id="author" value={data.author} onChange={(e) => setData('author', e.target.value)} placeholder="e.g. Himesh Gandhi" />
                             </div>
                         </div>
 
@@ -284,11 +284,12 @@ export default function BlogEdit() {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="_none">No category</SelectItem>
-                                    <SelectItem value="Patient Education">Patient Education</SelectItem>
-                                    <SelectItem value="Research">Research</SelectItem>
-                                    <SelectItem value="Patient Stories">Patient Stories</SelectItem>
-                                    <SelectItem value="Technology">Technology</SelectItem>
-                                    <SelectItem value="News">News</SelectItem>
+                                    <SelectItem value="All Articles">All Articles</SelectItem>
+                                    <SelectItem value="Syllabus & Guides">Syllabus & Guides</SelectItem>
+                                    <SelectItem value="Exam Strategies">Exam Strategies</SelectItem>
+                                    <SelectItem value="ACCA Updates">ACCA Updates</SelectItem>
+                                    <SelectItem value="Careers & Jobs">Careers & Jobs</SelectItem>
+                                    <SelectItem value="Success Stories">Success Stories</SelectItem>
                                 </SelectContent>
                             </Select>
                             {errors.category && <p className="text-xs text-destructive">{errors.category}</p>}

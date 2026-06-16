@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════
--- iRUS — blogs table
+-- ACCA — blogs table
 -- Used by /admin/blog (admin panel blogs CRUD)
 -- ═══════════════════════════════════════════
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `blogs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ═══════════════════════════════════════════
--- iRUS — blog_views table
+-- ACCA — blog_views table
 -- Used to track unique views by IP & User Agent
 -- ═══════════════════════════════════════════
 

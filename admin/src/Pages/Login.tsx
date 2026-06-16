@@ -84,7 +84,7 @@ export default function Login() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                         background:
-                            'radial-gradient(ellipse 70% 55% at 20% 25%, rgba(109,145,116,0.18) 0%, transparent 70%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(184,150,62,0.12) 0%, transparent 70%)',
+                            'radial-gradient(ellipse 70% 55% at 20% 25%, rgba(181,28,36,0.12) 0%, transparent 70%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(178,128,59,0.12) 0%, transparent 70%)',
                     }}
                 />
                 {/* Grain overlay */}
@@ -100,17 +100,17 @@ export default function Login() {
 
                 {/* Logo — top left */}
                 <div className="relative z-10 flex items-center">
-                    <img src={logoSrc} alt="iRUS" className="h-10 w-auto" />
+                    <img src={logoSrc} alt="ACCA Gurukul" className="h-10 w-auto" />
                 </div>
 
                 {/* Quote — bottom left */}
                 <div className="relative z-10 mt-auto max-w-md">
-                    <div className="mb-5 inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.18em] uppercase text-[#4F6E56]">
-                        <span className="h-px w-7 bg-[#4F6E56]" />
-                        Institute of Robotic Uro-Oncology & Surgery
+                    <div className="mb-5 inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.18em] uppercase text-[#B2803B]">
+                        <span className="h-px w-7 bg-[#B2803B]" />
+                        ACCA Gurukul
                     </div>
                     <p className="text-[13.5px] leading-relaxed text-[#0E0D0A]/60">
-                        Manage bookings, enquiries and content across the iRUS institute from one place.
+                        Manage bookings, enquiries and content across ACCA Gurukul from one place.
                     </p>
                 </div>
             </div>
@@ -123,14 +123,14 @@ export default function Login() {
                     className="pointer-events-none absolute inset-0 lg:hidden"
                     style={{
                         background:
-                            'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(109,145,116,0.10) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 15% 85%, rgba(184,150,62,0.06) 0%, transparent 70%)',
+                            'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(181,28,36,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 15% 85%, rgba(178,128,59,0.06) 0%, transparent 70%)',
                     }}
                 />
 
                 <div className="relative mx-auto flex w-full max-w-85 flex-col justify-center gap-7">
                     {/* Mobile-only logo */}
                     <div className="flex justify-center lg:hidden">
-                        <img src={logoSrc} alt="iRUS" className="h-9 w-auto" />
+                        <img src={logoSrc} alt="ACCA Gurukul" className="h-9 w-auto" />
                     </div>
 
                     {/* Header */}
@@ -160,7 +160,7 @@ export default function Login() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 autoComplete="email"
                                 required
-                                className="h-9 bg-white border-neutral-200 focus:border-[#6D9174] focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none shadow-none"
+                                className="h-9 bg-white border-neutral-200 focus:border-[#B51C24] focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none shadow-none"
                             />
                         </div>
 
@@ -180,7 +180,7 @@ export default function Login() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     autoComplete="current-password"
                                     required
-                                    className="pr-9 h-9 bg-white border-neutral-200 focus:border-[#6D9174] focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none shadow-none"
+                                    className="pr-9 h-9 bg-white border-neutral-200 focus:border-[#B51C24] focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none shadow-none"
                                 />
                                 <button
                                     type="button"
@@ -198,7 +198,7 @@ export default function Login() {
                                 id="remember"
                                 checked={remember}
                                 onCheckedChange={(v) => setRemember(Boolean(v))}
-                                className="data-[state=checked]:bg-[#6D9174] data-[state=checked]:border-[#6D9174]"
+                                className="data-[state=checked]:bg-[#B51C24] data-[state=checked]:border-[#B51C24]"
                             />
                             <Label
                                 htmlFor="remember"
@@ -217,7 +217,7 @@ export default function Login() {
                         <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full h-9 bg-[#4F6E56] hover:bg-[#5c7f64] text-white text-[13.5px] font-medium transition-colors disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed"
+                            className="w-full h-9 bg-[#B51C24] hover:bg-[#96131a] text-white text-[13.5px] font-medium transition-colors disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed"
                         >
                             {isSubmitting ? (
                                 <>

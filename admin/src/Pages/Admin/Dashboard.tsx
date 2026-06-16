@@ -196,7 +196,7 @@ export default function Dashboard() {
     const [data, setData] = useState<DashboardData | null>(null);
 
     useEffect(() => {
-        document.title = 'Dashboard — iRUS Admin';
+        document.title = 'Dashboard — ACCA Gurukul Admin';
     }, []);
 
     const [dateRange, setDateRange] = useState<DateRange>({
@@ -453,7 +453,7 @@ export default function Dashboard() {
                                     <Table className="hidden sm:table">
                                         <TableHeader>
                                             <TableRow>
-                                                <TableHead className="text-xs">Patient</TableHead>
+                                                <TableHead className="text-xs">Student</TableHead>
                                                 <TableHead className="text-xs">Contact</TableHead>
                                                 <TableHead className="text-xs">Date</TableHead>
                                                 <TableHead className="text-xs">Status</TableHead>

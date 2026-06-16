@@ -39,21 +39,18 @@ import { api, ApiError } from '@/lib/api';
 
 interface Booking {
     id: number;
-    first_name: string;
-    last_name: string;
+    name: string;
     full_name: string;
-    age: number;
-    gender: string;
     phone: string;
     email: string;
-    country: string | null;
-    city: string | null;
-    consult_type: string;
-    diagnosed: string;
-    mode: string;
-    concern: string | null;
+    course: string;
+    qualification: string;
+    year_of_passing: string | null;
+    location: string;
     appointment_date: string;
     appointment_time: string;
+    source: string | null;
+    message: string | null;
     booking_ref: string;
     status: 'new' | 'confirmed' | 'cancelled' | 'completed';
     ip_address: string | null;
@@ -145,7 +142,7 @@ export default function AppointmentShow() {
     }, [id]);
 
     useEffect(() => {
-        if (booking) document.title = `${booking.full_name} — iRUS Admin`;
+        if (booking) document.title = `${booking.full_name} — ACCA Gurukul Admin`;
     }, [booking]);
 
     // ─── Save status ───
@@ -278,40 +275,39 @@ export default function AppointmentShow() {
                     </div>
                 </div>
 
-                {/* Patient */}
+                {/* Student */}
                 <div className="space-y-4">
                     <div>
-                        <Label className="text-base font-semibold">Patient Information</Label>
+                        <Label className="text-base font-semibold">Student Information</Label>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <DetailItem label="Full name" value={booking.full_name} icon={User} />
-                        <DetailItem label="Age / Gender" value={`${booking.age} · ${booking.gender}`} />
                         <DetailItem label="Phone" value={booking.phone} icon={PhoneIcon} />
                         <DetailItem label="Email" value={booking.email} icon={MailIcon} />
-                        <DetailItem label="Country" value={booking.country} icon={MapPin} />
-                        <DetailItem label="City" value={booking.city} icon={MapPin} />
+                        <DetailItem label="Qualification" value={booking.qualification} />
+                        <DetailItem label="Year of Passing" value={booking.year_of_passing} />
                     </div>
                 </div>
 
                 <Separator />
 
-                {/* Concern */}
+                {/* Counselling Details */}
                 <div className="space-y-4">
                     <div>
-                        <Label className="text-base font-semibold">Consultation</Label>
+                        <Label className="text-base font-semibold">Counselling Preferences</Label>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <DetailItem label="Type" value={booking.consult_type} />
-                        <DetailItem label="Prior diagnosis" value={booking.diagnosed} />
-                        <DetailItem label="Mode" value={booking.mode} />
+                        <DetailItem label="Course" value={booking.course} />
+                        <DetailItem label="Preferred Location" value={booking.location} icon={MapPin} />
+                        <DetailItem label="Hear Source" value={booking.source} />
                     </div>
-                    {booking.concern && (
+                    {booking.message && (
                         <div className="space-y-1">
                             <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                                Patient's concern
+                                Student's message
                             </p>
                             <div className="rounded-lg bg-muted/50 p-4 text-sm leading-relaxed whitespace-pre-wrap">
-                                {booking.concern}
+                                {booking.message}
                             </div>
                         </div>
                     )}
@@ -356,7 +352,7 @@ export default function AppointmentShow() {
                     <div>
                         <Label className="text-base font-semibold">Update status</Label>
                         <p className="text-sm text-muted-foreground mt-1">
-                            Change the booking status after confirming with the patient.
+                            Change the booking status after confirming with the student.
                         </p>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4 max-w-md">

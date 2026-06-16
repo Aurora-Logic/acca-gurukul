@@ -42,21 +42,18 @@ import { api, ApiError } from '@/lib/api';
 
 interface Booking {
     id: number;
-    first_name: string;
-    last_name: string;
+    name: string;
     full_name: string;
-    age: number;
-    gender: string;
     phone: string;
     email: string;
-    country: string | null;
-    city: string | null;
-    consult_type: string;
-    diagnosed: string;
-    mode: string;
-    concern: string | null;
+    course: string;
+    qualification: string;
+    year_of_passing: string | null;
+    location: string;
     appointment_date: string;
     appointment_time: string;
+    source: string | null;
+    message: string | null;
     booking_ref: string;
     status: 'new' | 'confirmed' | 'cancelled' | 'completed';
     created_at: string;
@@ -223,7 +220,7 @@ export default function AppointmentsIndex() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        document.title = 'Appointments — iRUS Admin';
+        document.title = 'Appointments — ACCA Gurukul Admin';
     }, []);
 
     // ─── Fetch list ───
@@ -256,7 +253,7 @@ export default function AppointmentsIndex() {
                     a.email?.toLowerCase().includes(q) ||
                     a.phone?.toLowerCase().includes(q) ||
                     a.booking_ref?.toLowerCase().includes(q) ||
-                    a.consult_type?.toLowerCase().includes(q)
+                    a.course?.toLowerCase().includes(q)
             );
         }
         if (statusFilter) {
@@ -361,7 +358,7 @@ export default function AppointmentsIndex() {
         (): ColumnDef<Booking>[] => [
             {
                 accessorKey: 'full_name',
-                header: ({ column }) => <SortableHeader column={column} title="Patient" />,
+                header: ({ column }) => <SortableHeader column={column} title="Student" />,
                 cell: ({ row }) => (
                     <div>
                         <p className="font-medium">{row.original.full_name}</p>
