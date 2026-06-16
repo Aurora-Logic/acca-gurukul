@@ -1,0 +1,1075 @@
+/* ==========================================================================
+   ACCA Gurukul FIA Route Page Stylesheet
+   ========================================================================== */
+
+/* Hero Section */
+.fia-hero {
+  padding: 80px 0 60px;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.fia-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+.fia-hero-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.fia-hero-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 6px 14px;
+  background-color: rgba(181, 28, 36, 0.06);
+  border: 1px solid rgba(181, 28, 36, 0.2);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.fia-hero-title {
+  font-family: var(--font-serif);
+  font-size: 3.3rem;
+  line-height: 1.15;
+  color: var(--color-dark);
+  margin-bottom: var(--space-md);
+}
+
+.fia-hero-title span {
+  color: var(--color-primary);
+}
+
+.fia-hero-desc {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+  max-width: 540px;
+  margin-bottom: var(--space-xl);
+}
+
+/* Hero Stats Strip */
+.fia-hero-stats {
+  display: flex;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xxl);
+  border-top: 1px dashed var(--color-border);
+  border-bottom: 1px dashed var(--color-border);
+  padding: var(--space-md) 0;
+}
+
+.fia-stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.fia-stat-item i {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+/* Hero CTAs */
+.fia-hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-3xl);
+  flex-wrap: wrap;
+}
+
+.fia-hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Features Ribbon */
+.fia-features-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.fia-feature-pill {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  transition: all 0.3s ease;
+}
+
+.fia-feature-pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(178, 128, 59, 0.2);
+  box-shadow: 0 8px 20px rgba(178, 128, 59, 0.05);
+}
+
+.fia-feature-pill i {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.fia-feature-pill span {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+/* 3D Isometric Level Stack */
+.fia-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--space-xl) 0;
+}
+
+.level-stack-3d {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.stack-title-overlay {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  z-index: 10;
+}
+
+.stack-title-overlay span {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.stack-top-badge {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.step-3d {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-primary);
+  padding: var(--space-lg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.step-3d::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background-color: var(--color-primary);
+}
+
+.step-3d:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(181, 28, 36, 0.06);
+  border-color: rgba(181, 28, 36, 0.15);
+}
+
+.step-3d.step-level-3 {
+  border-left-color: var(--color-primary);
+}
+
+.step-3d.step-level-3::after {
+  background-color: var(--color-primary);
+}
+
+.step-3d.step-level-2 {
+  border-left-color: var(--color-secondary);
+}
+
+.step-3d.step-level-2::after {
+  background-color: var(--color-secondary);
+}
+
+.step-3d.step-level-1 {
+  border-left-color: var(--color-dark);
+}
+
+.step-3d.step-level-1::after {
+  background-color: var(--color-dark);
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding-bottom: 8px;
+}
+
+.step-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.step-papers-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.step-paper-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(245, 245, 245, 0.5);
+  padding: 6px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--color-dark);
+  transition: background 0.2s;
+}
+
+.step-paper-item:hover {
+  background: rgba(245, 245, 245, 0.9);
+}
+
+.step-paper-code {
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.65rem;
+  padding: 3px 6px;
+  min-width: 32px;
+  text-align: center;
+}
+
+.step-level-2 .step-paper-code {
+  background: var(--color-secondary);
+}
+
+.step-level-1 .step-paper-code {
+  background: var(--color-dark);
+}
+
+.step-paper-name {
+  font-weight: 500;
+}
+
+/* FIP block styling */
+.fip-stack-block {
+  background: rgba(181, 28, 36, 0.02);
+  border: 1px dashed rgba(181, 28, 36, 0.25);
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.fip-stack-block i {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.fip-stack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fip-stack-title {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.fip-stack-desc {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--color-gray);
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Section 2: Why FIA is Important */
+.fia-importance-section {
+  padding: 90px 0 60px;
+  background-color: #ffffff;
+  border-top: 1px solid var(--color-border);
+}
+
+.fia-importance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: 40px;
+}
+
+.importance-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: var(--space-xxl);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+}
+
+.importance-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-secondary);
+  box-shadow: 0 15px 30px rgba(178, 128, 59, 0.05);
+}
+
+.importance-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  flex-shrink: 0;
+}
+
+.importance-card.card-1 .importance-card-icon {
+  background-color: rgba(181, 28, 36, 0.05);
+  color: var(--color-primary);
+}
+
+.importance-card.card-2 .importance-card-icon {
+  background-color: rgba(178, 128, 59, 0.08);
+  color: var(--color-secondary);
+}
+
+.importance-card.card-3 .importance-card-icon {
+  background-color: rgba(46, 125, 50, 0.05);
+  color: #2e7d32;
+}
+
+.importance-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: var(--space-md);
+}
+
+.importance-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+}
+
+.importance-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
+.importance-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--color-dark);
+  line-height: 1.4;
+}
+
+.importance-list-item i {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.importance-card.card-1 .importance-list-item i {
+  color: var(--color-primary);
+}
+
+.importance-card.card-2 .importance-list-item i {
+  color: var(--color-secondary);
+}
+
+.importance-card.card-3 .importance-list-item i {
+  color: #2e7d32;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Section 3: 7 Papers in the FIA Pathway */
+.fia-structure-section {
+  padding: 80px 0;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.fia-structure-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-top: 40px;
+}
+
+.structure-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.structure-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  border-color: var(--color-border);
+}
+
+.structure-card-header {
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.structure-level {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.structure-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.structure-title span {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-gray);
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+
+.structure-papers-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.structure-paper-item {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.structure-paper-item i {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.structure-paper-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.structure-paper-code {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.structure-paper-name {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-gray);
+  line-height: 1.4;
+}
+
+.structure-card.special-fip {
+  border: 1px solid rgba(181, 28, 36, 0.15);
+  background-color: rgba(181, 28, 36, 0.01);
+}
+
+.structure-card.special-fip .structure-card-header {
+  border-bottom-color: var(--color-primary);
+}
+
+.structure-card.special-fip .structure-level {
+  color: var(--color-primary);
+}
+
+.structure-fip-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-md) 0;
+  gap: var(--space-md);
+}
+
+.structure-fip-body i {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.structure-fip-desc {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-gray);
+  line-height: 1.6;
+}
+
+/* Horizontal Flow Visualizer */
+.structure-flow-indicator {
+  margin-top: var(--space-xxl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  padding: var(--space-md) 0;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+}
+
+.flow-step-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.flow-connector {
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.flow-final-btn {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 6px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Section 4: FIA to ACCA Roadmap */
+.fia-roadmap-section {
+  padding: 90px 0;
+  background-color: #ffffff;
+  border-top: 1px solid var(--color-border);
+}
+
+.roadmap-flow-container {
+  margin-top: var(--space-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  position: relative;
+  overflow-x: auto;
+  padding: var(--space-md) 0;
+}
+
+.roadmap-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-width: 110px;
+}
+
+.roadmap-icon-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba(181, 28, 36, 0.04);
+  border: 1px solid rgba(181, 28, 36, 0.15);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.roadmap-node:hover .roadmap-icon-circle {
+  transform: scale(1.1);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 20px rgba(181, 28, 36, 0.12);
+}
+
+.roadmap-node.node-final .roadmap-icon-circle {
+  background-color: rgba(178, 128, 59, 0.06);
+  border-color: rgba(178, 128, 59, 0.3);
+  color: var(--color-secondary);
+}
+
+.roadmap-node.node-final:hover .roadmap-icon-circle {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+  box-shadow: 0 10px 20px rgba(178, 128, 59, 0.12);
+}
+
+.roadmap-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.roadmap-sublabel {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  color: var(--color-gray);
+}
+
+.roadmap-connector-arrow {
+  color: var(--color-border);
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Section 5: Why FIA is the Smart Choice */
+.fia-choice-section {
+  padding: 85px 0 60px;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.fia-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-xxl);
+}
+
+.choice-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: var(--space-xl);
+  display: flex;
+  gap: var(--space-md);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.choice-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(178, 128, 59, 0.2);
+  box-shadow: 0 10px 25px rgba(178, 128, 59, 0.04);
+}
+
+.choice-icon-wrapper {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.choice-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.choice-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.choice-desc {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-gray);
+  line-height: 1.55;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Section 6: CTA Banner */
+.fia-cta-section {
+  padding: 90px 0;
+  background-color: #ffffff;
+  border-top: 1px solid var(--color-border);
+}
+
+.fia-cta-banner {
+  background: var(--color-primary);
+  padding: 40px 48px;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(181, 28, 36, 0.12);
+}
+
+.fia-cta-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.fia-cta-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.fia-cta-desc {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.fia-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.fia-btn-counselling {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.fia-btn-counselling:hover {
+  background-color: #ffffff;
+  color: var(--color-primary);
+}
+
+.fia-btn-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: var(--color-primary);
+  border: none;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.fia-btn-call:hover {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+/* Right Side Cards Grid */
+.fia-cta-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  height: 220px;
+}
+
+.fia-cta-image-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  color: #ffffff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+}
+
+.fia-cta-image-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.fia-cta-image-card .card-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.fia-cta-image-card .card-link-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.fia-cta-image-card:hover .card-link-text {
+  color: #ffffff;
+}
+
+.fia-cta-image-card .card-link-icon {
+  transition: transform 0.3s ease;
+}
+
+.fia-cta-image-card:hover .card-link-icon {
+  transform: translateX(4px);
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Responsive CSS Media Queries */
+@media (max-width: 1200px) {
+  .fia-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .fia-hero-grid {
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 992px) {
+  .fia-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-3xl);
+  }
+
+  .fia-hero-badge {
+    align-self: center;
+  }
+
+  .fia-hero-desc {
+    margin: 0 auto var(--space-xl);
+  }
+
+  .fia-hero-stats {
+    justify-content: center;
+  }
+
+  .fia-hero-actions {
+    justify-content: center;
+  }
+
+  .fia-cta-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-xl);
+    gap: var(--space-3xl);
+  }
+
+  .fia-cta-desc {
+    margin: 0 auto;
+  }
+
+  .fia-cta-actions {
+    justify-content: center;
+  }
+
+  .fia-btn-call {
+    align-self: center;
+  }
+
+  .fia-importance-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 40px auto 0;
+  }
+
+  .fia-structure-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fia-choice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .fia-features-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fia-structure-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 40px auto 0;
+  }
+
+  .fia-choice-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: var(--space-xxl) auto 0;
+  }
+
+  .roadmap-flow-container {
+    justify-content: flex-start;
+  }
+
+  .roadmap-node {
+    flex: 0 0 100px;
+  }
+
+  .fia-hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .fia-cta-cards-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .fia-cta-image-card {
+    height: 180px;
+  }
+
+  .fia-features-ribbon {
+    grid-template-columns: 1fr;
+  }
+
+  .fia-hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .fia-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fia-hero-actions .btn {
+    width: 100%;
+  }
+
+  .fia-cta-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fia-features-ribbon {
+    grid-template-columns: 1fr;
+  }
+
+  .fia-hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .fia-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fia-hero-actions .btn {
+    width: 100%;
+  }
+
+  .fia-cta-title {
+    font-size: 1.6rem;
+  }
+}
