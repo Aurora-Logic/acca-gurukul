@@ -74,7 +74,7 @@
 
               <!-- Action buttons -->
               <div class="fia-hero-actions">
-                <a href="#book-counselling" class="btn btn-primary">
+                <a href="/assets/pdf/ACCA_Brochure.pdf" download class="btn btn-primary">
                   DOWNLOAD BROCHURE
                   <i
                     data-lucide="download"
@@ -122,101 +122,118 @@
               </div>
             </div>
 
-            <!-- Right 3D Visual Stack -->
+            <!-- Right: 3D Staircase Visual -->
             <div class="fia-hero-right">
-              <div class="level-stack-3d">
-                <div class="stack-title-overlay">
-                  <span class="stack-top-badge">ACCA</span>
-                  <span>Your Journey to a Global Career</span>
+              <div class="fia-staircase-container">
+
+
+                <!-- Curved Progression Arrow -->
+                <div class="staircase-arrow-track">
+                  <svg viewBox="0 0 80 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="staircase-arrow-svg">
+                    <path d="M40 310 C40 240, 20 200, 40 160 C60 120, 20 80, 40 20" stroke="url(#arrowGrad)" stroke-width="2.5" stroke-dasharray="6 4" fill="none"/>
+                    <polygon points="33,24 40,6 47,24" fill="#B51C24"/>
+                    <defs>
+                      <linearGradient id="arrowGrad" x1="40" y1="310" x2="40" y2="20" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#B51C24" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#B51C24" stop-opacity="1"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 </div>
 
-                <!-- Level 3 (Top Step) -->
-                <div class="step-3d step-level-3">
-                  <div class="step-header">
-                    <span class="step-label">Level 3 (RQF Level 4)</span>
-                    <span class="step-title"
-                      >Diploma in Accounting & Business</span
-                    >
+                <!-- Staircase Steps -->
+                <div class="staircase-steps">
+
+                  <!-- Step 3 (Top) — Diploma Level -->
+                  <div class="stair-row stair-row-3">
+                    <div class="stair-block stair-block-3">
+                      <div class="stair-block-top"></div>
+                      <div class="stair-block-front">
+                        <span class="stair-level">LEVEL 3</span>
+                        <span class="stair-rqf">RQF Level 4</span>
+                      </div>
+                      <div class="stair-block-side"></div>
+                    </div>
+                    <div class="stair-papers">
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-red"></span>
+                        <span class="stair-paper-code">FBT</span>
+                        <span class="stair-paper-name">Business &amp; Technology</span>
+                      </div>
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-red"></span>
+                        <span class="stair-paper-code">FMA</span>
+                        <span class="stair-paper-name">Management Accounting</span>
+                      </div>
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-red"></span>
+                        <span class="stair-paper-code">FFA</span>
+                        <span class="stair-paper-name">Financial Accounting</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="step-papers-row">
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">FBT</span>
-                      <span class="step-paper-name">Business & Technology</span>
+
+                  <!-- Step 2 (Middle) — Intermediate -->
+                  <div class="stair-row stair-row-2">
+                    <div class="stair-block stair-block-2">
+                      <div class="stair-block-top"></div>
+                      <div class="stair-block-front">
+                        <span class="stair-level">LEVEL 2</span>
+                        <span class="stair-rqf">RQF Level 3</span>
+                      </div>
+                      <div class="stair-block-side"></div>
                     </div>
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">FMA</span>
-                      <span class="step-paper-name">Management Accounting</span>
+                    <div class="stair-papers">
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-gold"></span>
+                        <span class="stair-paper-code">FA 2</span>
+                        <span class="stair-paper-name">Maintaining Financial Records</span>
+                      </div>
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-gold"></span>
+                        <span class="stair-paper-code">MA 2</span>
+                        <span class="stair-paper-name">Managing Costs &amp; Finance</span>
+                      </div>
                     </div>
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">FFA</span>
-                      <span class="step-paper-name">Financial Accounting</span>
+                  </div>
+
+                  <!-- Step 1 (Bottom) — Introductory -->
+                  <div class="stair-row stair-row-1">
+                    <div class="stair-block stair-block-1">
+                      <div class="stair-block-top"></div>
+                      <div class="stair-block-front">
+                        <span class="stair-level">LEVEL 1</span>
+                        <span class="stair-rqf">RQF Level 2</span>
+                      </div>
+                      <div class="stair-block-side"></div>
                     </div>
+                    <div class="stair-papers">
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-red"></span>
+                        <span class="stair-paper-code">FA 1</span>
+                        <span class="stair-paper-name">Recording Financial Transactions</span>
+                      </div>
+                      <div class="stair-paper-row">
+                        <span class="stair-paper-dot dot-red"></span>
+                        <span class="stair-paper-code">MA 1</span>
+                        <span class="stair-paper-name">Management Information</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- FiP Bottom Banner -->
+                <div class="staircase-fip-banner">
+                  <div class="fip-icon-circle">
+                    <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+                  </div>
+                  <div class="fip-text">
+                    <h4 class="fip-title">Foundations in Professionalism (FiP)</h4>
+                    <p class="fip-subtitle">Required for progression into ACCA Qualification.</p>
                   </div>
                 </div>
 
-                <!-- Level 2 (Middle Step) -->
-                <div class="step-3d step-level-2">
-                  <div class="step-header">
-                    <span class="step-label">Level 2 (RQF Level 3)</span>
-                    <span class="step-title"
-                      >Intermediate Certificate in Financial & Management
-                      Accounting</span
-                    >
-                  </div>
-                  <div class="step-papers-row">
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">FA 2</span>
-                      <span class="step-paper-name"
-                        >Maintaining Financial Records</span
-                      >
-                    </div>
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">MA 2</span>
-                      <span class="step-paper-name"
-                        >Managing Costs & Finance</span
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Level 1 (Bottom Step) -->
-                <div class="step-3d step-level-1">
-                  <div class="step-header">
-                    <span class="step-label">Level 1 (RQF Level 2)</span>
-                    <span class="step-title"
-                      >Introductory Certificate in Financial & Management
-                      Accounting</span
-                    >
-                  </div>
-                  <div class="step-papers-row">
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">FA 1</span>
-                      <span class="step-paper-name"
-                        >Recording Financial Transactions</span
-                      >
-                    </div>
-                    <div class="step-paper-item">
-                      <span class="step-paper-code">MA 1</span>
-                      <span class="step-paper-name"
-                        >Management Information</span
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- FiP Block -->
-                <div class="fip-stack-block">
-                  <i data-lucide="award" style="width: 22px; height: 22px"></i>
-                  <div class="fip-stack-info">
-                    <span class="fip-stack-title"
-                      >Foundations in Professionalism (FiP)</span
-                    >
-                    <span class="fip-stack-desc"
-                      >Required for progression into the ACCA
-                      Qualification</span
-                    >
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -783,7 +800,8 @@
             <div class="fia-cta-cards-grid">
               <!-- Card 1: Brochure -->
               <a
-                href="#book-counselling"
+                href="/assets/pdf/ACCA_Brochure.pdf"
+                download
                 class="fia-cta-image-card"
                 style="
                   background-image:
@@ -792,7 +810,7 @@
                       rgba(0, 0, 0, 0.3) 0%,
                       rgba(0, 0, 0, 0.6) 100%
                     ),
-                    url(&quot;/assets/images/cta_brochure_bg.png&quot;);
+                    url(&quot;/assets/images/cta_brochure_bg.webp&quot;);
                 "
               >
                 <div class="card-top">
@@ -821,7 +839,7 @@
                       rgba(0, 0, 0, 0.3) 0%,
                       rgba(0, 0, 0, 0.6) 100%
                     ),
-                    url(&quot;/assets/images/cta_explore_bg.png&quot;);
+                    url(&quot;/assets/images/cta_explore_bg.webp&quot;);
                 "
               >
                 <div class="card-top">
