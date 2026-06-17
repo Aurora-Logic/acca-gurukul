@@ -1344,16 +1344,18 @@
   flex-direction: column;
   gap: 40px;
   width: 100%;
+  overflow: hidden;
 }
 
 .testimonials-row {
   display: flex;
-  justify-content: space-between;
   gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
 }
 
 .testimonial-card {
-  flex: 1;
+  flex: 0 0 calc(33.333% - 11px);
   background-color: #faf8f5;
   /* Warm grey/cream cards */
   border: 1px solid rgba(178, 128, 59, 0.12);
@@ -1363,7 +1365,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  transition: all 0.35s ease;
+  transition: all 0.35s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
 }
 
@@ -1634,25 +1636,50 @@
   .testimonials-row {
     display: flex !important;
     flex-direction: row !important;
-    width: 300% !important;
-    /* 3 cards */
-    gap: 0 !important;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    width: max-content !important;
+    gap: 16px !important;
+    animation: marquee 50s linear infinite !important;
+    transition: none !important;
+  }
+
+  .testimonials-row:hover {
+    animation-play-state: paused !important;
   }
 
   .testimonials-row .testimonial-card {
-    flex: 0 0 33.3333% !important;
-    width: 33.3333% !important;
-    max-width: 33.3333% !important;
+    flex: 0 0 320px !important;
+    width: 320px !important;
+    max-width: 320px !important;
     box-sizing: border-box !important;
     padding: 30px 20px !important;
-    border-radius: 0 !important;
-    /* Enforced sharp borders */
+    border-radius: 6px !important;
+  }
+
+  .testimonials-pagination {
+    display: none !important;
   }
 
   .metrics-grid {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (min-width: 1301px) {
+  .testimonial-card.clone {
+    display: none !important;
+  }
+  .testimonials-pagination {
+    display: flex !important;
   }
 }
 

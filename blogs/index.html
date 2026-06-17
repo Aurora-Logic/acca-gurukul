@@ -30,7 +30,9 @@
         <span class="blogs-eyebrow">GURUKUL INSIGHTS</span>
         <h1 class="blogs-main-title">Knowledge, Guides & Updates</h1>
         <p class="blogs-main-desc">
-          Stay ahead in your finance journey with curated exam strategies, global career insights, syllabus guides, and successful alumni stories.
+          Stay ahead in your finance journey with curated exam strategies,
+          global career insights, syllabus guides, and successful alumni
+          stories.
         </p>
       </div>
     </header>
@@ -39,7 +41,9 @@
     <section class="blogs-filter-container">
       <div class="container">
         <ul class="blogs-categories">
-          <li><button class="blog-category-btn active">All Articles</button></li>
+          <li>
+            <button class="blog-category-btn active">All Articles</button>
+          </li>
           <li><button class="blog-category-btn">Syllabus & Guides</button></li>
           <li><button class="blog-category-btn">Exam Strategies</button></li>
           <li><button class="blog-category-btn">ACCA Updates</button></li>
@@ -65,13 +69,28 @@
         <!-- Call to Action Banner -->
         <div class="blog-cta-banner">
           <div class="blog-cta-content">
-            <h3 class="blog-cta-title">Ready to Design Your ACCA Success Story?</h3>
+            <h3 class="blog-cta-title">
+              Ready to Design Your ACCA Success Story?
+            </h3>
             <p class="blog-cta-desc">
-              Book a free counselling session with our academic experts. Clear your doubts about study plans, registration cycles, fees, and exemptions.
+              Book a free counselling session with our academic experts. Clear
+              your doubts about study plans, registration cycles, fees, and
+              exemptions.
             </p>
           </div>
           <div class="blog-cta-action">
-            <a href="#book-counselling" class="btn blog-cta-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 4px; text-decoration: none;">
+            <a
+              href="#book-counselling"
+              class="btn blog-cta-btn"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 24px;
+                border-radius: 4px;
+                text-decoration: none;
+              "
+            >
               <i data-lucide="headset" style="width: 18px; height: 18px"></i>
               BOOK FREE COUNSELLING
             </a>
@@ -89,34 +108,41 @@
 
     <!-- Dynamic Fetching and Filtering for Blogs -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         let allBlogs = [];
 
         function formatDate(dateStr) {
-          if (!dateStr) return '';
+          if (!dateStr) return "";
           const date = new Date(dateStr.replace(/-/g, "/"));
-          return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+          return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          });
         }
 
         function renderBlogs(blogsList) {
-          const featuredWrapper = document.querySelector('.featured-blog-wrapper');
-          const gridContainer = document.querySelector('.blogs-grid-container');
+          const featuredWrapper = document.querySelector(
+            ".featured-blog-wrapper",
+          );
+          const gridContainer = document.querySelector(".blogs-grid-container");
 
           if (!blogsList || blogsList.length === 0) {
-            featuredWrapper.style.display = 'none';
-            gridContainer.innerHTML = '<p class="no-data-msg" style="grid-column: 1 / -1; text-align: center; color: var(--color-gray); padding: 40px 20px; font-size: 0.95rem; font-family: var(--font-sans); width: 100%;">No blogs uploaded yet.</p>';
+            featuredWrapper.style.display = "none";
+            gridContainer.innerHTML =
+              '<p class="no-data-msg" style="grid-column: 1 / -1; text-align: center; color: var(--color-gray); padding: 40px 20px; font-size: 0.95rem; font-family: var(--font-sans); width: 100%;">No blogs uploaded yet.</p>';
             return;
           }
 
-          featuredWrapper.style.display = '';
-          
+          featuredWrapper.style.display = "";
+
           // 1. Featured Blog: Use the first blog in the list (or look for is_featured)
-          const featured = blogsList.find(b => b.is_featured) || blogsList[0];
-          
+          const featured = blogsList.find((b) => b.is_featured) || blogsList[0];
+
           featuredWrapper.innerHTML = `
             <a href="/blogs/index.html?slug=${featured.slug}" class="featured-blog-card">
               <div class="featured-img-col">
-                <img src="${featured.featured_image || '/assets/images/building.png'}" alt="${featured.title}" />
+                <img src="${featured.featured_image || "/assets/images/building.webp"}" alt="${featured.title}" />
               </div>
               <div class="featured-content-col">
                 <div class="blog-meta-row">
@@ -137,17 +163,17 @@
           `;
 
           // 2. Regular Blogs: Render the rest of the list
-          const regularBlogs = blogsList.filter(b => b.id !== featured.id);
-          
+          const regularBlogs = blogsList.filter((b) => b.id !== featured.id);
+
           if (regularBlogs.length === 0) {
-            gridContainer.innerHTML = '';
+            gridContainer.innerHTML = "";
           } else {
-            let html = '';
-            regularBlogs.forEach(blog => {
+            let html = "";
+            regularBlogs.forEach((blog) => {
               html += `
                 <a href="/blogs/index.html?slug=${blog.slug}" class="blog-card">
                   <div class="blog-card-img">
-                    <img src="${blog.featured_image || '/assets/images/building.png'}" alt="${blog.title}" />
+                    <img src="${blog.featured_image || "/assets/images/building.webp"}" alt="${blog.title}" />
                   </div>
                   <div class="blog-card-content">
                     <div class="blog-meta-row">
@@ -168,28 +194,32 @@
           }
 
           // Re-initialize Lucide Icons for dynamic content
-          if (typeof lucide !== 'undefined') {
+          if (typeof lucide !== "undefined") {
             lucide.createIcons({
-              node: featuredWrapper
+              node: featuredWrapper,
             });
             lucide.createIcons({
-              node: gridContainer
+              node: gridContainer,
             });
           }
         }
 
         // Check for slug parameter in query string
         const urlParams = new URLSearchParams(window.location.search);
-        const slug = urlParams.get('slug');
+        const slug = urlParams.get("slug");
 
         if (slug) {
           // Dynamic Single Blog detail page rendering
-          const mainHeader = document.querySelector('.section-blogs-header');
-          const filterContainer = document.querySelector('.blogs-filter-container');
-          const contentSection = document.querySelector('.section-blogs-content');
+          const mainHeader = document.querySelector(".section-blogs-header");
+          const filterContainer = document.querySelector(
+            ".blogs-filter-container",
+          );
+          const contentSection = document.querySelector(
+            ".section-blogs-content",
+          );
 
-          if (mainHeader) mainHeader.style.display = 'none';
-          if (filterContainer) filterContainer.style.display = 'none';
+          if (mainHeader) mainHeader.style.display = "none";
+          if (filterContainer) filterContainer.style.display = "none";
 
           if (contentSection) {
             contentSection.innerHTML = `
@@ -199,15 +229,17 @@
             `;
 
             fetch(`/api/blog.php?slug=${slug}`)
-              .then(response => response.json())
-              .then(data => {
+              .then((response) => response.json())
+              .then((data) => {
                 if (data && !data.error && data.blog) {
                   const blog = data.blog;
                   document.title = `${blog.meta_title || blog.title} - ACCA Gurukul`;
-                  
-                  const metaDesc = document.querySelector('meta[name="description"]');
+
+                  const metaDesc = document.querySelector(
+                    'meta[name="description"]',
+                  );
                   if (metaDesc && blog.meta_description) {
-                    metaDesc.setAttribute('content', blog.meta_description);
+                    metaDesc.setAttribute("content", blog.meta_description);
                   }
 
                   contentSection.innerHTML = `
@@ -229,7 +261,7 @@
                       <h1 class="single-blog-title" style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; line-height: 1.25; color: var(--color-dark); margin-bottom: 24px; font-weight: 700;">${blog.title}</h1>
                       
                       <div class="single-blog-image" style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <img src="${blog.featured_image || '/assets/images/building.png'}" alt="${blog.title}" style="width: 100%; height: auto; display: block;" />
+                        <img src="${blog.featured_image || "/assets/images/building.webp"}" alt="${blog.title}" style="width: 100%; height: auto; display: block;" />
                       </div>
                       
                       <div class="single-blog-body" style="font-size: 1.05rem; line-height: 1.8; color: var(--color-dark); font-family: var(--font-sans);">
@@ -238,16 +270,23 @@
                     </div>
                   `;
 
-                  if (typeof lucide !== 'undefined') {
+                  if (typeof lucide !== "undefined") {
                     lucide.createIcons({
-                      node: contentSection
+                      node: contentSection,
                     });
                   }
 
-                  const backBtn = contentSection.querySelector('.back-to-blogs');
+                  const backBtn =
+                    contentSection.querySelector(".back-to-blogs");
                   if (backBtn) {
-                    backBtn.addEventListener('mouseenter', () => backBtn.style.color = 'var(--color-primary)');
-                    backBtn.addEventListener('mouseleave', () => backBtn.style.color = 'var(--color-gray)');
+                    backBtn.addEventListener(
+                      "mouseenter",
+                      () => (backBtn.style.color = "var(--color-primary)"),
+                    );
+                    backBtn.addEventListener(
+                      "mouseleave",
+                      () => (backBtn.style.color = "var(--color-gray)"),
+                    );
                   }
                 } else {
                   contentSection.innerHTML = `
@@ -259,7 +298,7 @@
                   `;
                 }
               })
-              .catch(err => {
+              .catch((err) => {
                 console.error(err);
                 contentSection.innerHTML = `
                   <div class="container" style="text-align: center; padding: 60px 20px; font-family: var(--font-sans);">
@@ -272,27 +311,29 @@
           }
         } else {
           // Main grid logic
-          fetch('/api/blogs.php')
-            .then(response => response.json())
-            .then(data => {
+          fetch("/api/blogs.php")
+            .then((response) => response.json())
+            .then((data) => {
               if (data && !data.error && data.blogs) {
                 allBlogs = data.blogs;
                 renderBlogs(allBlogs);
               }
             })
-            .catch(err => console.error('Error fetching blogs:', err));
+            .catch((err) => console.error("Error fetching blogs:", err));
 
-          const filterButtons = document.querySelectorAll('.blog-category-btn');
-          filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-              filterButtons.forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
+          const filterButtons = document.querySelectorAll(".blog-category-btn");
+          filterButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              filterButtons.forEach((b) => b.classList.remove("active"));
+              btn.classList.add("active");
 
               const category = btn.textContent.trim();
-              if (category === 'All Articles') {
+              if (category === "All Articles") {
                 renderBlogs(allBlogs);
               } else {
-                const filtered = allBlogs.filter(b => b.category === category);
+                const filtered = allBlogs.filter(
+                  (b) => b.category === category,
+                );
                 renderBlogs(filtered);
               }
             });
