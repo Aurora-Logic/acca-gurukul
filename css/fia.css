@@ -51,7 +51,7 @@
 
 .fia-hero-desc {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--color-gray);
   line-height: 1.6;
   max-width: 540px;
@@ -504,8 +504,8 @@
 }
 
 .importance-card.card-1 .importance-card-icon {
-  background-color: rgba(181, 28, 36, 0.05);
-  color: var(--color-primary);
+  background-color: rgba(178, 128, 59, 0.08);
+  color: var(--color-secondary);
 }
 
 .importance-card.card-2 .importance-card-icon {
@@ -514,8 +514,8 @@
 }
 
 .importance-card.card-3 .importance-card-icon {
-  background-color: rgba(46, 125, 50, 0.05);
-  color: #2e7d32;
+  background-color: rgba(178, 128, 59, 0.08);
+  color: var(--color-secondary);
 }
 
 .importance-card-title {
@@ -561,11 +561,11 @@
 }
 
 .importance-card.card-2 .importance-list-item i {
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .importance-card.card-3 .importance-list-item i {
-  color: #2e7d32;
+  color: var(--color-primary);
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
