@@ -175,70 +175,109 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Testimonials Carousel for mobile viewports
+  // Testimonials Carousel (Web View: 3 visible with manual controls; Mobile: auto-scrolling marquee)
   const testimonialsRow = document.querySelector('.testimonials-row');
   const prevBtn = document.querySelector('.pag-arrow.prev');
   const nextBtn = document.querySelector('.pag-arrow.next');
-  const dots = document.querySelectorAll('.pag-dots .dot');
+  const dotsContainer = document.querySelector('.pag-dots');
   
-  if (testimonialsRow && prevBtn && nextBtn && dots.length > 0) {
+  if (testimonialsRow) {
+    const originalCards = Array.from(testimonialsRow.children);
+    const totalOriginal = originalCards.length;
+
+    // Clone cards for mobile marquee (only do this once)
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('clone');
+      testimonialsRow.appendChild(clone);
+    });
+
     let currentIndex = 0;
-    const totalCards = dots.length; // 3 cards
-    
-    function updateCarousel(index) {
-      currentIndex = index;
+    let dots = [];
+
+    function setupDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
       
-      // Update transform position
-      if (window.innerWidth <= 1300) {
-        // Since we set width: 300% on the row, we translate by 33.3333% per card slot
-        const translateXValue = -(currentIndex * 33.3333);
-        testimonialsRow.style.setProperty('transform', `translateX(${translateXValue}%)`, 'important');
+      if (window.innerWidth > 1300) {
+        // Desktop: 3 visible at a time. Steps = totalOriginal - 3 + 1
+        const steps = Math.max(1, totalOriginal - 3 + 1);
+        for (let i = 0; i < steps; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'dot' + (i === currentIndex ? ' active' : '');
+          dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            updateCarousel(i);
+          });
+          dotsContainer.appendChild(dot);
+        }
+        dots = Array.from(dotsContainer.children);
+      }
+    }
+
+    function updateCarousel(index) {
+      if (window.innerWidth > 1300) {
+        const steps = Math.max(1, totalOriginal - 3 + 1);
+        // Clamp index
+        currentIndex = Math.max(0, Math.min(index, steps - 1));
+
+        // Calculate exact translate value based on card width + gap
+        const cards = testimonialsRow.querySelectorAll('.testimonial-card:not(.clone)');
+        if (cards.length > 0) {
+          const cardWidth = cards[0].getBoundingClientRect().width;
+          const gap = parseFloat(window.getComputedStyle(testimonialsRow).gap) || 0;
+          const translateXValue = -currentIndex * (cardWidth + gap);
+          testimonialsRow.style.setProperty('transform', `translateX(${translateXValue}px)`);
+        }
       } else {
+        // Mobile: marquee takes care of movement via CSS animation
         testimonialsRow.style.removeProperty('transform');
       }
-      
-      // Update dots active class
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
+
+      // Update active dot
+      if (dots.length > 0) {
+        dots.forEach((dot, idx) => {
+          if (idx === currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    // Event listeners for arrows (Desktop only)
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.innerWidth > 1300) {
+          updateCarousel(currentIndex - 1);
         }
       });
     }
-    
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      let nextIndex = currentIndex - 1;
-      if (nextIndex < 0) {
-        nextIndex = totalCards - 1; // loop back
-      }
-      updateCarousel(nextIndex);
-    });
-    
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      let nextIndex = currentIndex + 1;
-      if (nextIndex >= totalCards) {
-        nextIndex = 0; // loop back
-      }
-      updateCarousel(nextIndex);
-    });
-    
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', (e) => {
-        e.preventDefault();
-        updateCarousel(idx);
-      });
-    });
 
-    // Reset layout transform when resizing window back to desktop
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.innerWidth > 1300) {
+          const steps = Math.max(1, totalOriginal - 3 + 1);
+          let nextIndex = currentIndex + 1;
+          if (nextIndex >= steps) {
+            nextIndex = 0; // loop back
+          }
+          updateCarousel(nextIndex);
+        }
+      });
+    }
+
+    // Initial Setup
+    setupDots();
+    updateCarousel(currentIndex);
+
+    // Handle resize
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 1300) {
-        testimonialsRow.style.removeProperty('transform');
-      } else {
-        updateCarousel(currentIndex);
-      }
+      setupDots();
+      updateCarousel(currentIndex);
     });
   }
 

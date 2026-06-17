@@ -4,7 +4,7 @@
 
 /* Hero Section */
 .fia-hero {
-  padding: 80px 0 60px;
+  padding: 60px 0 60px;
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
@@ -51,7 +51,7 @@
 
 .fia-hero-desc {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   color: var(--color-gray);
   line-height: 1.6;
   max-width: 540px;
@@ -134,207 +134,331 @@
   color: var(--color-dark);
 }
 
-/* 3D Isometric Level Stack */
+/* ============================================================
+   3D Staircase Visual — Hero Right Side
+   ============================================================ */
 .fia-hero-right {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  padding: var(--space-xl) 0;
+  padding: 0;
 }
 
-.level-stack-3d {
+.fia-staircase-container {
+  position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-top: -30vh;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- ACCA Crown Badge ---- */
+.staircase-acca-badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+
+.acca-badge-text {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 8px 16px;
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+}
+
+.acca-badge-sub {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  line-height: 1.35;
+}
+
+/* ---- Curved Arrow Track ---- */
+.staircase-arrow-track {
+  position: absolute;
+  left: -8px;
+  top: 60px;
+  bottom: 60px;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.staircase-arrow-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Staircase Steps Container ---- */
+.staircase-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 50px;
+}
+
+/* ---- Individual Stair Row ---- */
+.stair-row {
+  display: flex;
+  align-items: flex-end;
   gap: 16px;
   position: relative;
 }
 
-.stack-title-overlay {
-  position: absolute;
-  top: -25px;
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  padding: 6px 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  z-index: 10;
+/* Staircase offset — each step is indented less from left as it goes up */
+.stair-row-1 {
+  margin-left: 0;
+  margin-top: 22px;
 }
 
-.stack-title-overlay span {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--color-dark);
+.stair-row-2 {
+  margin-left: 32px;
+  margin-top: 22px;
 }
 
-.stack-top-badge {
-  background: var(--color-primary);
-  color: #ffffff;
-  padding: 4px 8px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+.stair-row-3 {
+  margin-left: 64px;
+  margin-top: 22px;
 }
 
-.step-3d {
+/* ---- 3D Block (Isometric) ---- */
+.stair-block {
   position: relative;
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-left: 6px solid var(--color-primary);
-  padding: var(--space-lg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 110px;
+  height: 80px;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.stair-block:hover {
+  transform: scale(1.04);
+}
+
+/* Front face */
+.stair-block-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 110px;
+  height: 62px;
+  background: linear-gradient(135deg, #c62828 0%, #B51C24 50%, #8e1118 100%);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 4px 20px rgba(181, 28, 36, 0.18);
 }
 
-.step-3d::after {
-  content: '';
+/* Top face (3D effect) */
+.stair-block-top {
   position: absolute;
-  left: -6px;
   top: 0;
+  left: 4px;
+  width: 110px;
+  height: 20px;
+  background: linear-gradient(180deg, #e05555 0%, #c62828 100%);
+  transform: skewX(-40deg);
+  transform-origin: bottom left;
+  border-radius: 2px 2px 0 0;
+}
+
+/* Right side face (3D depth) */
+.stair-block-side {
+  position: absolute;
   bottom: 0;
-  width: 6px;
-  background-color: var(--color-primary);
+  right: -16px;
+  width: 18px;
+  height: 62px;
+  background: linear-gradient(180deg, #8e1118 0%, #6d0d12 100%);
+  transform: skewY(-50deg);
+  transform-origin: top left;
+  border-radius: 0 3px 3px 0;
 }
 
-.step-3d:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 20px 40px rgba(181, 28, 36, 0.06);
-  border-color: rgba(181, 28, 36, 0.15);
+/* Block 2 — slightly different shade for visual variety */
+.stair-block-2 .stair-block-front {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 50%, #a11919 100%);
 }
 
-.step-3d.step-level-3 {
-  border-left-color: var(--color-primary);
+.stair-block-2 .stair-block-top {
+  background: linear-gradient(180deg, #ef5350 0%, #d32f2f 100%);
 }
 
-.step-3d.step-level-3::after {
-  background-color: var(--color-primary);
+.stair-block-2 .stair-block-side {
+  background: linear-gradient(180deg, #a11919 0%, #7a1010 100%);
 }
 
-.step-3d.step-level-2 {
-  border-left-color: var(--color-secondary);
+/* Block 3 — lightest shade */
+.stair-block-3 {
+  margin-bottom: 4px;
 }
 
-.step-3d.step-level-2::after {
-  background-color: var(--color-secondary);
+.stair-block-3 .stair-block-front {
+  background: linear-gradient(135deg, #e53935 0%, #d32f2f 50%, #b71c1c 100%);
 }
 
-.step-3d.step-level-1 {
-  border-left-color: var(--color-dark);
+.stair-block-3 .stair-block-top {
+  background: linear-gradient(180deg, #ef9a9a 0%, #e53935 100%);
 }
 
-.step-3d.step-level-1::after {
-  background-color: var(--color-dark);
+.stair-block-3 .stair-block-side {
+  background: linear-gradient(180deg, #b71c1c 0%, #8e1118 100%);
 }
 
-.step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  padding-bottom: 8px;
-}
-
-.step-label {
+/* ---- Block Text ---- */
+.stair-level {
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--color-secondary);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 3px;
 }
 
-.step-title {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-dark);
+.stair-rqf {
+  font-family: var(--font-sans);
+  font-size: 0.56rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.3px;
 }
 
-.step-papers-row {
+/* ---- Paper Rows ---- */
+.stair-papers {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 6px;
+  padding-top: 0;
+  margin-left: 2rem;
+  flex: 1;
 }
 
-.step-paper-item {
+
+
+.stair-paper-row {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  background: rgba(245, 245, 245, 0.5);
+  gap: 8px;
   padding: 6px 12px;
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  color: var(--color-dark);
-  transition: background 0.2s;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
-.step-paper-item:hover {
-  background: rgba(245, 245, 245, 0.9);
+.stair-paper-row:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
-.step-paper-code {
-  background: var(--color-primary);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.65rem;
-  padding: 3px 6px;
-  min-width: 32px;
-  text-align: center;
-}
-
-.step-level-2 .step-paper-code {
-  background: var(--color-secondary);
-}
-
-.step-level-1 .step-paper-code {
-  background: var(--color-dark);
-}
-
-.step-paper-name {
-  font-weight: 500;
-}
-
-/* FIP block styling */
-.fip-stack-block {
-  background: rgba(181, 28, 36, 0.02);
-  border: 1px dashed rgba(181, 28, 36, 0.25);
-  padding: var(--space-sm) var(--space-md);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.fip-stack-block i {
-  color: var(--color-primary);
+/* Paper Dot */
+.stair-paper-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
 
-.fip-stack-info {
+.dot-red {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 4px rgba(181, 28, 36, 0.3);
+}
+
+.dot-gold {
+  background-color: var(--color-secondary);
+  box-shadow: 0 0 4px rgba(178, 128, 59, 0.3);
+}
+
+/* Paper Code */
+.stair-paper-code {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  min-width: 32px;
+}
+
+.stair-row-2 .stair-paper-code {
+  color: var(--color-secondary);
+}
+
+/* Paper Name */
+.stair-paper-name {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #555555;
+}
+
+/* ---- FiP Bottom Banner ---- */
+.staircase-fip-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(181, 28, 36, 0.04) 0%, rgba(178, 128, 59, 0.04) 100%);
+  border: 1px solid rgba(181, 28, 36, 0.1);
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-left: 50px;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+
+.staircase-fip-banner:hover {
+  border-color: rgba(181, 28, 36, 0.2);
+  box-shadow: 0 4px 16px rgba(181, 28, 36, 0.06);
+}
+
+.fip-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(181, 28, 36, 0.08);
+  border: 1px solid rgba(181, 28, 36, 0.15);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fip-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
-.fip-stack-title {
+.fip-title {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--color-primary);
+  margin-bottom: 1px;
 }
 
-.fip-stack-desc {
+.fip-subtitle {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   color: var(--color-gray);
+  line-height: 1.35;
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -380,8 +504,8 @@
 }
 
 .importance-card.card-1 .importance-card-icon {
-  background-color: rgba(181, 28, 36, 0.05);
-  color: var(--color-primary);
+  background-color: rgba(178, 128, 59, 0.08);
+  color: var(--color-secondary);
 }
 
 .importance-card.card-2 .importance-card-icon {
@@ -390,8 +514,8 @@
 }
 
 .importance-card.card-3 .importance-card-icon {
-  background-color: rgba(46, 125, 50, 0.05);
-  color: #2e7d32;
+  background-color: rgba(178, 128, 59, 0.08);
+  color: var(--color-secondary);
 }
 
 .importance-card-title {
@@ -437,11 +561,11 @@
 }
 
 .importance-card.card-2 .importance-list-item i {
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .importance-card.card-3 .importance-list-item i {
-  color: #2e7d32;
+  color: var(--color-primary);
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -933,6 +1057,71 @@
     grid-template-columns: 1fr;
     text-align: center;
     gap: var(--space-3xl);
+  }
+
+  .fia-hero-right {
+    width: 100%;
+    margin-top: var(--space-xl);
+  }
+
+  .fia-cards-deck-wrapper,
+  .fia-staircase-container {
+    height: auto;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .staircase-arrow-track {
+    display: none;
+  }
+
+  .staircase-acca-badge {
+    align-self: center;
+  }
+
+  .staircase-steps {
+    padding-left: 0;
+  }
+
+  .stair-row-1,
+  .stair-row-2,
+  .stair-row-3 {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+
+
+  .stair-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stair-block {
+    width: 100%;
+    height: 60px;
+  }
+
+  .stair-block-front {
+    width: 100%;
+    height: 46px;
+  }
+
+  .stair-block-top {
+    width: 100%;
+    height: 16px;
+  }
+
+  .stair-block-side {
+    display: none;
+  }
+
+  .staircase-fip-banner {
+    margin-left: 0;
   }
 
   .fia-hero-badge {
