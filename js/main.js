@@ -192,6 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
       testimonialsRow.appendChild(clone);
     });
 
+    // Ensure all completed images have the 'loaded' class (for cache or clones)
+    const testimonialAvatars = testimonialsRow.querySelectorAll('.testimonial-avatar');
+    testimonialAvatars.forEach(img => {
+      if (img.complete) {
+        img.classList.add('loaded');
+      }
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+      });
+    });
+
     let currentIndex = 0;
     let dots = [];
 
