@@ -1085,6 +1085,7 @@
 
   .staircase-steps {
     padding-left: 0;
+    gap: 24px;
   }
 
   .stair-row-1,
@@ -1192,11 +1193,24 @@
   }
 
   .roadmap-flow-container {
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    overflow-x: visible;
+    padding: 0;
   }
 
   .roadmap-node {
-    flex: 0 0 100px;
+    flex: none;
+    min-width: 0;
+  }
+
+  .roadmap-connector-arrow {
+    display: none;
+  }
+
+  .roadmap-node.node-final {
+    grid-column: span 2;
   }
 
   .fia-hero-title {
