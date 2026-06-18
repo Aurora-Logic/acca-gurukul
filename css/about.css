@@ -468,6 +468,11 @@
   background-color: var(--color-bg);
 }
 
+.section-about-stats + .course-cta-banner.reversed {
+  margin-top: 80px;
+}
+
+
 .about-stats-container {
   background-color: var(--color-primary);
   padding: 50px 60px;

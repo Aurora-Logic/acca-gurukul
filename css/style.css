@@ -1382,6 +1382,23 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff !important;
 }
 
+/* Reversed CTA Banner */
+.course-cta-banner.reversed {
+  background-color: #ffffff;
+  color: var(--color-dark);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.course-cta-banner.reversed .course-cta-eyebrow {
+  color: var(--color-primary);
+}
+
+.course-cta-banner.reversed .course-cta-desc {
+  color: var(--color-gray);
+}
+
+
 @media (max-width: 480px) {
   .course-cta-eyebrow {
     font-size: 1.5rem;
