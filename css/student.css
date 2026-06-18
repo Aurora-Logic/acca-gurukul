@@ -332,7 +332,7 @@
 }
 
 .placement-icon-wrapper {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 
