@@ -1346,3 +1346,57 @@ h1, h2, h3, h4, h5, h6 {
 .stat-count {
   font-family: var(--font-sans) !important;
 }
+
+/* Global Counselling CTA Banner */
+.course-cta-banner {
+  background-color: var(--color-primary);
+  padding: 50px 0;
+  text-align: center;
+  color: #ffffff;
+}
+
+.course-cta-content-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.course-cta-eyebrow {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.course-cta-desc {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0;
+}
+
+.btn-cta-white {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+.btn-cta-white:hover {
+  background-color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+  .course-cta-eyebrow {
+    font-size: 1.5rem;
+  }
+}
+
+

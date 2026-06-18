@@ -372,72 +372,7 @@
   background-color: #ffffff;
 }
 
-.locations-cta-banner {
-  background-color: var(--color-primary);
-  padding: 40px 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  color: #ffffff;
-  box-shadow: 0 15px 35px rgba(181, 28, 36, 0.12);
-  border-radius: 0;
-}
-
-.locations-cta-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.locations-cta-icon-wrapper {
-  color: var(--color-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.locations-cta-text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.locations-cta-title {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 0;
-  color: #ffffff;
-}
-
-.locations-cta-desc {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-}
-
-.locations-cta-right .btn-gold {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-  border-radius: 0;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  padding: 14px 28px;
-  border: 1px solid var(--color-secondary);
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.locations-cta-right .btn-gold:hover {
-  background-color: transparent;
-  color: var(--color-secondary);
-}
+/* Locations CTA Banner now styled globally in style.css */
 
 /* Responsive CSS */
 @media (max-width: 1200px) {
@@ -456,23 +391,7 @@
   }
 }
 
-@media (max-width: 992px) {
-  .locations-cta-banner {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px;
-    gap: 30px;
-  }
-  .locations-cta-left {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .locations-cta-right {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-}
+
 
 @media (max-width: 768px) {
   .locations-hero-grid {
