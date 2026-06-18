@@ -1308,18 +1308,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-secondary);
   text-transform: uppercase;
   margin-bottom: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-header-eyebrow::before,
-.section-header-eyebrow::after {
-  content: '';
   display: inline-block;
-  width: 24px;
-  height: 1px;
-  background-color: var(--color-secondary);
 }
 
 .section-header-title {
