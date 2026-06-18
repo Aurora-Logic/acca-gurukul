@@ -468,8 +468,13 @@
   background-color: var(--color-bg);
 }
 
+.section-about-stats + .course-cta-banner.reversed {
+  margin-top: 80px;
+}
+
+
 .about-stats-container {
-  background: linear-gradient(135deg, #7C1318 0%, #B51C24 100%);
+  background-color: var(--color-primary);
   padding: 50px 60px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -521,65 +526,7 @@
   max-width: 130px;
 }
 
-/* Counselling Row */
-.section-about-counselling {
-  padding: 60px 0;
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.counselling-panel-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(178, 128, 59, 0.15);
-  padding: 30px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  border-radius: 0;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.01);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  translate: 0 0;
-  scale: 1;
-}
-
-.counselling-panel-card:hover {
-  translate: 0 -4px;
-  box-shadow: 0 15px 30px rgba(178, 128, 59, 0.08);
-  border-color: var(--color-secondary);
-}
-
-.counselling-panel-card:active {
-  scale: 0.99;
-  translate: 0 -1px;
-}
-
-.counselling-panel-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.counselling-panel-icon {
-  color: var(--color-secondary);
-  background-color: rgba(178, 128, 59, 0.05);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.counselling-panel-text {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  color: var(--color-dark);
-  font-weight: 600;
-}
-
-.counselling-panel-right .btn-primary {
-  border-radius: 0;
-}
+/* Counselling Banner now styled globally in style.css */
 
 /* Responsive CSS */
 @media (max-width: 1200px) {

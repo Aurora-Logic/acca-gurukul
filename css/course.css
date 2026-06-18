@@ -557,49 +557,7 @@
   max-width: 130px;
 }
 
-/* Red CTA Banner */
-.course-cta-banner {
-  background: linear-gradient(135deg, #7C1318 0%, #B51C24 100%);
-  padding: 50px 0;
-  text-align: center;
-  color: #ffffff;
-}
-
-.course-cta-content-wrapper {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.course-cta-eyebrow {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  color: #ffffff;
-  line-height: 1.35;
-}
-
-.course-cta-desc {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
-  margin: 0;
-}
-
-.course-cta-content-wrapper .btn-primary {
-  background-color: #ffffff;
-  color: var(--color-primary);
-  font-weight: 600;
-  border-radius: 0;
-}
-
-.course-cta-content-wrapper .btn-primary:hover {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
+/* Red CTA Banner now defined globally in style.css */
 
 /* Responsive CSS */
 @media (max-width: 1200px) {

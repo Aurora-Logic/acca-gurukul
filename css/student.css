@@ -257,7 +257,6 @@
 /* Agenda Bottom Highlight Box */
 .agenda-highlight-box {
   background-color: var(--color-bg);
-  border-left: 3px solid var(--color-secondary);
   padding: 20px;
   display: flex;
   gap: 16px;
@@ -267,6 +266,10 @@
 .agenda-highlight-icon {
   color: var(--color-primary);
   flex-shrink: 0;
+}
+
+.agenda-highlight-icon svg {
+  fill: var(--color-primary) !important;
 }
 
 .agenda-highlight-content {
@@ -332,7 +335,7 @@
 }
 
 .placement-icon-wrapper {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 
@@ -494,47 +497,7 @@
   line-height: 1.4;
 }
 
-/* Call to Action */
-.student-cta-banner {
-  background: linear-gradient(135deg, #7C1318 0%, #B51C24 100%);
-  padding: 60px 0;
-  text-align: center;
-  color: #ffffff;
-}
-
-.student-cta-content-wrapper {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.student-cta-eyebrow {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  color: #ffffff;
-  line-height: 1.35;
-}
-
-.student-cta-desc {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
-}
-
-.student-cta-content-wrapper .btn-primary {
-  background-color: #ffffff;
-  color: var(--color-primary);
-  font-weight: 600;
-}
-
-.student-cta-content-wrapper .btn-primary:hover {
-  background-color: var(--color-secondary);
-  color: #ffffff;
-}
+/* Call to Action Banner now styled globally in style.css */
 
 /* Responsive Styles */
 @media (max-width: 1200px) {

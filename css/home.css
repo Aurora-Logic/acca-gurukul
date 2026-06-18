@@ -2188,12 +2188,12 @@ a.btn {
   align-items: center;
   justify-content: space-between;
   gap: 0;
-  background-color: transparent;
+  background-color: #ffffff;
   border-top: 1px solid rgba(178, 128, 59, 0.25);
   border-bottom: 1px solid rgba(178, 128, 59, 0.25);
   border-left: none;
   border-right: none;
-  padding: 36px 0;
+  padding: 36px 40px;
   margin-bottom: 60px;
   border-radius: 0 !important;
 }
@@ -2777,14 +2777,14 @@ a.btn {
     height: 300px;
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .hero-right img {
     max-width: 280px;
     height: 100%;
     object-fit: contain;
-    object-position: center bottom;
+    object-position: right bottom;
   }
 }
 
@@ -3580,13 +3580,14 @@ a.btn {
 
   .gallery-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .gallery-tour-btn {
-    align-self: flex-start;
+    align-self: center;
   }
 
   .home-gallery-row {
@@ -3601,5 +3602,23 @@ a.btn {
   .gallery-overlay {
     transform: translateY(0) !important;
     background: rgba(0, 0, 0, 0.65) !important;
+  }
+
+  /* Centering all main text section buttons on mobile */
+  .section-left .btn {
+    align-self: center !important;
+  }
+
+  /* Centering the Why ACCA intro section button on mobile */
+  .why-acca-intro-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .why-acca-intro-right .btn {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    align-self: center !important;
   }
 }
