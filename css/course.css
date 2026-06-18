@@ -559,7 +559,7 @@
 
 /* Red CTA Banner */
 .course-cta-banner {
-  background: linear-gradient(135deg, #7C1318 0%, #B51C24 100%);
+  background-color: var(--color-primary);
   padding: 50px 0;
   text-align: center;
   color: #ffffff;
