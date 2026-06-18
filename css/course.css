@@ -384,6 +384,7 @@
   font-family: var(--font-sans);
   font-size: 0.82rem;
   text-align: left;
+  min-width: 600px;
 }
 
 .premium-table th {
@@ -501,6 +502,7 @@
 .patterns-column, .exemptions-column {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .patterns-column .section-header-title,
@@ -625,7 +627,8 @@
     font-size: 1.5rem;
   }
   .course-badges-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   .additional-info-grid {
     grid-template-columns: 1fr;
