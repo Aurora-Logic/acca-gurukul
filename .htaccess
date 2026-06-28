@@ -3,6 +3,9 @@ DirectoryIndex index.php index.html
 RewriteEngine On
 RewriteBase /
 
+# Map sitemap.xml to dynamic sitemap.php
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
 # ==========================================
 # 1. SECURITY RULES (File Hijacking Prevention)
 # ==========================================
