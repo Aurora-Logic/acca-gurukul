@@ -1,3 +1,5 @@
+DirectoryIndex index.php index.html
+
 RewriteEngine On
 RewriteBase /
 
@@ -54,6 +56,11 @@ RewriteRule ^images/(.*)$ admin/dist/images/$1 [L]
 # ==========================================
 # 4. CLEAN URL ROUTING (Main Site)
 # ==========================================
+
+# Clean URL routing for single blog posts
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blogs/([^/]+)/?$ blogs/index.php?slug=$1 [L,QSA]
 
 # Append .html extension to clean URLs if the corresponding HTML file exists
 RewriteCond %{REQUEST_FILENAME} !-d

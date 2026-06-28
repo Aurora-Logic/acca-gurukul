@@ -34,6 +34,21 @@ $is_published     = isset($_POST['is_published']) && max(0, min(1, (int)$_POST['
 $is_featured      = isset($_POST['is_featured'])  && (int)$_POST['is_featured'] === 1 ? 1 : 0;
 $remove_image     = isset($_POST['remove_image']) && max(0, min(1, (int)$_POST['remove_image']));
 
+$og_title           = sanitize((string)($_POST['og_title'] ?? ''));
+$og_description     = sanitize((string)($_POST['og_description'] ?? ''));
+$featured_image_alt = sanitize((string)($_POST['featured_image_alt'] ?? ''));
+$show_toc           = isset($_POST['show_toc']) && (int)$_POST['show_toc'] === 1 ? 1 : 0;
+$faqs               = trim((string)($_POST['faqs'] ?? ''));
+
+if ($faqs) {
+    $decoded = json_decode($faqs, true);
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+        jsonError('Invalid FAQs format', 422);
+    }
+} else {
+    $faqs = null;
+}
+
 // Validations
 if (strlen($title) < 2) {
     jsonError('Title is required and must be at least 2 characters', 422);
@@ -105,32 +120,42 @@ try {
             excerpt = :excerpt,
             content = :content,
             featured_image = :featured_image,
+            featured_image_alt = :featured_image_alt,
             category = :category,
             tags = :tags,
             meta_title = :meta_title,
             meta_description = :meta_description,
+            og_title = :og_title,
+            og_description = :og_description,
             author = :author,
             read_time = :read_time,
             is_published = :is_published,
-            is_featured = :is_featured
+            is_featured = :is_featured,
+            show_toc = :show_toc,
+            faqs = :faqs
         WHERE id = :id
     ');
 
     $stmt->execute([
-        ':id'               => $id,
-        ':title'            => $title,
-        ':slug'             => $slug,
-        ':excerpt'          => $excerpt,
-        ':content'          => $content,
-        ':featured_image'   => $featuredImage,
-        ':category'         => $category,
-        ':tags'             => $tags,
-        ':meta_title'       => $meta_title,
-        ':meta_description' => $meta_description,
-        ':author'           => $author ?: null,
-        ':read_time'        => $read_time,
-        ':is_published'     => $is_published,
-        ':is_featured'      => $is_featured,
+        ':id'                 => $id,
+        ':title'              => $title,
+        ':slug'               => $slug,
+        ':excerpt'            => $excerpt,
+        ':content'            => $content,
+        ':featured_image'     => $featuredImage,
+        ':featured_image_alt' => $featured_image_alt ?: null,
+        ':category'           => $category,
+        ':tags'               => $tags,
+        ':meta_title'         => $meta_title,
+        ':meta_description'   => $meta_description,
+        ':og_title'           => $og_title ?: null,
+        ':og_description'     => $og_description ?: null,
+        ':author'             => $author ?: null,
+        ':read_time'          => $read_time,
+        ':is_published'       => $is_published,
+        ':is_featured'        => $is_featured,
+        ':show_toc'           => $show_toc,
+        ':faqs'               => $faqs,
     ]);
 
     $pdo->commit();
