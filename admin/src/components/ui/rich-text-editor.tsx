@@ -4,6 +4,7 @@ import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
+import ImageExtension from '@tiptap/extension-image';
 import { useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,7 @@ import {
     AlignCenter,
     AlignRight,
     Minus,
+    Image as ImageIcon,
 } from 'lucide-react';
 
 function ToolbarButton({ onClick, active, disabled, children, title }: {
@@ -76,6 +78,11 @@ export function RichTextEditor({ value, onChange, placeholder = 'Start writing..
             }),
             Placeholder.configure({ placeholder }),
             TextAlign.configure({ types: ['heading', 'paragraph'] }),
+            ImageExtension.configure({
+                HTMLAttributes: {
+                    class: 'blog-inline-image rounded-lg my-6 max-w-full h-auto',
+                },
+            }),
         ],
         content: value,
         onUpdate: ({ editor }) => {
@@ -104,6 +111,36 @@ export function RichTextEditor({ value, onChange, placeholder = 'Start writing..
             return;
         }
         editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+    }, [editor]);
+
+    const addImage = useCallback(() => {
+        if (!editor) return;
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.onchange = async () => {
+            const file = fileInput.files?.[0];
+            if (!file) return;
+            const altText = window.prompt('Enter Image Alt Text (crucial for SEO):') ?? '';
+            const formData = new FormData();
+            formData.append('image', file);
+            try {
+                const response = await fetch('/api/admin/blogs/upload-image.php', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.json();
+                if (result && !result.error && result.url) {
+                    editor.chain().focus().setImage({ src: result.url, alt: altText }).run();
+                } else {
+                    alert(result.message || 'Image upload failed');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred while uploading the image');
+            }
+        };
+        fileInput.click();
     }, [editor]);
 
     if (!editor) return null;
@@ -177,6 +214,9 @@ export function RichTextEditor({ value, onChange, placeholder = 'Start writing..
                         <Unlink className="h-3.5 w-3.5" />
                     </ToolbarButton>
                 )}
+                <ToolbarButton onClick={addImage} title="Insert Image">
+                    <ImageIcon className="h-3.5 w-3.5" />
+                </ToolbarButton>
 
                 <ToolbarDivider />
 

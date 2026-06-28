@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
-import { ArrowLeft, Upload, X } from 'lucide-react';
+import { ArrowLeft, Upload, X, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,9 +10,15 @@ import { Textarea } from '@/components/ui/textarea';
 import { RichTextEditor } from '@/components/ui/rich-text-editor';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { Separator } from '@/components/ui/separator';
 import SeoFields from '@/components/SeoFields';
 import { api, ApiError } from '@/lib/api';
 import { useEffect } from 'react';
+
+interface FaqItem {
+    question: string;
+    answer: string;
+}
 
 interface BlogEditFormData {
     title: string;
@@ -24,10 +30,15 @@ interface BlogEditFormData {
     tags: string;
     meta_title: string;
     meta_description: string;
+    og_title: string;
+    og_description: string;
+    featured_image_alt: string;
     author: string;
     read_time: string;
     is_published: boolean;
     is_featured: boolean;
+    show_toc: boolean;
+    faqsList: FaqItem[];
 }
 
 function generateSlug(title: string): string {
@@ -58,10 +69,15 @@ export default function BlogEdit() {
         tags: '',
         meta_title: '',
         meta_description: '',
+        og_title: '',
+        og_description: '',
+        featured_image_alt: '',
         author: '',
         read_time: '',
         is_published: false,
         is_featured: false,
+        show_toc: true,
+        faqsList: [],
     });
 
     useEffect(() => {
@@ -70,6 +86,17 @@ export default function BlogEdit() {
             .then((res) => {
                 if (!active) return;
                 const b = res.blog as Record<string, unknown>;
+                let faqsParsed: FaqItem[] = [];
+                if (typeof b.faqs === 'string' && b.faqs.trim() !== '') {
+                    try {
+                        faqsParsed = JSON.parse(b.faqs);
+                    } catch (e) {
+                        console.error('Failed to parse FAQs JSON', e);
+                    }
+                } else if (Array.isArray(b.faqs)) {
+                    faqsParsed = b.faqs as FaqItem[];
+                }
+
                 setDataState({
                     title: (b.title as string) || '',
                     slug: (b.slug as string) || '',
@@ -80,10 +107,15 @@ export default function BlogEdit() {
                     tags: Array.isArray(b.tags) ? b.tags.join(', ') : ((b.tags as string) || ''),
                     meta_title: (b.meta_title as string) || '',
                     meta_description: (b.meta_description as string) || '',
+                    og_title: (b.og_title as string) || '',
+                    og_description: (b.og_description as string) || '',
+                    featured_image_alt: (b.featured_image_alt as string) || '',
                     author: (b.author as string) || '',
                     read_time: b.read_time ? String(b.read_time) : '',
                     is_published: !!b.is_published,
                     is_featured: !!b.is_featured,
+                    show_toc: b.show_toc === undefined ? true : !!b.show_toc,
+                    faqsList: faqsParsed,
                 });
                 setExistingImage((b.featured_image as string) || null);
             })
@@ -162,10 +194,15 @@ export default function BlogEdit() {
             formData.append('tags', data.tags);
             formData.append('meta_title', data.meta_title);
             formData.append('meta_description', data.meta_description);
+            formData.append('og_title', data.og_title);
+            formData.append('og_description', data.og_description);
+            formData.append('featured_image_alt', data.featured_image_alt);
             formData.append('author', data.author);
             formData.append('read_time', data.read_time);
             formData.append('is_published', data.is_published ? '1' : '0');
             formData.append('is_featured', data.is_featured ? '1' : '0');
+            formData.append('show_toc', data.show_toc ? '1' : '0');
+            formData.append('faqs', JSON.stringify(data.faqsList));
 
             await api('/api/admin/blogs/update.php', {
                 method: 'POST',
@@ -250,10 +287,95 @@ export default function BlogEdit() {
 
                         {/* SEO */}
                         <SeoFields
-                            data={{ meta_title: data.meta_title, meta_description: data.meta_description }}
+                            data={{
+                                meta_title: data.meta_title,
+                                meta_description: data.meta_description,
+                                og_title: data.og_title,
+                                og_description: data.og_description,
+                                featured_image_alt: data.featured_image_alt
+                            }}
                             onChange={handleSeoChange}
-                            errors={{ meta_title: errors.meta_title, meta_description: errors.meta_description }}
+                            errors={{
+                                meta_title: errors.meta_title,
+                                meta_description: errors.meta_description,
+                                og_title: errors.og_title as string,
+                                og_description: errors.og_description as string,
+                                featured_image_alt: errors.featured_image_alt as string
+                            }}
                         />
+
+                        {/* FAQ Manager */}
+                        <div className="space-y-4 rounded-lg border border-border p-4 bg-card text-card-foreground">
+                            <div>
+                                <h3 className="text-lg font-semibold">FAQs</h3>
+                                <p className="text-sm text-muted-foreground">Add FAQ questions and answers that will appear at the end of this blog post.</p>
+                            </div>
+                            <Separator />
+                            
+                            <div className="space-y-4">
+                                {data.faqsList.map((faq, index) => (
+                                    <div key={index} className="flex gap-4 items-start border-b border-border/50 pb-4 last:border-0 last:pb-0">
+                                        <div className="flex-1 space-y-3">
+                                            <div className="space-y-1.5">
+                                                <Label htmlFor={`faq-q-${index}`}>Question</Label>
+                                                <Input 
+                                                    id={`faq-q-${index}`} 
+                                                    value={faq.question} 
+                                                    onChange={(e) => {
+                                                        const updated = [...data.faqsList];
+                                                        const item = updated[index];
+                                                        if (item) {
+                                                            item.question = e.target.value;
+                                                            setData('faqsList', updated);
+                                                        }
+                                                    }}
+                                                    placeholder="e.g. What is the eligibility criteria for ACCA?" 
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <Label htmlFor={`faq-a-${index}`}>Answer</Label>
+                                                <Textarea 
+                                                    id={`faq-a-${index}`} 
+                                                    value={faq.answer} 
+                                                    onChange={(e) => {
+                                                        const updated = [...data.faqsList];
+                                                        const item = updated[index];
+                                                        if (item) {
+                                                            item.answer = e.target.value;
+                                                            setData('faqsList', updated);
+                                                        }
+                                                    }}
+                                                    placeholder="Provide a brief, clear answer here." 
+                                                    rows={2} 
+                                                />
+                                            </div>
+                                        </div>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="icon"
+                                            className="text-destructive hover:text-destructive hover:bg-destructive/10 mt-6 shrink-0"
+                                            onClick={() => {
+                                                const updated = data.faqsList.filter((_, i) => i !== index);
+                                                setData('faqsList', updated);
+                                            }}
+                                        >
+                                            <Trash2 className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                ))}
+                                
+                                <Button 
+                                    type="button" 
+                                    variant="outline" 
+                                    size="sm" 
+                                    className="gap-1.5"
+                                    onClick={() => setData('faqsList', [...data.faqsList, { question: '', answer: '' }])}
+                                >
+                                    <Plus className="h-4 w-4" /> Add FAQ Item
+                                </Button>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Right Column — sidebar (sticky) */}
@@ -268,6 +390,10 @@ export default function BlogEdit() {
                             <div className="flex items-center justify-between">
                                 <Label htmlFor="is_featured" className="font-normal cursor-pointer text-sm">Featured post</Label>
                                 <Switch id="is_featured" checked={data.is_featured} onCheckedChange={(checked) => setData('is_featured', checked)} />
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <Label htmlFor="show_toc" className="font-normal cursor-pointer text-sm">Show Table of Contents</Label>
+                                <Switch id="show_toc" checked={data.show_toc} onCheckedChange={(checked) => setData('show_toc', checked)} />
                             </div>
                             <div className="space-y-1.5">
                                 <Label htmlFor="author" className="text-xs text-muted-foreground">Author</Label>

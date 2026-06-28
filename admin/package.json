@@ -29,6 +29,8 @@
         "@fontsource-variable/inter": "^5.2.8",
         "@tailwindcss/typography": "^0.5.19",
         "@tanstack/react-table": "^8.21.3",
+        "@tiptap/core": "^3.22.2",
+        "@tiptap/extension-image": "^3.21.0",
         "@tiptap/extension-link": "^3.21.0",
         "@tiptap/extension-placeholder": "^3.21.0",
         "@tiptap/extension-text-align": "^3.21.0",
