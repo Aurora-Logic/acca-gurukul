@@ -2457,7 +2457,7 @@
                 let html = "";
                 blogs.forEach((blog) => {
                   html += `
-                    <a href="/blogs/index.html?slug=${blog.slug}" class="home-blog-card">
+                    <a href="/blogs/${blog.slug}" class="home-blog-card">
                       <div class="home-blog-card-img">
                         <img src="${blog.featured_image || "/assets/images/building.webp"}" alt="${blog.title}" />
                       </div>

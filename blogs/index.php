@@ -214,8 +214,6 @@ function generateTocAndInjectIds($content, &$tocItems) {
             <span><?php echo formatDate($blog['created_at']); ?></span>
             <span class="blog-meta-dot"></span>
             <span><?php echo h($blog['read_time']); ?> Min Read</span>
-            <span class="blog-meta-dot"></span>
-            <span><?php echo h($blog['views']); ?> Views</span>
           </div>
           
           <h1 class="single-blog-title"><?php echo h($blog['title']); ?></h1>
