@@ -13,6 +13,7 @@ import {
     Mail,
     HelpCircle,
     Tag,
+    FileCode,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -98,6 +99,7 @@ const navGroups: NavGroup[] = [
         items: [
             { name: 'Users', href: '/admin/users', icon: Users },
             { name: 'Tracking & Analytics', href: '/admin/settings/tracking', icon: Tag },
+            { name: 'Sitemap', href: '/admin/sitemap', icon: FileCode },
         ],
     },
 ];
