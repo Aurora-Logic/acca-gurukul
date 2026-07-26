@@ -123,6 +123,7 @@ function generateTocAndInjectIds($content, &$tocItems) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/js/tracking.js"></script>
     
     <?php if ($blog): ?>
       <!-- Dynamic SEO Tags for Single Blog -->

@@ -12,6 +12,7 @@ import {
     MoreVertical,
     Mail,
     HelpCircle,
+    Tag,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -96,6 +97,7 @@ const navGroups: NavGroup[] = [
         textColor: 'text-orange-600',
         items: [
             { name: 'Users', href: '/admin/users', icon: Users },
+            { name: 'Tracking & Analytics', href: '/admin/settings/tracking', icon: Tag },
         ],
     },
 ];

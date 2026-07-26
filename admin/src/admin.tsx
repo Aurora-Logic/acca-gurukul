@@ -21,6 +21,7 @@ const UsersIndex = lazy(() => import('./Pages/Admin/Users/Index'));
 const UserCreate = lazy(() => import('./Pages/Admin/Users/Create'));
 const UserEdit = lazy(() => import('./Pages/Admin/Users/Edit'));
 const FaqIndex = lazy(() => import('./Pages/Admin/Faq/Index'));
+const TrackingSettings = lazy(() => import('./Pages/Admin/Settings/Tracking'));
 
 const el = document.getElementById('app');
 if (el) {
@@ -54,6 +55,7 @@ if (el) {
                             <Route path="/admin/users/create" element={<ProtectedRoute><UserCreate /></ProtectedRoute>} />
                             <Route path="/admin/users/:id/edit" element={<ProtectedRoute><UserEdit /></ProtectedRoute>} />
                             <Route path="/admin/faq" element={<ProtectedRoute><FaqIndex /></ProtectedRoute>} />
+                            <Route path="/admin/settings/tracking" element={<ProtectedRoute><TrackingSettings /></ProtectedRoute>} />
 
                             {/* Redirects */}
                             <Route path="/" element={<Navigate to="/admin" replace />} />

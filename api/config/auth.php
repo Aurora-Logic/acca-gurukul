@@ -19,6 +19,7 @@
 require_once __DIR__ . '/bootstrap.php';
 
 const SESSION_COOKIE_NAME        = 'ADMIN_SESSID';
+const SESSION_DEFAULT_LIFETIME   = 86400;     // 1 day default (prevents hard refresh session loss)
 const SESSION_REMEMBER_LIFETIME  = 7 * 86400; // 7 days in seconds
 
 function startAuthSession(bool $remember = false, bool $createIfMissing = false): void
@@ -27,23 +28,17 @@ function startAuthSession(bool $remember = false, bool $createIfMissing = false)
         return;
     }
 
-    // Don't allocate a session for anonymous visitors. Without this guard,
-    // PHP's session_start() auto-issues ADMIN_SESSID to every caller of
-    // /auth/me.php (and every /admin/* endpoint that 401s), which means a
-    // logged-out browser picks up a session cookie just by loading the login
-    // page. Only resume an existing session, or create one for login.
     session_name(SESSION_COOKIE_NAME);
     if (!$createIfMissing && empty($_COOKIE[SESSION_COOKIE_NAME])) {
         return;
     }
 
-    $lifetime = $remember ? SESSION_REMEMBER_LIFETIME : 0;
+    $lifetime = ($remember || !empty($_SESSION['remember'])) ? SESSION_REMEMBER_LIFETIME : SESSION_DEFAULT_LIFETIME;
     $secure   = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 
     session_set_cookie_params([
         'lifetime' => $lifetime,
         'path'     => '/',
-        'domain'   => '',
         'secure'   => $secure,
         'httponly' => true,
         'samesite' => 'Lax',
@@ -51,11 +46,11 @@ function startAuthSession(bool $remember = false, bool $createIfMissing = false)
 
     session_start();
 
-    // If a "remember" flag is stored from a prior login, keep extending the cookie
-    // so the 7-day window slides forward with activity.
-    if (!empty($_SESSION['remember'])) {
+    // Extend cookie expiration on active session
+    if (!empty($_SESSION['admin_id'])) {
+        $exp = time() + (!empty($_SESSION['remember']) ? SESSION_REMEMBER_LIFETIME : SESSION_DEFAULT_LIFETIME);
         setcookie(SESSION_COOKIE_NAME, session_id(), [
-            'expires'  => time() + SESSION_REMEMBER_LIFETIME,
+            'expires'  => $exp,
             'path'     => '/',
             'secure'   => $secure,
             'httponly' => true,
@@ -128,9 +123,10 @@ function getCurrentAdmin(): ?array
         return null;
     }
 
-    // User-agent binding — if UA has changed dramatically, invalidate the session
-    $currentUa = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 200);
-    if (!empty($_SESSION['user_agent']) && $_SESSION['user_agent'] !== $currentUa) {
+    // User-agent binding — check main prefix to avoid session hijacking while allowing minor header variations on refresh
+    $currentUa = substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 50);
+    $storedUa  = substr($_SESSION['user_agent'] ?? '', 0, 50);
+    if (!empty($storedUa) && !empty($currentUa) && $storedUa !== $currentUa) {
         logoutAdmin();
         return null;
     }
