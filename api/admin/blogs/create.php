@@ -17,10 +17,9 @@ requireAuth();
 // For multipart/form-data, we use $_POST and $_FILES directly instead of getJsonBody()
 
 $title            = sanitize((string)($_POST['title'] ?? ''));
-$slug             = sanitize((string)($_POST['slug'] ?? ''));
+$slug             = trim((string)($_POST['slug'] ?? ''));
+$slug             = html_entity_decode($slug, ENT_QUOTES, 'UTF-8');
 $excerpt          = sanitize((string)($_POST['excerpt'] ?? ''));
-// Content might have HTML, so we don't strictly sanitize exactly like titles, but we should escape or allow safe HTML.
-// Assuming the admin panel sends safe HTML (or uses a rich text editor). We'll trim it.
 $content          = trim((string)($_POST['content'] ?? ''));
 $category         = sanitize((string)($_POST['category'] ?? ''));
 $tags             = sanitize((string)($_POST['tags'] ?? ''));
@@ -52,7 +51,8 @@ if (strlen($title) < 2) {
 }
 if (!$slug) {
     // Generate a simple slug if empty
-    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title), '-'));
+    $rawTitle = html_entity_decode($title, ENT_QUOTES, 'UTF-8');
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-\']+/', '-', $rawTitle), '-'));
 }
 
 if (!$content) {

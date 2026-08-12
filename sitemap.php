@@ -44,7 +44,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
         $lastmod = !empty($blog['updated_at']) ? (new DateTime($blog['updated_at']))->format('Y-m-d') : date('Y-m-d');
         ?>
         <url>
-            <loc><?php echo htmlspecialchars($host . '/blogs/' . $blog['slug'] . '/'); ?></loc>
+            <loc><?php echo htmlspecialchars($host . '/blogs/' . html_entity_decode($blog['slug'], ENT_QUOTES, 'UTF-8') . '/'); ?></loc>
             <lastmod><?php echo $lastmod; ?></lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.7</priority>

@@ -21,7 +21,8 @@ if ($id <= 0) {
 }
 
 $title            = sanitize((string)($_POST['title'] ?? ''));
-$slug             = sanitize((string)($_POST['slug'] ?? ''));
+$slug             = trim((string)($_POST['slug'] ?? ''));
+$slug             = html_entity_decode($slug, ENT_QUOTES, 'UTF-8');
 $excerpt          = sanitize((string)($_POST['excerpt'] ?? ''));
 $content          = trim((string)($_POST['content'] ?? ''));
 $category         = sanitize((string)($_POST['category'] ?? ''));
@@ -54,7 +55,8 @@ if (strlen($title) < 2) {
     jsonError('Title is required and must be at least 2 characters', 422);
 }
 if (!$slug) {
-    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title), '-'));
+    $rawTitle = html_entity_decode($title, ENT_QUOTES, 'UTF-8');
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-\']+/', '-', $rawTitle), '-'));
 }
 if (!$content) {
     jsonError('Content is required', 422);

@@ -2457,8 +2457,9 @@
                 }
                 let html = "";
                 blogs.forEach((blog) => {
+                  const cleanSlug = (blog.slug || "").replace(/&#039;/g, "'");
                   html += `
-                    <a href="/blogs/${blog.slug}" class="home-blog-card">
+                    <a href="/blogs/${cleanSlug}" class="home-blog-card">
                       <div class="home-blog-card-img">
                         <img src="${blog.featured_image || "/assets/images/building.webp"}" alt="${blog.title}" />
                       </div>

@@ -15,21 +15,26 @@ function formatDate($dateStr) {
 }
 
 // Get the slug parameter
-$slug = sanitize((string)($_GET['slug'] ?? ''));
+$slug = trim((string)($_GET['slug'] ?? ''));
+$slugDecoded = html_entity_decode($slug, ENT_QUOTES, 'UTF-8');
+$slugEncoded = htmlspecialchars($slugDecoded, ENT_QUOTES, 'UTF-8');
 
 $blog = null;
 $tocItems = [];
 $faqs = [];
 
-if ($slug) {
+if ($slugDecoded) {
     // 1. Fetch single published blog
     try {
         $stmt = db()->prepare('
             SELECT * FROM `blogs` 
-            WHERE slug = :slug AND is_published = 1
+            WHERE (slug = :slug OR slug = :slug_encoded) AND is_published = 1
             LIMIT 1
         ');
-        $stmt->execute([':slug' => $slug]);
+        $stmt->execute([
+            ':slug' => $slugDecoded,
+            ':slug_encoded' => $slugEncoded
+        ]);
         $blog = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($blog) {
@@ -344,7 +349,7 @@ function generateTocAndInjectIds($content, &$tocItems) {
             
             <!-- Featured Post Card -->
             <div class="featured-blog-wrapper">
-              <a href="/blogs/<?php echo h($featured['slug']); ?>/" class="featured-blog-card">
+              <a href="/blogs/<?php echo htmlspecialchars(html_entity_decode($featured['slug'], ENT_QUOTES, 'UTF-8'), ENT_COMPAT, 'UTF-8'); ?>/" class="featured-blog-card">
                 <div class="featured-img-col">
                   <img src="<?php echo h($featured['featured_image'] ?: '/assets/images/building.webp'); ?>" alt="<?php echo h($featured['featured_image_alt'] ?: $featured['title']); ?>" />
                 </div>
@@ -371,7 +376,7 @@ function generateTocAndInjectIds($content, &$tocItems) {
               <?php foreach ($allBlogs as $blogItem): 
                 if ($blogItem['id'] === $featured['id']) continue;
                 ?>
-                <a href="/blogs/<?php echo h($blogItem['slug']); ?>/" class="blog-card" data-category="<?php echo h($blogItem['category']); ?>">
+                <a href="/blogs/<?php echo htmlspecialchars(html_entity_decode($blogItem['slug'], ENT_QUOTES, 'UTF-8'), ENT_COMPAT, 'UTF-8'); ?>/" class="blog-card" data-category="<?php echo h($blogItem['category']); ?>">
                   <div class="blog-card-img">
                     <img src="<?php echo h($blogItem['featured_image'] ?: '/assets/images/building.webp'); ?>" alt="<?php echo h($blogItem['featured_image_alt'] ?: $blogItem['title']); ?>" />
                   </div>
