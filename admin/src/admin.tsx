@@ -26,6 +26,7 @@ const SitemapManager = lazy(() => import('./Pages/Admin/Seo/Sitemap'));
 const SeoIndex = lazy(() => import('./Pages/Admin/Seo/Index'));
 const SeoEdit = lazy(() => import('./Pages/Admin/Seo/Edit'));
 const SeoSettings = lazy(() => import('./Pages/Admin/Seo/Settings'));
+const SeoImages = lazy(() => import('./Pages/Admin/Seo/Images'));
 
 const el = document.getElementById('app');
 if (el) {
@@ -63,6 +64,7 @@ if (el) {
                             <Route path="/admin/sitemap" element={<ProtectedRoute><SitemapManager /></ProtectedRoute>} />
                             <Route path="/admin/seo" element={<ProtectedRoute><SeoIndex /></ProtectedRoute>} />
                             <Route path="/admin/seo/settings" element={<ProtectedRoute><SeoSettings /></ProtectedRoute>} />
+                            <Route path="/admin/seo/images" element={<ProtectedRoute><SeoImages /></ProtectedRoute>} />
                             <Route path="/admin/seo/:pageKey/edit" element={<ProtectedRoute><SeoEdit /></ProtectedRoute>} />
 
                             {/* Redirects */}

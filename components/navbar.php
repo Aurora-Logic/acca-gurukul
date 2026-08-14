@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/seo.php'; ?>
 <div class="container">
   <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle-btn">
     <i data-lucide="menu" id="nav-toggle-icon"></i>
@@ -9,7 +10,7 @@
 
   <div class="nav-left-group">
     <a href="/" class="nav-logo">
-      <img src="/logo.png" alt="ACCA Gurukul Logo">
+      <img src="/logo.png" alt="<?php echo img_alt('/logo.png', 'ACCA Gurukul Logo'); ?>">
     </a>
     
     <ul class="nav-links" id="nav-links-menu">

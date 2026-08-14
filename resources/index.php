@@ -23,7 +23,7 @@ seo_head('resources');
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Hero Section -->
     <header class="section-resources-hero">
@@ -82,7 +82,7 @@ seo_head('resources');
           <div class="resources-hero-image">
             <img
               src="/assets/images/resources_hero.webp"
-              alt="ACCA Textbooks stack and Laptop"
+              alt="<?php echo img_alt('/assets/images/resources_hero.webp', 'ACCA Textbooks stack and Laptop'); ?>"
             />
           </div>
         </div>
@@ -131,7 +131,7 @@ seo_head('resources');
             <div class="card-image-wrapper">
               <img
                 src="/assets/images/tutor_notes_book.webp"
-                alt="ACCA Tutor Notes spiral notebook"
+                alt="<?php echo img_alt('/assets/images/tutor_notes_book.webp', 'ACCA Tutor Notes spiral notebook'); ?>"
               />
             </div>
           </div>
@@ -158,7 +158,7 @@ seo_head('resources');
             <div class="card-image-wrapper">
               <img
                 src="/assets/images/textbooks_stack.webp"
-                alt="Stacked ACCA Textbooks"
+                alt="<?php echo img_alt('/assets/images/textbooks_stack.webp', 'Stacked ACCA Textbooks'); ?>"
               />
             </div>
           </div>
@@ -191,7 +191,7 @@ seo_head('resources');
             <div class="card-image-wrapper">
               <img
                 src="/assets/images/lms_dashboard.webp"
-                alt="LMS Dashboard on Mobile & Laptop"
+                alt="<?php echo img_alt('/assets/images/lms_dashboard.webp', 'LMS Dashboard on Mobile & Laptop'); ?>"
               />
             </div>
           </div>
@@ -221,7 +221,7 @@ seo_head('resources');
             <div class="card-image-wrapper">
               <img
                 src="/assets/images/mock_test_paper.webp"
-                alt="Mock exam paper marked with A+"
+                alt="<?php echo img_alt('/assets/images/mock_test_paper.webp', 'Mock exam paper marked with A+'); ?>"
               />
             </div>
           </div>
@@ -360,7 +360,7 @@ seo_head('resources');
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

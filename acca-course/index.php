@@ -23,7 +23,7 @@ seo_head('acca-course');
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Hero Section -->
     <header class="section-course-hero">
@@ -89,7 +89,7 @@ seo_head('acca-course');
           <div class="course-hero-image">
             <img
               src="/assets/images/resources_hero.webp"
-              alt="ACCA Textbooks stack and open Laptop displaying dashboard"
+              alt="<?php echo img_alt('/assets/images/resources_hero.webp', 'ACCA Textbooks stack and open Laptop displaying dashboard'); ?>"
             />
           </div>
         </div>
@@ -685,7 +685,7 @@ seo_head('acca-course');
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

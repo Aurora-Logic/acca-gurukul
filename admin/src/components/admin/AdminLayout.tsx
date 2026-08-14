@@ -15,6 +15,7 @@ import {
     Tag,
     FileCode,
     Search,
+    Image as ImageIcon,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -99,6 +100,7 @@ const navGroups: NavGroup[] = [
         textColor: 'text-emerald-600',
         items: [
             { name: 'SEO', href: '/admin/seo', icon: Search },
+            { name: 'Image Alt Text', href: '/admin/seo/images', icon: ImageIcon },
             { name: 'Sitemap', href: '/admin/sitemap', icon: FileCode },
         ],
     },

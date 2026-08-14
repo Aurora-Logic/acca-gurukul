@@ -23,7 +23,7 @@ seo_head('student-zone');
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <header class="section-student-hero">
       <div class="container">
@@ -56,7 +56,7 @@ seo_head('student-zone');
           <div class="student-hero-image">
             <img
               src="/assets/images/student_zone_hero.webp"
-              alt="ACCA students group study session"
+              alt="<?php echo img_alt('/assets/images/student_zone_hero.webp', 'ACCA students group study session'); ?>"
             />
           </div>
         </div>
@@ -437,7 +437,7 @@ seo_head('student-zone');
             <div class="placement-professional-card">
               <img
                 src="/assets/images/placement_professional.webp"
-                alt="ACCA placement success story candidate"
+                alt="<?php echo img_alt('/assets/images/placement_professional.webp', 'ACCA placement success story candidate'); ?>"
               />
             </div>
 
@@ -445,7 +445,7 @@ seo_head('student-zone');
             <div class="placement-logos-card">
               <h4 class="placement-logos-title">Where Our Students Work</h4>
               <div class="placement-logos-img-wrapper">
-                <img src="/assets/images/corporate_logos.webp" alt="Deloitte, EY, KPMG, PwC, Grant Thornton, BDO Logos" />
+                <img src="/assets/images/corporate_logos.webp" alt="<?php echo img_alt('/assets/images/corporate_logos.webp', 'Deloitte, EY, KPMG, PwC, Grant Thornton, BDO Logos'); ?>" />
               </div>
             </div>
             -->
@@ -538,7 +538,7 @@ seo_head('student-zone');
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

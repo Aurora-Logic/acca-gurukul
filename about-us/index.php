@@ -23,7 +23,7 @@ seo_head('about-us');
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Hero Section -->
     <header class="section-about-hero">
@@ -44,7 +44,7 @@ seo_head('about-us');
           <div class="about-hero-image">
             <img
               src="/assets/images/reception.webp"
-              alt="ACCA Gurukul Corporate Office Reception"
+              alt="<?php echo img_alt('/assets/images/reception.webp', 'ACCA Gurukul Corporate Office Reception'); ?>"
             />
           </div>
         </div>
@@ -106,7 +106,7 @@ seo_head('about-us');
           <div class="founder-image-card">
             <img
               src="/assets/images/founder_monil_shah.webp"
-              alt="Monil Shah - Founder & CEO of ACCA Gurukul"
+              alt="<?php echo img_alt('/assets/images/founder_monil_shah.webp', 'Monil Shah - Founder & CEO of ACCA Gurukul'); ?>"
             />
           </div>
 
@@ -339,7 +339,7 @@ seo_head('about-us');
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

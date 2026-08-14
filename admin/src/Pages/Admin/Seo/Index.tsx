@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Pencil, Globe, Settings2, AlertTriangle, CheckCircle2, EyeOff } from 'lucide-react';
+import { Pencil, Globe, Settings2, AlertTriangle, CheckCircle2, EyeOff, Image as ImageIcon } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable, SortableHeader } from '@/components/ui/data-table';
 import { Input } from '@/components/ui/input';
@@ -158,12 +158,20 @@ export default function SeoIndex() {
                         Titles, descriptions, social cards and structured data for every public page.
                     </p>
                 </div>
-                <Button asChild variant="outline" className="gap-2">
-                    <Link to="/admin/seo/settings">
-                        <Settings2 className="size-4" />
-                        Site-wide settings
-                    </Link>
-                </Button>
+                <div className="flex flex-wrap gap-2">
+                    <Button asChild variant="outline" className="gap-2">
+                        <Link to="/admin/seo/images">
+                            <ImageIcon className="size-4" />
+                            Image alt text
+                        </Link>
+                    </Button>
+                    <Button asChild variant="outline" className="gap-2">
+                        <Link to="/admin/seo/settings">
+                            <Settings2 className="size-4" />
+                            Site-wide settings
+                        </Link>
+                    </Button>
+                </div>
             </div>
 
             <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">

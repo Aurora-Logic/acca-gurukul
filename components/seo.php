@@ -59,6 +59,43 @@ function seo_settings(): array
     return $cache;
 }
 
+/**
+ * Alt text for a template image, escaped and ready to drop into an attribute.
+ *
+ * Every row in `image_alt` is loaded once per request. The template's own
+ * wording is passed as $fallback, so an unmanaged or unreachable image keeps
+ * the text it has today instead of silently losing its alt.
+ *
+ * @param string $src      site-relative image path, used as the lookup key
+ * @param string $fallback wording written in the template
+ */
+function img_alt(string $src, string $fallback = ''): string
+{
+    static $overrides = null;
+
+    if ($overrides === null) {
+        $overrides = [];
+        try {
+            $rows = db()->query('SELECT image_key, alt_text, is_decorative FROM `image_alt`');
+            foreach ($rows as $row) {
+                // A decorative image gets alt="" deliberately — that is what
+                // tells a screen reader to skip it.
+                $overrides[$row['image_key']] = (int) $row['is_decorative'] === 1
+                    ? ''
+                    : ($row['alt_text'] !== null && $row['alt_text'] !== '' ? $row['alt_text'] : null);
+            }
+        } catch (PDOException $e) {
+            error_log('img_alt load failed: ' . $e->getMessage());
+        }
+    }
+
+    $value = array_key_exists($src, $overrides) && $overrides[$src] !== null
+        ? $overrides[$src]
+        : $fallback;
+
+    return seo_e($value);
+}
+
 function seo_page(string $pageKey): array
 {
     static $cache = [];

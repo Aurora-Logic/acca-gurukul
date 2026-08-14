@@ -39,7 +39,7 @@ seo_head('locations');
   </head>
   <body>
     <!-- Dynamic Navbar Container -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Main Content -->
     <main>
@@ -545,7 +545,7 @@ seo_head('locations');
                 >
                   <img
                     src="/assets/images/logo_msa_academy.webp"
-                    alt="MSA Academy Nashik Logo"
+                    alt="<?php echo img_alt('/assets/images/logo_msa_academy.webp', 'MSA Academy Nashik Logo'); ?>"
                   />
                 </a>
               </div>
@@ -601,7 +601,7 @@ seo_head('locations');
               <div class="partner-logo-wrapper">
                 <img
                   src="/assets/images/logo_caps_nagpur.webp"
-                  alt="D G Sharma's CAPS Nagpur Logo"
+                  alt="<?php echo img_alt('/assets/images/logo_caps_nagpur.webp', 'D G Sharma\'s CAPS Nagpur Logo'); ?>"
                 />
               </div>
 
@@ -653,7 +653,7 @@ seo_head('locations');
               </div>
 
               <div class="partner-logo-wrapper">
-                <img src="/logo.png" alt="ACCA Gurukul Logo" />
+                <img src="/logo.png" alt="<?php echo img_alt('/logo.png', 'ACCA Gurukul Logo'); ?>" />
               </div>
 
               <div class="partner-card-body">
@@ -701,7 +701,7 @@ seo_head('locations');
     </main>
 
     <!-- Dynamic Footer Container -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

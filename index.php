@@ -68,7 +68,7 @@ if ($homeFaqs) {
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/components/navbar.php'; ?></nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -232,7 +232,7 @@ if ($homeFaqs) {
       </div>
 
       <div class="hero-right">
-        <img src="/assets/images/building.webp" alt="Modern Building" />
+        <img src="/assets/images/building.webp" alt="<?php echo img_alt('/assets/images/building.webp', 'Modern Building'); ?>" />
       </div>
     </section>
 
@@ -302,7 +302,7 @@ if ($homeFaqs) {
     </section>
 
     <!-- Corporate Partners Marquee -->
-    <div id="marquee-container"></div>
+    <div id="marquee-container"><?php include __DIR__ . '/components/companies-marquee.php'; ?></div>
 
     <!-- Pan India Presence Horizontal Strip -->
     <section class="presence-strip-section" id="presence">
@@ -1263,7 +1263,7 @@ if ($homeFaqs) {
             <div class="why-acca-image-wrapper">
               <img
                 src="/assets/images/why_gurukul_mentorship.webp"
-                alt="Mentorship at ACCA Gurukul"
+                alt="<?php echo img_alt('/assets/images/why_gurukul_mentorship.webp', 'Mentorship at ACCA Gurukul'); ?>"
                 class="why-acca-feature-img"
               />
               <div class="why-acca-img-badge">
@@ -1453,7 +1453,7 @@ if ($homeFaqs) {
               <div class="exemption-card-image">
                 <img
                   src="/assets/images/exemption_ca.webp"
-                  alt="Qualified Indian CA Path"
+                  alt="<?php echo img_alt('/assets/images/exemption_ca.webp', 'Qualified Indian CA Path'); ?>"
                 />
               </div>
               <div class="exemption-card-body">
@@ -1472,7 +1472,7 @@ if ($homeFaqs) {
               <div class="exemption-card-image">
                 <img
                   src="/assets/images/exemption_ipcc.webp"
-                  alt="CA IPCC / Intermediate Path"
+                  alt="<?php echo img_alt('/assets/images/exemption_ipcc.webp', 'CA IPCC / Intermediate Path'); ?>"
                 />
               </div>
               <div class="exemption-card-body">
@@ -1491,7 +1491,7 @@ if ($homeFaqs) {
               <div class="exemption-card-image">
                 <img
                   src="/assets/images/exemption_bcom.webp"
-                  alt="B.Com / Commerce Graduates Path"
+                  alt="<?php echo img_alt('/assets/images/exemption_bcom.webp', 'B.Com / Commerce Graduates Path'); ?>"
                 />
               </div>
               <div class="exemption-card-body">
@@ -1677,7 +1677,7 @@ if ($homeFaqs) {
             <!-- Professional Skyline Image -->
             <img
               src="https://plus.unsplash.com/premium_photo-1681505343382-750b0576964a?w=800&auto=format&fit=crop&q=80"
-              alt="Student Success - Global Professional"
+              alt="<?php echo img_alt('https://plus.unsplash.com/premium_photo-1681505343382-750b0576964a?w=800&auto=format&fit=crop&q=80', 'Student Success - Global Professional'); ?>"
               class="skyline-image"
             />
 
@@ -2038,7 +2038,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">CS</div>
                   <img
                     src="/assets/images/ACCA_Chirag_soni .webp"
-                    alt="Chirag Soni"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Chirag_soni .webp', 'Chirag Soni'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2067,7 +2067,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">NN</div>
                   <img
                     src="/assets/images/ACCA_Nehal_Nagpal.webp"
-                    alt="Nehal Nagpal"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Nehal_Nagpal.webp', 'Nehal Nagpal'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2095,7 +2095,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">BJ</div>
                   <img
                     src="/assets/images/ACCA_Bharvi_Jain.webp"
-                    alt="Bharvi Jain"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Bharvi_Jain.webp', 'Bharvi Jain'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2123,7 +2123,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">TP</div>
                   <img
                     src="/assets/images/ACCA_Titiksha_Pareek.webp"
-                    alt="Titiksha Pareek"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Titiksha_Pareek.webp', 'Titiksha Pareek'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2151,7 +2151,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">SS</div>
                   <img
                     src="/assets/images/ACCA_Soumya_Sharma.webp"
-                    alt="Soumya Sharma"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Soumya_Sharma.webp', 'Soumya Sharma'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2179,7 +2179,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">KB</div>
                   <img
                     src="/assets/images/ACCA_Kanak_Baheti.webp"
-                    alt="Kanak Baheti"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Kanak_Baheti.webp', 'Kanak Baheti'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2207,7 +2207,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">VT</div>
                   <img
                     src="/assets/images/ACCA_Vishal_Tayal.webp"
-                    alt="Vishal Tayal"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Vishal_Tayal.webp', 'Vishal Tayal'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2235,7 +2235,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">SG</div>
                   <img
                     src="/assets/images/ACCA_Snehasish_Ghosh.webp"
-                    alt="Snehasish Ghosh"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Snehasish_Ghosh.webp', 'Snehasish Ghosh'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2263,7 +2263,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">IA</div>
                   <img
                     src="/assets/images/ACCA_Itisha_Agarwal.webp"
-                    alt="Itisha Agarwal"
+                    alt="<?php echo img_alt('/assets/images/ACCA_Itisha_Agarwal.webp', 'Itisha Agarwal'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2291,7 +2291,7 @@ if ($homeFaqs) {
                   <div class="testimonial-avatar-placeholder">BS</div>
                   <img
                     src="/assets/images/ACCA Bhoomi Shah.webp"
-                    alt="Bhoomi Shah"
+                    alt="<?php echo img_alt('/assets/images/ACCA Bhoomi Shah.webp', 'Bhoomi Shah'); ?>"
                     class="testimonial-avatar"
                     onload="this.classList.add('loaded')"
                     loading="lazy"
@@ -2370,7 +2370,7 @@ if ($homeFaqs) {
           <div class="gallery-item">
             <img
               src="/assets/images/gallery_classroom.webp"
-              alt="Smart Classrooms"
+              alt="<?php echo img_alt('/assets/images/gallery_classroom.webp', 'Smart Classrooms'); ?>"
             />
             <div class="gallery-overlay">
               <span class="gallery-label">Interactive Smart Classrooms</span>
@@ -2381,7 +2381,7 @@ if ($homeFaqs) {
           <div class="gallery-item">
             <img
               src="/assets/images/gallery_seminar.webp"
-              alt="Executive Seminars"
+              alt="<?php echo img_alt('/assets/images/gallery_seminar.webp', 'Executive Seminars'); ?>"
             />
             <div class="gallery-overlay">
               <span class="gallery-label">Corporate Partner Seminars</span>
@@ -2392,7 +2392,7 @@ if ($homeFaqs) {
           <div class="gallery-item">
             <img
               src="/assets/images/gallery_library.webp"
-              alt="Gurukul Library"
+              alt="<?php echo img_alt('/assets/images/gallery_library.webp', 'Gurukul Library'); ?>"
             />
             <div class="gallery-overlay">
               <span class="gallery-label">Collaborative Study Library</span>
@@ -2403,7 +2403,7 @@ if ($homeFaqs) {
           <div class="gallery-item">
             <img
               src="/assets/images/gallery_placement.webp"
-              alt="Success Celebrations"
+              alt="<?php echo img_alt('/assets/images/gallery_placement.webp', 'Success Celebrations'); ?>"
             />
             <div class="gallery-overlay">
               <span class="gallery-label">Corporate Placement Success</span>
@@ -2451,7 +2451,7 @@ if ($homeFaqs) {
         <div class="home-cta-right">
           <img
             src="https://plus.unsplash.com/premium_photo-1661412785975-e4c326f4a8e5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Finance Professional"
+            alt="<?php echo img_alt('https://plus.unsplash.com/premium_photo-1661412785975-e4c326f4a8e5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Finance Professional'); ?>"
             class="home-cta-image"
           />
           <div class="home-cta-image-overlay"></div>
@@ -2460,7 +2460,7 @@ if ($homeFaqs) {
     </section>
 
     <!-- Footer Container -->
-    <div id="footer-container"><?php include __DIR__ . '/components/footer.html'; ?></div>
+    <div id="footer-container"><?php include __DIR__ . '/components/footer.php'; ?></div>
 
     <script src="/js/hero-animations.js?v=1.0.0"></script>
     <script src="/js/main.js?v=1.1.6"></script>

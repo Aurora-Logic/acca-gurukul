@@ -23,7 +23,7 @@ seo_head('contact-us');
   </head>
   <body>
     <!-- Dynamic Navbar Container -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Main Content -->
     <main>
@@ -44,7 +44,7 @@ seo_head('contact-us');
           <div class="contact-hero-right">
             <img
               src="/assets/images/reception.webp"
-              alt="ACCA Gurukul reception desk"
+              alt="<?php echo img_alt('/assets/images/reception.webp', 'ACCA Gurukul reception desk'); ?>"
             />
           </div>
         </div>
@@ -491,7 +491,7 @@ seo_head('contact-us');
     </main>
 
     <!-- Dynamic Footer Container -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

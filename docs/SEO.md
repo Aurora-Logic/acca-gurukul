@@ -27,8 +27,30 @@ a `BlogPosting` node.
 | --- | --- |
 | `page_seo` | One row per public page: title, description, canonical, social, robots, sitemap settings, optional JSON-LD |
 | `seo_settings` | Single row: organisation identity, social profiles, verification tokens, `robots.txt` body |
+| `image_alt` | Alt text for template images, keyed by image path |
 
-Run `api/sql/seo.sql` once to create and seed both.
+Run `api/sql/seo.sql`, then `api/sql/image_alt.sql` and `api/sql/image_alt_seed.sql`.
+
+## Image alt text
+
+Template images render their alt through a lookup:
+
+```php
+<img src="/assets/images/building.webp"
+     alt="<?php echo img_alt('/assets/images/building.webp', 'Modern Building'); ?>" />
+```
+
+The second argument is the wording that was originally hardcoded. It stays in
+the file as a fallback, so a missing row or an unreachable database leaves the
+image with the alt text it has today rather than with none.
+
+Edit them at `/admin/seo/images`. Each image can also be marked **decorative**,
+which renders `alt=""` — that is what tells a screen reader to skip it, and is
+different from having no alt at all.
+
+Blog images are not managed here. A post's featured image uses
+`blogs.featured_image_alt`, edited with the post; images placed inside post
+content carry the alt set in the editor.
 
 ## Admin screens
 
@@ -37,6 +59,7 @@ Run `api/sql/seo.sql` once to create and seed both.
 | Page list with a health score per page | `/admin/seo` |
 | Per-page editor with a live Google preview | `/admin/seo/<page_key>/edit` |
 | Organisation identity, socials, verification, robots.txt | `/admin/seo/settings` |
+| Alt text for every template image | `/admin/seo/images` |
 | Sitemap preview and inclusion reasons | `/admin/sitemap` |
 
 ## Generated endpoints
