@@ -1,10 +1,55 @@
+<?php
+require_once __DIR__ . '/components/seo.php';
+
+/**
+ * FAQs and the latest posts used to be fetched by JavaScript after load, so
+ * neither the answer text nor the article links existed in the HTML a crawler
+ * sees. Both are rendered server-side now; the client script only fills in when
+ * the server produced nothing.
+ */
+$homeFaqs  = [];
+$homeBlogs = [];
+
+try {
+    $homeFaqs = db()->query('
+        SELECT question, answer FROM `faqs`
+        WHERE is_active = 1
+        ORDER BY order_idx ASC, created_at DESC
+        LIMIT 5
+    ')->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log('home FAQ load failed: ' . $e->getMessage());
+}
+
+try {
+    $homeBlogs = db()->query('
+        SELECT title, slug, excerpt, featured_image, category, read_time
+        FROM `blogs`
+        WHERE is_published = 1
+        ORDER BY created_at DESC
+        LIMIT 3
+    ')->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log('home blogs load failed: ' . $e->getMessage());
+}
+
+$homeSchema = [];
+if ($homeFaqs) {
+    $homeSchema[] = [
+        '@type'      => 'FAQPage',
+        '@id'        => seo_url('/') . '#faq',
+        'mainEntity' => array_map(fn(array $f) => [
+            '@type'          => 'Question',
+            'name'           => $f['question'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $f['answer']],
+        ], $homeFaqs),
+    ];
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    <title>ACCA Gurukul - Building Global Finance Leaders</title>
+<?php seo_head('home', ['schema' => $homeSchema]); ?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links (Fixes font loading in local reverse proxies like FlyEnv) -->
@@ -19,11 +64,11 @@
     <link rel="stylesheet" href="/css/style.css?v=1.1.6" />
     <link rel="stylesheet" href="/css/home.css?v=1.1.6" />
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/components/navbar.html'; ?></nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -1758,7 +1803,28 @@
         <!-- Right Side: Blog Cards (3 horizontal cards) -->
         <div class="section-right">
           <div class="home-blogs-grid">
-            <!-- Dynamically loaded from database -->
+<?php foreach ($homeBlogs as $post): ?>
+            <a href="/blogs/<?php echo rawurlencode($post['slug']); ?>/" class="home-blog-card">
+              <div class="home-blog-card-img">
+                <img
+                  src="<?php echo seo_e($post['featured_image'] ?: '/assets/images/building.webp'); ?>"
+                  alt="<?php echo seo_e($post['title']); ?>"
+                  loading="lazy"
+                  width="400"
+                  height="250"
+                />
+              </div>
+              <div class="home-blog-card-content">
+                <div class="home-blog-meta">
+                  <span class="home-blog-tag"><?php echo seo_e($post['category']); ?></span>
+                  <span class="home-blog-dot"></span>
+                  <span><?php echo (int) $post['read_time']; ?> Min Read</span>
+                </div>
+                <h4 class="home-blog-title"><?php echo seo_e($post['title']); ?></h4>
+                <p class="home-blog-excerpt"><?php echo seo_e($post['excerpt']); ?></p>
+              </div>
+            </a>
+<?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -1851,7 +1917,17 @@
         <!-- Right Side: Accordion using native details & summary -->
         <div class="section-right">
           <div class="faq-accordion">
-            <!-- Dynamically loaded from database -->
+<?php foreach ($homeFaqs as $i => $faq): ?>
+            <details class="faq-item"<?php echo $i === 0 ? ' open' : ''; ?>>
+              <summary class="faq-question">
+                <?php echo seo_e($faq['question']); ?>
+                <i data-lucide="chevron-down" class="faq-chevron"></i>
+              </summary>
+              <div class="faq-answer">
+                <p><?php echo seo_e($faq['answer']); ?></p>
+              </div>
+            </details>
+<?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -2384,7 +2460,7 @@
     </section>
 
     <!-- Footer Container -->
-    <div id="footer-container"></div>
+    <div id="footer-container"><?php include __DIR__ . '/components/footer.html'; ?></div>
 
     <script src="/js/hero-animations.js?v=1.0.0"></script>
     <script src="/js/main.js?v=1.1.6"></script>
@@ -2393,8 +2469,17 @@
     <!-- Dynamic Fetching for FAQs and Blogs -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // FAQs and blog cards are rendered server-side. These fetches are a
+        // fallback for the case where the database was unreachable at render
+        // time — skip them whenever the markup is already populated, so we
+        // don't refetch and repaint content the crawler already saw.
+        const faqAccordion = document.querySelector(".faq-accordion");
+        const blogGrid = document.querySelector(".home-blogs-grid");
+        const needFaqs = faqAccordion && faqAccordion.children.length === 0;
+        const needBlogs = blogGrid && blogGrid.children.length === 0;
+
         // 1. Fetch and render FAQs
-        fetch("/api/faqs.php")
+        if (needFaqs) fetch("/api/faqs.php")
           .then((response) => response.json())
           .then((data) => {
             if (data && !data.error && data.faqs) {
@@ -2442,7 +2527,7 @@
           .catch((err) => console.error("Error fetching FAQs:", err));
 
         // 2. Fetch and render Blogs
-        fetch("/api/blogs.php")
+        if (needBlogs) fetch("/api/blogs.php")
           .then((response) => response.json())
           .then((data) => {
             if (data && !data.error && data.blogs) {

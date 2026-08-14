@@ -23,6 +23,9 @@ const UserEdit = lazy(() => import('./Pages/Admin/Users/Edit'));
 const FaqIndex = lazy(() => import('./Pages/Admin/Faq/Index'));
 const TrackingSettings = lazy(() => import('./Pages/Admin/Settings/Tracking'));
 const SitemapManager = lazy(() => import('./Pages/Admin/Seo/Sitemap'));
+const SeoIndex = lazy(() => import('./Pages/Admin/Seo/Index'));
+const SeoEdit = lazy(() => import('./Pages/Admin/Seo/Edit'));
+const SeoSettings = lazy(() => import('./Pages/Admin/Seo/Settings'));
 
 const el = document.getElementById('app');
 if (el) {
@@ -58,6 +61,9 @@ if (el) {
                             <Route path="/admin/faq" element={<ProtectedRoute><FaqIndex /></ProtectedRoute>} />
                             <Route path="/admin/settings/tracking" element={<ProtectedRoute><TrackingSettings /></ProtectedRoute>} />
                             <Route path="/admin/sitemap" element={<ProtectedRoute><SitemapManager /></ProtectedRoute>} />
+                            <Route path="/admin/seo" element={<ProtectedRoute><SeoIndex /></ProtectedRoute>} />
+                            <Route path="/admin/seo/settings" element={<ProtectedRoute><SeoSettings /></ProtectedRoute>} />
+                            <Route path="/admin/seo/:pageKey/edit" element={<ProtectedRoute><SeoEdit /></ProtectedRoute>} />
 
                             {/* Redirects */}
                             <Route path="/" element={<Navigate to="/admin" replace />} />

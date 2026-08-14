@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../../config/auth.php';
+require_once __DIR__ . '/../../config/uploads.php';
 requireAuth();
 
 // For multipart/form-data, we use $_POST and $_FILES directly instead of getJsonBody()
@@ -61,23 +62,15 @@ if (!$content) {
 
 // Handle File Upload
 $featuredImage = null;
-if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = __DIR__ . '/../../../uploads/blogs/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
-
-    $file = $_FILES['featured_image'];
-    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
-    
-    if (in_array($ext, $allowed)) {
-        $filename = uniqid() . '-' . time() . '.' . $ext;
-        if (move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
-            $featuredImage = '/uploads/blogs/' . $filename;
-        }
-    } else {
-        jsonError('Invalid image format', 422);
+if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] !== UPLOAD_ERR_NO_FILE) {
+    try {
+        $featuredImage = storeUploadedImage(
+            $_FILES['featured_image'],
+            __DIR__ . '/../../../uploads/blogs',
+            '/uploads/blogs'
+        );
+    } catch (RuntimeException $e) {
+        jsonError($e->getMessage(), 422);
     }
 }
 

@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    <title>
-      Student Zone - Support, Guidance & Placement Cell | ACCA Gurukul
-    </title>
+<?php
+require_once __DIR__ . '/../components/seo.php';
+seo_head('student-zone');
+?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links -->
@@ -21,11 +19,11 @@
     <link rel="stylesheet" href="/css/style.css?v=1.1.8" />
     <link rel="stylesheet" href="/css/student.css?v=1.1.8" />
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
 
     <header class="section-student-hero">
       <div class="container">
@@ -540,7 +538,7 @@
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

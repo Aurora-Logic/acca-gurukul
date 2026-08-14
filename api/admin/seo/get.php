@@ -1,6 +1,9 @@
 <?php
+/**
+ * GET /api/admin/seo/get.php?page_key=home
+ * Full SEO record for one page.
+ */
 
-// Check method
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
     header('Allow: GET');
@@ -9,84 +12,48 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 require_once __DIR__ . '/../../config/auth.php';
-// requireAuth(); // Keep this simple or enable if needed
+requireAuth();
 
-$pages = [
-    'home' => '../../../home/index.html',
-    'booking' => '../../../booking/index.html',
-    'contact' => '../../../contact/index.html',
-    'news' => '../../../news/index.html',
-    'privacy' => '../../../privacy/index.html',
-    'terms' => '../../../terms/index.html',
-    'disclaimer' => '../../../disclaimer/index.html',
-];
-
-$id = $_GET['id'] ?? '';
-
-if (!$id || !isset($pages[$id])) {
-    http_response_code(400);
-    echo json_encode(['error' => true, 'message' => 'Invalid page ' . $id]);
-    exit;
+$pageKey = trim((string) ($_GET['page_key'] ?? ''));
+if ($pageKey === '') {
+    jsonError('page_key is required', 422);
 }
 
-$file = __DIR__ . '/' . $pages[$id];
-if (!file_exists($file)) {
-    http_response_code(404);
-    echo json_encode(['error' => true, 'message' => 'File not found']);
-    exit;
+try {
+    $stmt = db()->prepare('SELECT * FROM `page_seo` WHERE page_key = :k LIMIT 1');
+    $stmt->execute([':k' => $pageKey]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log('seo/get error: ' . $e->getMessage());
+    jsonError('Failed to load page SEO', 500);
 }
 
-$html = file_get_contents($file);
-
-// Extract title
-preg_match('/<title>(.*?)<\/title>/is', $html, $titleMatches);
-$title = $titleMatches[1] ?? '';
-
-// Extract meta description
-preg_match('/<meta[^>]*name=["\']description["\'][^>]*content=["\'](.*?)["\']/is', $html, $descMatches);
-$description = $descMatches[1] ?? '';
-
-// Extract keywords
-preg_match('/<meta[^>]*name=["\']keywords["\'][^>]*content=["\'](.*?)["\']/is', $html, $kwMatches);
-$keywords = $kwMatches[1] ?? '';
-
-// Extract og:title
-preg_match('/<meta[^>]*property=["\']og:title["\'][^>]*content=["\'](.*?)["\']/is', $html, $ogTitleMatches);
-$og_title = $ogTitleMatches[1] ?? '';
-
-// Extract og:description
-preg_match('/<meta[^>]*property=["\']og:description["\'][^>]*content=["\'](.*?)["\']/is', $html, $ogDescMatches);
-$og_description = $ogDescMatches[1] ?? '';
-
-// Extract og:image and normalize relative path to server-absolute for admin preview
-preg_match('/<meta[^>]*property=["\']og:image["\'][^>]*content=["\'](.*?)["\']/is', $html, $ogImageMatches);
-$og_image = $ogImageMatches[1] ?? '';
-if ($og_image && strpos($og_image, '../') === 0) {
-    $og_image = '/' . ltrim(substr($og_image, 3), '/');
+if (!$row) {
+    jsonError('Page not found', 404);
 }
 
-// Extract canonical
-preg_match('/<link[^>]*rel=["\']canonical["\'][^>]*href=["\'](.*?)["\']/is', $html, $canMatches);
-$canonical = $canMatches[1] ?? '';
-
-// Extract noindex
-preg_match('/<meta[^>]*name=["\']robots["\'][^>]*content=["\']noindex["\']/is', $html, $robotsMatches);
-$noindex = !empty($robotsMatches) ? true : false;
-
-// Extract structured data
-preg_match('/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>(.*?)<\/script>/is', $html, $sdMatches);
-$structured_data = isset($sdMatches[1]) ? trim($sdMatches[1]) : '';
-
-header('Content-Type: application/json');
-echo json_encode([
-    'page_identifier' => $id,
-    'meta_title' => $title,
-    'meta_description' => $description,
-    'meta_keywords' => $keywords,
-    'og_title' => $og_title,
-    'og_description' => $og_description,
-    'og_image' => $og_image,
-    'canonical_url' => $canonical,
-    'noindex' => $noindex,
-    'structured_data' => $structured_data,
+jsonResponse([
+    'error' => false,
+    'page'  => [
+        'id'               => (int) $row['id'],
+        'page_key'         => $row['page_key'],
+        'path'             => $row['path'],
+        'label'            => $row['label'],
+        'meta_title'       => $row['meta_title'] ?? '',
+        'meta_description' => $row['meta_description'] ?? '',
+        'meta_keywords'    => $row['meta_keywords'] ?? '',
+        'canonical_url'    => $row['canonical_url'] ?? '',
+        'og_title'         => $row['og_title'] ?? '',
+        'og_description'   => $row['og_description'] ?? '',
+        'og_image'         => $row['og_image'] ?? '',
+        'og_type'          => $row['og_type'] ?? 'website',
+        'twitter_card'     => $row['twitter_card'] ?? 'summary_large_image',
+        'robots_noindex'   => (bool) $row['robots_noindex'],
+        'robots_nofollow'  => (bool) $row['robots_nofollow'],
+        'structured_data'  => $row['structured_data'] ?? '',
+        'in_sitemap'       => (bool) $row['in_sitemap'],
+        'sitemap_priority' => (float) $row['sitemap_priority'],
+        'sitemap_freq'     => $row['sitemap_freq'],
+        'updated_at'       => $row['updated_at'],
+    ],
 ]);
