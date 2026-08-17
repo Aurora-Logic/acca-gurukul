@@ -19,6 +19,16 @@ $allowedOrigins = [
     'http://127.0.0.1:5173',
 ];
 
+// In production the admin panel is served from the same origin as the API, so
+// this only matters if APP_URL is ever set to a different host. Comma-separated
+// values are supported for apex + www.
+foreach (explode(',', (string) env('APP_URL', '')) as $configuredOrigin) {
+    $configuredOrigin = rtrim(trim($configuredOrigin), '/');
+    if ($configuredOrigin !== '') {
+        $allowedOrigins[] = $configuredOrigin;
+    }
+}
+
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if ($origin && in_array($origin, $allowedOrigins, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
@@ -85,10 +95,7 @@ function sanitize(string $value): string
     return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
 }
 
-function db(): PDO
-{
-    return Database::connect();
-}
+// db() is defined in database.php, which is required at the top of this file.
 
 // ─── Client IP (proxy-aware) ───
 

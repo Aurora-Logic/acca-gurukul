@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/seo.php'; ?>
 <section class="marquee-section">
   <div class="marquee-wrapper">
     <div class="marquee-header">
@@ -16,84 +17,84 @@
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=ey.com"
-            alt="EY"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=ey.com', 'EY'); ?>"
           />EY</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=pwc.com"
-            alt="PwC"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=pwc.com', 'PwC'); ?>"
           />PwC</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=deloitte.com"
-            alt="Deloitte"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=deloitte.com', 'Deloitte'); ?>"
           />Deloitte</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo kpmg-custom-logo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/KPMG_blue_logo.svg/960px-KPMG_blue_logo.svg.png?_=20241210012035"
-            alt="KPMG"
+            alt="<?php echo img_alt('https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/KPMG_blue_logo.svg/960px-KPMG_blue_logo.svg.png?_=20241210012035', 'KPMG'); ?>"
           />KPMG</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=goldmansachs.com"
-            alt="Goldman Sachs"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=goldmansachs.com', 'Goldman Sachs'); ?>"
           />Goldman Sachs</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=jpmorgan.com"
-            alt="J.P. Morgan"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=jpmorgan.com', 'J.P. Morgan'); ?>"
           />J.P. Morgan</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=barclays.com"
-            alt="Barclays"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=barclays.com', 'Barclays'); ?>"
           />Barclays</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=grantthornton.com"
-            alt="Grant Thornton"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=grantthornton.com', 'Grant Thornton'); ?>"
           />Grant Thornton</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=bdo.com"
-            alt="BDO"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=bdo.com', 'BDO'); ?>"
           />BDO</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=accenture.com"
-            alt="Accenture"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=accenture.com', 'Accenture'); ?>"
           />Accenture</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=www.mckinsey.com"
-            alt="McKinsey"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=www.mckinsey.com', 'McKinsey'); ?>"
           />McKinsey</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com"
-            alt="Amazon"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=amazon.com', 'Amazon'); ?>"
           />Amazon</span
         >
         <!-- Group 2 (Duplicate for loop) -->
@@ -101,84 +102,84 @@
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=ey.com"
-            alt="EY"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=ey.com', 'EY'); ?>"
           />EY</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=pwc.com"
-            alt="PwC"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=pwc.com', 'PwC'); ?>"
           />PwC</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=deloitte.com"
-            alt="Deloitte"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=deloitte.com', 'Deloitte'); ?>"
           />Deloitte</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo kpmg-custom-logo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/KPMG_blue_logo.svg/960px-KPMG_blue_logo.svg.png?_=20241210012035"
-            alt="KPMG"
+            alt="<?php echo img_alt('https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/KPMG_blue_logo.svg/960px-KPMG_blue_logo.svg.png?_=20241210012035', 'KPMG'); ?>"
           />KPMG</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=goldmansachs.com"
-            alt="Goldman Sachs"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=goldmansachs.com', 'Goldman Sachs'); ?>"
           />Goldman Sachs</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=jpmorgan.com"
-            alt="J.P. Morgan"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=jpmorgan.com', 'J.P. Morgan'); ?>"
           />J.P. Morgan</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=barclays.com"
-            alt="Barclays"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=barclays.com', 'Barclays'); ?>"
           />Barclays</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=grantthornton.com"
-            alt="Grant Thornton"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=grantthornton.com', 'Grant Thornton'); ?>"
           />Grant Thornton</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=bdo.com"
-            alt="BDO"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=bdo.com', 'BDO'); ?>"
           />BDO</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=accenture.com"
-            alt="Accenture"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=accenture.com', 'Accenture'); ?>"
           />Accenture</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=www.mckinsey.com"
-            alt="McKinsey"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=www.mckinsey.com', 'McKinsey'); ?>"
           />McKinsey</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=amazon.com"
-            alt="Amazon"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=amazon.com', 'Amazon'); ?>"
           />Amazon</span
         >
       </div>
@@ -192,84 +193,84 @@
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=google.com"
-            alt="Google"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=google.com', 'Google'); ?>"
           />Google</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=microsoft.com"
-            alt="Microsoft"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=microsoft.com', 'Microsoft'); ?>"
           />Microsoft</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=hsbc.com"
-            alt="HSBC"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=hsbc.com', 'HSBC'); ?>"
           />HSBC</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=citi.com"
-            alt="Citi"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=citi.com', 'Citi'); ?>"
           />Citi</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=sc.com"
-            alt="Standard Chartered"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=sc.com', 'Standard Chartered'); ?>"
           />Std Chartered</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=morganstanley.com"
-            alt="Morgan Stanley"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=morganstanley.com', 'Morgan Stanley'); ?>"
           />Morgan Stanley</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=bcg.com"
-            alt="BCG"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=bcg.com', 'BCG'); ?>"
           />BCG</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=unilever.com"
-            alt="Unilever"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=unilever.com', 'Unilever'); ?>"
           />Unilever</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=pg.com"
-            alt="P&G"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=pg.com', 'P&G'); ?>"
           />P&G</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=nestle.com"
-            alt="Nestlé"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=nestle.com', 'Nestlé'); ?>"
           />Nestlé</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=www.tcs.com"
-            alt="TCS"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=www.tcs.com', 'TCS'); ?>"
           />TCS</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=infosys.com"
-            alt="Infosys"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=infosys.com', 'Infosys'); ?>"
           />Infosys</span
         >
         <!-- Group 2 (Duplicate for loop) -->
@@ -277,84 +278,84 @@
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=google.com"
-            alt="Google"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=google.com', 'Google'); ?>"
           />Google</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=microsoft.com"
-            alt="Microsoft"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=microsoft.com', 'Microsoft'); ?>"
           />Microsoft</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=hsbc.com"
-            alt="HSBC"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=hsbc.com', 'HSBC'); ?>"
           />HSBC</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=citi.com"
-            alt="Citi"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=citi.com', 'Citi'); ?>"
           />Citi</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=sc.com"
-            alt="Standard Chartered"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=sc.com', 'Standard Chartered'); ?>"
           />Std Chartered</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=morganstanley.com"
-            alt="Morgan Stanley"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=morganstanley.com', 'Morgan Stanley'); ?>"
           />Morgan Stanley</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=bcg.com"
-            alt="BCG"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=bcg.com', 'BCG'); ?>"
           />BCG</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=unilever.com"
-            alt="Unilever"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=unilever.com', 'Unilever'); ?>"
           />Unilever</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=pg.com"
-            alt="P&G"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=pg.com', 'P&G'); ?>"
           />P&G</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=nestle.com"
-            alt="Nestlé"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=nestle.com', 'Nestlé'); ?>"
           />Nestlé</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=www.tcs.com"
-            alt="TCS"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=www.tcs.com', 'TCS'); ?>"
           />TCS</span
         >
         <span class="marquee-item"
           ><img
             class="marquee-logo"
             src="https://www.google.com/s2/favicons?sz=64&domain=infosys.com"
-            alt="Infosys"
+            alt="<?php echo img_alt('https://www.google.com/s2/favicons?sz=64&domain=infosys.com', 'Infosys'); ?>"
           />Infosys</span
         >
       </div>

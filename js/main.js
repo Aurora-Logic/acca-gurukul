@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinksList.forEach(link => {
         const href = link.getAttribute('href');
         if (href) {
-          const isHome = href === '/' || href === '/home/' || href === '/home/index.html';
-          const isCurrentHome = currentPath === '/' || currentPath === '/home/' || currentPath.endsWith('/home/') || currentPath.endsWith('/home/index.html') || currentPath === '';
+          const isHome = href === '/';
+          const isCurrentHome = currentPath === '/' || currentPath === '';
           
           if (isHome && isCurrentHome) {
             link.classList.add('active');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (navbarContainer.children.length === 0) {
-      fetch('/components/navbar.html?v=1.1.8')
+      fetch('/components/navbar.php?v=1.1.8')
         .then(response => response.text())
         .then(data => {
           const parser = new DOMParser();
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (footerContainer.children.length === 0) {
-      fetch('/components/footer.html?v=1.1.8')
+      fetch('/components/footer.php?v=1.1.8')
         .then(response => response.text())
         .then(data => {
           const parser = new DOMParser();
@@ -341,8 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load Corporate Partners Marquee
   const marqueeContainer = document.getElementById('marquee-container');
-  if (marqueeContainer) {
-    fetch('/components/companies-marquee.html?v=1.2.1')
+  if (marqueeContainer && marqueeContainer.children.length === 0) {
+    fetch('/components/companies-marquee.php?v=1.2.1')
       .then(response => response.text())
       .then(data => {
         marqueeContainer.innerHTML = data;

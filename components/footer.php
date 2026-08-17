@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/seo.php'; ?>
 <!-- WhatsApp Sticky FAB -->
 <a
   href="https://wa.me/918692009002?text=Hi"
@@ -31,7 +32,7 @@
     <div class="footer-top">
       <!-- Column 1: Brand & Socials -->
       <div class="footer-brand">
-        <img src="/logo.png" alt="ACCA Gurukul Logo" class="footer-logo" />
+        <img src="/logo.png" alt="<?php echo img_alt('/logo.png', 'ACCA Gurukul Logo'); ?>" class="footer-logo" />
         <p class="footer-tagline">
           Empowering the next generation of global finance professionals. Beyond
           Coaching. Building Career Capital.
@@ -46,7 +47,7 @@
           >
             <img
               src="https://cdn.simpleicons.org/facebook/666666"
-              alt="Facebook"
+              alt="<?php echo img_alt('https://cdn.simpleicons.org/facebook/666666', 'Facebook'); ?>"
               style="width: 22px; height: 22px; transition: filter 0.3s ease"
             />
           </a>
@@ -59,7 +60,7 @@
           >
             <img
               src="https://cdn.simpleicons.org/instagram/666666"
-              alt="Instagram"
+              alt="<?php echo img_alt('https://cdn.simpleicons.org/instagram/666666', 'Instagram'); ?>"
               style="width: 22px; height: 22px; transition: filter 0.3s ease"
             />
           </a>

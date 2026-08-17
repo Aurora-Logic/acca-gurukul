@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/seo.php'; ?>
 <div class="container">
   <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle-btn">
     <i data-lucide="menu" id="nav-toggle-icon"></i>
@@ -9,7 +10,7 @@
 
   <div class="nav-left-group">
     <a href="/" class="nav-logo">
-      <img src="/logo.png" alt="ACCA Gurukul Logo">
+      <img src="/logo.png" alt="<?php echo img_alt('/logo.png', 'ACCA Gurukul Logo'); ?>">
     </a>
     
     <ul class="nav-links" id="nav-links-menu">
@@ -77,7 +78,7 @@
           </div>
           <div class="dropdown-column">
             <h5 class="dropdown-header">Placement Cell</h5>
-            <a href="/home/#marquee-container" class="dropdown-item">
+            <a href="/#marquee-container" class="dropdown-item">
               <span class="item-title">Corporate Partners</span>
               <span class="item-desc">Our corporate partners and network</span>
             </a>
@@ -95,8 +96,8 @@
             <a href="/resources/" class="dropdown-item-simple"><span class="item-text">Resources Hub Overview</span></a>
             <a href="/blogs/" class="dropdown-item-simple"><span class="item-text">Gurukul Blog</span></a>
             <a href="/resources/#our-resources" class="dropdown-item-simple"><span class="item-text">E-Books & Study Materials</span></a>
-            <a href="/home/#testimonials-metrics" class="dropdown-item-simple"><span class="item-text">Success Stories</span></a>
-            <a href="/home/#faq" class="dropdown-item-simple"><span class="item-text">FAQs</span></a>
+            <a href="/#testimonials-metrics" class="dropdown-item-simple"><span class="item-text">Success Stories</span></a>
+            <a href="/#faq" class="dropdown-item-simple"><span class="item-text">FAQs</span></a>
           </div>
         </div>
       </li>

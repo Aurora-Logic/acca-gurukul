@@ -57,3 +57,14 @@ class Database
         return self::$instance;
     }
 }
+
+/**
+ * Shortcut used across the API and the public pages.
+ *
+ * Lives here rather than in bootstrap.php because HTML pages need database
+ * access without bootstrap's JSON Content-Type and CORS headers.
+ */
+function db(): PDO
+{
+    return Database::connect();
+}

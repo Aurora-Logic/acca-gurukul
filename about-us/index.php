@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    <title>
-      About Us - Building Future-Ready Finance Leaders | ACCA Gurukul
-    </title>
+<?php
+require_once __DIR__ . '/../components/seo.php';
+seo_head('about-us');
+?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links -->
@@ -21,11 +19,11 @@
     <link rel="stylesheet" href="/css/style.css?v=1.1.7" />
     <link rel="stylesheet" href="/css/about.css?v=1.1.8" />
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Hero Section -->
     <header class="section-about-hero">
@@ -46,7 +44,7 @@
           <div class="about-hero-image">
             <img
               src="/assets/images/reception.webp"
-              alt="ACCA Gurukul Corporate Office Reception"
+              alt="<?php echo img_alt('/assets/images/reception.webp', 'ACCA Gurukul Corporate Office Reception'); ?>"
             />
           </div>
         </div>
@@ -108,7 +106,7 @@
           <div class="founder-image-card">
             <img
               src="/assets/images/founder_monil_shah.webp"
-              alt="Monil Shah - Founder & CEO of ACCA Gurukul"
+              alt="<?php echo img_alt('/assets/images/founder_monil_shah.webp', 'Monil Shah - Founder & CEO of ACCA Gurukul'); ?>"
             />
           </div>
 
@@ -341,7 +339,7 @@
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

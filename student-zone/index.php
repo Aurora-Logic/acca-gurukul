@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    <title>
-      Student Zone - Support, Guidance & Placement Cell | ACCA Gurukul
-    </title>
+<?php
+require_once __DIR__ . '/../components/seo.php';
+seo_head('student-zone');
+?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links -->
@@ -21,11 +19,11 @@
     <link rel="stylesheet" href="/css/style.css?v=1.1.8" />
     <link rel="stylesheet" href="/css/student.css?v=1.1.8" />
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <header class="section-student-hero">
       <div class="container">
@@ -58,7 +56,7 @@
           <div class="student-hero-image">
             <img
               src="/assets/images/student_zone_hero.webp"
-              alt="ACCA students group study session"
+              alt="<?php echo img_alt('/assets/images/student_zone_hero.webp', 'ACCA students group study session'); ?>"
             />
           </div>
         </div>
@@ -439,7 +437,7 @@
             <div class="placement-professional-card">
               <img
                 src="/assets/images/placement_professional.webp"
-                alt="ACCA placement success story candidate"
+                alt="<?php echo img_alt('/assets/images/placement_professional.webp', 'ACCA placement success story candidate'); ?>"
               />
             </div>
 
@@ -447,7 +445,7 @@
             <div class="placement-logos-card">
               <h4 class="placement-logos-title">Where Our Students Work</h4>
               <div class="placement-logos-img-wrapper">
-                <img src="/assets/images/corporate_logos.webp" alt="Deloitte, EY, KPMG, PwC, Grant Thornton, BDO Logos" />
+                <img src="/assets/images/corporate_logos.webp" alt="<?php echo img_alt('/assets/images/corporate_logos.webp', 'Deloitte, EY, KPMG, PwC, Grant Thornton, BDO Logos'); ?>" />
               </div>
             </div>
             -->
@@ -540,7 +538,7 @@
     </section>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

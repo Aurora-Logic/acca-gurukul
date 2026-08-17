@@ -1,14 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    <title>Our Locations | ACCA Gurukul - Build Global Finance Careers</title>
-    <meta
-      name="description"
-      content="ACCA Gurukul has local learning centres in Nashik, Nagpur and Mumbai. Find out more about our trusted educational partners and facilities."
-    />
+<?php
+require_once __DIR__ . '/../components/seo.php';
+seo_head('locations');
+?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links -->
@@ -39,11 +35,11 @@
       }
     </style>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Dynamic Navbar Container -->
-    <nav id="navbar-container" class="navbar"></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <!-- Main Content -->
     <main>
@@ -549,7 +545,7 @@
                 >
                   <img
                     src="/assets/images/logo_msa_academy.webp"
-                    alt="MSA Academy Nashik Logo"
+                    alt="<?php echo img_alt('/assets/images/logo_msa_academy.webp', 'MSA Academy Nashik Logo'); ?>"
                   />
                 </a>
               </div>
@@ -605,7 +601,7 @@
               <div class="partner-logo-wrapper">
                 <img
                   src="/assets/images/logo_caps_nagpur.webp"
-                  alt="D G Sharma's CAPS Nagpur Logo"
+                  alt="<?php echo img_alt('/assets/images/logo_caps_nagpur.webp', 'D G Sharma\'s CAPS Nagpur Logo'); ?>"
                 />
               </div>
 
@@ -657,7 +653,7 @@
               </div>
 
               <div class="partner-logo-wrapper">
-                <img src="/logo.png" alt="ACCA Gurukul Logo" />
+                <img src="/logo.png" alt="<?php echo img_alt('/logo.png', 'ACCA Gurukul Logo'); ?>" />
               </div>
 
               <div class="partner-card-body">
@@ -705,7 +701,7 @@
     </main>
 
     <!-- Dynamic Footer Container -->
-    <footer id="footer-container" class="footer"></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

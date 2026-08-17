@@ -1,6 +1,16 @@
 <?php
+/**
+ * POST /api/admin/seo/update.php
+ * Saves one page's SEO record.
+ *
+ * This replaces an earlier version that regex-rewrote live .html files on disk.
+ * That version shipped without a requireAuth() call, so any anonymous request
+ * could rewrite <title> and inject a <script> into a public page. It also lost
+ * every edit on deploy. SEO is now database-only — nothing here touches the
+ * filesystem, and structured_data is parsed as JSON rather than concatenated
+ * into markup.
+ */
 
-// Handles POST to update an active HTML file with specific META tags easily
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     header('Allow: POST');
@@ -9,197 +19,121 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../../config/auth.php';
+requireAuth();
 
-$data = $_POST;
-$id = $data['page_identifier'] ?? '';
+$data = getJsonBody();
 
-$pages = [
-    'home' => '../../../home/index.html',
-    'booking' => '../../../booking/index.html',
-    'contact' => '../../../contact/index.html',
-    'news' => '../../../news/index.html',
-    'privacy' => '../../../privacy/index.html',
-    'terms' => '../../../terms/index.html',
-    'disclaimer' => '../../../disclaimer/index.html',
-];
-
-if (!$id || !isset($pages[$id])) {
-    http_response_code(400);
-    echo json_encode(['error' => true, 'message' => 'Invalid page ' . $id]);
-    exit;
+$pageKey = trim((string) ($data['page_key'] ?? ''));
+if ($pageKey === '') {
+    jsonError('page_key is required', 422);
 }
 
-$file = __DIR__ . '/' . $pages[$id];
-if (!file_exists($file)) {
-    http_response_code(404);
-    echo json_encode(['error' => true, 'message' => 'File not found']);
-    exit;
+try {
+    $stmt = db()->prepare('SELECT id FROM `page_seo` WHERE page_key = :k LIMIT 1');
+    $stmt->execute([':k' => $pageKey]);
+    if (!$stmt->fetchColumn()) {
+        jsonError('Page not found', 404);
+    }
+} catch (PDOException $e) {
+    error_log('seo/update lookup error: ' . $e->getMessage());
+    jsonError('Failed to save SEO', 500);
 }
 
-$html = file_get_contents($file);
+/** Trim a field, clamp it to the column width, and treat empty as NULL. */
+$str = function (string $field, int $max) use ($data): ?string {
+    $value = trim((string) ($data[$field] ?? ''));
+    return $value === '' ? null : mb_substr($value, 0, $max);
+};
 
-function updateMetaTag($html, $type, $name, $content) {
-    if (!$content) {
-        return preg_replace('/<meta[^>]*'.$type.'=["\']'.$name.'["\'][^>]*>/is', '', $html);
-    }
-    
-    $tag = '<meta '.$type.'="'.$name.'" content="'.htmlspecialchars($content).'">';
-    
-    // If it exists, replace it
-    if (preg_match('/<meta[^>]*'.$type.'=["\']'.$name.'["\'][^>]*>/is', $html)) {
-        return preg_replace('/<meta[^>]*'.$type.'=["\']'.$name.'["\'][^>]*>/is', "\n" . $tag, $html);
-    } 
-    
-    // Otherwise add it just after closing title
-    if (preg_match('/<\/title>/is', $html)) {
-        return preg_replace('/(<\/title>)/is', "$1\n".$tag, $html);
-    }
-    
-    // Fallback just before closing head
-    return str_replace('</head>', "    $tag\n</head>", $html);
+$metaTitle       = $str('meta_title', 255);
+$metaDescription = $str('meta_description', 320);
+$metaKeywords    = $str('meta_keywords', 255);
+$canonicalUrl    = $str('canonical_url', 255);
+$ogTitle         = $str('og_title', 255);
+$ogDescription   = $str('og_description', 320);
+$ogImage         = $str('og_image', 255);
+
+// A canonical that points somewhere unresolvable is worse than none at all.
+if ($canonicalUrl !== null && !filter_var($canonicalUrl, FILTER_VALIDATE_URL)) {
+    jsonError('Canonical URL must be a full absolute URL (https://…)', 422, ['canonical_url' => 'Invalid URL']);
 }
 
-function updateTitle($html, $content) {
-    if (!$content) return $html;
-    $tag = '<title>'.htmlspecialchars($content).'</title>';
-    if (preg_match('/<title>(.*?)<\/title>/is', $html)) {
-        return preg_replace('/<title>(.*?)<\/title>/is', $tag, $html);
-    }
-    return str_replace('</head>', "    $tag\n</head>", $html);
+$allowedOgTypes = ['website', 'article', 'profile', 'book', 'video.other'];
+$ogType = (string) ($data['og_type'] ?? 'website');
+if (!in_array($ogType, $allowedOgTypes, true)) {
+    $ogType = 'website';
 }
 
-function updateLinkTag($html, $rel, $href) {
-    if (!$href) {
-        return preg_replace('/<link[^>]*rel=["\']'.$rel.'["\'][^>]*>/is', '', $html);
-    }
-    
-    $tag = '<link rel="'.$rel.'" href="'.htmlspecialchars($href).'">';
-    
-    // If it exists, replace it
-    if (preg_match('/<link[^>]*rel=["\']'.$rel.'["\'][^>]*>/is', $html)) {
-        return preg_replace('/<link[^>]*rel=["\']'.$rel.'["\'][^>]*>/is', $tag, $html);
-    } 
-    
-    // Otherwise add it just after closing title
-    if (preg_match('/<\/title>/is', $html)) {
-        return preg_replace('/(<\/title>)/is', "$1\n".$tag, $html);
-    }
-    
-    // Fallback just before closing head
-    return str_replace('</head>', "    $tag\n</head>", $html);
+$allowedCards = ['summary', 'summary_large_image', 'app', 'player'];
+$twitterCard = (string) ($data['twitter_card'] ?? 'summary_large_image');
+if (!in_array($twitterCard, $allowedCards, true)) {
+    $twitterCard = 'summary_large_image';
 }
 
-function updateStructuredData($html, $content) {
-    // Remove existing structured data
-    $html = preg_replace('/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>.*?<\/script>/is', '', $html);
-    
-    if (!$content) {
-        return $html;
-    }
-    
-    $tag = '<script type="application/ld+json">' . "\n" . $content . "\n" . '</script>';
-    
-    // Add it just after closing title
-    if (preg_match('/<\/title>/is', $html)) {
-        return preg_replace('/(<\/title>)/is', "$1\n".$tag, $html);
-    }
-    
-    // Fallback just before closing head
-    return str_replace('</head>', "    $tag\n</head>", $html);
+$allowedFreq = ['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'];
+$sitemapFreq = (string) ($data['sitemap_freq'] ?? 'monthly');
+if (!in_array($sitemapFreq, $allowedFreq, true)) {
+    $sitemapFreq = 'monthly';
 }
 
-// Update components based on data
-if (isset($data['meta_title'])) $html = updateTitle($html, $data['meta_title']);
-if (isset($data['meta_description'])) $html = updateMetaTag($html, 'name', 'description', $data['meta_description']);
-if (isset($data['meta_keywords'])) $html = updateMetaTag($html, 'name', 'keywords', $data['meta_keywords']);
-if (isset($data['og_title'])) $html = updateMetaTag($html, 'property', 'og:title', $data['og_title']);
-if (isset($data['og_description'])) $html = updateMetaTag($html, 'property', 'og:description', $data['og_description']);
-if (isset($data['canonical_url'])) $html = updateLinkTag($html, 'canonical', $data['canonical_url']);
-if (isset($data['structured_data'])) $html = updateStructuredData($html, $data['structured_data']);
+$priority = (float) ($data['sitemap_priority'] ?? 0.8);
+$priority = max(0.0, min(1.0, round($priority, 1)));
 
-if (isset($data['noindex'])) {
-    if ($data['noindex'] === 'true' || $data['noindex'] == 1) {
-         $html = updateMetaTag($html, 'name', 'robots', 'noindex');
-    } else {
-         $html = preg_replace('/<meta[^>]*name=["\']robots["\'][^>]*>/is', '', $html);
+// Validated here so a syntax error surfaces in the editor rather than silently
+// dropping the block at render time.
+$structured = trim((string) ($data['structured_data'] ?? ''));
+if ($structured !== '') {
+    $decoded = json_decode($structured, true);
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+        jsonError('Structured data must be valid JSON', 422, [
+            'structured_data' => 'Invalid JSON: ' . json_last_error_msg(),
+        ]);
     }
+    $structured = json_encode($decoded, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+} else {
+    $structured = null;
 }
 
-// Handle OG image upload
-if (isset($_FILES['og_image']) && $_FILES['og_image']['error'] === UPLOAD_ERR_OK) {
-    // Generate a clean filename or keep original. Let's just create a timestamped name.
-    $uploadDir = __DIR__ . '/../../../assets/seo/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
-    
-    $ext = pathinfo($_FILES['og_image']['name'], PATHINFO_EXTENSION);
-    $filename = $id . '_og_' . time() . '.' . $ext;
-    $targetPath = $uploadDir . $filename;
-    
-    if (move_uploaded_file($_FILES['og_image']['tmp_name'], $targetPath)) {
-        // Build the public URL (assuming it's running via root or we simply do /assets/seo/)
-        // Typically it might be /assets/seo/... or ../assets/seo/... 
-        // For static files at root, assets is in the same folder as home, so /assets/
-        $publicUrl = '../assets/seo/' . $filename;
-        $html = updateMetaTag($html, 'property', 'og:image', $publicUrl);
-    }
+try {
+    db()->prepare('
+        UPDATE `page_seo` SET
+            meta_title       = :meta_title,
+            meta_description = :meta_description,
+            meta_keywords    = :meta_keywords,
+            canonical_url    = :canonical_url,
+            og_title         = :og_title,
+            og_description   = :og_description,
+            og_image         = :og_image,
+            og_type          = :og_type,
+            twitter_card     = :twitter_card,
+            robots_noindex   = :robots_noindex,
+            robots_nofollow  = :robots_nofollow,
+            structured_data  = :structured_data,
+            in_sitemap       = :in_sitemap,
+            sitemap_priority = :sitemap_priority,
+            sitemap_freq     = :sitemap_freq
+        WHERE page_key = :page_key
+    ')->execute([
+        ':meta_title'       => $metaTitle,
+        ':meta_description' => $metaDescription,
+        ':meta_keywords'    => $metaKeywords,
+        ':canonical_url'    => $canonicalUrl,
+        ':og_title'         => $ogTitle,
+        ':og_description'   => $ogDescription,
+        ':og_image'         => $ogImage,
+        ':og_type'          => $ogType,
+        ':twitter_card'     => $twitterCard,
+        ':robots_noindex'   => !empty($data['robots_noindex']) ? 1 : 0,
+        ':robots_nofollow'  => !empty($data['robots_nofollow']) ? 1 : 0,
+        ':structured_data'  => $structured,
+        ':in_sitemap'       => !empty($data['in_sitemap']) ? 1 : 0,
+        ':sitemap_priority' => $priority,
+        ':sitemap_freq'     => $sitemapFreq,
+        ':page_key'         => $pageKey,
+    ]);
+} catch (PDOException $e) {
+    error_log('seo/update error: ' . $e->getMessage());
+    jsonError('Failed to save SEO', 500);
 }
 
-// Reorder all SEO tags into a consistent block right after </title>
-function reorderSeoBlock($html) {
-    $tags = [];
-
-    $patterns = [
-        'description'    => ['/<meta[^>]*name=["\']description["\'][^>]*>/is', null],
-        'keywords'       => ['/<meta[^>]*name=["\']keywords["\'][^>]*>/is', null],
-        'robots'         => ['/<meta[^>]*name=["\']robots["\'][^>]*>/is', null],
-        'canonical'      => ['/<link[^>]*rel=["\']canonical["\'][^>]*>/is', null],
-        'og_title'       => ['/<meta[^>]*property=["\']og:title["\'][^>]*>/is', null],
-        'og_description' => ['/<meta[^>]*property=["\']og:description["\'][^>]*>/is', null],
-        'og_image'       => ['/<meta[^>]*property=["\']og:image["\'][^>]*>/is', null],
-    ];
-
-    foreach ($patterns as $key => [$pattern]) {
-        if (preg_match($pattern, $html, $m)) {
-            $tags[$key] = $m[0];
-            $html = preg_replace($pattern, '', $html);
-        }
-    }
-
-    // Structured data (multiline)
-    if (preg_match('/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>.*?<\/script>/is', $html, $m)) {
-        $tags['structured_data'] = $m[0];
-        $html = preg_replace('/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>.*?<\/script>/is', '', $html);
-    }
-
-    $order = ['description', 'keywords', 'robots', 'canonical', 'og_title', 'og_description', 'og_image', 'structured_data'];
-    $block = '';
-    foreach ($order as $key) {
-        if (!empty($tags[$key])) {
-            $block .= "\n" . $tags[$key];
-        }
-    }
-
-    if ($block && preg_match('/<\/title>/is', $html)) {
-        $html = preg_replace('/(<\/title>)/is', "$1" . $block, $html);
-    }
-
-    // Collapse runs of blank lines left by removals
-    $html = preg_replace('/\n{3,}/', "\n\n", $html);
-
-    return $html;
-}
-
-$html = reorderSeoBlock($html);
-
-$tmp = $file . '.tmp';
-if (file_put_contents($tmp, $html) === false) {
-    http_response_code(500);
-    echo json_encode(['error' => true, 'message' => 'Failed to write file']);
-    exit;
-}
-rename($tmp, $file);
-
-header('Content-Type: application/json');
-echo json_encode(['success' => true, 'message' => 'SEO elements saved properly!']);
+jsonSuccess('SEO settings saved');

@@ -1,6 +1,7 @@
 <?php
 // blogs/index.php
 require_once __DIR__ . '/../api/config/bootstrap.php';
+require_once __DIR__ . '/../components/seo.php';
 header('Content-Type: text/html; charset=utf-8');
 
 // Helper function to escape html
@@ -22,6 +23,7 @@ $slugEncoded = htmlspecialchars($slugDecoded, ENT_QUOTES, 'UTF-8');
 $blog = null;
 $tocItems = [];
 $faqs = [];
+$notFound = false;
 
 if ($slugDecoded) {
     // 1. Fetch single published blog
@@ -76,6 +78,7 @@ if ($slugDecoded) {
         } else {
             // Blog slug provided but not found, send 404
             http_response_code(404);
+            $notFound = true;
         }
     } catch (PDOException $e) {
         error_log('blogs/index SSR fetch error: ' . $e->getMessage());
@@ -126,41 +129,94 @@ function generateTocAndInjectIds($content, &$tocItems) {
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/tracking.js"></script>
-    
-    <?php if ($blog): ?>
-      <!-- Dynamic SEO Tags for Single Blog -->
-      <title><?php echo h($blog['meta_title'] ?: $blog['title']); ?> - ACCA Gurukul</title>
-      <meta name="description" content="<?php echo h($blog['meta_description'] ?: $blog['excerpt']); ?>" />
-      
-      <!-- Open Graph / Facebook / WhatsApp Preview -->
-      <meta property="og:title" content="<?php echo h($blog['og_title'] ?: $blog['meta_title'] ?: $blog['title']); ?>" />
-      <meta property="og:description" content="<?php echo h($blog['og_description'] ?: $blog['meta_description'] ?: $blog['excerpt']); ?>" />
-      <meta property="og:image" content="<?php echo h($blog['featured_image'] ?: '/assets/images/building.webp'); ?>" />
-      <?php if (!empty($blog['featured_image_alt'])): ?>
-        <meta property="og:image:alt" content="<?php echo h($blog['featured_image_alt']); ?>" />
-      <?php endif; ?>
-      <meta property="og:type" content="article" />
-      <meta property="og:url" content="https://<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
-      <meta property="og:site_name" content="ACCA Gurukul" />
-      
-      <!-- Twitter Cards -->
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="<?php echo h($blog['og_title'] ?: $blog['meta_title'] ?: $blog['title']); ?>" />
-      <meta name="twitter:description" content="<?php echo h($blog['og_description'] ?: $blog['meta_description'] ?: $blog['excerpt']); ?>" />
-      <meta name="twitter:image" content="<?php echo h($blog['featured_image'] ?: '/assets/images/building.webp'); ?>" />
-    <?php else: ?>
-      <!-- Standard SEO Tags for Listing Page -->
-      <title>Gurukul Insights - ACCA Blogs, Career Guides & Updates</title>
-      <meta name="description" content="Stay ahead in your finance journey with curated exam strategies, global career insights, syllabus guides, and successful alumni stories from ACCA Gurukul." />
-      <meta property="og:title" content="Gurukul Insights - ACCA Blogs, Career Guides & Updates" />
-      <meta property="og:description" content="Stay ahead in your finance journey with ACCA Gurukul articles." />
-      <meta property="og:image" content="/logo.png" />
-      <meta property="og:type" content="website" />
-    <?php endif; ?>
-    
+<?php
+if ($blog) {
+    // Article URLs are built from the stored slug, never from REQUEST_URI —
+    // that header is attacker-controlled and previously landed unescaped in
+    // og:url. Deriving it from the database also keeps query strings and
+    // casing variants from splitting the canonical.
+    $blogUrl   = seo_url('/blogs/' . rawurlencode($blog['slug']) . '/');
+    $blogTitle = $blog['meta_title'] ?: $blog['title'];
+    $blogDesc  = $blog['meta_description'] ?: $blog['excerpt'];
+    $blogImage = $blog['featured_image'] ?: '/assets/images/building.webp';
+
+    $article = [
+        '@type'            => 'BlogPosting',
+        '@id'              => $blogUrl . '#article',
+        'headline'         => mb_substr($blog['title'], 0, 110),
+        'url'              => $blogUrl,
+        'mainEntityOfPage' => ['@id' => $blogUrl . '#webpage'],
+        'image'            => seo_url($blogImage),
+        'datePublished'    => (new DateTime($blog['created_at']))->format(DateTime::ATOM),
+        'dateModified'     => (new DateTime($blog['updated_at'] ?: $blog['created_at']))->format(DateTime::ATOM),
+        'publisher'        => ['@id' => seo_url('/') . '#organization'],
+        'inLanguage'       => 'en-IN',
+    ];
+    if (!empty($blogDesc))            $article['description'] = $blogDesc;
+    if (!empty($blog['author']))      $article['author'] = ['@type' => 'Person', 'name' => $blog['author']];
+    else                              $article['author'] = ['@id' => seo_url('/') . '#organization'];
+    if (!empty($blog['category']))    $article['articleSection'] = $blog['category'];
+    if (!empty($blog['tags']))        $article['keywords'] = $blog['tags'];
+    if (!empty($blog['read_time']))   $article['timeRequired'] = 'PT' . (int) $blog['read_time'] . 'M';
+
+    $extraSchema = [$article, [
+        '@type'           => 'BreadcrumbList',
+        '@id'             => $blogUrl . '#breadcrumb',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home',  'item' => seo_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog',  'item' => seo_url('/blogs/')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $blog['title'], 'item' => $blogUrl],
+        ],
+    ]];
+
+    if (!empty($faqs)) {
+        $questions = [];
+        foreach ($faqs as $faq) {
+            if (empty($faq['question']) || empty($faq['answer'])) {
+                continue;
+            }
+            $questions[] = [
+                '@type'          => 'Question',
+                'name'           => $faq['question'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
+            ];
+        }
+        if ($questions) {
+            $extraSchema[] = [
+                '@type'      => 'FAQPage',
+                '@id'        => $blogUrl . '#faq',
+                'mainEntity' => $questions,
+            ];
+        }
+    }
+
+    seo_head('blogs', [
+        'path'             => '/blogs/' . $blog['slug'] . '/',
+        'label'            => $blog['title'],
+        'meta_title'       => $blogTitle . ' | ACCA Gurukul',
+        'meta_description' => $blogDesc,
+        'canonical_url'    => $blogUrl,
+        'og_title'         => $blog['og_title'] ?: $blogTitle,
+        'og_description'   => $blog['og_description'] ?: $blogDesc,
+        'og_image'         => $blogImage,
+        'og_image_alt'     => $blog['featured_image_alt'] ?? '',
+        'og_type'          => 'article',
+        'structured_data'  => '',
+        'schema'           => $extraSchema,
+    ]);
+} elseif ($notFound) {
+    // A missing article still renders the listing, so without this the 404 URL
+    // would advertise itself as indexable and canonicalise to /blogs/ — telling
+    // Google it is a duplicate of a page that does exist.
+    seo_head('blogs', [
+        'meta_title'     => 'Article not found | ACCA Gurukul',
+        'robots_noindex' => 1,
+        'canonical_url'  => seo_url('/blogs/' . rawurlencode($slugDecoded) . '/'),
+    ]);
+} else {
+    seo_head('blogs');
+}
+?>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Google Fonts Preconnect & Links -->
@@ -174,35 +230,12 @@ function generateTocAndInjectIds($content, &$tocItems) {
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/style.css?v=1.1.6" />
     <link rel="stylesheet" href="/css/blogs.css?v=1.1.7" />
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <?php if ($blog && !empty($faqs)): 
-      $faqSchema = [
-          '@context' => 'https://schema.org',
-          '@type' => 'FAQPage',
-          'mainEntity' => []
-      ];
-      foreach ($faqs as $faq) {
-          $faqSchema['mainEntity'][] = [
-              '@type' => 'Question',
-              'name' => $faq['question'],
-              'acceptedAnswer' => [
-                  '@type' => 'Answer',
-                  'text' => $faq['answer']
-              ]
-          ];
-      }
-      ?>
-      <!-- FAQ Schema JSON-LD -->
-      <script type="application/ld+json">
-      <?php echo json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
-      </script>
-    <?php endif; ?>
+    <script src="/js/tracking.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body>
     <!-- Navbar Placeholder -->
-    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.html'; ?></nav>
+    <nav id="navbar-container" class="navbar"><?php include __DIR__ . '/../components/navbar.php'; ?></nav>
 
     <?php if ($blog): ?>
       <!-- ═══════════════════════════════════════════
@@ -432,7 +465,7 @@ function generateTocAndInjectIds($content, &$tocItems) {
     <?php endif; ?>
 
     <!-- Footer Placeholder -->
-    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.html'; ?></footer>
+    <footer id="footer-container" class="footer"><?php include __DIR__ . '/../components/footer.php'; ?></footer>
 
     <!-- Main JavaScript Scripts -->
     <script src="/js/main.js"></script>

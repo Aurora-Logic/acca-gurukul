@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../../config/auth.php';
+require_once __DIR__ . '/../../config/uploads.php';
+require_once __DIR__ . '/../../../components/indexnow.php';
 requireAuth();
 
 // Since updating might include form-data (files), use $_POST and $_FILES
@@ -62,9 +64,9 @@ if (!$content) {
     jsonError('Content is required', 422);
 }
 
-// Fetch existing blog to get the current featured_image
+// Fetch existing blog to get current status, slug and featured_image
 try {
-    $stmt = db()->prepare('SELECT featured_image FROM `blogs` WHERE id = :id LIMIT 1');
+    $stmt = db()->prepare('SELECT id, is_published, slug, featured_image FROM `blogs` WHERE id = :id LIMIT 1');
     $stmt->execute([':id' => $id]);
     $current = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$current) {
@@ -79,23 +81,15 @@ $featuredImage = $current['featured_image'];
 
 if ($remove_image) {
     $featuredImage = null;
-} elseif (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
-    $uploadDir = __DIR__ . '/../../../uploads/blogs/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
-
-    $file = $_FILES['featured_image'];
-    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
-    
-    if (in_array($ext, $allowed)) {
-        $filename = uniqid() . '-' . time() . '.' . $ext;
-        if (move_uploaded_file($file['tmp_name'], $uploadDir . $filename)) {
-            $featuredImage = '/uploads/blogs/' . $filename;
-        }
-    } else {
-        jsonError('Invalid image format', 422);
+} elseif (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] !== UPLOAD_ERR_NO_FILE) {
+    try {
+        $featuredImage = storeUploadedImage(
+            $_FILES['featured_image'],
+            __DIR__ . '/../../../uploads/blogs',
+            '/uploads/blogs'
+        );
+    } catch (RuntimeException $e) {
+        jsonError($e->getMessage(), 422);
     }
 }
 
@@ -162,12 +156,28 @@ try {
 
     $pdo->commit();
 
+    $indexingStatus = null;
+    if ($is_published) {
+        $urlsToSubmit = [
+            seo_url('/blogs/' . rawurlencode($slug) . '/'),
+            seo_url('/blogs/'),
+            seo_url('/sitemap.xml'),
+            seo_url('/feed/'),
+        ];
+        // If slug changed and it was already published before, submit the old URL as well
+        if (!empty($current['slug']) && $current['slug'] !== $slug && (int) $current['is_published'] === 1) {
+            $urlsToSubmit[] = seo_url('/blogs/' . rawurlencode($current['slug']) . '/');
+        }
+        $indexingStatus = indexnow_submit_urls($urlsToSubmit);
+    }
+
     jsonSuccess('Blog post updated successfully', [
         'blog' => [
             'id'             => $id,
             'slug'           => $slug,
             'featured_image' => $featuredImage,
         ],
+        'indexing' => $indexingStatus,
     ]);
 
 } catch (PDOException $e) {

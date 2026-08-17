@@ -44,4 +44,12 @@ yarn-error.log*
 uploads/blogs/
 
 # Generated Sitemap
-sitemap.xml
+sitemap.xml
+
+# TypeScript incremental build cache
+admin/tsconfig.tsbuildinfo
+
+# IndexNow Verification Keys
+indexnow_key.txt
+indexkey.txt
+indexnow-*.txt
