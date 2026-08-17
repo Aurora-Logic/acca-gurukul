@@ -247,16 +247,16 @@ function seo_head(string $pageKey, array $overrides = []): void
     $page = array_merge(seo_page($pageKey), array_filter($overrides, fn($v) => $v !== null && $v !== ''));
 
     $path      = $page['path']  ?? '/';
-    $label     = $page['label'] ?? $s['site_name'];
-    $title     = $page['meta_title'] ?: ($label . ' ' . $s['title_separator'] . ' ' . $s['title_suffix']);
+    $label     = $page['label'] ?? ($s['site_name'] ?? 'ACCA Gurukul');
+    $title     = !empty($page['meta_title']) ? $page['meta_title'] : ($label . ' ' . ($s['title_separator'] ?? '|') . ' ' . ($s['title_suffix'] ?? 'ACCA Gurukul'));
     $desc      = $page['meta_description'] ?? '';
     $canonical = !empty($page['canonical_url']) ? $page['canonical_url'] : seo_url($path);
 
-    $ogTitle = $page['og_title']       ?: $title;
-    $ogDesc  = $page['og_description'] ?: $desc;
-    $ogImage = $page['og_image']       ?: ($s['default_og_image'] ?? '');
-    $ogType  = $page['og_type']        ?: 'website';
-    $card    = $page['twitter_card']   ?: 'summary_large_image';
+    $ogTitle = !empty($page['og_title'])       ? $page['og_title']       : $title;
+    $ogDesc  = !empty($page['og_description']) ? $page['og_description'] : $desc;
+    $ogImage = !empty($page['og_image'])       ? $page['og_image']       : ($s['default_og_image'] ?? '');
+    $ogType  = !empty($page['og_type'])        ? $page['og_type']        : 'website';
+    $card    = !empty($page['twitter_card'])   ? $page['twitter_card']   : 'summary_large_image';
 
     $robots = [];
     $robots[] = !empty($page['robots_noindex'])  ? 'noindex'  : 'index';
@@ -281,6 +281,7 @@ function seo_head(string $pageKey, array $overrides = []): void
 
     echo '    <meta name="robots" content="' . seo_e(implode(', ', $robots)) . '" />' . PHP_EOL;
     echo '    <link rel="canonical" href="' . seo_e($canonical) . '" />' . PHP_EOL;
+    echo '    <link rel="alternate" type="application/rss+xml" title="' . seo_e($s['site_name']) . ' RSS Feed" href="' . seo_e(seo_url('/feed/')) . '" />' . PHP_EOL;
 
     // Open Graph
     echo '    <meta property="og:site_name" content="' . seo_e($s['site_name']) . '" />' . PHP_EOL;

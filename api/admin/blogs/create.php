@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 require_once __DIR__ . '/../../config/auth.php';
 require_once __DIR__ . '/../../config/uploads.php';
+require_once __DIR__ . '/../../../components/indexnow.php';
 requireAuth();
 
 // For multipart/form-data, we use $_POST and $_FILES directly instead of getJsonBody()
@@ -125,11 +126,17 @@ try {
     $newId = (int) $pdo->lastInsertId();
     $pdo->commit();
 
+    $indexingStatus = null;
+    if ($is_published) {
+        $indexingStatus = indexnow_submit_blog($slug);
+    }
+
     jsonSuccess('Blog post created successfully', [
         'blog' => [
             'id'   => $newId,
             'slug' => $slug,
         ],
+        'indexing' => $indexingStatus,
     ], 201);
 
 } catch (PDOException $e) {

@@ -18,18 +18,21 @@ RewriteBase /
 # RewriteCond %{HTTP_HOST} ^www\.accagurukul\.com$ [NC]
 # RewriteRule ^(.*)$ https://accagurukul.com/$1 [R=301,L]
 
-# Homepage moved from /home/ to the site root. Permanent so the ranking
-# signals that /home/ accumulated transfer to "/".
-RewriteRule ^home/?$ / [R=301,L]
+# Homepage moved from /home/ to the site root ("/"). Permanent 301 redirect
+# so all ranking signals transfer to "/" and prevent duplicate content.
+RewriteCond %{THE_REQUEST} \s/+home(?:/|\.php|\.html|\s|\?) [NC,OR]
+RewriteCond %{REQUEST_URI} ^/home(?:/.*)?$ [NC]
+RewriteRule ^home(?:/.*)?$ / [R=301,L]
 
-# /index.php is the same page as "/" — collapse it.
-RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
-RewriteRule ^index\.php$ / [R=301,L]
+# /index.php or /index.html is the same page as "/" — collapse directly to root "/".
+RewriteCond %{THE_REQUEST} \s/+index\.(?:php|html)[\s?] [NC]
+RewriteRule ^index\.(?:php|html)$ / [R=301,L]
 
-# Dynamic robots.txt and sitemap.xml (both read from the database).
+# Dynamic robots.txt, sitemap.xml, RSS feed, and IndexNow key verification (all read dynamically)
 RewriteRule ^robots\.txt$ robots.php [L]
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^(feed|rss\.xml|blogs/feed)/?$ feed.php [L]
+RewriteRule ^([a-f0-9]{32}|indexnow_?key)\.txt$ indexnow.php [L]
 
 # ==========================================
 # 1. SECURITY RULES (File Hijacking Prevention)

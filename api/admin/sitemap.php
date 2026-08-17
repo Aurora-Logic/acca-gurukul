@@ -13,6 +13,7 @@
 
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../../components/sitemap.php';
+require_once __DIR__ . '/../../components/indexnow.php';
 requireAuth();
 
 /** @return array{urls: array, static_count: int, blog_count: int} */
@@ -96,6 +97,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'GET') {
     $preview    = sitemapPreview();
     $sitemapUrl = seo_url('/sitemap.xml');
+    $feedUrl    = seo_url('/feed/');
+    $key        = indexnow_get_key();
 
     // A leftover static file would take precedence over the dynamic route, so
     // surface it rather than letting it silently serve stale URLs.
@@ -106,6 +109,9 @@ if ($method === 'GET') {
         'sitemap' => array_merge($preview, [
             'sitemap_url'    => $sitemapUrl,
             'robots_url'     => seo_url('/robots.txt'),
+            'feed_url'       => $feedUrl,
+            'indexnow_key'   => $key,
+            'indexnow_url'   => seo_url('/' . $key . '.txt'),
             'total_urls'     => $preview['static_count'] + $preview['blog_count'],
             'is_dynamic'     => true,
             'stale_file'     => file_exists($staleFile),
@@ -131,12 +137,17 @@ if (file_exists($staleFile)) {
     $removed = @unlink($staleFile);
 }
 
-jsonSuccess('Sitemap refreshed — it is generated live from the database', [
+// Automatically notify IndexNow search partners (Bing, Yandex, Seznam, Naver) of all published URLs
+$indexNowResult = indexnow_submit_all_published_blogs();
+
+jsonSuccess('Sitemap refreshed and submitted to IndexNow search partners', [
     'sitemap' => array_merge(sitemapPreview(), [
         'sitemap_url'    => seo_url('/sitemap.xml'),
         'robots_url'     => seo_url('/robots.txt'),
+        'feed_url'       => seo_url('/feed/'),
         'xml_content'    => sitemapXml(),
         'last_generated' => 'Generated live on every request',
         'stale_removed'  => $removed,
+        'indexing'       => $indexNowResult,
     ]),
 ]);

@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinksList.forEach(link => {
         const href = link.getAttribute('href');
         if (href) {
-          const isHome = href === '/' || href === '/home/' || href === '/home/index.html';
-          const isCurrentHome = currentPath === '/' || currentPath === '/home/' || currentPath.endsWith('/home/') || currentPath.endsWith('/home/index.html') || currentPath === '';
+          const isHome = href === '/';
+          const isCurrentHome = currentPath === '/' || currentPath === '';
           
           if (isHome && isCurrentHome) {
             link.classList.add('active');
